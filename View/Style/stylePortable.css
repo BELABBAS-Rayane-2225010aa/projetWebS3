@@ -13,6 +13,7 @@ ul {
     position: sticky;
     top: 0;
     width: 100%;
+
 }
 
 li:not(#droite){
@@ -44,7 +45,6 @@ li a:hover:not(.active) {
 .categories {
     float: left;
     width: 12vh;
-    min-width: 8em;
     height: 100vh;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
@@ -67,26 +67,20 @@ li a:hover:not(.active) {
     border: 1px solid #ccc;
     border-radius: 8px;
     margin-top: 0.3vh;
-    margin-right: 0.8vh;
+    margin-right: 0.3vh;
     padding: 0.7%;
     font-size: 1.2em;
     overflow: scroll; /*contre le debordement de la boite associer*/
 }
-
 .menu {
-    box-sizing: border-box;
-}
-.buttonCategorie{ /* Visible uniquement en mode portrait */
-    visibility: hidden;
+    font-size: 1.8vh;
 }
 .boutonBillet{
-    border-radius: 10px;
     background-color: #cccccc;
-    padding: 9vh;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-    width: 30vh;
-    margin-top: 2em;
+    display: block;
+    border: 1px solid black;
+    width: 100%;
+    padding: 1vh;
     overflow: hidden; /* empeche le debordement */
     white-space: nowrap; /* empeche les retour a la ligne etla deformation du bouton */
     text-overflow: ellipsis; /* met "..." en cas de debordement */
