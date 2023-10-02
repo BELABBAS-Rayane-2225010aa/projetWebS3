@@ -43,6 +43,7 @@ li a:hover:not(.active) {
 /* categories a gauche */
 
 .categories {
+    display: none;
     float: left;
     width: 12vh;
     height: 100vh;
@@ -57,12 +58,20 @@ li a:hover:not(.active) {
     font-size: 1.5em;
 }
 
+.compte{
+    background-color: darkseagreen;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: black;
+    padding: 3vh;
+    margin: 1em;
+}
 
 /* billet et commentaire a droite */
 
 .comments {
     position: static;
-    margin-left:14.5vh;
+    margin-left:0.3vh;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 8px;
