@@ -4,11 +4,11 @@ namespace Controller;
 
 class LoginController
 {
-    public function getlogin() : User {
+    public function getlogin() : \Model\User {
         $pseudo = $_GET['pseudo'];
-        $mdp = $_GET['mdp'];
+        $password = $_GET['mdp'];
         try {
-            return \UserRepository::login($pseudo , $mdp);
+            return \UserRepository::login($pseudo , $password);
         }
         catch (\NotFoundException $ERROR){
             echo 'Erreur de requête<br>',$ERROR->getMessage(),PHP_EOL;
