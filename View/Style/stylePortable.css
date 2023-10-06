@@ -185,3 +185,11 @@ footer {
     padding: 3vh;
     margin: 1em;
 }
+.image404{
+    max-width: 50%;
+    max-height: 50%;
+}
+.section404{
+    margin-top: 5em;
+    text-align: center;
+}
