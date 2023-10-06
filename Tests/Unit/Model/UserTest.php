@@ -80,4 +80,20 @@ class UserTest extends TestCase
         //alors(then) on vérifie que password a été renvoyer
         $this->assertSame($expected, $user->getDateLastCo());
     }
+
+    /** @test */
+    public function user_is_delete_from_bd(): void
+    {
+        //etant donné un utilisateur
+        //quand la methode delete_Utilisateur
+        //then on vérifie que l'utilisateur a été supprimer de la bd
+    }
+
+    /** @test */
+    public function user_is_updated_from_bd(): void
+    {
+        //etant donné un utilisateur
+        //quand la methode modif_Utilisateur
+        //alors on vérifie que l'utilisateur a été mis a jour dans la bd
+    }
 }
