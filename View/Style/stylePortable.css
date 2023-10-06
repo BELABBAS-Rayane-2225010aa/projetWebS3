@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     height: 100vh;
     margin:0;
+
 }
 
 ul {
@@ -156,4 +157,31 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+.boutonchanger_mdp{
+    border-radius: 5px;
+    border-color: #263e1a;
+    background-color: lightgreen;
+}
+.boutonchanger_mdp:hover{
+    background-color: #59ab59;
+}
+
+.suprimer_compte{
+    border-radius: 15px;
+    background-color: #b42828;
+    border-color: darkred;
+}
+.suprimer_compte:hover{
+    border-radius: 5px;
+    background-color: #e32e2e;
+    border-color: #bb0000;
+}
+.changer_mdp{
+    background-color: darkseagreen;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: black;
+    padding: 3vh;
+    margin: 1em;
 }
