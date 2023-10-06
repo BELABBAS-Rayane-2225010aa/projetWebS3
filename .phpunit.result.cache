@@ -1,1 +1,1 @@
-{"version":1,"defects":{"UserTest::test_GetPassword":4},"times":{"UserTest::test_GetPassword":0.098}}
+{"version":1,"defects":{"UserTest::test_GetPassword":4,"UserTest::test_GetPseudo":3},"times":{"UserTest::test_GetPassword":0.052,"UserTest::test_GetImgPath":0,"UserTest::test_GetPseudo":0,"UserTest::test_GetEmail":0,"UserTest::test_GetDateFirstCo":0,"UserTest::test_GetDateLastCo":0}}
