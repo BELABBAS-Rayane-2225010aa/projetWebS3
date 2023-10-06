@@ -186,3 +186,11 @@ footer {
     margin: 1em;
     text-align: center;
 }
+.image404{
+    max-width: 30%;
+    max-height: 30%;
+}
+.section404{
+    margin-top: 5em;
+    text-align: center;
+}
