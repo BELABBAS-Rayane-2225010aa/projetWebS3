@@ -1,5 +1,6 @@
 <?php
 
+namespace Tests\Unit\Model;
 require_once './Model/User.php';
 
 use Model\User;
@@ -18,65 +19,65 @@ class UserTest extends TestCase
     public function getPassword(): void
     {
         //etant donné que(given) un nouvel user
-        $user = new User("motdepasse","","TestPseudo","email","10/08","10/08");
+        $user = new User("motdepasse", "", "TestPseudo", "email", "10/08", "10/08");
         //quand(when) on appel la méthode getPassword
         $expected = "motdepasse";
         //alors(then) on vérifie que password a été renvoyer
-        $this->assertSame($expected,$user->getPassword());
+        $this->assertSame($expected, $user->getPassword());
     }
 
     /** @test */
     public function getImgPath(): void
     {
         //etant donné que(given) un nouvel user
-        $user = new User("motdepasse","","TestPseudo","email","10/08","10/08");
+        $user = new User("motdepasse", "", "TestPseudo", "email", "10/08", "10/08");
         //quand(when) on appel la méthode getPassword
         $expected = "";
         //alors(then) on vérifie que password a été renvoyer
-        $this->assertSame($expected,$user->getImgPath());
+        $this->assertSame($expected, $user->getImgPath());
     }
 
     /** @test */
     public function getPseudo(): void
     {
         //etant donné que(given) un nouvel user
-        $user = new User("motdepasse","","TestPseudo","email","10/08","10/08");
+        $user = new User("motdepasse", "", "TestPseudo", "email", "10/08", "10/08");
         //quand(when) on appel la méthode getPassword
         $expected = "TestPseudo";
         //alors(then) on vérifie que password a été renvoyer
-        $this->assertSame($expected,$user->getPseudo());
+        $this->assertSame($expected, $user->getPseudo());
     }
 
     /** @test */
     public function getEmail(): void
     {
         //etant donné que(given) un nouvel user
-        $user = new User("motdepasse","","TestPseudo","email","10/08","10/08");
+        $user = new User("motdepasse", "", "TestPseudo", "email", "10/08", "10/08");
         //quand(when) on appel la méthode getPassword
         $expected = "email";
         //alors(then) on vérifie que password a été renvoyer
-        $this->assertSame($expected,$user->getEmail());
+        $this->assertSame($expected, $user->getEmail());
     }
 
     /** @test */
     public function getDateFirstCo(): void
     {
         //etant donné que(given) un nouvel user
-        $user = new User("motdepasse","","TestPseudo","email","10/08","10/08");
+        $user = new User("motdepasse", "", "TestPseudo", "email", "10/08", "10/08");
         //quand(when) on appel la méthode getPassword
         $expected = "10/08";
         //alors(then) on vérifie que password a été renvoyer
-        $this->assertSame($expected,$user->getDateFirstCo());
+        $this->assertSame($expected, $user->getDateFirstCo());
     }
 
     /** @test */
     public function getDateLastCo(): void
     {
         //etant donné que(given) un nouvel user
-        $user = new User("motdepasse","","TestPseudo","email","10/08","12/06");
+        $user = new User("motdepasse", "", "TestPseudo", "email", "10/08", "12/06");
         //quand(when) on appel la méthode getPassword
         $expected = "12/06";
         //alors(then) on vérifie que password a été renvoyer
-        $this->assertSame($expected,$user->getDateLastCo());
+        $this->assertSame($expected, $user->getDateLastCo());
     }
 }
