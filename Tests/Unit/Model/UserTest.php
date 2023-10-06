@@ -81,11 +81,18 @@ class UserTest extends TestCase
         $this->assertSame($expected, $user->getDateLastCo());
     }
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->SessionActiveMock = new SessionActive();
+    }
+
     /** @test */
     public function user_is_delete_from_bd(): void
     {
         //etant donné un utilisateur
-        //quand la methode delete_Utilisateur
+        //quand la methode delete_Utilisateur est appelé
         //then on vérifie que l'utilisateur a été supprimer de la bd
     }
 
@@ -93,7 +100,7 @@ class UserTest extends TestCase
     public function user_is_updated_from_bd(): void
     {
         //etant donné un utilisateur
-        //quand la methode modif_Utilisateur
+        //quand la methode modif_Utilisateur est appelé
         //alors on vérifie que l'utilisateur a été mis a jour dans la bd
     }
 }
