@@ -15,7 +15,7 @@ class UserTest extends TestCase
      * private string $dateLastCo */
 
     /** @test */
-    public function test_GetPassword(): void
+    public function getPassword(): void
     {
         //etant donné que(given) un nouvel user
         $user = new User("motdepasse","","TestPseudo","email","10/08","10/08");
@@ -26,7 +26,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function test_GetImgPath(): void
+    public function getImgPath(): void
     {
         //etant donné que(given) un nouvel user
         $user = new User("motdepasse","","TestPseudo","email","10/08","10/08");
@@ -37,7 +37,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function test_GetPseudo(): void
+    public function getPseudo(): void
     {
         //etant donné que(given) un nouvel user
         $user = new User("motdepasse","","TestPseudo","email","10/08","10/08");
@@ -48,7 +48,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function test_GetEmail(): void
+    public function getEmail(): void
     {
         //etant donné que(given) un nouvel user
         $user = new User("motdepasse","","TestPseudo","email","10/08","10/08");
@@ -59,7 +59,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function test_GetDateFirstCo(): void
+    public function getDateFirstCo(): void
     {
         //etant donné que(given) un nouvel user
         $user = new User("motdepasse","","TestPseudo","email","10/08","10/08");
@@ -70,7 +70,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function test_GetDateLastCo(): void
+    public function getDateLastCo(): void
     {
         //etant donné que(given) un nouvel user
         $user = new User("motdepasse","","TestPseudo","email","10/08","12/06");
