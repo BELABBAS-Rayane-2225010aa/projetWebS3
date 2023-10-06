@@ -12,7 +12,7 @@ ul {
     background-color: #00561b;
     position: sticky;
     top: 0;
-    width: 100%;
+    width: 98%;
 }
 
 li:not(#droite){
@@ -29,10 +29,13 @@ li a {
 
 li a:hover:not(.active) {
     background-color: #263e1a;
+    border-radius: 15px;
+
 }
 
 .active {
     background-color: #3a963b;
+    border-radius: 15px;
 }
 
 #droite{
@@ -48,7 +51,8 @@ li a:hover:not(.active) {
     height: 100vh;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
-    padding: 0.5%;
+    padding: 1%;
+    margin-top: 7vh;
     font-size: 0.7em;
     overflow: scroll; /*contre le debordement de la boite associer*/
 }
@@ -66,16 +70,22 @@ li a:hover:not(.active) {
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 8px;
-    margin-top: 0.3vh;
+    margin-top: 5vh;
     margin-right: 0.8vh;
-    padding: 0.7%;
+    padding: 1%;
     font-size: 1.2em;
     overflow: scroll; /*contre le debordement de la boite associer*/
 }
 
 .menu {
+    border-radius: 15px;
     box-sizing: border-box;
+    margin: 0px auto;
+    padding:1% ;
+    right:10px ;
+    top:5%;
 }
+
 .buttonCategorie{ /* Visible uniquement en mode portrait */
     visibility: hidden;
 }
@@ -92,7 +102,7 @@ li a:hover:not(.active) {
     height: 20vh;
     margin-left: 2.5%;
     margin-right: 2.5%;
-    margin-top: 2em;
+    margin-top: 6em;
     border-radius: 10px;
     overflow: hidden; /* empeche le debordement */
     white-space: nowrap; /* empeche les retour a la ligne et la deformation du bouton */
