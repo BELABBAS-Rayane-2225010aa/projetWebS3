@@ -1,9 +1,8 @@
 <?php
 
-namespace Controller;
+namespace App\Controller;
 
-require '../Model/AutoLoader.php';
-Autoloader::register();
+
 class LoginController
 {
 

@@ -1,7 +1,4 @@
 <?php
-
-require '../Model/AutoLoader.php';
-Autoloader::register();
 use Model\User;
 
 
