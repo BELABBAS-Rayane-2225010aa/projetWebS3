@@ -4,6 +4,11 @@ namespace App;
 
 class AutoLoader
 {
+
+    public function __construct()
+    {
+    }
+
     static function register(){
         spl_autoload_register([
             __CLASS__,

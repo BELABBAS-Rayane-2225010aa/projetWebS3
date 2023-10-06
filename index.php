@@ -6,15 +6,14 @@ use App\AutoLoader;
 Autoloader::register();
 
 
+
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'action') {
-        $controller = new \App\Controller\LoginController();
+        $controller = new \Controller\LoginController();
         $controller->getLogin();
     } else {
         echo 'ERREUR : t nul';
     }
-} else {
-    echo 'nuuuuuuuul';
 }
 ?>
 

@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Controller;
+namespace Controller;
+require_once  '../Repository/UserRepository.php';
 
 
 class LoginController
