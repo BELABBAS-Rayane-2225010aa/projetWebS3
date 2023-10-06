@@ -4,11 +4,22 @@ namespace Controller;
 
 class LoginController
 {
-    public function getlogin() : \Model\User {
+
+
+    public function __construct()
+    {
+    }
+
+    public function getLogin()  {
         $pseudo = $_GET['pseudo'];
         $password = $_GET['mdp'];
         try {
-            return \UserRepository::login($pseudo , $password);
+             $user = \UserRepository::login($pseudo , $password);
+             if ($pseudo === $user->getPseudo() && $pseudo === $user->getPassword() ){
+                $_SESSION['suid'] = session_id();
+                header('Location: /View/Page/Bonjour.php');
+                exit() ;
+             }
         }
         catch (\NotFoundException $ERROR){
             echo 'Erreur de requête<br>',$ERROR->getMessage(),PHP_EOL;

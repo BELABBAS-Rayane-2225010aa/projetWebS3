@@ -16,13 +16,14 @@ class UserRepository extends AbstractRepository
        }
 
        $user = $statement->fetch();
-       return new \Model\User(
-           $user['PASSWORD'],
-           $user['IMGPATH'],
-           $user['PSEUDO'],
-           $user['EMAIL'],
-           $user['DATEFIRSTCO'],
-           $user['DATELASTCO']
-       );
+       return User::loginUser($user['PASSWORD'], $user['PSEUDO']);
+//       return new \Model\User(
+//           $user['PASSWORD'],
+////           $user[''],
+//           $user['PSEUDO'],
+////           $user['EMAIL'],
+////           $user['DATEFIRSTCO'],
+//////           $user['DATELASTCO']
+
     }
 }
