@@ -2,6 +2,8 @@
 
 namespace Controller;
 
+require '../Model/AutoLoader.php';
+Autoloader::register();
 class LoginController
 {
 
@@ -14,10 +16,12 @@ class LoginController
         $pseudo = $_GET['pseudo'];
         $password = $_GET['mdp'];
         try {
-             $user = \UserRepository::login($pseudo , $password);
+            $user = new \UserRepository();
+             $user->login($pseudo , $password);
              if ($pseudo === $user->getPseudo() && $pseudo === $user->getPassword() ){
                 $_SESSION['suid'] = session_id();
-                header('Location: /View/Page/Bonjour.php');
+                echo 'coucou';
+                header('Location: http://localhost:8080/View/Page/Bonjour.php');
                 exit() ;
              }
         }

@@ -1,10 +1,18 @@
 <?php
 
+require '../Model/AutoLoader.php';
+Autoloader::register();
 use Model\User;
+
 
 session_start();
 class UserRepository extends AbstractRepository
 {
+
+    public function __construct()
+    {
+    }
+
     public function login(string $pseudo , string $password) : User
     {
        $query = 'SELECT * FROM USER WHERE PSEUDO = :pseudo and PASSWORD = :password';
@@ -17,13 +25,7 @@ class UserRepository extends AbstractRepository
 
        $user = $statement->fetch();
        return User::loginUser($user['PASSWORD'], $user['PSEUDO']);
-//       return new \Model\User(
-//           $user['PASSWORD'],
-////           $user[''],
-//           $user['PSEUDO'],
-////           $user['EMAIL'],
-////           $user['DATEFIRSTCO'],
-//////           $user['DATELASTCO']
+
 
     }
 }
