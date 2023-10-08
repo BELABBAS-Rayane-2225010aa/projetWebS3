@@ -10,12 +10,12 @@ class LoginController
         try {
             return (new \UserRepository)->login($pseudo , $password);
         }
+        //TODO : faire en sorte de renvoyé sur la page de SignUp en mettant un msg sur le problème
         catch (\Exception\NotFoundException $ERROR){
-            echo 'Erreur de requête<br>',$ERROR->getMessage(),PHP_EOL;
-                // Affiche le type d'erreur.
-            echo 'Erreur : ' . \UserRepository::$statement->errorCode() . json_encode(\UserRepository::$statement->errorInfo()) . '<br>';
-                // Affiche la requête envoyée.
-            echo 'Requête : ' . \UserRepository::$query, PHP_EOL;
+            file_put_contents('[PlaceHolderName].log',
+                $ERROR->getMessage()."\n".
+                'Erreur du type : '. \UserRepository::$statement->errorCode() . json_encode(\UserRepository::$statement->errorInfo(). "\n".
+                    'Sur la requête : '.\UserRepository::$query ),FILE_APPEND | LOCK_EX);
             exit();
         }
     }

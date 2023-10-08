@@ -46,7 +46,6 @@ class UserRepository extends AbstractRepository
         if ( $statement -> rowCount() === 0){
             throw new CannotCreateUserException("USER cannot be created");
         }
-        $user = $this->login($pseudo,$password);
-        return $user;
+        return $this->login($pseudo,$password);
     }
 }
