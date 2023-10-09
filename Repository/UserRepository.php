@@ -1,4 +1,10 @@
 <?php
+
+use Exception\CannotCreateUserException;
+use Exception\EmailVerificationException;
+use Exception\NotFoundException;
+use Exception\PasswordVerificationException;
+
 use Model\User;
 
 
@@ -17,12 +23,31 @@ class UserRepository extends AbstractRepository
             $query );
        $statement->execute(['pseudo' => $pseudo , 'password' => $password]);
        if ( $statement -> rowCount() === 0 ){
-                throw new NotFoundException("USER not Found");
+           throw new NotFoundException("USER not Found");
        }
 
        $user = $statement->fetch();
        return User::loginUser($user['PASSWORD'], $user['PSEUDO']);
 
 
+    }
+
+    public function signUp(string $password, string $password1, string $imgPath,string $pseudo,
+                           string $email, string $email1, string $dateFirstCo, string $dateLastCo): User {
+        if ($email != $email1){
+            throw new EmailVerificationException("Not the same email");
+        }
+        if ($password != $password1){
+            throw new PasswordVerificationException("Not the same password");
+        }
+        $query = 'INSERT INTO USER VALUES (:password, :imgPath, :pseudo, :email, :dateFirstCo, :dateLastCo)';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['password' => $password, 'imgPath' => $imgPath, 'pseudo'=> $pseudo,
+            'email' => $email, 'dateFirstCo' => $dateFirstCo, 'dateLastCo' => $dateLastCo]);
+        if ( $statement -> rowCount() === 0){
+            throw new CannotCreateUserException("USER cannot be created");
+        }
+        return $this->login($pseudo,$password);
     }
 }
