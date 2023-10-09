@@ -1,4 +1,25 @@
-<?php require 'View/startpage.php' ?>
+<?php
+require './Model/AutoLoader.php';
+require 'View/startpage.php';
+require 'View/endpage.php';
+
+use App\AutoLoader;
+Autoloader::register();
+
+if (isset($_GET['action'])) {
+    if ($_GET['action'] == 'action') {
+        $controller = new \Controller\LoginController();
+        $controller->getLogin();
+    } else {
+        echo 'ERREUR : t nul';
+    }
+}
+
+?>
+
+<a href="View/Login.php"  > clicez bande de salope</a>
+
+
 <?php
 start_page('Acceuil');
 ?>
@@ -38,9 +59,10 @@ require 'View/headerMenu.php' ?>
 
 
 </section>
-<?php require 'View/endpage.php' ?>
+
 <?php
 end_page();
 ?>
 </body>
 </html>
+
