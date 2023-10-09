@@ -1,14 +1,30 @@
 <?php
 
 namespace Controller;
+require_once  '../Repository/UserRepository.php';
+
 
 class LoginController
 {
-    public function getlogin() : \Model\User {
-        $pseudo = $_POST['pseudo'];
-        $password = $_POST['mdp'];
+
+
+    public function __construct()
+    {
+    }
+
+    public function getLogin()  {
+        $pseudo = $_GET['pseudo'];
+        $password = $_GET['mdp'];
         try {
-            return (new \UserRepository)->login($pseudo , $password);
+            $user = new \UserRepository();
+             $user->login($pseudo , $password);
+             if ($pseudo === $user->getPseudo() && $pseudo === $user->getPassword() ){
+                $_SESSION['suid'] = session_id();
+                echo 'coucou';
+                header('Location: http://localhost:8080/View/Page/Bonjour.php');
+                exit() ;
+             }
+
         }
         //TODO : faire en sorte de renvoyé sur la page de SignUp en mettant un msg sur le problème
         catch (\Exception\NotFoundException $ERROR){

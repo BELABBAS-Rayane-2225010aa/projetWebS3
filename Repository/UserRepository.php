@@ -4,11 +4,18 @@ use Exception\CannotCreateUserException;
 use Exception\EmailVerificationException;
 use Exception\NotFoundException;
 use Exception\PasswordVerificationException;
+
 use Model\User;
+
 
 session_start();
 class UserRepository extends AbstractRepository
 {
+
+    public function __construct()
+    {
+    }
+
     public function login(string $pseudo , string $password) : User
     {
        $query = 'SELECT * FROM USER WHERE PSEUDO = :pseudo and PASSWORD = :password';
@@ -20,14 +27,9 @@ class UserRepository extends AbstractRepository
        }
 
        $user = $statement->fetch();
-       return new \Model\User(
-           $user['PASSWORD'],
-           $user['IMGPATH'],
-           $user['PSEUDO'],
-           $user['EMAIL'],
-           $user['DATEFIRSTCO'],
-           $user['DATELASTCO']
-       );
+       return User::loginUser($user['PASSWORD'], $user['PSEUDO']);
+
+
     }
 
     public function signUp(string $password, string $password1, string $imgPath,string $pseudo,

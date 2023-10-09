@@ -17,3 +17,4 @@ class Connexion
         return self::$instance;
     }
 }
+?>
