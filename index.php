@@ -15,6 +15,7 @@ if (isset($_GET['action'])) {
         echo 'ERREUR : t nul';
     }
 }
+
 ?>
 
 <a href="View/Login.php"  > clicez bande de salope</a>
