@@ -5,11 +5,9 @@ require 'vendor\autoload.php';
 
 use App\Controller\LoginController;
 
-if (isset($_GET['action'])) {
-    if ($_GET['action'] === 'action') {
-        var_dump('coucou');
+if (isset($_POST['action'])) {
+    if ($_POST['action'] === 'action') {
         $controller = new LoginController();
-        var_dump('coucou2');
         $controller->getLogin();
     } else {
         echo 'ERREUR : t nul';

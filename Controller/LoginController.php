@@ -17,8 +17,8 @@ class LoginController
 
     public function getLogin(): void
     {
-        session_start();
-        $pseudo = $_POST['login'];
+        var_dump('coucou');
+        $pseudo = $_POST['pseudo'];
         $password = $_POST['password'];
         try {
             $user = new UserRepository();

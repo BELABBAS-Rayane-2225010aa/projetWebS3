@@ -2,17 +2,17 @@
 
 namespace App\Repository;
 
-use Exception\CannotCreateUserException;
-use Exception\EmailVerificationException;
-use Exception\NotFoundException;
-use Exception\PasswordVerificationException;
+require 'vendor\autoload.php';
 
-spl_autoload_register('autoload');
+use App\Exception\{
+    CannotCreateUserException,
+    EmailVerificationException,
+    NotFoundException,
+    PasswordVerificationException
+};
 
-use Model\User;
+use App\Model\User;
 
-
-session_start();
 class UserRepository extends AbstractRepository
 {
 
