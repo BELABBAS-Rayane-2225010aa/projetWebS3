@@ -1,14 +1,11 @@
 <?php
-require './Model/AutoLoader.php';
-require 'View/startpage.php';
-require 'View/endpage.php';
-
-use App\AutoLoader;
-Autoloader::register();
+namespace App;
 
 if (isset($_GET['action'])) {
-    if ($_GET['action'] == 'action') {
-        $controller = new \Controller\LoginController();
+    if ($_GET['action'] === 'action') {
+        var_dump('coucou');
+        $controller = new \LoginController();
+        var_dump('coucou2');
         $controller->getLogin();
     } else {
         echo 'ERREUR : t nul';
@@ -16,8 +13,6 @@ if (isset($_GET['action'])) {
 }
 
 ?>
-
-<a href="View/Login.php"  > clicez bande de salope</a>
 
 
 <?php

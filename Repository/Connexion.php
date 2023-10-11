@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Repository;
+
 class Connexion
 {
     private static ?PDO $instance;

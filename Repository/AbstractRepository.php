@@ -1,6 +1,6 @@
 <?php
-require '../Model/AutoLoader.php';
-Autoloader::register();
+
+namespace App\Repository;
 abstract class AbstractRepository
 {
     protected PDO $connexion ;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Model;
+namespace Unit\Model;
 require_once './Model/User.php';
 
 use Model\User;
