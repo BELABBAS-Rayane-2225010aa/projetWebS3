@@ -1,8 +1,7 @@
 <ul class="menu"><!--Menu de haut de page qui est prèsent sur toute les page-->
     <div class="blur"></div>
     <li><a <?php if ($active === 'index'){echo 'class=active';};?> href="../index.php">Acceuil</a></li>
-    <li class="dropdown" >
-        <a  class="dropbtn"  <?php if ($active === 'categorie'){echo 'class=active';};?> href="/View/categorie.php">Categorie</a>
+    <li class="dropdown" ><a  class="dropbtn"  <?php if ($active === 'categorie'){echo 'class=active';};?> href="/View/categorie.php">Categorie</a>
         <div class="dropdown-content">
             <a href="#">Link 1</a>
             <a href="#">Link 2</a>
