@@ -2,6 +2,11 @@
 
 namespace App\Controller;
 
+require 'vendor\autoload.php';
+
+use App\Repository\UserRepository;
+use App\Exception\NotFoundException;
+
 class LoginController
 {
 
@@ -13,10 +18,10 @@ class LoginController
     public function getLogin(): void
     {
         session_start();
-        $pseudo = $_GET['pseudo'];
-        $password = $_GET['mdp'];
+        $pseudo = $_POST['login'];
+        $password = $_POST['password'];
         try {
-            $user = new \UserRepository();
+            $user = new UserRepository();
              $login = $user->login($pseudo , $password);
              if ($pseudo === $login->getPseudo() && $pseudo === $login->getPassword() ){
                 $_SESSION['suid'] = session_id();
@@ -27,7 +32,7 @@ class LoginController
 
         }
         //TODO : faire en sorte de renvoyé sur la page de SignUp en mettant un msg sur le problème
-        catch (\Exception\NotFoundException $ERROR){
+        catch (NotFoundException $ERROR){
             file_put_contents('[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }

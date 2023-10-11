@@ -1,10 +1,14 @@
 <?php
 namespace App;
 
+require 'vendor\autoload.php';
+
+use App\Controller\LoginController;
+
 if (isset($_GET['action'])) {
     if ($_GET['action'] === 'action') {
         var_dump('coucou');
-        $controller = new \LoginController();
+        $controller = new LoginController();
         var_dump('coucou2');
         $controller->getLogin();
     } else {
@@ -12,6 +16,7 @@ if (isset($_GET['action'])) {
     }
 }
 
+require 'View\startpage.php';
 ?>
 
 

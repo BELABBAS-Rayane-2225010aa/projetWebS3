@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use PDO;
+
 class Connexion
 {
     private static ?PDO $instance;
