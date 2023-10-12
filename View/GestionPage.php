@@ -1,4 +1,5 @@
 <?php
+session_start();
 function start_page($title): void
 {
 ?>
@@ -22,6 +23,6 @@ function start_page($title): void
     </footer>
 </body>
 </html>
-    <?php
+<?php
 }
 ?>
