@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-require 'vendor\autoload.php';
+require 'vendor/autoload.php';
 
 use App\Controller\LoginController;
 use App\Controller\SignUpController;
