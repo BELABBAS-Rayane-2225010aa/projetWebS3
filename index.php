@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-require 'vendor\autoload.php';
+require 'vendor/autoload.php';
 
 use App\Controller\LoginController;
 use App\Controller\SignUpController;
@@ -24,8 +24,8 @@ if (isset($_POST['SignUp'])) {
     }
 }
 
-require 'View\startpage.php';
-require 'View\endpage.php';
+require 'View/startpage.php';
+require 'View/endpage.php';
 ?>
 
 
