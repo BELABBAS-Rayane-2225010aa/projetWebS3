@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-require 'vendor\autoload.php';
+require 'vendor/autoload.php';
 
 use App\Exception\{
     CannotCreateUserException,
