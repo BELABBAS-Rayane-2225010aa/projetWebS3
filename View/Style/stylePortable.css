@@ -259,10 +259,10 @@ footer {
     text-align: center;
 }
 .fomulaire{
-    background-color: darkseagreen;
+    background-color: #f99d52;
     border-radius: 10px;
     border-style: solid;
-    border-color: black;
+    border-color: #ed2323;
     padding: 3vh;
     margin: 1em;
     text-align: start;
