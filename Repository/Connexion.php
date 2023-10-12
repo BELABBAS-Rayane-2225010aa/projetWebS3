@@ -6,7 +6,7 @@ use PDO;
 
 class Connexion
 {
-    private static ?PDO $instance;
+    private static ?PDO $instance = null;
 
     public static function getInstance(): PDO
     {

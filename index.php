@@ -15,6 +15,7 @@ if (isset($_POST['action'])) {
 }
 
 require 'View\startpage.php';
+require 'View\endpage.php';
 ?>
 
 

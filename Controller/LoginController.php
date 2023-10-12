@@ -17,7 +17,6 @@ class LoginController
 
     public function getLogin(): void
     {
-        var_dump('coucou');
         $pseudo = $_POST['pseudo'];
         $password = $_POST['password'];
         try {
