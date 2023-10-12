@@ -23,14 +23,12 @@ class LoginController
             $user = new UserRepository();
              $login = $user->login($pseudo , $password);
              if ($pseudo === $login->getPseudo() && $pseudo === $login->getPassword() ){
-                $_SESSION['suid'] = session_id();
-                echo 'coucou';
-                header('Location: http://localhost:8080/View/Page/Bonjour.php');
-                exit() ;
+                 $_SESSION['suid'] = session_id();
+                 header('Location: http://localhost:8080/View/Bonjour.php');
+                 exit();
              }
 
         }
-        //TODO : faire en sorte de renvoyé sur la page de SignUp en mettant un msg sur le problème
         catch (NotFoundException $ERROR){
             file_put_contents('[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();

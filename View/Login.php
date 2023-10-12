@@ -7,5 +7,5 @@
         Mot de passe
         <input type="password" name="password">
     </label><br>
-    <input type="submit"  name="action" value="action">
+    <input type="submit"  name="SignIn" value="SignIn">
 

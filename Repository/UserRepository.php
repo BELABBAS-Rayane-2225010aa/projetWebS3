@@ -43,7 +43,7 @@ class UserRepository extends AbstractRepository
         if ($password != $password1){
             throw new PasswordVerificationException("Not the same password");
         }
-        $query = 'INSERT INTO USER VALUES (16,:password, :imgPath, :pseudo, :email, :dateFirstCo, :dateLastCo, 1)';
+        $query = 'INSERT INTO USER (MDP, IMAGE, PSEUDO, MAIL, DATE_PREM, DATE_DER,ISADMIN) VALUES (:password, :imgPath, :pseudo, :email, :dateFirstCo, :dateLastCo,1)';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['password' => $password, 'imgPath' => $imgPath, 'pseudo'=> $pseudo,

@@ -4,13 +4,23 @@ namespace App;
 require 'vendor\autoload.php';
 
 use App\Controller\LoginController;
+use App\Controller\SignUpController;
 
-if (isset($_POST['action'])) {
-    if ($_POST['action'] === 'action') {
+if (isset($_POST['SignIn'])) {
+    if ($_POST['SignIn'] === 'SignIn') {
         $controller = new LoginController();
         $controller->getLogin();
     } else {
-        echo 'ERREUR : t nul';
+        //TODO : Erreur
+    }
+}
+
+if (isset($_POST['SignUp'])) {
+    if ($_POST['SignUp'] === 'SignUp') {
+        $controller = new SignUpController();
+        $controller->getSignUp();
+    } else {
+        //TODO : Erreur
     }
 }
 

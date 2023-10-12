@@ -1,4 +1,4 @@
-<form action="" method="post">
+<form action="../index.php" method="post">
     <strong> INSCRIPTION </strong>
     <br>
     <label>Pseudo :</label>
@@ -11,13 +11,13 @@
     <input name="email1" id="email1" type="email" />
 
     <label>Mot de passe :</label>
-    <input name="$password" id="$password" type="password" />
+    <input name="password" type="password" />
 
     <label>Confirmez votre mot de passe :</label>
-    <input name="$password1" id="$password1" type="password" /><br>
+    <input name="password1" type="password" /><br>
 
     <label>Une image (optionnel)</label><br>
     <input name="imgPath" id="image" type="file" /></p>
 
-    <button type="submit">Valider</button>
+    <input type="submit" name="SignUp" value="SignUp">
 </form>
