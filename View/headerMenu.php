@@ -13,13 +13,13 @@
     if(!isset($_SESSION['suid']))
     {
     ?>
-        <li style="float:right"><a <?php if ($active === 'connection'){echo 'class=active';} ?> href="/View/Login.php">Se connecter</a></li>
+        <li style="float:right"><a <?php if ($active === 'connexion'){echo 'class=active';} ?> href="/View/Login.php">Se connecter</a></li>
         <li style="float:right"><a <?php if ($active === 'cree_compte'){echo 'class=active';} ?> href="/View/SignUp.php">Cree un compte</a></li>
     <?php
     }
     else
     {?>
-        <li style="float:right"><a <?php if ($active === 'deco'){echo 'class=active';} ?> href="/View/Deconexion.php">Deconexion</a></li>
+        <li style="float:right"><a <?php if ($active === 'deconexion'){echo 'class=active';} ?> href="/View/Deconexion.php">Déconexion</a></li>
         <li style="float:right"><a <?php if ($active === 'profil'){echo 'class=active';} ?> href="/View/Profil.php">Profil</a></li>
     <?php
     }
