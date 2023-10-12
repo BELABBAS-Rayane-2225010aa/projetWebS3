@@ -1,25 +1,31 @@
 <?php
-require './Model/AutoLoader.php';
-require 'View/GestionPage.php';
+namespace App;
 
-use App\AutoLoader;
-Autoloader::register();
+require 'vendor\autoload.php';
 
-if (isset($_GET['action'])) {
-    if ($_GET['action'] == 'action') {
-        $controller = new \Controller\LoginController();
+use App\Controller\LoginController;
+use App\Controller\SignUpController;
+
+if (isset($_POST['SignIn'])) {
+    if ($_POST['SignIn'] === 'SignIn') {
+        $controller = new LoginController();
         $controller->getLogin();
     } else {
-        echo 'ERREUR : t nul';
+        //TODO : Erreur
     }
 }
 
-?>
+require 'View/GestionPage.php';
 
-<a href="View/Login.php"  > clicez bande de salope</a>
+if (isset($_POST['SignUp'])) {
+    if ($_POST['SignUp'] === 'SignUp') {
+        $controller = new SignUpController();
+        $controller->getSignUp();
+    } else {
+        //TODO : Erreur
+    }
+}
 
-
-<?php
 start_page('Acceuil');
 ?>
 <body>

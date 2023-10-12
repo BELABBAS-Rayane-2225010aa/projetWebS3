@@ -1,10 +1,21 @@
 <?php
 
-namespace Controller;
+namespace App\Controller;
+
+require 'vendor\autoload.php';
+
+use App\Model\User;
+use App\Repository\UserRepository;
+use App\Exception\{
+    CannotCreateUserException,
+    EmailVerificationException,
+    PasswordVerificationException,
+    NotFoundException
+};
 
 class SignUpController
 {
-    public function getSignUp() : \Model\User {
+    public function getSignUp() : User {
         $pseudo = $_POST['pseudo'];
         $email = $_POST['email'];
         $email1 = $_POST['email1'];
@@ -14,22 +25,22 @@ class SignUpController
 
         $date = date("Y-m-d H:i:s");
         try{
-            return (new \UserRepository)->signUp($password,$password1,$imgPath,$pseudo,$email,$email1,$date,$date);
+            return (new UserRepository)->signUp($password,$password1,$imgPath,$pseudo,$email,$email1,$date,$date);
         }
-        //TODO : faire en sorte de renvoyé sur la page de SignUp en mettant un msg sur le problème
-        catch (\Exception\CannotCreateUserException $ERROR){
-            file_put_contents('[PlaceHolderName].log',
-                $ERROR->getMessage()."\n".
-                'Erreur du type : '. \UserRepository::$statement->errorCode() . json_encode(\UserRepository::$statement->errorInfo(). "\n".
-                    'Sur la requête : '.\UserRepository::$query ),FILE_APPEND | LOCK_EX);
+        catch (CannotCreateUserException $ERROR){
+            file_put_contents('[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }
-        catch (\Exception\EmailVerificationException $ERROR){
-            file_put_contents('[PlaceHolderName].log',$ERROR->getMessage(),FILE_APPEND | LOCK_EX);
+        catch (EmailVerificationException $ERROR){
+            file_put_contents('[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }
-        catch (\Exception\PasswordVerificationException $ERROR){
-            file_put_contents('[PlaceHolderName].log',$ERROR->getMessage(),FILE_APPEND | LOCK_EX);
+        catch (PasswordVerificationException $ERROR){
+            file_put_contents('[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            exit();
+        }
+        catch (NotFoundException $ERROR){
+            file_put_contents('[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }
     }
