@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-require 'vendor\autoload.php';
+require 'vendor/autoload.php';
 
 use App\Repository\UserRepository;
 use App\Exception\NotFoundException;
