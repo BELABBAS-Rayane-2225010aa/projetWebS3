@@ -10,22 +10,14 @@ body {
     margin-top: 1%;
     padding:1% ;
     overflow: hidden;
-    background: linear-gradient( rgba(68, 58, 82, 0.8),  rgba(68, 58, 82, 0.8));
+    background-color: #1b1e21;
     width: 98%;
     border-radius: 15px;
     box-sizing: border-box;
     top: 0;
 
 }
-.blur{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(10px); /* Ou la quantité de flou que vous souhaitez */
-    z-index: -1; /* Assurez-vous que l'arrière-plan flou est en dessous de tout */
-}
+
 
 li {
     float: left;
@@ -209,14 +201,14 @@ footer {
     background-color: #e32e2e;
     border-color: #bb0000;
 }
-.changer_mdp{
+.fomulaire{
     background-color: darkseagreen;
     border-radius: 10px;
     border-style: solid;
     border-color: black;
-    padding: 3vh;
+    padding: 5vh;
     margin: 1em;
-    text-align: center;
+    text-align: start;
 }
 .image404{
     max-width: 30%;

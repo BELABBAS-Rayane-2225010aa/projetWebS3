@@ -1,4 +1,4 @@
-<?php require 'startpage.php' ?>
+<?php require 'GestionPage.php' ?>
 <?php
 start_page('Categorie');
 ?>
@@ -8,5 +8,3 @@ start_page('Categorie');
 <?php
 end_page();
 ?>
-</body>
-</html>

@@ -1,4 +1,4 @@
-<?php require 'startpage.php' ?>
+<?php require 'GestionPage.php' ?>
 <?php
 start_page('Billet');
 ?>
@@ -45,10 +45,6 @@ require 'headerMenu.php';
                 gravida quis nibh non, gravida consectetur arcu. Vivamus at vulputate lacus.
                 Pellentesque ut tempor dui, non scelerisque sapien. Aliquam et egestas neque.</p>
     </section>
-<?php require 'endpage.php' ?>
 <?php
 end_page();
 ?>
-</body>
-
-</html>

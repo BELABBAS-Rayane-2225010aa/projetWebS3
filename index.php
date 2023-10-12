@@ -1,7 +1,6 @@
 <?php
 require './Model/AutoLoader.php';
-require 'View/startpage.php';
-require 'View/endpage.php';
+require 'View/GestionPage.php';
 
 use App\AutoLoader;
 Autoloader::register();
@@ -63,6 +62,5 @@ require 'View/headerMenu.php' ?>
 <?php
 end_page();
 ?>
-</body>
-</html>
+
 

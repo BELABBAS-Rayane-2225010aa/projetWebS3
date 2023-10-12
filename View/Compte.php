@@ -1,4 +1,4 @@
-<?php require 'startpage.php' ?>
+<?php require 'GestionPage.php' ?>
 <?php
 start_page('Mon compte');
 ?>
@@ -16,9 +16,6 @@ require 'headerMenu.php' ?>
         <button id='boutonchangerMDP' class='boutonchanger_mdp' onclick="window.location.href='changermdp.php';">changer mot de passe</button>
         <button id='SupCompte' class='suprimer_compte'>Suprimer votre compte</button>
     </section>
-<?php require 'endpage.php' ?>
 <?php
 end_page();
 ?>
-</body>
-</html>
