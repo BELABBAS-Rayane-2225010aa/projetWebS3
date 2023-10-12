@@ -1,9 +1,9 @@
-<?php require 'GestionPage.php' ?>
 <?php
+require 'GestionPage.php';
 start_page('Categorie');
+$active = 'connection';
+require 'headerMenu.php';
 ?>
-<?php $active = 'categorie';
-require 'headerMenu.php' ?>
 <section class="fomulaire">
     <form action="../index.php" method="post">
         <label>
