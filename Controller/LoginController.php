@@ -4,6 +4,7 @@ namespace App\Controller;
 
 require 'vendor/autoload.php';
 
+use App\Model\User;
 use App\Repository\UserRepository;
 use App\Exception\NotFoundException;
 
@@ -24,10 +25,8 @@ class LoginController
             $login = $user->login($pseudo , $password);
             if ($pseudo === $login->getPseudo() && $password === $login->getPassword() ){
                 $_SESSION['suid'] = session_id();
-                /*header('Location: http://localhost:8080/View/Bonjour.php');
-                exit();*/
+                $_SESSION['user'] = $login;
             }
-
         }
         catch (NotFoundException $ERROR){
             file_put_contents('[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
