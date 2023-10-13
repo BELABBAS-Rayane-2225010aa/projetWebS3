@@ -1,25 +1,23 @@
 <?php
 require 'GestionPage.php';
+
+if(!isset($_SESSION['suid']))
+{
+    header('Location: ../index.php');
+}
+
 start_page('Profil');
 $active = 'profil';
 require 'headerMenu.php';
+$ImgPath='image/Default_pfp.jpg'
 ?>
     <section class="fomulaire">
-        <h1>IMG DE PROFILE</h1>
-        <p>PLACEHOLDER_PSEUDO</p><?php //echo $_SESSION['username']?>
+        <img src='<?php echo $_SESSION['user']->getImgPath ?>' alt='Photo de profile' />
+        <p>Pseudo :<?php echo $_SESSION['user']->getPseudo ?></p>
         <button>Changer le pseudo</button>
-        <p>PLACEHOLDER_MAIL</p>
+        <p>E-mail :<?php echo $_SESSION['user']->getEmail ?></p>
         <button>Changer l'e-mail</button>
-        <p>PLACEHOLDER_MDP</p>
         <button>Changer le mdp</button>
-        <!-- img profil
-        pseudo
-        bouton chnager pseudo
-        mail
-        bouton changer mail
-        ----
-        bouton changer mdp
-        -->
     </section>
 <?php
 end_page();
