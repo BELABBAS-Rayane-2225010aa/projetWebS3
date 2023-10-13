@@ -7,6 +7,7 @@ if(!isset($_SESSION['suid']))
 }
 
 unset($_SESSION['suid']);
+unset($_SESSION['user']);
 
 header('Location: ../index.php');
 ?>
