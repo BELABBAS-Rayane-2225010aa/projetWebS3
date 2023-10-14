@@ -12,31 +12,31 @@ require 'headerMenu.php';
         <button class="btn-flex" onclick="window.location.href='View/Billet.php';">
       <span class="icone-btn">
       </span>
-            <p class="txt-btn">Block Testtesttetstestest</p>
+            <p class="txt-btn"><?php if (isset($_SESSION['BilletHome1'])){echo $_SESSION['BilletHome1'];}?></p>
         </button>
 
         <button class="btn-flex" onclick="window.location.href='View/Billet.php';">
       <span class="icone-btn">
       </span>
-            <p class="txt-btn">Block 2</p>
+            <p class="txt-btn"><?php if (isset($_SESSION['BilletHome2'])){echo $_SESSION['BilletHome2'];}?></p>
         </button>
 
         <button class="btn-flex" onclick="window.location.href='View/Billet.php';">
       <span class="icone-btn">
       </span>
-            <p class="txt-btn">Block 3</p>
+            <p class="txt-btn"><?php if (isset($_SESSION['BilletHome3'])){echo $_SESSION['BilletHome3'];}?></p>
         </button>
 
         <button class="btn-flex" onclick="window.location.href='View/Billet.php';">
       <span class="icone-btn">
       </span>
-            <p class="txt-btn">Block 4</p>
+            <p class="txt-btn"><?php if (isset($_SESSION['BilletHome4'])){echo $_SESSION['BilletHome4'];}?></p>
         </button>
 
         <button class="btn-flex" onclick="window.location.href='View/Billet.php';">
       <span class="icone-btn">
       </span>
-            <p class="txt-btn">Block 5</p>
+            <p class="txt-btn"><?php if (isset($_SESSION['BilletHome5'])){echo $_SESSION['BilletHome5'];}?></p>
         </button>
 
 

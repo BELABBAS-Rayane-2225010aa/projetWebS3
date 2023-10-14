@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Exception\NotFoundException;
+use App\Model\Billet;
 
 class BilletRepository extends AbstractRepository
 {
@@ -20,6 +21,12 @@ class BilletRepository extends AbstractRepository
         if ( $statement -> rowCount() === 0 ){
             throw new NotFoundException("BILLET not Found");
         }
-        return $statement->fetchAll();
+        $arraySQL =  $statement->fetchAll();
+        $arrayBillet = array();
+        for ($i = 0; $i < sizeof($arraySQL);$i++){
+            $billet = new Billet($arraySQL[$i]['TITRE'],$arraySQL[$i]['MSG'],$arraySQL[$i]['DATE_BILLET'],$arraySQL[$i]['USER_ID'],$arraySQL[$i]['CAT_ID']);
+            $arrayBillet[] = $billet;
+        }
+        return $arrayBillet;
     }
 }

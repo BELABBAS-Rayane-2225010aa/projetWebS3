@@ -5,15 +5,7 @@ namespace App\Model;
 class Billet
 {
     public function __construct(public string $title,public string $msg,public string $date,
-                                public User $author,public Category $category){
-    }
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
+                                public int $author_id,public int $category_id){
     }
 
     /**
@@ -41,18 +33,18 @@ class Billet
     }
 
     /**
-     * @return User
+     * @return int
      */
-    public function getAuthor(): User
+    public function getAuthorId(): int
     {
-        return $this->author;
+        return $this->author_id;
     }
 
     /**
-     * @return Category
+     * @return int
      */
-    public function getCategory(): Category
+    public function getCategory(): int
     {
-        return $this->category;
+        return $this->category_id;
     }
 }
