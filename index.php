@@ -3,6 +3,7 @@ namespace App;
 
 require 'vendor/autoload.php';
 
+use App\Controller\IndexController;
 use App\Controller\LoginController;
 use App\Controller\SignUpController;
 
@@ -26,6 +27,9 @@ if (isset($_POST['SignUp'])) {
         //TODO : Erreur
     }
 }
+
+$BilletController = new IndexController();
+$cinqBillet = $BilletController->get5Billet();
 
 start_page('Acceuil');
 ?>
