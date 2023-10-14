@@ -5,6 +5,7 @@ session_start();
 
 require 'vendor/autoload.php';
 
+use App\Controller\BilletController;
 use App\Controller\HomeController;
 use App\Controller\LoginController;
 use App\Controller\SignUpController;
@@ -40,5 +41,12 @@ if (isset($_POST['SignUp'])) {
         //TODO : Erreur
         header('Location: View/Home.php');
     }
+}
+
+if (isset($_GET['billet_id'])) {
+    $controller = new BilletController();
+    $controller->showBillet();
+    $billet = $controller->getBillet();
+    header('Location: View/Home.php');
 }
 ?>

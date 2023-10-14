@@ -7,7 +7,7 @@ use App\Repository\BilletRepository;
 
 class HomeController
 {
-    private $billetArray;
+    private array $billetArray;
     public function get5Billet() : void
     {
         try {

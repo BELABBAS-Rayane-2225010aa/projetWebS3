@@ -9,7 +9,7 @@ $active = 'index';
 require 'headerMenu.php';
 ?>
     <section class="section-flex">
-        <button class="btn-flex" onclick="window.location.href='View/Billet.php';">
+        <button class="btn-flex" onclick="window.location.href='View/Billet.php?id=<?php echo $_SESSION['BilletHome1']->getId(); ?>';">
       <span class="icone-btn">
       </span>
             <p class="txt-btn"><?php if (isset($_SESSION['BilletHome1'])){echo $_SESSION['BilletHome1'];}?></p>

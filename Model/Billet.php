@@ -43,7 +43,7 @@ class Billet
     /**
      * @return int
      */
-    public function getCategory(): int
+    public function getCategoryId(): int
     {
         return $this->category_id;
     }
