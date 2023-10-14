@@ -1,6 +1,7 @@
 <?php
 require 'GestionPage.php';
 start_page('Categorie');
+
 $active = 'connection';
 require 'headerMenu.php';
 ?>
