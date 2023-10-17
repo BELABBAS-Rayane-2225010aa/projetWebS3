@@ -1,10 +1,23 @@
-<?php require 'GestionPage.php' ?>
+<?php
+require '../vendor/autoload.php';
+require 'GestionPage.php' ?>
 <?php
 start_page('Billet');
 ?>
 <body>
 <?php $active = 'Billet';
 require 'headerMenu.php';
+if(!isset($_POST['billetClique']))
+{
+    header('Location: ../index.php');
+}
+$billetClique = unserialize($_POST['billetClique']);
+if(!$billetClique)
+{
+    var_dump($billetClique);
+    // TODO: EXCEPTION si unserilalize ne marche pas
+}
+
 ?>
     <SCRIPT>
     function BoutonAffichageCategorie() { //affiche/cache la barre des categorie
@@ -21,7 +34,7 @@ require 'headerMenu.php';
     </SCRIPT>
     <button onclick="BoutonAffichageCategorie()" class="buttonCategorie">teste</button>
     <aside id="CategorieID" class="categories">
-        <h2>Categories ici</h2>
+        <h2>Categories ID : <?php echo $billetClique->getCategoryId() ?></h2>
         <h3>Lorem ipsum</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
 
@@ -33,17 +46,10 @@ require 'headerMenu.php';
     </aside>
 
     <section id="commentID" class="comments">
-        <h2>Billet ici</h2>
-            <h3>Lorem ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris porta nisi dolor, vel aliquam nunc bibendum id.
-                Praesent tristique eget mauris nec rhoncus. Pellentesque vitae luctus leo, eu imperdiet elit. Maecenas mauris leo,
-                gravida quis nibh non, gravida consectetur arcu.
-                Vivamus at vulputate lacus. Pellentesque ut tempor dui, non scelerisque sapien. Aliquam et egestas neque.</p>
-            <h3>Lorem ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris porta nisi dolor, vel aliquam nunc bibendum id.
-                Praesent tristique eget mauris nec rhoncus. Pellentesque vitae luctus leo, eu imperdiet elit. Maecenas mauris leo,
-                gravida quis nibh non, gravida consectetur arcu. Vivamus at vulputate lacus.
-                Pellentesque ut tempor dui, non scelerisque sapien. Aliquam et egestas neque.</p>
+        <h2><?php echo $billetClique->getTitle()?></h2>
+        <p><?php if(!empty($billetClique->getMsg())){echo $billetClique->getMsg();}else{echo 'ERROR Le message est vide ERROR';}?></p>
+        <h3>AuteurID : <?php echo $billetClique->getAuthorId() ?></h3>
+        <p>Date : <?php echo $billetClique->getDate() ?></p>
     </section>
 <?php
 end_page();

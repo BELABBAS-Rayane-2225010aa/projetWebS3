@@ -15,7 +15,6 @@ use App\Model\User;
 
 class UserRepository extends AbstractRepository
 {
-
     public function __construct()
     {
         parent::__construct();

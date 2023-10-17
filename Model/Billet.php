@@ -22,13 +22,13 @@ class Billet
      * @param string $title         => titre du Billet
      * @param string $msg           => message du Billet
      * @param string $date          => date de la création du Billet
-     * @param User $author          => le User autheur du Billet
-     * @param Category $category    => la Category rattaché au Billet
+     * @param User $authorId        => l'id de  l'User autheur du Billet
+     * @param Category $categoryId  => l'id de la Category rattaché au Billet
      *
      * @return void
      */
-    public function __construct(private string $title,private string $msg,private string $date,
-                                private User $author,private Category $category){
+    public function __construct(public string $title,public string $msg,public string $date,
+                                public int $authorId,public int $categoryId){
     }
 
     /**
@@ -74,20 +74,20 @@ class Billet
     /**
      * getter de l'attibut author
      *
-     * @return User
+     * @return int
      */
-    public function getAuthor(): User
+    public function getAuthorId(): int
     {
-        return $this->author;
+        return $this->authorId;
     }
 
     /**
      * getter de l'attibut category
      *
-     * @return Category
+     * @return int
      */
-    public function getCategory(): Category
+    public function getCategoryId(): int
     {
-        return $this->category;
+        return $this->categoryId;
     }
 }

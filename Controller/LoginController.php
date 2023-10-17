@@ -10,12 +10,6 @@ use App\Exception\NotFoundException;
 
 class LoginController
 {
-
-
-    public function __construct()
-    {
-    }
-
     public function getLogin(): void
     {
         $pseudo = $_POST['pseudo'];
