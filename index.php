@@ -12,12 +12,7 @@ use App\Controller\SignUpController;
 
 $homeController = new HomeController();
 $homeController->get5Billet();
-/*$cinqBillet = $homeController->getBilletArray();
-$_SESSION['BilletHome1'] = $cinqBillet[0]->getTitle();
-$_SESSION['BilletHome2'] = $cinqBillet[1]->getTitle();
-$_SESSION['BilletHome3'] = $cinqBillet[2]->getTitle();
-$_SESSION['BilletHome4'] = $cinqBillet[3]->getTitle();
-$_SESSION['BilletHome5'] = $cinqBillet[4]->getTitle();*/
+
 
 // ENZO
 $_SESSION['cinqBillet'] = $homeController->getBilletArray();

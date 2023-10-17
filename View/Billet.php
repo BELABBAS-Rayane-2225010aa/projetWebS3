@@ -34,7 +34,7 @@ if(!$billetClique)
     </SCRIPT>
     <button onclick="BoutonAffichageCategorie()" class="buttonCategorie">teste</button>
     <aside id="CategorieID" class="categories">
-        <h2>Categories ici</h2>
+        <h2>Categories ID : <?php echo $billetClique->getCategoryId() ?></h2>
         <h3>Lorem ipsum</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
 
@@ -47,12 +47,9 @@ if(!$billetClique)
 
     <section id="commentID" class="comments">
         <h2><?php echo $billetClique->getTitle()?></h2>
-            <p><?php echo $billetClique->getMsg()?></p>
-            <h3>Lorem ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris porta nisi dolor, vel aliquam nunc bibendum id.
-                Praesent tristique eget mauris nec rhoncus. Pellentesque vitae luctus leo, eu imperdiet elit. Maecenas mauris leo,
-                gravida quis nibh non, gravida consectetur arcu. Vivamus at vulputate lacus.
-                Pellentesque ut tempor dui, non scelerisque sapien. Aliquam et egestas neque.</p>
+        <p><?php if(!empty($billetClique->getMsg())){echo $billetClique->getMsg();}else{echo 'ERROR Le message est vide ERROR';}?></p>
+        <h3>AuteurID : <?php echo $billetClique->getAuthorId() ?></h3>
+        <p>Date : <?php echo $billetClique->getDate() ?></p>
     </section>
 <?php
 end_page();
