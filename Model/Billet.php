@@ -19,16 +19,15 @@ class Billet
     /**
      * Le constructeur de la class Billet
      *
-     * @param string $title         => titre du Billet
-     * @param string $msg           => message du Billet
-     * @param string $date          => date de la création du Billet
-     * @param User $authorId        => l'id de  l'User autheur du Billet
-     * @param Category $categoryId  => l'id de la Category rattaché au Billet
+     * @param string $title => titre du Billet
+     * @param string $msg => message du Billet
+     * @param string $date => date de la création du Billet
+     * @param int $author_id => l'id de  l'User autheur du Billet
+     * @param int $category_id => l'id de la Category rattaché au Billet
      *
-     * @return void
      */
     public function __construct(public string $title,public string $msg,public string $date,
-                                public int $authorId,public int $categoryId){
+                                public int $author_id,public int $category_id){
     }
 
     /**
@@ -78,7 +77,7 @@ class Billet
      */
     public function getAuthorId(): int
     {
-        return $this->authorId;
+        return $this->author_id;
     }
 
     /**
@@ -88,6 +87,6 @@ class Billet
      */
     public function getCategoryId(): int
     {
-        return $this->categoryId;
+        return $this->category_id;
     }
 }
