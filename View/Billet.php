@@ -1,15 +1,23 @@
-<?php require 'GestionPage.php' ?>
+<?php
+require '../vendor/autoload.php';
+require 'GestionPage.php' ?>
 <?php
 start_page('Billet');
 ?>
 <body>
 <?php $active = 'Billet';
 require 'headerMenu.php';
-if(!isset($_GET['BilletID']))
+if(!isset($_POST['billetClique']))
 {
     header('Location: ../index.php');
 }
-$billetTitle = $_GET['BilletID'];
+$billetClique = unserialize($_POST['billetClique']);
+if(!$billetClique)
+{
+    var_dump($billetClique);
+    // TODO: EXCEPTION si unserilalize ne marche pas
+}
+
 ?>
     <SCRIPT>
     function BoutonAffichageCategorie() { //affiche/cache la barre des categorie
@@ -38,12 +46,8 @@ $billetTitle = $_GET['BilletID'];
     </aside>
 
     <section id="commentID" class="comments">
-        <h2><?php echo $billetTitle;?></h2>
-            <h3>Lorem ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris porta nisi dolor, vel aliquam nunc bibendum id.
-                Praesent tristique eget mauris nec rhoncus. Pellentesque vitae luctus leo, eu imperdiet elit. Maecenas mauris leo,
-                gravida quis nibh non, gravida consectetur arcu.
-                Vivamus at vulputate lacus. Pellentesque ut tempor dui, non scelerisque sapien. Aliquam et egestas neque.</p>
+        <h2><?php echo $billetClique->getTitle()?></h2>
+            <p><?php echo $billetClique->getMsg()?></p>
             <h3>Lorem ipsum</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris porta nisi dolor, vel aliquam nunc bibendum id.
                 Praesent tristique eget mauris nec rhoncus. Pellentesque vitae luctus leo, eu imperdiet elit. Maecenas mauris leo,
