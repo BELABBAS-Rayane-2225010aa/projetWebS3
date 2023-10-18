@@ -1,13 +1,33 @@
 <?php
+/**
+ * Model représentant les Category
+ *
+ * @author Crespin Alexandre
+ *
+ * @see \App\Repository\[NomDeRepositoryPlaceHolder]
+ * @see \App\Controller\[NomDeControllerPlaceHolder]
+ *
+ * @version 1.0
+ */
 
 namespace App\Model;
 
 class Category
 {
-    public function __construct(public string $label,public string $description){
+    /**
+     * Le contructeur de la class Category
+     *
+     * @param string $label => label de la Category
+     * @param string $description => description de la Category
+     *
+     * @return void
+     */
+    public function __construct(private string $label,private string $description){
     }
 
     /**
+     * getter de l'attribut label
+     *
      * @return string
      */
     public function getLabel(): string
@@ -16,6 +36,8 @@ class Category
     }
 
     /**
+     * getter de l'attribut description
+     *
      * @return string
      */
     public function getDescription(): string

@@ -4,8 +4,8 @@
  *
  * @author Crespin Alexandre
  *
- * @see \App\Repository\[NomDeRepositoryPlaceHolder]
- * @see \App\Controller\[NomDeControllerPlaceHolder]
+ * @see \App\Repository\BilletRepository
+ * @see \App\Controller\BilletController
  *
  * @version 1.0
  *
@@ -22,9 +22,13 @@ class Billet
      * @param string $title => titre du Billet
      * @param string $msg => message du Billet
      * @param string $date => date de la création du Billet
-     * @param int $author_id => l'id de  l'User autheur du Billet
+     * @param int $author_id => l'id de  l'User auteur du Billet
      * @param int $category_id => l'id de la Category rattaché au Billet
      *
+     * @return void
+     *
+     * @todo : faire passer les attribut de public à private
+     * @todo : changer le nom des variable author_id et category_id en authorId et categoryId
      */
     public function __construct(public string $title,public string $msg,public string $date,
                                 public int $author_id,public int $category_id){

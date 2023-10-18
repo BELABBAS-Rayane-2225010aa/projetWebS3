@@ -24,12 +24,12 @@ class Admin extends User
      * Il prend les même données que les User normaux mais ont juste $isAdmin mis à true
      * Il appel ensuite le constructeur de la class parent cad User
      *
-     * @param string $password      => mot de passe du User
-     * @param string $pseudo        => nom d'affichage du User
-     * @param string $email         => addresse mail du User
-     * @param string $dateFirstCo   => date d'inscription du User
-     * @param string $dateLastCo    => date de dernière connexion du User
-     * @param bool $isAdmin         => si il est un admin ou non, et à true dans notre cas
+     * @param string $password => mot de passe du User
+     * @param string $pseudo => nom d'affichage du User
+     * @param string $email => addresse mail du User
+     * @param string $dateFirstCo => date d'inscription du User
+     * @param string $dateLastCo => date de dernière connexion du User
+     * @param bool $isAdmin => si il est un admin ou non, et à true dans notre cas
      *
      * @return void
      */
