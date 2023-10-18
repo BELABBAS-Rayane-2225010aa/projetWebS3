@@ -22,8 +22,8 @@ class Billet
      * @param string $title => titre du Billet
      * @param string $msg => message du Billet
      * @param string $date => date de la création du Billet
-     * @param int $author_id => l'id de  l'User auteur du Billet
-     * @param int $category_id => l'id de la Category rattaché au Billet
+     * @param int $authorId => l'id de  l'User auteur du Billet
+     * @param int $categoryId => l'id de la Category rattaché au Billet
      *
      * @return void
      *

@@ -14,7 +14,6 @@ function start_page($title): void
 <?php
 }
 ?>
-
 <?php function end_page(): void
 {
     ?>
