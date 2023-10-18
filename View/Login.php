@@ -1,9 +1,9 @@
 <?php
 require 'GestionPage.php';
-start_page('Categorie');
+start_page('Categorie');//Charge la balise "head" avec le css, favicon et le nom de la page donner en parametre.
 
 $active = 'connection';
-require 'headerMenu.php';
+require 'headerMenu.php';//Charge le bar menu
 ?>
 <section class="fomulaire">
     <form action="../index.php" method="post">

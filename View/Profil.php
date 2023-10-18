@@ -6,9 +6,9 @@ if(!isset($_SESSION['suid']))
 {
     header('Location: ../index.php');
 }
-start_page('Profil');
+start_page('Profil');//Charge la balise "head" avec le css, favicon et le nom de la page donner en parametre.
 $active = 'profil';
-require 'headerMenu.php';
+require 'headerMenu.php';//Charge le bar menu
 $ImgPath='image/Default_pfp.jpg'
 ?>
     <section class="fomulaire">

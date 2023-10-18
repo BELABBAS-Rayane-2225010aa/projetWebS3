@@ -1,6 +1,6 @@
 <?php require 'GestionPage.php' ?>
 <?php
-start_page('Changer mot de passe');
+start_page('Changer mot de passe');//Charge la balise "head" avec le css, favicon et le nom de la page donner en parametre.
 ?>
 <body><!-- FLEX BLOCK-->
     <?php $active = 'mon compte';

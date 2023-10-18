@@ -10,6 +10,7 @@
     <li><a <?php if ($active === 'contact'){echo 'class=active';};?> href="/View/contact.php">Contact</a></li>
     <li style="float:right"><a <?php if ($active === 'about'){echo 'class=active';}?> href="/View/about.php">About</a></li>
     <?php
+    //Vérifie si l'utilisateur est connecté et change les bouton du menu en fonction.
     if(!isset($_SESSION['suid']))
     {
     ?>
