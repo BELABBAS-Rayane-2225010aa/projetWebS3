@@ -14,6 +14,18 @@ use App\Exception\{
 
 class SignUpController
 {
+
+    /**
+     * Cette fonction ce sert de la fonction signUp pour créer l'utilisateur
+     *
+     * @catch CannotCreateUserException
+     * @catch EmailVerificationException
+     * @catch PasswordVerificationException
+     * @catch NotFoundException
+     *
+     * @return void génère un identifiant de session unique pour l'utilisateur actuel
+     * et stocke cet objet dans une variable de session appelée 'user'.
+     */
     public function getSignUp() : void {
         $pseudo = $_POST['pseudo'];
         $email = $_POST['email'];

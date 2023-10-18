@@ -1,6 +1,13 @@
 <?php
+/**
+ * Ce fichier fait partie du projet ProjetWebS3.
+ *
+ * Ce fichier est le Routeur de notre projet, il permet de recevoir toutes les requêtes de l'application et de router chacune vers le bon contrôleur.
+ *
+ * @package App
+ * @copyright 2013 Mon super copyright
+ */
 namespace App;
-
 session_start();
 
 require 'vendor/autoload.php';

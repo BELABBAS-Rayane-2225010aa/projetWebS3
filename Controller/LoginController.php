@@ -10,6 +10,16 @@ use App\Exception\NotFoundException;
 
 class LoginController
 {
+
+    /**
+     * récupère le USER renvoyer par la fonction login
+     * et permet à l'utilisateur de se connecter
+     *
+     * @catch NotFoundException
+     *
+     * @return void génère un identifiant de session unique pour l'utilisateur actuel
+     * et stocke cet objet dans une variable de session appelée 'user'.
+     */
     public function getLogin(): void
     {
         $pseudo = $_POST['pseudo'];
