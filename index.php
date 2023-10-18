@@ -6,16 +6,8 @@ session_start();
 require 'vendor/autoload.php';
 
 use App\Controller\BilletController;
-use App\Controller\HomeController;
 use App\Controller\LoginController;
 use App\Controller\SignUpController;
-
-$homeController = new HomeController();
-$homeController->get5Billet();
-
-
-// ENZO
-$_SESSION['cinqBillet'] = $homeController->getBilletArray();
 
 header('Location: View/Home.php');
 
