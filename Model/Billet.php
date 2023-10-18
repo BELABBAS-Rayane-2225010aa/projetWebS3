@@ -35,16 +35,6 @@ class Billet
     }
 
     /**
-     * getter de l'attribut id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
      * getter de l'attibut title
      *
      * @return string
