@@ -30,8 +30,8 @@ class Billet
      * @todo : faire passer les attribut de public à private
      * @todo : changer le nom des variable author_id et category_id en authorId et categoryId
      */
-    public function __construct(public string $title,public string $msg,public string $date,
-                                public int $author_id,public int $category_id){
+    public function __construct(private string $title,private string $msg,private string $date,
+                                private int $authorId,private int $categoryId){
     }
 
     /**
@@ -71,7 +71,7 @@ class Billet
      */
     public function getAuthorId(): int
     {
-        return $this->author_id;
+        return $this->authorId;
     }
 
     /**
@@ -81,6 +81,6 @@ class Billet
      */
     public function getCategoryId(): int
     {
-        return $this->category_id;
+        return $this->categoryId;
     }
 }

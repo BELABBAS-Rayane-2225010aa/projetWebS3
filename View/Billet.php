@@ -11,13 +11,11 @@ if(!isset($_POST['billetClique']))
 {
     header('Location: ../index.php');
 }
-$billetClique = unserialize($_POST['billetClique']);
-if(!$billetClique)
-{
-    var_dump($billetClique);
-    // TODO: EXCEPTION si unserilalize ne marche pas
+$serializedBillet = $_POST['billetClique'];
+$billetClique = unserialize(base64_decode($serializedBillet));
+if (!$billetClique instanceof \App\Model\Billet) {
+    echo 'La désérialisation a échoué';
 }
-
 ?>
     <SCRIPT>
     function BoutonAffichageCategorie() { //affiche/cache la barre des categorie
