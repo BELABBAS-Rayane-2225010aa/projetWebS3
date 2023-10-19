@@ -23,9 +23,6 @@ require 'headerMenu.php' ?>
         <label>Confirmez votre mot de passe :</label>
         <input name="password1" type="password" /><br>
 
-        <label>Une image (optionnel)</label><br>
-        <input name="imgPath" id="image" type="file" /></p>
-
         <input type="submit" name="SignUp" value="SignUp">
     </form>
 </section>

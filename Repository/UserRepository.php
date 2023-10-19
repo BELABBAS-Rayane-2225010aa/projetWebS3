@@ -35,7 +35,7 @@ class UserRepository extends AbstractRepository
        //return User::loginUser($user['MDP'], $user['PSEUDO']);
     }
 
-    public function signUp(string $password, string $password1, string $imgPath,string $pseudo,
+    public function signUp(string $password, string $password1,string $pseudo,
                            string $email, string $email1, string $dateFirstCo, string $dateLastCo): User {
         if ($email != $email1){
             throw new EmailVerificationException("Not the same email");

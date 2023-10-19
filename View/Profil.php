@@ -12,7 +12,6 @@ require 'headerMenu.php';
 $ImgPath='image/Default_pfp.jpg'
 ?>
     <section class="fomulaire">
-        <img src='<?php echo $_SESSION['user']->getImgPath() ?>' alt='Photo de profile' />
         <p>Pseudo :<?php echo $_SESSION['user']->getPseudo() ?></p>
         <button>Changer le pseudo</button>
         <p>E-mail :<?php echo $_SESSION['user']->getEmail() ?></p>
