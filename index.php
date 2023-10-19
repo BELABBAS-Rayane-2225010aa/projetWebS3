@@ -40,4 +40,14 @@ if (isset($_GET['billet_id'])) {
     $billet = $controller->getBillet();
     header('Location: View/Home.php');
 }
+
+if (isset($_POST['createPost'])) {
+    if ($_POST['createPost'] === 'Publier') {
+        // TODO: createPost() dans BilletController et BilletRepository
+        header('Location: View/Home.php');
+    } else {
+        //TODO : Erreur
+        header('Location: View/Home.php');
+    }
+}
 ?>
