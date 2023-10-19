@@ -33,7 +33,7 @@ class LoginController
             }
         }
         catch (NotFoundException $ERROR){
-            file_put_contents('[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }
     }

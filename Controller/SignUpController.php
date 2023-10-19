@@ -40,19 +40,19 @@ class SignUpController
             $signup = $user->signUp($password,$password1,$imgPath,$pseudo,$email,$email1,$date,$date);
         }
         catch (CannotCreateUserException $ERROR){
-            file_put_contents('[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            file_put_contents('Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }
         catch (EmailVerificationException $ERROR){
-            file_put_contents('[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            file_put_contents('Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }
         catch (PasswordVerificationException $ERROR){
-            file_put_contents('[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            file_put_contents('Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }
         catch (NotFoundException $ERROR){
-            file_put_contents('[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            file_put_contents('Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }
     }
