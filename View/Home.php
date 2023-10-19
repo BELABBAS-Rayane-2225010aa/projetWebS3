@@ -1,7 +1,6 @@
 <?php
 require '../vendor/autoload.php';
 require 'GestionPage.php';
-
 use App\Controller\HomeController;
 
 $homeController = new HomeController();
