@@ -21,7 +21,7 @@ class PseudoModifierController
             $user = new UserRepository();
             $login = $user->pseudoModifier($oldPseudo,$newPseudo,$password);
             $session = new SetSession();
-            $session->setSession($login);
+            $session->setUserSession($login);
         }
         catch (PseudoVerificationException $ERROR){
             file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
