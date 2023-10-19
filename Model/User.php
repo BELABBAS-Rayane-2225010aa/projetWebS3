@@ -62,18 +62,6 @@ class User
     }
 
     /**
-     * setter de l'attribut password
-     *
-     * @param string $password
-     *
-     * @return void
-     */
-    public function setPassword(string $password): void
-    {
-        $this->password = $password;
-    }
-
-    /**
      * getter de l'attribut pseudo
      *
      * @return string
@@ -84,18 +72,6 @@ class User
     }
 
     /**
-     * setter de l'attribut pseudo
-     *
-     * @param string $pseudo
-     *
-     * @return void
-     */
-    public function setPseudo(string $pseudo): void
-    {
-        $this->pseudo = $pseudo;
-    }
-
-    /**
      * getter de l'attribut email
      *
      * @return string
@@ -103,18 +79,6 @@ class User
     public function getEmail(): string
     {
         return $this->email;
-    }
-
-    /**
-     * setter de l'attribut email
-     *
-     * @param string $email
-     *
-     * @return void
-     */
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
     }
 
     /**
