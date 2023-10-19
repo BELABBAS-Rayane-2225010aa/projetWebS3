@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Exception\CannotCreateBilletException;
 use App\Exception\NotFoundException;
 use App\Model\Billet;
 use App\Repository\BilletRepository;
@@ -19,6 +20,22 @@ class BilletController
         }
         catch(NotFoundException $ERROR){
             file_put_contents('[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            exit();
+        }
+    }
+
+    public function getNewBillet() : void {
+        $title = $_POST['title'];
+        $msg = $_POST['msg'];
+        $authorId = $_POST['authorId'];
+        $categoryId = $_POST['categoryId'];
+
+        try{
+            $billet = new BilletRepository();
+            $billet->createBillet($title,$msg,$authorId,$categoryId);
+        }
+        catch (CannotCreateBilletException $ERROR){
+            file_put_contents('[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }
     }

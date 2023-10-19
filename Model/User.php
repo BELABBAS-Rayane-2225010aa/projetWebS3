@@ -5,8 +5,7 @@ namespace App\Model;
 class User
 {
 
-    public function __construct(private string $password,
-                                private string $imgPath,private string $pseudo,
+    public function __construct(private string $password, private string $pseudo,
                                 private string $email,private string $dateFirstCo,
                                 private string $dateLastCo){
 
@@ -21,14 +20,6 @@ class User
     public function getPassword(): string
     {
         return $this->password;
-    }
-
-    /**
-     * @return string
-     */
-    public function getImgPath(): string
-    {
-        return $this->imgPath;
     }
 
     /**
