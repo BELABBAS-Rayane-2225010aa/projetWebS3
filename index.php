@@ -14,6 +14,7 @@ require 'vendor/autoload.php';
 
 use App\Controller\BilletController;
 use App\Controller\LoginController;
+use App\Controller\PasswordModifierController;
 use App\Controller\SignUpController;
 
 header('Location: View/Home.php');
@@ -49,6 +50,8 @@ if (isset($_GET['billet_id'])) {
 }
 
 if(isset($_POST['PasswordModif'])) {
-
+    $controller = new PasswordModifierController();
+    $controller->ModifPassword();
+    header('Location: View/Home.php');
 }
 ?>

@@ -19,12 +19,11 @@ namespace App\Repository;
 
 require 'vendor/autoload.php';
 
-use App\Exception\{
-    CannotCreateUserException,
+use App\Exception\{CannotCreateUserException,
+    CannotModify,
     EmailVerificationException,
     NotFoundException,
-    PasswordVerificationException
-};
+    PasswordVerificationException};
 
 use App\Model\User;
 
@@ -109,4 +108,21 @@ class UserRepository extends AbstractRepository
         return $this->login($pseudo,$password);
     }
 
+    public function passwordModifier(string $oldPassword, string $newPassword, string $newPassword1) {
+        if ($oldPassword == $newPassword){
+            throw new PasswordVerificationException("Same password as the old one");
+        }
+        if ($newPassword != $newPassword1){
+            throw  new PasswordVerificationException("The confirmation is not the same of the new password");
+        }
+
+        $query = 'UPDATE USER SET MDP = :newPassword WHERE MDP = :oldPassword';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['newPassword' => $newPassword, 'oldPassword' => $oldPassword]);
+
+        if ( $statement -> rowCount() === 0){
+            throw new CannotModify("USER MDP cannot be modify");
+        }
+    }
 }
