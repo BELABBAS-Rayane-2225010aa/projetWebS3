@@ -8,13 +8,13 @@ start_page('Changer mot de passe');//Charge la balise "head" avec le css, favico
     <section class="fomulaire" >
         <form action="../index.php" method="post">
             <label>Entrez votre mot de passe :
-                <input type="text" id="in" name="oldPassword">
+                <input type="password" id="in" name="oldPassword">
             </label><br>
             <label>Nouveau mot de passe :
-                <input type="text" id="in" name="newPassword">
+                <input type="password" id="in" name="newPassword">
             </label><br>
             <label>Confirmer nouveau mot de passe :
-            <input type="text" id="in" name="newPassword1">
+            <input type="password" id="in" name="newPassword1">
             </label><br>
             <input type="submit" name="PasswordModif" id='boutonchangerMDP' class='boutonchanger_mdp' value="Changer mon mot de passe">
         </form>

@@ -14,7 +14,7 @@ start_page('Changer pseudo');//Charge la balise "head" avec le css, favicon et l
                 <input type="text" id="in" name="newPseudo">
             </label><br>
             <label>Entrez votre mot de passe :
-                <input type="text" id="in" name="password">
+                <input type="password" id="in" name="password">
             </label><br>
             <input type="submit" name="PseudoModif" id='boutonchangerMDP' class='boutonchanger_mdp' value="Changer mon pseudo">
         </form>

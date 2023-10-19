@@ -17,7 +17,7 @@ start_page('Changer email');//Charge la balise "head" avec le css, favicon et le
                 <input type="text" id="in" name="pseudo">
             </label><br>
             <label>Entrez votre mot de passe :
-                <input type="text" id="in" name="password">
+                <input type="password" id="in" name="password">
             </label><br>
             <input type="submit" name="EmailModif" id='boutonchangerMDP' class='boutonchanger_mdp' value="Changer mon email">
         </form>
