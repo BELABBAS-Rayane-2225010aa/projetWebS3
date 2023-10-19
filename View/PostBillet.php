@@ -15,8 +15,19 @@ require 'headerMenu.php';
         <form action="../index.php" method="post">
             <strong> Nouvea Post </strong>
             <br>
-            <label>Titre :</label>
+            <label for="title">Titre :</label>
             <input name="title" id="title" type="text" />
+            <label for="category">Categorie :</label>
+            <select id="category" name="categorie">
+                <?php
+                for ($i = 1 ; $i < 6 ; ++$i)
+                { //TODO: Remplacer $i par les vrai categorie
+                ?>
+                    <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                <?php
+                }
+                ?>
+            </select>
             <br>
             <textarea name="msg" id="msg" placeholder=""></textarea>
             <br>

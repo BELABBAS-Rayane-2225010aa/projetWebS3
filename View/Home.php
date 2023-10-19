@@ -14,6 +14,7 @@ start_page('Acceuil');
 <?php
 $active = 'index';
 require 'headerMenu.php';
+var_dump($_SESSION);
 ?>
     <section class="section-flex">
         <form action="Billet.php" method="post" id="billetform"></form>

@@ -43,7 +43,8 @@ if (isset($_GET['billet_id'])) {
 
 if (isset($_POST['createPost'])) {
     if ($_POST['createPost'] === 'Publier') {
-        // TODO: createPost() dans BilletController et BilletRepository
+        $controller = new BilletController();
+        $controller->getNewBillet();
         header('Location: View/Home.php');
     } else {
         //TODO : Erreur

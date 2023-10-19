@@ -27,7 +27,7 @@ class BilletController
     public function getNewBillet() : void {
         $title = $_POST['title'];
         $msg = $_POST['msg'];
-        $authorId = $_POST['authorId'];
+        $authorId = $_SESSION['user']->getUserId();
         $categoryId = $_POST['categoryId'];
 
         try{
