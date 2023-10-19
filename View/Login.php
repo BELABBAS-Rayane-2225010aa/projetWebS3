@@ -2,7 +2,7 @@
 require 'GestionPage.php';
 start_page('Categorie');
 
-$active = 'connection';
+$active = 'connexion';
 require 'headerMenu.php';
 ?>
 <section class="fomulaire">

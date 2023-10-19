@@ -8,7 +8,7 @@ if(!isset($_SESSION['suid']))
 }
 
 start_page('Crée un poste');
-$active = 'cree_post';
+$active = 'cree_poste';
 require 'headerMenu.php';
 ?>
     <section class="fomulaire">
@@ -18,7 +18,7 @@ require 'headerMenu.php';
             <label>Titre :</label>
             <input name="title" id="title" type="text" />
             <br>
-            <input name="msg" id="title" type="textbox" />
+            <textarea name="msg" id="msg" placeholder=""></textarea>
             <br>
             <input type="submit" name="createPost" value="Publier">
         </form>

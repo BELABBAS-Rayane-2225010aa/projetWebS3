@@ -2,7 +2,7 @@
 <?php
 start_page('Categorie');
 ?>
-<?php $active = 'categorie';
+<?php $active = 'cree_compte';
 require 'headerMenu.php' ?>
 <section class="fomulaire">
     <form action="../index.php" method="post">
