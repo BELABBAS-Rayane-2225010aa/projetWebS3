@@ -31,7 +31,7 @@ class UserRepository extends AbstractRepository
        }
 
        $user = $statement->fetch();
-       return new User($user['MDP'],$user["PSEUDO"],$user['MAIL'],$user['DATE_PREM'],$user['DATE_DER']);
+       return new User($user['USER_ID'],$user['MDP'],$user["PSEUDO"],$user['MAIL'],$user['DATE_PREM'],$user['DATE_DER']);
        //return User::loginUser($user['MDP'], $user['PSEUDO']);
     }
 

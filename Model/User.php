@@ -5,15 +5,24 @@ namespace App\Model;
 class User
 {
 
-    public function __construct(private string $password, private string $pseudo,
-                                private string $email,private string $dateFirstCo,
-                                private string $dateLastCo){
+    public function __construct(private int $user_id, private string $password,
+                                private string $pseudo, private string $email,
+                                private string $dateFirstCo, private string $dateLastCo){
 
     }
 
     public static function loginUser (string $password , string $login):self {
         return new self($password,'',$login,'','','');
     }
+
+    /**
+     * @return integer
+     */
+    public function getUserId(): int
+    {
+        return $this->user_id;
+    }
+
     /**
      * @return string
      */
