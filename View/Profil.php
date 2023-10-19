@@ -1,7 +1,5 @@
 <?php
 
-use App\Controller\PseudoModifierController;
-
 require '../vendor/autoload.php';
 
 require 'GestionPage.php';
