@@ -13,7 +13,7 @@ start_page('Acceuil');//Charge la balise "head" avec le css, favicon et le nom d
     <body>
 <?php
 $active = 'index';
-require 'headerMenu.php';//Charge le bar menu
+require 'HeaderMenu.php';//Charge le bar menu
 ?>
     <section class="section-flex"><!--affiche les 5 dernier billet créé-->
         <form action="Billet.php" method="post" id="billetform"></form>

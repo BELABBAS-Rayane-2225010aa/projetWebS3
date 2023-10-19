@@ -3,7 +3,7 @@
 start_page('Categorie');
 ?>
     <?php $active = 'categorie';
-    require 'headerMenu.php' ?>
+require 'HeaderMenu.php' ?>
 <?php require 'endpage.php' ?>
 <?php
 end_page();

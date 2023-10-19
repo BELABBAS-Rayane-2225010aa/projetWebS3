@@ -2,7 +2,7 @@
 <?php start_page('404'); ?>
 <body><!-- FLEX BLOCK-->
     <?php $active = '404';
-    require 'headerMenu.php' ?>
+    require 'HeaderMenu.php' ?>
     <section class="section404">
         <h1>404 Page introuvable!</h1>
         <h2>Vous vous êtes perdu !</h2>

@@ -3,7 +3,7 @@
 start_page('Mon compte');//Charge la balise "head" avec le css, favicon et le nom de la page donner en parametre.
 ?>
 <?php $active = 'Mon compte';
-require 'headerMenu.php'  //Charge le bar menu?>
+require 'HeaderMenu.php'  //Charge le bar menu?>
     <section id="compte_pageId" class="compte">
         <h2>Pseudo</h2>
         <p>Date de création : 00/00/0000</p>

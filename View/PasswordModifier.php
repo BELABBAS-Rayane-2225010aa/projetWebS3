@@ -4,7 +4,7 @@ start_page('Changer mot de passe');//Charge la balise "head" avec le css, favico
 ?>
 <body><!-- FLEX BLOCK-->
     <?php $active = 'mon compte';
-    require 'headerMenu.php' ?>
+    require 'HeaderMenu.php' ?>
     <section class="fomulaire">
         <p>Entrez votre mot de passe :</p>
         <input type="text" id="in">

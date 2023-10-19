@@ -3,7 +3,7 @@
 start_page('Categorie');//Charge la balise "head" avec le css, favicon et le nom de la page donner en parametre.
 ?>
 <?php $active = 'categorie';
-require 'headerMenu.php' //Charge le bar menu ?>
+require 'HeaderMenu.php' //Charge le bar menu ?>
 <section class="fomulaire">
     <form action="../index.php" method="post">
         <strong> INSCRIPTION </strong>

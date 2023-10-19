@@ -6,7 +6,7 @@ start_page('Billet');//Charge la balise "head" avec le css, favicon et le nom de
 ?>
 <body>
 <?php $active = 'Billet';
-require 'headerMenu.php';//Charge le bar menu
+require 'HeaderMenu.php';//Charge le bar menu
 if(!isset($_POST['billetClique']))
 {
     header('Location: ../index.php');

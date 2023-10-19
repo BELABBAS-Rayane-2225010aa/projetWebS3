@@ -8,15 +8,13 @@ if(!isset($_SESSION['suid']))
 }
 start_page('Profil');//Charge la balise "head" avec le css, favicon et le nom de la page donner en parametre.
 $active = 'profil';
-require 'headerMenu.php';//Charge le bar menu
-$ImgPath='image/Default_pfp.jpg'
+require 'HeaderMenu.php';//Charge le bar menu
 ?>
     <section class="fomulaire">
-        <img src='<?php echo $_SESSION['user']->getImgPath() ?>' alt='Photo de profile' />
         <p>Pseudo :<?php echo $_SESSION['user']->getPseudo() ?></p>
         <button>Changer le pseudo</button>
         <p>E-mail :<?php echo $_SESSION['user']->getEmail() ?></p>
-        <button>Changer l'e-mail</button>
+        <button>Changer l'e-mail</button><br>
         <button>Changer le mdp</button>
     </section>
 <?php
