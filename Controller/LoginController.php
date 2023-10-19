@@ -28,8 +28,8 @@ class LoginController
             $user = new UserRepository();
             $login = $user->login($pseudo , $password);
             if ($pseudo === $login->getPseudo() && $password === $login->getPassword() ){
-                $_SESSION['suid'] = session_id();
-                $_SESSION['user'] = $login;
+                $session = new SetSession();
+                $session->setSession($login);
             }
         }
         catch (NotFoundException $ERROR){

@@ -1,4 +1,7 @@
 <?php
+
+use App\Controller\PseudoModifierController;
+
 require '../vendor/autoload.php';
 
 require 'GestionPage.php';
@@ -12,7 +15,7 @@ require 'HeaderMenu.php';//Charge le bar menu
 ?>
     <section class="fomulaire">
         <p>Pseudo :<?php echo $_SESSION['user']->getPseudo() ?></p>
-        <button>Changer le pseudo</button>
+        <button onclick="window.location.href='PseudoModifier.php';">Changer le pseudo</button>
         <p>E-mail :<?php echo $_SESSION['user']->getEmail() ?></p>
         <button>Changer l'e-mail</button><br>
         <button onclick="window.location.href='PasswordModifier.php';">Changer le mdp</button>

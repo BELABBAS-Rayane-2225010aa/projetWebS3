@@ -23,7 +23,8 @@ use App\Exception\{CannotCreateUserException,
     CannotModify,
     EmailVerificationException,
     NotFoundException,
-    PasswordVerificationException};
+    PasswordVerificationException,
+    PseudoVerificationException};
 
 use App\Model\User;
 
@@ -94,7 +95,7 @@ class UserRepository extends AbstractRepository
             throw new PasswordVerificationException("Not the same password");
         }
 
-        $query = 'INSERT INTO USER (MDP, PSEUDO, MAIL, DATE_PREM, DATE_DER,ISADMIN) VALUES (:password, :pseudo, :email, :dateFirstCo, :dateLastCo,1)';
+        $query = 'INSERT INTO USER (MDP, PSEUDO, MAIL, DATE_PREM, DATE_DER,ISADMIN) VALUES (:password, :pseudo, :email, :dateFirstCo, :dateLastCo,0)';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['password' => $password, 'pseudo'=> $pseudo,
@@ -108,21 +109,42 @@ class UserRepository extends AbstractRepository
         return $this->login($pseudo,$password);
     }
 
-    public function passwordModifier(string $oldPassword, string $newPassword, string $newPassword1) {
-        if ($oldPassword == $newPassword){
+    public function passwordModifier(string $oldPassword, string $newPassword, string $newPassword1): User
+    {
+        if ($oldPassword == $newPassword) {
             throw new PasswordVerificationException("Same password as the old one");
         }
-        if ($newPassword != $newPassword1){
+        if ($newPassword != $newPassword1) {
             throw  new PasswordVerificationException("The confirmation is not the same of the new password");
         }
 
         $query = 'UPDATE USER SET MDP = :newPassword WHERE MDP = :oldPassword';
-        $statement = $this->connexion -> prepare(
-            $query );
+        $statement = $this->connexion->prepare(
+            $query);
         $statement->execute(['newPassword' => $newPassword, 'oldPassword' => $oldPassword]);
 
-        if ( $statement -> rowCount() === 0){
+        if ($statement->rowCount() === 0) {
             throw new CannotModify("USER MDP cannot be modify");
         }
+
+        return $this->login($_SESSION['user']->getPseudo(),$newPassword);
+    }
+
+    public function pseudoModifier(string $oldPseudo, string $newPseudo, string $password): User
+    {
+        if ($oldPseudo == $newPseudo){
+            throw new PseudoVerificationException("Same pseudo as the old one");
+        }
+
+        $query = 'UPDATE USER SET PSEUDO = :newPseudo WHERE PSEUDO = :oldPseudo AND MDP = :password';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['newPseudo' => $newPseudo, 'oldPseudo' => $oldPseudo, 'password' => $password]);
+
+        if ( $statement -> rowCount() === 0){
+            throw new CannotModify("USER PSEUDO cannot be modify");
+        }
+
+        return $this->login($newPseudo,$password);
     }
 }

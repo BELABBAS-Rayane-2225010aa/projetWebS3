@@ -37,7 +37,9 @@ class SignUpController
         $date = date("Y-m-d H:i:s");
         try{
             $user = new UserRepository();
-            $signup = $user->signUp($password,$password1,$imgPath,$pseudo,$email,$email1,$date,$date);
+            $signup = $user->signUp($password,$password1,$pseudo,$email,$email1,$date,$date);
+            $newUser = new LoginController();
+            $newUser->getLogin();
         }
         catch (CannotCreateUserException $ERROR){
             file_put_contents('Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
