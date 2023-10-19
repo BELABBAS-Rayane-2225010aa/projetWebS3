@@ -8,10 +8,13 @@ start_page('Changer email');//Charge la balise "head" avec le css, favicon et le
     <section class="fomulaire" >
         <form action="../index.php" method="post">
             <label>Entrez votre email actuel :
-                <input type="text" id="in" name="oldPseudo">
+                <input type="text" id="in" name="oldEmail">
             </label><br>
             <label>Nouvelle email :
-                <input type="text" id="in" name="newPseudo">
+                <input type="text" id="in" name="newEmail">
+            </label><br>
+            <label>Entrez votre pseudo :
+                <input type="text" id="in" name="pseudo">
             </label><br>
             <label>Entrez votre mot de passe :
                 <input type="text" id="in" name="password">

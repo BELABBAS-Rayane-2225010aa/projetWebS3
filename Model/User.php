@@ -72,6 +72,18 @@ class User
     }
 
     /**
+     * setter de l'attibut pseudo
+     *
+     * @param string $pseudo
+     *
+     * @return void
+     */
+    public function setPseudo(string $pseudo): void
+    {
+        $this->pseudo = $pseudo;
+    }
+
+    /**
      * getter de l'attribut email
      *
      * @return string
@@ -79,6 +91,18 @@ class User
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    /**
+     * setter de l'attibut email
+     *
+     * @param string $email
+     *
+     * @return void
+     */
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
     }
 
     /**

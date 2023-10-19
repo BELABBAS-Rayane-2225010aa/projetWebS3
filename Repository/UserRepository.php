@@ -109,7 +109,7 @@ class UserRepository extends AbstractRepository
         return $this->login($pseudo,$password);
     }
 
-    public function passwordModifier(string $oldPassword, string $newPassword, string $newPassword1): User
+    public function passwordModifier(string $oldPassword, string $newPassword, string $newPassword1): void
     {
         if ($oldPassword == $newPassword) {
             throw new PasswordVerificationException("Same password as the old one");
@@ -126,8 +126,6 @@ class UserRepository extends AbstractRepository
         if ($statement->rowCount() === 0) {
             throw new CannotModify("USER MDP cannot be modify");
         }
-
-        return $this->login($_SESSION['user']->getPseudo(),$newPassword);
     }
 
     public function pseudoModifier(string $oldPseudo, string $newPseudo, string $password): User
@@ -146,5 +144,23 @@ class UserRepository extends AbstractRepository
         }
 
         return $this->login($newPseudo,$password);
+    }
+
+    public function emailModifier(string $oldEmail, string $newEmail, string $pseudo, string $password): User
+    {
+        if ($oldEmail == $newEmail){
+            throw new EmailVerificationException("Same pseudo as the old one");
+        }
+
+        $query = 'UPDATE USER SET MAIL = :newEmail WHERE MAIL = :oldEmail AND PSEUDO = :pseudo';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['newEmail' => $newEmail, 'oldEmail' => $oldEmail, 'pseudo' => $pseudo]);
+
+        if ( $statement -> rowCount() === 0){
+            throw new CannotModify("USER MAIL cannot be modify");
+        }
+
+        return $this->login($pseudo,$password);
     }
 }

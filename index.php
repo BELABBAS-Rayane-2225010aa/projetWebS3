@@ -13,10 +13,12 @@ session_start();
 require 'vendor/autoload.php';
 
 use App\Controller\BilletController;
+use App\Controller\EmailModifierController;
 use App\Controller\LoginController;
 use App\Controller\PasswordModifierController;
 use App\Controller\PseudoModifierController;
 use App\Controller\SignUpController;
+use function Parsica\Parsica\isEqual;
 
 header('Location: View/Home.php');
 
@@ -54,7 +56,10 @@ if(isset($_POST['PseudoModif'])) {
     $login = $controller->ModifPseudo();
     $_SESSION['user']->setPseudo($login->getPseudo());
 }
-else {
-    //TODO : Erreur
+
+if (isset($_POST['EmailModif'])) {
+    $controller = new EmailModifierController();
+    $login = $controller->ModifPseudo();
+    $_SESSION['user']->setEmail($login->getEmail());
 }
 ?>
