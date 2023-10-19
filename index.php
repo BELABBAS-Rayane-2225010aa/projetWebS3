@@ -47,4 +47,8 @@ if (isset($_GET['billet_id'])) {
     $billet = $controller->getBillet();
     header('Location: View/Home.php');
 }
+
+if(isset($_POST['PasswordModif'])) {
+
+}
 ?>
