@@ -19,7 +19,13 @@
     <?php
     }
     else
-    {?>
+    {
+        if ($_SESSION['user']->getIsAdmin() == 1){
+            ?>
+            <li style="float:right"><a <?php if ($active === 'admin'){echo 'class=active';} ?> href="/View/Admin.php">Admin</a></li>
+        <?php
+        }
+    ?>
         <li style="float:right"><a <?php if ($active === 'deconexion'){echo 'class=active';} ?> href="/View/Deconexion.php">Déconexion</a></li>
         <li style="float:right"><a <?php if ($active === 'profil'){echo 'class=active';} ?> href="/View/Profil.php">Profil</a></li>
     <?php

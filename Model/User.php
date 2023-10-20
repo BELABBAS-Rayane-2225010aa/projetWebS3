@@ -25,12 +25,11 @@ class User
      * @param string $email => addresse mail du User
      * @param string $dateFirstCo => date d'inscription du User
      * @param string $dateLastCo => date de dernière connexion du User
-     *
-     * @return void
+     * @param int $isAdmin => 1 si il s'agit d'un admin et 0 sinon (on utilise des chiffre à cause de la BD)
      */
     public function __construct(private string $password, private string $pseudo,
                                 private string $email,private string $dateFirstCo,
-                                private string $dateLastCo){
+                                private string $dateLastCo, private int $isAdmin){
 
     }
 
@@ -123,5 +122,15 @@ class User
     public function getDateLastCo(): string
     {
         return $this->dateLastCo;
+    }
+
+    /**
+     * getter de l'attribut isAdmin
+     *
+     * @return int
+     */
+    public function getIsAdmin(): int
+    {
+        return $this->isAdmin;
     }
 }
