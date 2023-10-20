@@ -32,7 +32,6 @@ class SignUpController
         $email1 = $_POST['email1'];
         $password = $_POST['password'];
         $password1 = $_POST['password1'];
-        $imgPath = $_POST['imgPath'];
 
         $date = date("Y-m-d H:i:s");
         try{
