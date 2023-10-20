@@ -10,7 +10,7 @@ body {
     margin-top: 1%;
     padding:1% ;
     overflow: hidden;
-    background: linear-gradient( rgba(68, 58, 82, 0.8),  rgba(68, 58, 82, 0.8));
+    background-color: #174370;
     width: 98%;
     border-radius: 15px;
     box-sizing: border-box;
@@ -50,12 +50,12 @@ li a, .dropbtn {
 }
 
 li a:hover:not(.active) {
-    background-color: #263e1a;
+    background-color: #117883;
     border-radius: 15px;
 }
 
 .active {
-    background-color: #3a963b;
+    background-color: #117883;
     border-radius: 15px;
 }
 
@@ -113,8 +113,8 @@ li.dropdown {
     float: left;
     width: 12vh;
     height: 100vh;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
+    background-color: #e5b596;
+    border: 1px solid #bd522b;
     padding: 0.5%;
     font-size: 0.7em;
     overflow: scroll; /*contre le debordement de la boite associer*/
@@ -125,10 +125,10 @@ li.dropdown {
 }
 
 .compte{
-    background-color: darkseagreen;
+    background-color: #e5b596;
     border-radius: 10px;
     border-style: solid;
-    border-color: black;
+    border-color: #bd522b;
     padding: 3vh;
     margin: 1em;
 }
@@ -138,8 +138,8 @@ li.dropdown {
 .comments {
     position: static;
     margin-left:0.3vh;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
+    background-color: #e5b596;
+    border: 1px solid #bd522b;
     border-radius: 8px;
     margin-top: 0.3vh;
     margin-right: 0.3vh;
@@ -217,7 +217,7 @@ li.dropdown {
 footer {
     text-align: center;
     padding: 5px;
-    background-color: #abbaba;
+    background-color: #bcb7b6;
     color: #000;
     position: fixed;
     bottom: 0;
@@ -259,10 +259,10 @@ footer {
     text-align: center;
 }
 .fomulaire{
-    background-color: #f99d52;
+    background-color: #e5b596;
     border-radius: 10px;
     border-style: solid;
-    border-color: #ed2323;
+    border-color: #bd522b;
     padding: 3vh;
     margin: 1em;
     text-align: start;

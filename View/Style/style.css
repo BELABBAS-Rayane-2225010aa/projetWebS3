@@ -10,7 +10,7 @@ body {
     margin-top: 1%;
     padding:1% ;
     overflow: hidden;
-    background-color: #1b1e21;
+    background-color: #174370;
     width: 98%;
     border-radius: 15px;
     box-sizing: border-box;
@@ -32,12 +32,12 @@ li a, .dropbtn {
 }
 
 li a:hover:not(.active) {
-    background-color: #263e1a;
+    background-color: #117883;
     border-radius: 15px;
 }
 
 .active {
-    background-color: #3a963b;
+    background-color: #117883;
     border-radius: 15px;
 }
 
@@ -81,8 +81,8 @@ li.dropdown {
     width: 12vh;
     min-width: 8em;
     height: 100vh;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
+    background-color: #e5b596;
+    border: 1px solid #bd522b;
     padding: 1%;
     margin-top: 7vh;
     font-size: 0.7em;
@@ -99,8 +99,8 @@ li.dropdown {
 .comments {
     position: static;
     margin-left:14.5vh;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
+    background-color: #e5b596;
+    border: 1px solid #bd522b;
     border-radius: 8px;
     margin-top: 5vh;
     margin-right: 0.8vh;
@@ -167,7 +167,7 @@ li.dropdown {
 footer {
     text-align: center;
     padding: 5px;
-    background-color: #abbaba;
+    background-color: #bcb7b6;
     color: #000;
     position: fixed;
     bottom: 0;
@@ -175,10 +175,10 @@ footer {
 }
 
 .compte{
-    background-color: darkseagreen;
+    background-color: #e5b596;
     border-radius: 10px;
     border-style: solid;
-    border-color: black;
+    border-color: #bd522b;
     padding: 3vh;
     margin: 1em;
 }
@@ -202,10 +202,10 @@ footer {
     border-color: #bb0000;
 }
 .fomulaire{
-    background-color: #f99d52;
+    background-color: #e5b596;
     border-radius: 10px;
     border-style: solid;
-    border-color: #ed2323;
+    border-color: #b5532b;
     padding: 5vh;
     margin: 1em;
     text-align: start;
