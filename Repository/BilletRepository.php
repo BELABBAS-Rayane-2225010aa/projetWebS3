@@ -15,6 +15,7 @@
 
 namespace App\Repository;
 
+use App\Exception\CannotDeleteBilletException;
 use App\Exception\NotFoundException;
 use App\Model\Billet;
 
@@ -83,5 +84,17 @@ class BilletRepository extends AbstractRepository
         }
         $billet = $statement->fetch();
         return new Billet($billet['TITRE'],$billet['MSG'],$billet['DATE_BILLET'],$billet['USER_ID'],$billet['CAT_ID']);
+    }
+
+    public function deleteBillet(string $id) : void {
+        //TODO : empécher la suppression d'admin
+        $query = 'DELETE FROM BILLET WHERE BILLET_ID = :id';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['id' => $id]);
+
+        if ( $statement -> rowCount() === 0){
+            throw new CannotDeleteBilletException("BILLET cannot be deleted");
+        }
     }
 }
