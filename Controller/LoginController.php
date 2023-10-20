@@ -29,7 +29,7 @@ class LoginController
             $login = $user->login($pseudo , $password);
             if ($pseudo === $login->getPseudo() && $password === $login->getPassword() ){
                 $session = new SetSession();
-                $session->setSession($login);
+                $session->setUserSession($login);
             }
         }
         catch (NotFoundException $ERROR){
