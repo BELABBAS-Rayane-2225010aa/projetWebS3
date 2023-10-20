@@ -9,21 +9,24 @@ start_page('Administration');//Charge la balise "head" avec le css, favicon et l
 require 'HeaderMenu.php' ?>
 <section class="fomulaire" >
     <form action="../index.php" method="post">
-        <p>Nouvelle catégorie :</p>
-        <label>Entrez le nom de la nouvel catégorie :
-            <input type="text" name="catName">
-        </label><br>
-        <label>Entrez sa description :
-            <textarea name="catDesc"></textarea>
-        </label><br>
-        <input type="submit" name="NewCat" id='boutonchangerMDP' class='boutonchanger_mdp' value="Ajouter"><br>
-        <br>
+        <p>Nouvelle catégorie : <br>
+            <label>Entrez le nom de la nouvel catégorie :
+                <input type="text" name="catName">
+            </label><br>
+            <label>Entrez sa description :
+                <textarea name="catDesc"></textarea>
+            </label><br>
+            <input type="submit" name="NewCat" id='boutonchangerMDP' class='boutonchanger_mdp' value="Ajouter"><br>
+            <br>
+        </p>
 
-        <label>Suprimer categorie:
-            <input type="text" id="in" name="DelCategorie">
-        </label><br>
-        <input type="submit" name="DelC" id='boutonchangerMDP' class='boutonchanger_mdp' value="suprimer"><br>
-        <br>
+        <p>Suprimer categorie: <br>
+            <label>Entrez le nom de la catégorie à supprimer :
+                <input type="text" name="catName">
+            </label><br>
+            <input type="submit" name="DelCat" id='boutonchangerMDP' class='boutonchanger_mdp' value="suprimer"><br>
+            <br>
+        </p>
 
         <label>Suprimer utilisateur:
             <input type="text" id="in" name="DelAccount">

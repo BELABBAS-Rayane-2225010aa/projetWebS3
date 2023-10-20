@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Exception\CannotCreateCatException;
+use App\Exception\CannotDeleteCatException;
 
 class CategoryRepository extends AbstractRepository
 {
@@ -20,6 +21,17 @@ class CategoryRepository extends AbstractRepository
 
         if ( $statement -> rowCount() === 0){
             throw new CannotCreateCatException("CATEGORY cannot be created");
+        }
+    }
+
+    public function deleteCat(string $label) : void {
+        $query = 'DELETE FROM CATEGORIE WHERE LABEL = :label';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['label' => $label]);
+
+        if ( $statement -> rowCount() === 0){
+            throw new CannotDeleteCatException("CATEGORY cannot be deleted");
         }
     }
 }

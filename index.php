@@ -67,4 +67,9 @@ if (isset($_POST['NewCat'])) {
     $controller = new AdminController();
     $controller->createCategory();
 }
+
+if (isset($_POST['DelCat'])) {
+    $controller = new AdminController();
+    $controller->deleteCategory();
+}
 ?>

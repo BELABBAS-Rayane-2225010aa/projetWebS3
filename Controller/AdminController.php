@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Exception\CannotCreateCatException;
+use App\Exception\CannotDeleteCatException;
 use App\Repository\CategoryRepository;
 
 class AdminController
@@ -15,6 +16,18 @@ class AdminController
             $cat->createCat($name,$desc);
         }
         catch (CannotCreateCatException $ERROR){
+            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            exit();
+        }
+    }
+
+    public function deleteCategory() : void {
+        $name = $_POST['catName'];
+        try {
+            $cat = new CategoryRepository();
+            $cat->deleteCat($name);
+        }
+        catch (CannotDeleteCatException $ERROR){
             file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }
