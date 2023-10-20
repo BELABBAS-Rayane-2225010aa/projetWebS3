@@ -12,13 +12,13 @@ session_start();
 
 require 'vendor/autoload.php';
 
+use App\Controller\AdminController;
 use App\Controller\BilletController;
 use App\Controller\EmailModifierController;
 use App\Controller\LoginController;
 use App\Controller\PasswordModifierController;
 use App\Controller\PseudoModifierController;
 use App\Controller\SignUpController;
-use function Parsica\Parsica\isEqual;
 
 header('Location: View/Home.php');
 
@@ -61,5 +61,10 @@ if (isset($_POST['EmailModif'])) {
     $controller = new EmailModifierController();
     $login = $controller->ModifPseudo();
     $_SESSION['user']->setEmail($login->getEmail());
+}
+
+if (isset($_POST['NewCat'])) {
+    $controller = new AdminController();
+    $controller->createCategory();
 }
 ?>
