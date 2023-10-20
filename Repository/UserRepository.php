@@ -165,15 +165,27 @@ class UserRepository extends AbstractRepository
         return $this->login($pseudo,$password);
     }
 
-    public function deleteUser(string $name,string $id) : void {
+    public function deleteUs(int $userId) : void {
         //TODO : empécher la suppression d'admin
-        $query = 'DELETE FROM USER WHERE PSEUDO = :name AND USER_ID = :id';
+        $query = 'DELETE FROM USER WHERE USER_ID = :userId';
         $statement = $this->connexion -> prepare(
             $query );
-        $statement->execute(['name' => $name, 'id' => $id]);
+        $statement->execute(['userId' => $userId]);
 
         if ( $statement -> rowCount() === 0){
             throw new CannotDeleteUserException("USER cannot be deleted");
+        }
+    }
+
+    public function makeAdmin(int $id) : void {
+        //TODO : empécher la modification d'admin
+        $query = 'UPDATE USER SET ISADMIN = 1 WHERE USER_ID = :id';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['id' => $id]);
+
+        if ( $statement -> rowCount() === 0){
+            throw new CannotModify("USER ISADMIN cannot be modified");
         }
     }
 }

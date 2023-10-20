@@ -82,4 +82,9 @@ if (isset($_POST['DelBillet'])) {
     $controller = new AdminController();
     $controller->deleteBillet();
 }
+
+if (isset($_POST['MakeAdmin'])) {
+    $controller = new AdminController();
+    $controller->makeAdmin();
+}
 ?>

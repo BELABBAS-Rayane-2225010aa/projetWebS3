@@ -86,7 +86,7 @@ class BilletRepository extends AbstractRepository
         return new Billet($billet['TITRE'],$billet['MSG'],$billet['DATE_BILLET'],$billet['USER_ID'],$billet['CAT_ID']);
     }
 
-    public function deleteBillet(string $id) : void {
+    public function deleteBillet(int $id) : void {
         //TODO : empécher la suppression d'admin
         $query = 'DELETE FROM BILLET WHERE BILLET_ID = :id';
         $statement = $this->connexion -> prepare(

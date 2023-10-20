@@ -9,7 +9,7 @@ start_page('Administration');//Charge la balise "head" avec le css, favicon et l
 require 'HeaderMenu.php' ?>
 <section class="fomulaire" >
     <form action="../index.php" method="post">
-        <p>Nouvelle catégorie : <br>
+        <p>Nouvelle catégorie: <br>
             <label>Entrez le nom de la nouvel catégorie :
                 <input type="text" name="catName">
             </label><br>
@@ -29,10 +29,7 @@ require 'HeaderMenu.php' ?>
         </p>
 
         <p>Suprimer utilisateur: <br>
-            <label>Entrez le pseudo de l'utilisateur à supprimer :
-                <input type="text" id="in" name="userName">
-            </label><br>
-            <label>Entrez son ID :
+            <label>Entrez l'ID de l'utilisateur à supprimer :
                 <input type="text" id="in" name="userId">
             </label><br>
             <input type="submit" name="DelUser" id='boutonchangerMDP' class='boutonchanger_mdp' value="suprimer"><br>
@@ -45,6 +42,13 @@ require 'HeaderMenu.php' ?>
             </label><br>
             <input type="submit" name="DelBillet" id='boutonchangerMDP' class='boutonchanger_mdp' value="suprimer"><br>
             <br>
+        </p>
+
+        <p>Faire devenir admin: <br>
+            <label>Entrez l'ID de l'utilisateur à faire devenir admin :
+                <input type="text" id="in" name="userIdAdmin">
+            </label><br>
+            <input type="submit" name="MakeAdmin" id='boutonchangerMDP' class='boutonchanger_mdp' value="modifier"><br>
         </p>
     </form>
 </section>
