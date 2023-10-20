@@ -16,6 +16,13 @@ require 'HeaderMenu.php';//Charge le bar menu
         <button onclick="window.location.href='PseudoModifier.php';">Changer le pseudo</button>
         <p>E-mail :<?php echo $_SESSION['user']->getEmail() ?></p>
         <button onclick="window.location.href='EmailModifier.php';">Changer l'e-mail</button><br>
+        <p>Date de création : 00/00/0000</p><br>
+        <p>Billet écrit:</p><br>
+        <p>-Billet1,date1
+            Billet2,date2</p><br>
+        <p>Commentaire écrit:</p><br>
+        <P>-Commentaire1,Date1,Billet1
+            -Commentaire1,Date1,Billet1</P><br>
         <button onclick="window.location.href='PasswordModifier.php';">Changer le mdp</button>
     </section>
 <?php
