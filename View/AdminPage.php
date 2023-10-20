@@ -28,16 +28,24 @@ require 'HeaderMenu.php' ?>
             <br>
         </p>
 
-        <label>Suprimer utilisateur:
-            <input type="text" id="in" name="DelAccount">
-        </label><br>
-        <input type="submit" name="DelA" id='boutonchangerMDP' class='boutonchanger_mdp' value="suprimer"><br>
-        <br>
+        <p>Suprimer utilisateur: <br>
+            <label>Entrez le pseudo de l'utilisateur à supprimer :
+                <input type="text" id="in" name="userName">
+            </label><br>
+            <label>Entrez son ID :
+                <input type="text" id="in" name="userId">
+            </label><br>
+            <input type="submit" name="DelUser" id='boutonchangerMDP' class='boutonchanger_mdp' value="suprimer"><br>
+            <br>
+        </p>
 
-        <label>Suprimer Billet:
-            <input type="password" id="in" name="DelBillet">
-        </label><br>
-        <input type="submit" name="DelB" id='boutonchangerMDP' class='boutonchanger_mdp' value="suprimer">
+        <p>Suprimer billet: <br>
+            <label>Entrez l'ID du billet à supprimer :
+                <input type="text" id="in" name="billetId">
+            </label><br>
+            <input type="submit" name="DelBillet" id='boutonchangerMDP' class='boutonchanger_mdp' value="suprimer"><br>
+            <br>
+        </p>
     </form>
 </section>
 <?php

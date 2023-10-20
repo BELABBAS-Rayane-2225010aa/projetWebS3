@@ -72,4 +72,14 @@ if (isset($_POST['DelCat'])) {
     $controller = new AdminController();
     $controller->deleteCategory();
 }
+
+if (isset($_POST['DelUser'])) {
+    $controller = new AdminController();
+    $controller->deleteUser();
+}
+
+if (isset($_POST['DelBillet'])) {
+    $controller = new AdminController();
+    $controller->deleteBillet();
+}
 ?>

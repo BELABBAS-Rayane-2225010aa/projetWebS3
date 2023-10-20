@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 use App\Exception\CannotCreateCatException;
+use App\Exception\CannotDeleteBilletException;
 use App\Exception\CannotDeleteCatException;
+use App\Exception\CannotDeleteUserException;
+use App\Repository\BilletRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\UserRepository;
 
 class AdminController
 {
@@ -28,6 +32,31 @@ class AdminController
             $cat->deleteCat($name);
         }
         catch (CannotDeleteCatException $ERROR){
+            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            exit();
+        }
+    }
+
+    public function deleteUser() : void {
+        $userName = $_POST['userName'];
+        $userId = $_POST['userId'];
+        try {
+            $user = new UserRepository();
+            $user->deleteUser($userName,$userId);
+        }
+        catch (CannotDeleteUserException $ERROR){
+            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            exit();
+        }
+    }
+
+    public function deleteBillet() : void {
+        $billetId = $_POST['billetId'];
+        try {
+            $user = new BilletRepository();
+            $user->deleteBillet($billetId);
+        }
+        catch (CannotDeleteBilletException $ERROR){
             file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }

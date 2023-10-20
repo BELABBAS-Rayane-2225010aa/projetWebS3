@@ -20,6 +20,7 @@ namespace App\Repository;
 require 'vendor/autoload.php';
 
 use App\Exception\{CannotCreateUserException,
+    CannotDeleteUserException,
     CannotModify,
     EmailVerificationException,
     NotFoundException,
@@ -162,5 +163,17 @@ class UserRepository extends AbstractRepository
         }
 
         return $this->login($pseudo,$password);
+    }
+
+    public function deleteUser(string $name,string $id) : void {
+        //TODO : empécher la suppression d'admin
+        $query = 'DELETE FROM USER WHERE PSEUDO = :name AND USER_ID = :id';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['name' => $name, 'id' => $id]);
+
+        if ( $statement -> rowCount() === 0){
+            throw new CannotDeleteUserException("USER cannot be deleted");
+        }
     }
 }
