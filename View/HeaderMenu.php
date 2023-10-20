@@ -22,7 +22,7 @@
     {
         if ($_SESSION['user']->getIsAdmin() == 1){
             ?>
-            <li style="float:right"><a <?php if ($active === 'admin'){echo 'class=active';} ?> href="/View/Admin.php">Admin</a></li>
+            <li style="float:right"><a <?php if ($active === 'admin'){echo 'class=active';} ?> href="/View/AdminPage.php">Admin</a></li>
         <?php
         }
     ?>
