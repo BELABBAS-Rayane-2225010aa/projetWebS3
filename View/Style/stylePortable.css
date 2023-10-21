@@ -11,6 +11,12 @@ body {
     height: 100%;
 }
 
+
+/* Enleve la flèche dans le menu déroulement de categories a cause de la library qui la rajoute*/
+.menu .dropdown .fa-caret-down {
+    display: none; /* Masque la flèche par défaut */
+}
+
 .menu {
     list-style-type: none;
     margin: auto;
@@ -193,6 +199,62 @@ li.dropdown {
     font-size: 222%;
     text-overflow: ellipsis; /* met "..." en cas de debordement */
 }
+
+/* La barre de recherche */
+
+.search {
+    display: inline-flex;
+    align-items: center;
+    color: #fff; /* Couleur du texte */
+    padding: 10px;
+    border-radius: 4px; /* Coins arrondis */
+    border: 1px solid #fff; /* Bordure blanche de 1 pixel */
+}
+
+
+/* Style des éléments input et button à l'intérieur de search */
+.search input, .search button {
+    background: transparent; /* Fond transparent */
+    color: inherit;
+    border: none; /* Pas de bordure */
+    outline: none; /* Pas de contour */
+}
+
+/* Style de l'input de recherche */
+.searchinput {
+    width: 0;
+    transition: width 0.5s; /* Transition de la largeur */
+}
+
+/* Style du bouton de recherche */
+.searchbutton {
+    display: grid;
+    place-items: center;
+    width: 25px;
+    height: 25px;
+    cursor: pointer; /* Curseur pointeur */
+    transition: color 0.15s; /* Transition de la couleur */
+}
+
+/* Style au survol du bouton de recherche */
+.searchbutton:hover {
+    color: #e3e3e3; /* Changement de couleur au survol */
+}
+
+/* Style du label et de l'input */
+.search label, .search input {
+    display: inline-block;
+}
+
+/* Style de l'input de recherche lorsqu'il a le focus */
+.search input:focus {
+    width: 200px;
+}
+::placeholder  {
+    font:inherit;
+    color: #ffffff;
+}
+
 
 /* ===== Scrollbar CSS ===== */
 /* Firefox */

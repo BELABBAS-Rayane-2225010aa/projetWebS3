@@ -1,3 +1,6 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <ul class="menu"><!--Menu de haut de page qui est prèsent sur toute les page-->
     <li><a <?php if ($active === 'index'){echo 'class=active';};?> href="../index.php">Acceuil</a></li>
     <bouton class="dropdown" > <i class="fa fa-caret-down"></i><a  class="dropbtn"  <?php if ($active === 'categorie'){echo 'class=active';};?> >Categorie</a>
@@ -31,5 +34,12 @@
     <?php
     }
     ?>
+
+    <form style="float:right" class="search">
+        <input type="text" id="searchInput" class="searchinput" placeholder="Recherche" />
+        <label for="searchInput" class="searchbutton">
+            <span class="fa fa-search" type="submit"> </span>
+        </label>
+    </form><!-- Fin du formulaire de recherche -->
 </ul>
 
