@@ -114,6 +114,6 @@ class BilletRepository extends AbstractRepository
             throw new CannotDeleteBilletException("BILLET cannot be deleted");
         }
 
-        return "BILLET successfully deleted";
+       // return "BILLET successfully deleted";
     }
 }
