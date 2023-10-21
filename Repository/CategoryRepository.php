@@ -37,14 +37,16 @@ class CategoryRepository extends AbstractRepository
         return "CATEGORY ".$label." successfully created";
     }
 
-    public function deleteCat(string $label) : void {
+    public function deleteCat(string $label) : string {
         $query = 'DELETE FROM CATEGORIE WHERE LABEL = :label';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['label' => $label]);
 
         if ( $statement -> rowCount() === 0){
-            throw new CannotDeleteCatException("CATEGORY cannot be deleted");
+            throw new CannotDeleteCatException("There is no CATEGORY with the name ".$label);
         }
+
+        return "CATEGORY ".$label." successfully deleted";
     }
 }

@@ -66,11 +66,13 @@ if (isset($_POST['EmailModif'])) {
 if (isset($_POST['NewCat'])) {
     $controller = new AdminController();
     $controller->createCategory();
+    header('Location: View/AdminPage.php');
 }
 
 if (isset($_POST['DelCat'])) {
     $controller = new AdminController();
     $controller->deleteCategory();
+    header('Location: View/AdminPage.php');
 }
 
 if (isset($_POST['DelUser'])) {

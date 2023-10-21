@@ -49,8 +49,10 @@ require 'HeaderMenu.php' ?>
                 <input type="text" id="in" name="userIdAdmin">
             </label><br>
             <input type="submit" name="MakeAdmin" id='boutonchangerMDP' class='boutonchanger_mdp' value="modifier"><br>
+            <br>
         </p>
     </form>
+    <p style="color: red"><?php if (isset($_SESSION['msg'])){echo $_SESSION['msg']; unset($_SESSION['msg']);}?></p>
 </section>
 <?php
 end_page();

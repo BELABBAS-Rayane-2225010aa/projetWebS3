@@ -20,25 +20,34 @@ class AdminController
         try {
             $cat = new CategoryRepository();
             $msg = $cat->createCat($name,$desc);
-            file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
+        }
 
-        }
         catch (CannotCreateCatException | CatAlreadyExistException $ERROR){
+            $msg = $ERROR->getMessage();
             file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
         }
+
+        if (isset($_SESSION['msg'])){
+            unset($_SESSION['msg']);
+        }
+        $_SESSION['msg'] = $msg;
     }
 
     public function deleteCategory() : void {
         $name = $_POST['catName'];
         try {
             $cat = new CategoryRepository();
-            $cat->deleteCat($name);
+            $msg = $cat->deleteCat($name);
         }
         catch (CannotDeleteCatException $ERROR){
+            $msg = $ERROR->getMessage();
             file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
         }
+
+        if (isset($_SESSION['msg'])){
+            unset($_SESSION['msg']);
+        }
+        $_SESSION['msg'] = $msg;
     }
 
     public function deleteUser() : void {
