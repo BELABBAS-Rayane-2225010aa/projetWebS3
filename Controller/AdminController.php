@@ -72,12 +72,17 @@ class AdminController
         $billetId = $_POST['billetId'];
         try {
             $user = new BilletRepository();
-            $user->deleteBillet($billetId);
+            $msg = $user->deleteBillet($billetId);
         }
         catch (CannotDeleteBilletException $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
+            $msg = $ERROR->getMessage();
         }
+
+        file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
+        if (isset($_SESSION['msg'])){
+            unset($_SESSION['msg']);
+        }
+        $_SESSION['msg'] = $msg;
     }
 
     public function MakeAdmin() : void {

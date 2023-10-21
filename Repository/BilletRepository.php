@@ -86,8 +86,7 @@ class BilletRepository extends AbstractRepository
         return new Billet($billet['TITRE'],$billet['MSG'],$billet['DATE_BILLET'],$billet['USER_ID'],$billet['CAT_ID']);
     }
 
-    public function deleteBillet(int $id) : void {
-        //TODO : empécher la suppression d'admin
+    public function deleteBillet(int $id) : string {
         $query = 'DELETE FROM BILLET WHERE BILLET_ID = :id';
         $statement = $this->connexion -> prepare(
             $query );
@@ -96,5 +95,7 @@ class BilletRepository extends AbstractRepository
         if ( $statement -> rowCount() === 0){
             throw new CannotDeleteBilletException("BILLET cannot be deleted");
         }
+
+        return "BILLET successfully deleted";
     }
 }
