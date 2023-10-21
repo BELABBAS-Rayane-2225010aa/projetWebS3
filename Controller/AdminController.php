@@ -10,6 +10,7 @@ use App\Exception\CannotModify;
 use App\Repository\BilletRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
+use App\Repository\CommentRepository;
 
 class AdminController
 {
@@ -57,6 +58,18 @@ class AdminController
             $user->deleteBillet($billetId);
         }
         catch (CannotDeleteBilletException $ERROR){
+            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            exit();
+        }
+    }
+
+    public function deleteComment() : void {
+        $commentId = $_POST['commentId'];
+        try {
+            $user = new CommentRepository();
+            $user->delComment($commentId);
+        }
+        catch (CannotDeleteCommentException $ERROR){
             file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }
