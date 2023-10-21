@@ -1,5 +1,7 @@
-<?php require 'GestionPage.php' ?>
 <?php
+require '../vendor/autoload.php';
+
+require 'GestionPage.php';
 start_page('Categorie');//Charge la balise "head" avec le css, favicon et le nom de la page donner en parametre.
 ?>
 <?php $active = 'categorie';
@@ -23,8 +25,10 @@ require 'HeaderMenu.php' //Charge le bar menu ?>
         <label>Confirmez votre mot de passe :</label>
         <input name="password1" type="password" /><br>
 
-        <input type="submit" name="SignUp" value="SignUp">
+        <input type="submit" name="SignUp" value="SignUp"><br>
     </form>
+
+    <p style="color: red"><?php if (isset($_SESSION['msg'])){echo $_SESSION['msg']; unset($_SESSION['msg']);}?></p>
 </section>
 <?php
 end_page();

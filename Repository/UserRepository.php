@@ -20,18 +20,26 @@ namespace App\Repository;
 require 'vendor/autoload.php';
 
 use App\Exception\{CannotCreateUserException,
+    CannotDeleteUserException,
     CannotModify,
     EmailVerificationException,
     NotFoundException,
     PasswordVerificationException,
-    PseudoVerificationException};
+    PseudoVerificationException,
+    UserIsAdminException};
 
 use App\Model\User;
+use phpDocumentor\Reflection\Types\Void_;
 
+/**
+ * La classe UserRepository permet de gérer les requête SQL relatifs aux utilisateurs
+ *
+ * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
+ */
 class UserRepository extends AbstractRepository
 {
     /**
-     * Le constructeur de la class BilletRepository
+     * Le constructeur de la classe UserRepository
      *
      * on appelle le constructeur de la class parent AbstractRepository
      * pour récupérer la connexion à la BD
@@ -48,6 +56,8 @@ class UserRepository extends AbstractRepository
      *
      * @param string $pseudo => pseudo du User
      * @param string $password => password du User
+     *
+     * @throws NotFoundException
      *
      * @return User => une instance de la class User créer pour l'occasion
      */
@@ -82,17 +92,20 @@ class UserRepository extends AbstractRepository
      * @param string $dateFirstCo => la date de première connexion
      * @param string $dateLastCo => la date de dernière connexion qui sera = à la date de première connexion
      *
+     * @throws EmailVerificationException
+     * @throws PasswordVerificationException
+     *
      * @return User => une instance de la class User créer pour l'occasion
      */
     public function signUp(string $password, string $password1,string $pseudo, string $email,
                            string $email1, string $dateFirstCo, string $dateLastCo): User {
         /* On vérifie si les confirmations de email et de password sont bon*/
         if ($email != $email1){
-            throw new EmailVerificationException("Not the same email");
+            throw new EmailVerificationException("Email différent");
         }
 
         if ($password != $password1){
-            throw new PasswordVerificationException("Not the same password");
+            throw new PasswordVerificationException("Mot de passe différent");
         }
 
         $query = 'INSERT INTO USER (MDP, PSEUDO, MAIL, DATE_PREM, DATE_DER,ISADMIN) VALUES (:password, :pseudo, :email, :dateFirstCo, :dateLastCo,0)';
@@ -109,6 +122,19 @@ class UserRepository extends AbstractRepository
         return $this->login($pseudo,$password);
     }
 
+    /**
+     * Fonction de modification du mot de passe de l'utilisateur
+     *
+     * Cette fonction permet de modifier l'attribut MDP dans la table USER de la base de donnée
+     *
+     * @param string $oldPassword => ancien password de l'utilisateur
+     * @param string $newPassword => le nouveau password de l'utilisateur
+     * @param string $newPassword1 => la vérification du nouveau password de l'utilisateur
+     *
+     * @throws PasswordVerificationException
+     *
+     * @return void => Fait directement la modification
+     */
     public function passwordModifier(string $oldPassword, string $newPassword, string $newPassword1): void
     {
         if ($oldPassword == $newPassword) {
@@ -128,8 +154,23 @@ class UserRepository extends AbstractRepository
         }
     }
 
+    /**
+     * Fonction de modification du Pseudo de l'utilisateur
+     *
+     * Cette fonction permet de modifier l'attribut PSEUDO dans la table USER de la base de donnée
+     *
+     * @param string $oldPseudo => ancien pseudo de l'utilisateur
+     * @param string $newPseudo => le nouveau pseudo de l'utilisateur
+     * @param string $password => password de l'utilisateur
+     *
+     * @throws PseudoVerificationException
+     * @throws CannotModify
+     *
+     * @return User => une instance de la class User créer pour l'occasion
+     */
     public function pseudoModifier(string $oldPseudo, string $newPseudo, string $password): User
     {
+        //TODO : vérifier si l'utilisateur n'essaie pas d'avoir le même pseudo qu'un tiers
         if ($oldPseudo == $newPseudo){
             throw new PseudoVerificationException("Same pseudo as the old one");
         }
@@ -146,10 +187,25 @@ class UserRepository extends AbstractRepository
         return $this->login($newPseudo,$password);
     }
 
+    /**
+     * Fonction de modification de l'adresse mail de l'utilisateur
+     *
+     * Cette fonction permet de modifier l'attribut MAIL dans la table USER de la base de donnée
+     *
+     * @param string $oldEmail => ancien adresse mail de l'utilisateur
+     * @param string $newEmail => le nouvelle adresse mail de l'utilisateur
+     * @param string $pseudo => le pseudo de l'utilisateur
+     * @param string $password => le password de l'utilisateur
+     *
+     * @throws EmailVerificationException
+     * @throws CannotModify
+     *
+     * @return User => une instance de la class User créer pour l'occasion
+     */
     public function emailModifier(string $oldEmail, string $newEmail, string $pseudo, string $password): User
     {
         if ($oldEmail == $newEmail){
-            throw new EmailVerificationException("Same pseudo as the old one");
+            throw new EmailVerificationException("Same mail as the old one");
         }
 
         $query = 'UPDATE USER SET MAIL = :newEmail WHERE MAIL = :oldEmail AND PSEUDO = :pseudo';
@@ -162,5 +218,73 @@ class UserRepository extends AbstractRepository
         }
 
         return $this->login($pseudo,$password);
+    }
+
+    /**
+     * Fonction de suppression d'un utilisateur
+     *
+     * Cette fonction permet de supprimer un User de la table USER de la base de donnée
+     *
+     * @param int $userId => le numéro d'identification d'un utilisateur
+     *
+     * @throws CannotDeleteUserException
+     *
+     * @return string
+     */
+    public function deleteUs(int $userId) : string
+    {
+        if ($this->isAdmin($userId) === false) {
+            $query = 'DELETE FROM USER WHERE USER_ID = :userId';
+            $statement = $this->connexion->prepare(
+                $query);
+            $statement->execute(['userId' => $userId]);
+
+            if ($statement->rowCount() === 0) {
+                throw new CannotDeleteUserException("USER number " . $userId . " cannot be deleted");
+            }
+        } else {
+            throw new UserIsAdminException("USER number " . $userId . " is an Admin");
+        }
+        return "USER number ".$userId." as been deleted";
+    }
+
+    /**
+     * Fonction d'OP un utilisateur
+     *
+     * Cette fonction permet de rendre vrai l'attribut boolean ISADMIN de la table USER de la base de donnée
+     *
+     * @param int $id => le numéro d'identification d'un utilisateur
+     *
+     * @throws CannotModify
+     *
+     * @return string
+     */
+    public function makeAdmin(int $id) : string {
+        if ($this->isAdmin($id) === false){
+            $query = 'UPDATE USER SET ISADMIN = 1 WHERE USER_ID = :id';
+            $statement = $this->connexion -> prepare(
+                $query );
+            $statement->execute(['id' => $id]);
+
+            if ( $statement -> rowCount() === 0){
+                throw new CannotModify("USER number ".$id." cannot be modified");
+            }
+        }
+        else {
+            throw new UserIsAdminException("USER number ".$id." is an Admin");
+        }
+
+        return "USER number ".$id." successfully modified";
+    }
+
+    public function isAdmin(int $id) : bool {
+        $query = 'SELECT * FROM USER WHERE USER_ID = :id AND ISADMIN = 1';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['id' => $id]);
+        if ($statement->rowCount() === 0){
+            return false;
+        }
+        return true;
     }
 }

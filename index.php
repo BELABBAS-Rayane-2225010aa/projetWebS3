@@ -23,20 +23,15 @@ use App\Controller\SignUpController;
 header('Location: View/Home.php');
 
 if (isset($_POST['SignIn'])) {
-    if ($_POST['SignIn'] === 'SignIn') {
-        $controller = new LoginController();
-        $controller->getLogin();
-    } else {
-        //TODO : Erreur
-    }
+    $controller = new LoginController();
+    $controller->getLogin();
 }
 
 if (isset($_POST['SignUp'])) {
-    if ($_POST['SignUp'] === 'SignUp') {
-        $controller = new SignUpController();
-        $controller->getSignUp();
-    } else {
-        //TODO : Erreur
+    $controller = new SignUpController();
+    $controller->getSignUp();
+    if (isset($_SESSION['msg'])){
+        header('Location: View/SignUp.php');
     }
 }
 
@@ -66,5 +61,30 @@ if (isset($_POST['EmailModif'])) {
 if (isset($_POST['NewCat'])) {
     $controller = new AdminController();
     $controller->createCategory();
+    header('Location: View/AdminPage.php');
+}
+
+if (isset($_POST['DelCat'])) {
+    $controller = new AdminController();
+    $controller->deleteCategory();
+    header('Location: View/AdminPage.php');
+}
+
+if (isset($_POST['DelUser'])) {
+    $controller = new AdminController();
+    $controller->deleteUser();
+    header('Location: View/AdminPage.php');
+}
+
+if (isset($_POST['DelBillet'])) {
+    $controller = new AdminController();
+    $controller->deleteBillet();
+    header('Location: View/AdminPage.php');
+}
+
+if (isset($_POST['MakeAdmin'])) {
+    $controller = new AdminController();
+    $controller->makeAdmin();
+    header('Location: View/AdminPage.php');
 }
 ?>

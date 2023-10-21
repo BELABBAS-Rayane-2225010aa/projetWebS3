@@ -12,6 +12,11 @@
 
 namespace App\Model;
 
+/**
+ * La classe Comment permet de gérer les commentaire du forum
+ *
+ * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
+ */
 class Comment
 {
     /**
