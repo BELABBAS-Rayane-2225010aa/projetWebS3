@@ -30,10 +30,15 @@ use App\Exception\{CannotCreateUserException,
 use App\Model\User;
 use phpDocumentor\Reflection\Types\Void_;
 
+/**
+ * La classe UserRepository permet de gérer les requête SQL relatifs aux utilisateurs
+ *
+ * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
+ */
 class UserRepository extends AbstractRepository
 {
     /**
-     * Le constructeur de la class BilletRepository
+     * Le constructeur de la classe UserRepository
      *
      * on appelle le constructeur de la class parent AbstractRepository
      * pour récupérer la connexion à la BD

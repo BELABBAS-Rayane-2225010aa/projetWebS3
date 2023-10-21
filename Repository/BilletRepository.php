@@ -19,6 +19,11 @@ use App\Exception\CannotDeleteBilletException;
 use App\Exception\NotFoundException;
 use App\Model\Billet;
 
+/**
+ * La classe BilletRepository permet de gérer les requête SQL relatif aux Billet
+ *
+ * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
+ */
 class BilletRepository extends AbstractRepository
 {
     /**

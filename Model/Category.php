@@ -12,6 +12,11 @@
 
 namespace App\Model;
 
+/**
+ * La classe Category permet de gérer les Catégories du forum
+ *
+ * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
+ */
 class Category
 {
     /**

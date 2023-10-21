@@ -13,7 +13,11 @@
  */
 
 namespace App\Model;
-
+/**
+ * La classe Billet permet de gérer les Billet du forum
+ *
+ * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
+ */
 class Billet
 {
     /**

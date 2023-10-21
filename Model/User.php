@@ -15,6 +15,11 @@
 
 namespace App\Model;
 
+/**
+ * La classe User permet de gérer les utilisateurs
+ *
+ * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
+ */
 class User
 {
     /**
