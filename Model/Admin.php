@@ -16,6 +16,11 @@ namespace App\Model;
 
 use App\Model\User;
 
+/**
+ * La classe Admin permet de gérer les administrateur du forum
+ *
+ * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
+ */
 class Admin extends User
 {
     /**

@@ -8,6 +8,11 @@ use App\Model\User;
 use App\Repository\UserRepository;
 use App\Exception\NotFoundException;
 
+/**
+ * La classe LoginController permet de traiter la requête SQL de la fonction login
+ *
+ * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
+ */
 class LoginController
 {
 
