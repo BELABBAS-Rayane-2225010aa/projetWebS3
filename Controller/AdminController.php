@@ -24,9 +24,9 @@ class AdminController
 
         catch (CannotCreateCatException | CatAlreadyExistException $ERROR){
             $msg = $ERROR->getMessage();
-            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
         }
 
+        file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
         if (isset($_SESSION['msg'])){
             unset($_SESSION['msg']);
         }
@@ -41,9 +41,9 @@ class AdminController
         }
         catch (CannotDeleteCatException $ERROR){
             $msg = $ERROR->getMessage();
-            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
         }
 
+        file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
         if (isset($_SESSION['msg'])){
             unset($_SESSION['msg']);
         }
