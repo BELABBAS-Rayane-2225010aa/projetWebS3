@@ -167,12 +167,7 @@ class UserRepository extends AbstractRepository
     }
 
     public function deleteUs(int $userId) : string {
-        $query = 'SELECT * FROM USER WHERE USER_ID = :userId AND ISADMIN = 1';
-        $statement = $this->connexion -> prepare(
-            $query );
-        $statement->execute(['userId' => $userId]);
-
-        if ( $statement -> rowCount() === 0) {
+        if ( $this->isAdmin($userId) === false) {
             $query = 'DELETE FROM USER WHERE USER_ID = :userId';
             $statement = $this->connexion->prepare(
                 $query);
@@ -183,21 +178,38 @@ class UserRepository extends AbstractRepository
             }
         }
         else {
-            throw new UserIsAdminException("USER number ".$userId." is already Admin");
+            throw new UserIsAdminException("USER number ".$userId." is an Admin");
         }
 
         return "USER number ".$userId." as been deleted";
     }
 
-    public function makeAdmin(int $id) : void {
-        //TODO : empécher la modification d'admin
-        $query = 'UPDATE USER SET ISADMIN = 1 WHERE USER_ID = :id';
+    public function makeAdmin(int $id) : string {
+        if ($this->isAdmin($id) === false){
+            $query = 'UPDATE USER SET ISADMIN = 1 WHERE USER_ID = :id';
+            $statement = $this->connexion -> prepare(
+                $query );
+            $statement->execute(['id' => $id]);
+
+            if ( $statement -> rowCount() === 0){
+                throw new CannotModify("USER number ".$id." cannot be modified");
+            }
+        }
+        else {
+            throw new UserIsAdminException("USER number ".$id." is an Admin");
+        }
+
+        return "USER number ".$id." successfully modified";
+    }
+
+    public function isAdmin(int $id) : bool {
+        $query = 'SELECT * FROM USER WHERE USER_ID = :id AND ISADMIN = 1';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['id' => $id]);
-
-        if ( $statement -> rowCount() === 0){
-            throw new CannotModify("USER ISADMIN cannot be modified");
+        if ($statement->rowCount() === 0){
+            return false;
         }
+        return true;
     }
 }

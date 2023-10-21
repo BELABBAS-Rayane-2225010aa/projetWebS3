@@ -89,11 +89,16 @@ class AdminController
         $userId = $_POST['userIdAdmin'];
         try {
             $user = new UserRepository();
-            $user->makeAdmin($userId);
+            $msg = $user->makeAdmin($userId);
         }
-        catch (CannotModify $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
+        catch (CannotModify | UserIsAdminException $ERROR){
+            $msg = $ERROR->getMessage();
         }
+
+        file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
+        if (isset($_SESSION['msg'])){
+            unset($_SESSION['msg']);
+        }
+        $_SESSION['msg'] = $msg;
     }
 }
