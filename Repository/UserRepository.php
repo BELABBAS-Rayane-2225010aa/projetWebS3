@@ -25,7 +25,8 @@ use App\Exception\{CannotCreateUserException,
     EmailVerificationException,
     NotFoundException,
     PasswordVerificationException,
-    PseudoVerificationException};
+    PseudoVerificationException,
+    UserIsAdminException};
 
 use App\Model\User;
 
@@ -165,16 +166,27 @@ class UserRepository extends AbstractRepository
         return $this->login($pseudo,$password);
     }
 
-    public function deleteUs(int $userId) : void {
-        //TODO : empécher la suppression d'admin
-        $query = 'DELETE FROM USER WHERE USER_ID = :userId';
+    public function deleteUs(int $userId) : string {
+        $query = 'SELECT * FROM USER WHERE USER_ID = :userId AND ISADMIN = 1';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['userId' => $userId]);
 
-        if ( $statement -> rowCount() === 0){
-            throw new CannotDeleteUserException("USER cannot be deleted");
+        if ( $statement -> rowCount() === 0) {
+            $query = 'DELETE FROM USER WHERE USER_ID = :userId';
+            $statement = $this->connexion->prepare(
+                $query);
+            $statement->execute(['userId' => $userId]);
+
+            if ($statement->rowCount() === 0) {
+                throw new CannotDeleteUserException("USER number ".$userId." cannot be deleted");
+            }
         }
+        else {
+            throw new UserIsAdminException("USER number ".$userId." is already Admin");
+        }
+
+        return "USER number ".$userId." as been deleted";
     }
 
     public function makeAdmin(int $id) : void {

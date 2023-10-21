@@ -8,6 +8,7 @@ use App\Exception\CannotDeleteCatException;
 use App\Exception\CannotDeleteUserException;
 use App\Exception\CannotModify;
 use App\Exception\CatAlreadyExistException;
+use App\Exception\UserIsAdminException;
 use App\Repository\BilletRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
@@ -54,12 +55,17 @@ class AdminController
         $userId = $_POST['userId'];
         try {
             $user = new UserRepository();
-            $user->deleteUs($userId);
+            $msg = $user->deleteUs($userId);
         }
-        catch (CannotDeleteUserException $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
+        catch (CannotDeleteUserException | UserIsAdminException $ERROR){
+            $msg = $ERROR->getMessage();
         }
+
+        file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
+        if (isset($_SESSION['msg'])){
+            unset($_SESSION['msg']);
+        }
+        $_SESSION['msg'] = $msg;
     }
 
     public function deleteBillet() : void {

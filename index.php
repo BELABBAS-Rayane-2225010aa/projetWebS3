@@ -73,15 +73,18 @@ if (isset($_POST['DelCat'])) {
 if (isset($_POST['DelUser'])) {
     $controller = new AdminController();
     $controller->deleteUser();
+    header('Location: View/AdminPage.php');
 }
 
 if (isset($_POST['DelBillet'])) {
     $controller = new AdminController();
     $controller->deleteBillet();
+    header('Location: View/AdminPage.php');
 }
 
 if (isset($_POST['MakeAdmin'])) {
     $controller = new AdminController();
     $controller->makeAdmin();
+    header('Location: View/AdminPage.php');
 }
 ?>
