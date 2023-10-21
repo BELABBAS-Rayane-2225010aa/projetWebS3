@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Exception\CannotCreateCatException;
 use App\Exception\CannotDeleteCatException;
+use App\Exception\CatAlreadyExistException;
+use App\Exception\CatSuccesfullyCreatedException;
 
 class CategoryRepository extends AbstractRepository
 {
@@ -12,16 +14,27 @@ class CategoryRepository extends AbstractRepository
         parent::__construct();
     }
 
-    public function createCat(string $label, string $description) : void {
-        //TODO : faire en sorte que si la category existe dejà on enpeche la création
-        $query = 'INSERT INTO CATEGORIE (LABEL, DESCRIPTION) VALUES (:label,:description)';
+    public function createCat(string $label, string $description) : string {
+        $query = 'SELECT * FROM CATEGORIE WHERE LABEL = :label';
         $statement = $this->connexion -> prepare(
             $query );
-        $statement->execute(['label' => $label, 'description'=> $description]);
+        $statement->execute(['label' => $label]);
 
-        if ( $statement -> rowCount() === 0){
-            throw new CannotCreateCatException("CATEGORY cannot be created");
+        if ( $statement -> rowCount() === 0) {
+            $query = 'INSERT INTO CATEGORIE (LABEL, DESCRIPTION) VALUES (:label,:description)';
+            $statement = $this->connexion->prepare(
+                $query);
+            $statement->execute(['label' => $label, 'description' => $description]);
+
+            if ($statement->rowCount() === 0) {
+                throw new CannotCreateCatException("CATEGORY ".$label." cannot be created");
+            }
         }
+        else {
+            throw new CatAlreadyExistException("CATEGORY ".$label." already exist");
+        }
+
+        return "CATEGORY ".$label." successfully created";
     }
 
     public function deleteCat(string $label) : void {

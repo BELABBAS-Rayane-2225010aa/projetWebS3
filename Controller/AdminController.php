@@ -7,6 +7,7 @@ use App\Exception\CannotDeleteBilletException;
 use App\Exception\CannotDeleteCatException;
 use App\Exception\CannotDeleteUserException;
 use App\Exception\CannotModify;
+use App\Exception\CatAlreadyExistException;
 use App\Repository\BilletRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
@@ -14,13 +15,15 @@ use App\Repository\UserRepository;
 class AdminController
 {
     public function createCategory() : void {
-        $name = $_POST['catName'];
+        $name = $_POST['newCatName'];
         $desc = $_POST['catDesc'];
         try {
             $cat = new CategoryRepository();
-            $cat->createCat($name,$desc);
+            $msg = $cat->createCat($name,$desc);
+            file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
+
         }
-        catch (CannotCreateCatException $ERROR){
+        catch (CannotCreateCatException | CatAlreadyExistException $ERROR){
             file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }

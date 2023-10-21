@@ -11,7 +11,7 @@ require 'HeaderMenu.php' ?>
     <form action="../index.php" method="post">
         <p>Nouvelle catégorie: <br>
             <label>Entrez le nom de la nouvel catégorie :
-                <input type="text" name="catName">
+                <input type="text" name="newCatName">
             </label><br>
             <label>Entrez sa description :
                 <textarea name="catDesc"></textarea>
