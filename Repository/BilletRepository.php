@@ -37,6 +37,8 @@ class BilletRepository extends AbstractRepository
      *
      * Cette fonction permet de récupérer les 5 billet les plus récent pour les afficher ensuite dans Home.php
      *
+     * @throws NotFoundException
+     *
      * @return array => un array de Billet
      */
     public function get5Billet() : array
@@ -69,6 +71,8 @@ class BilletRepository extends AbstractRepository
      *
      * @param $id => l'id du billet rechercher
      *
+     * @throws NotFoundException
+     *
      * @return Billet => un Billet créer a partir des informations de la BD
      *
      * @todo : implémenter cette fonction pour clarifier le code de la page Billet
@@ -86,6 +90,15 @@ class BilletRepository extends AbstractRepository
         return new Billet($billet['TITRE'],$billet['MSG'],$billet['DATE_BILLET'],$billet['USER_ID'],$billet['CAT_ID']);
     }
 
+    /**
+     * Suppression d'un Billet
+     *
+     * Cette fonction permet de supprimer un Billet de la base de donnée
+     *
+     * @throws CannotDeleteBilletException
+     *
+     * @return void
+     */
     public function deleteBillet(int $id) : void {
         //TODO : empécher la suppression d'admin
         $query = 'DELETE FROM BILLET WHERE BILLET_ID = :id';
