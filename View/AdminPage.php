@@ -44,6 +44,14 @@ require 'HeaderMenu.php' ?>
             <br>
         </p>
 
+        <p>Suprimer commentaire: <br>
+            <label>Entrez l'ID du commentaire à supprimer :
+                <input type="text" id="in" name="commentId">
+            </label><br>
+            <input type="submit" name="DelComment" id='boutonchangerMDP' class='boutonchanger_mdp' value="suprimer"><br>
+            <br>
+        </p>
+
         <p>Faire devenir admin: <br>
             <label>Entrez l'ID de l'utilisateur à faire devenir admin :
                 <input type="text" id="in" name="userIdAdmin">
