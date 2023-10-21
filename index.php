@@ -23,20 +23,15 @@ use App\Controller\SignUpController;
 header('Location: View/Home.php');
 
 if (isset($_POST['SignIn'])) {
-    if ($_POST['SignIn'] === 'SignIn') {
-        $controller = new LoginController();
-        $controller->getLogin();
-    } else {
-        //TODO : Erreur
-    }
+    $controller = new LoginController();
+    $controller->getLogin();
 }
 
 if (isset($_POST['SignUp'])) {
-    if ($_POST['SignUp'] === 'SignUp') {
-        $controller = new SignUpController();
-        $controller->getSignUp();
-    } else {
-        //TODO : Erreur
+    $controller = new SignUpController();
+    $controller->getSignUp();
+    if (isset($_SESSION['msg'])){
+        header('Location: View/SignUp.php');
     }
 }
 

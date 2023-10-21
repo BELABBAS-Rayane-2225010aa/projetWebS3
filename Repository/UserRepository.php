@@ -89,11 +89,11 @@ class UserRepository extends AbstractRepository
                            string $email1, string $dateFirstCo, string $dateLastCo): User {
         /* On vérifie si les confirmations de email et de password sont bon*/
         if ($email != $email1){
-            throw new EmailVerificationException("Not the same email");
+            throw new EmailVerificationException("Email différent");
         }
 
         if ($password != $password1){
-            throw new PasswordVerificationException("Not the same password");
+            throw new PasswordVerificationException("Mot de passe différent");
         }
 
         $query = 'INSERT INTO USER (MDP, PSEUDO, MAIL, DATE_PREM, DATE_DER,ISADMIN) VALUES (:password, :pseudo, :email, :dateFirstCo, :dateLastCo,0)';

@@ -9,7 +9,6 @@ use App\Exception\{
     CannotCreateUserException,
     EmailVerificationException,
     PasswordVerificationException,
-    NotFoundException
 };
 
 class SignUpController
@@ -37,24 +36,17 @@ class SignUpController
         try{
             $user = new UserRepository();
             $signup = $user->signUp($password,$password1,$pseudo,$email,$email1,$date,$date);
-            $newUser = new LoginController();
-            $newUser->getLogin();
+            $session = new SetSession();
+            $session->setUserSession($signup);
+            file_put_contents('Log/[PlaceHolderName].log',"".$pseudo." as signUp and is connected"."\n",FILE_APPEND | LOCK_EX);
         }
-        catch (CannotCreateUserException $ERROR){
+        catch (CannotCreateUserException | EmailVerificationException | PasswordVerificationException $ERROR){
             file_put_contents('Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
-        }
-        catch (EmailVerificationException $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
-        }
-        catch (PasswordVerificationException $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
-        }
-        catch (NotFoundException $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
+
+            if (isset($_SESSION['msg'])){
+                unset($_SESSION['msg']);
+            }
+            $_SESSION['msg'] = $ERROR->getMessage();
         }
     }
 }
