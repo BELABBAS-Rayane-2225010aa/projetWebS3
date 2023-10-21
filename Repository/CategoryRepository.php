@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Exception\CannotCreateCatException;
 use App\Exception\CannotDeleteCatException;
 use App\Exception\CatAlreadyExistException;
-use App\Exception\CatSuccesfullyCreatedException;
 
 class CategoryRepository extends AbstractRepository
 {
