@@ -16,5 +16,5 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ftp-rbb.alwaysdata.net
-          username: rbb_deploy
-          password: ${{ secrets.ftp_password }}
+          username: rbb
+          password: RayaneBD20
