@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+require '../vendor/autoload.php';
+
 require 'vendor/autoload.php';
 
 use App\Exception\CannotModify;

@@ -1,4 +1,7 @@
-<?php require 'GestionPage.php' ?>
+<?php
+require "../vendor/autoload.php";
+
+require 'GestionPage.php' ?>
 <?php
 start_page('Changer pseudo');//Charge la balise "head" avec le css, favicon et le nom de la page donner en parametre.
 ?>

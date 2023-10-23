@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+require '../vendor/autoload.php';
+
 use App\Exception\NotFoundException;
 use App\Model\Billet;
 use App\Repository\BilletRepository;

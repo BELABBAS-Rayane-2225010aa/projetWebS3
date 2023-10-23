@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 class SetSession
 {
     public function setUserSession($user) : void {
