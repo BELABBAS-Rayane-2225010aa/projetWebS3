@@ -5,7 +5,7 @@ start_page('Changer mot de passe');//Charge la balise "head" avec le css, favico
 <body><!-- FLEX BLOCK-->
     <?php $active = 'mon compte';
     require 'HeaderMenu.php' ?>
-    <section class="fomulaire" >
+    <section class="fomBox" >
         <form action="../index.php" method="post">
             <label>Entrez votre mot de passe :
                 <input type="password" id="in" name="oldPassword">
@@ -16,7 +16,7 @@ start_page('Changer mot de passe');//Charge la balise "head" avec le css, favico
             <label>Confirmer nouveau mot de passe :
             <input type="password" id="in" name="newPassword1">
             </label><br>
-            <input type="submit" name="PasswordModif" id='boutonchangerMDP' class='boutonchanger_mdp' value="Changer mon mot de passe">
+            <input type="submit" name="PasswordModif" id='boutonchangerMDP' class='checkButton' value="Changer mon mot de passe">
         </form>
     </section>
 <?php
