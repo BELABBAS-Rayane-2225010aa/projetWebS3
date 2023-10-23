@@ -6,10 +6,7 @@ require 'vendor/autoload.php';
 
 use App\Exception\CannotModify;
 use App\Exception\EmailVerificationException;
-use App\Exception\PasswordVerificationException;
-use App\Exception\PseudoVerificationException;
 use App\Repository\UserRepository;
-use http\Client\Curl\User;
 
 class EmailModifierController
 {
@@ -24,7 +21,6 @@ class EmailModifierController
             $login = $user->emailModifier($oldEmail,$newEmail,$pseudo,$password);
             $session = new SetSession();
             $session->setUserSession($login);
-            $_SESSION['user']->setEmail($login->getEmail());
             $msg = "Email successfully modified";
             file_put_contents('Log/[PlaceHolderName].log',$msg."\n",FILE_APPEND | LOCK_EX);
         }

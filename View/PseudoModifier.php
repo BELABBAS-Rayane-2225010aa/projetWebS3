@@ -19,8 +19,10 @@ start_page('Changer pseudo');//Charge la balise "head" avec le css, favicon et l
             <label>Entrez votre mot de passe :
                 <input type="password" id="in" name="password">
             </label><br>
-            <input type="submit" name="PseudoModif" id='boutonchangerMDP' class='boutonchanger_mdp' value="Changer mon pseudo">
+            <input type="submit" name="PseudoModif" id='boutonchangerMDP' class='boutonchanger_mdp' value="Changer mon pseudo"><br>
         </form>
+
+        <p style="color: red"><?php if (isset($_SESSION['msg'])){echo $_SESSION['msg']; unset($_SESSION['msg']);}?></p>
     </section>
 <?php
 end_page();

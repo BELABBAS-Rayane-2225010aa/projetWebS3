@@ -86,18 +86,6 @@ class User
     }
 
     /**
-     * setter de l'attibut email
-     *
-     * @param string $email
-     *
-     * @return void
-     */
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
-    }
-
-    /**
      * getter de l'attribut dateFirstCo
      *
      * @return string
