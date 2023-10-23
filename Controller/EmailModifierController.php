@@ -13,7 +13,7 @@ use http\Client\Curl\User;
 
 class EmailModifierController
 {
-    public function ModifPseudo() : \App\Model\User
+    public function ModifEmail() : \App\Model\User
     {
         $oldEmail = $_POST['oldEmail'];
         $newEmail = $_POST['newEmail'];
