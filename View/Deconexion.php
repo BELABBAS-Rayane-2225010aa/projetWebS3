@@ -8,7 +8,9 @@ if(!isset($_SESSION['suid']))
     exit();
 }
 
-file_put_contents('../Log/[PlaceHolderName].log', $_SESSION['user']->getPseudo()." is deconnected"."\n",FILE_APPEND | LOCK_EX);
+$deconnect = new \App\Repository\UserConnectedRepository();
+$msg = $deconnect->logOut($_SESSION['user']);
+file_put_contents('../Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
 
 unset($_SESSION['suid']);
 unset($_SESSION['user']);

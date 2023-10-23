@@ -8,6 +8,8 @@ use App\Controller\HomeController;
 $homeController = new HomeController();
 $homeController->get5Billet();
 $cinqBillet = $homeController->getBilletArray();
+$homeController->getConnected();
+//$connectedArray = $homeController->getConnectedArray();
 
 start_page('Acceuil');//Charge la balise "head" avec le css, favicon et le nom de la page donner en parametre.
 ?>
@@ -31,7 +33,20 @@ require 'HeaderMenu.php';//Charge le bar menu
         }
         ?>
     </section>
-    <form class="fomBox">affiche tous les billet</form>
+
+    <section>
+        <form class="fomBox" id="connectedform">affiche tous les billet</form>
+        <?php
+        if (isset($connectedArray)){
+            for ($i = 0 ; $i < sizeof($connectedArray) ; ++$i){
+        ?>
+                <button value="<?php echo base64_encode(serialize($connectedArray[$i]));?>" name="userClique" form="connectedform">
+                    <?php echo $connectedArray[$i]->getPseudo();
+
+            }
+        }
+        ?>
+    </section>
 
 <?php
 end_page();
