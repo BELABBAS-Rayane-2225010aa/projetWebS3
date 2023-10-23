@@ -18,7 +18,6 @@ if (!$billetClique instanceof \App\Model\Billet) {
 }
 ?>
 <script src="Bouton.js"></script>
-
     <button onclick="BoutonAffichageCategorie()" class="buttonCategory"><img src="../View/image/BtnCategorie.ico" /></button><!--Présent qu'en mode portable sert a ameliorer la lisibiliter du billet-->
     <aside id="CategorieID" class="category"><!--affiche les categories du billet-->
         <h2>Categories ID : <?php echo $billetClique->getCategoryId() ?></h2>
