@@ -22,8 +22,10 @@ start_page('Changer email');//Charge la balise "head" avec le css, favicon et le
             <label>Entrez votre mot de passe :
                 <input type="password" id="in" name="password">
             </label><br>
-            <input type="submit" name="EmailModif" id='boutonchangerMDP' class='boutonchanger_mdp' value="Changer mon email">
+            <input type="submit" name="EmailModif" id='boutonchangerMDP' class='boutonchanger_mdp' value="Changer mon email"><br>
         </form>
+
+        <p style="color: red"><?php if (isset($_SESSION['msg'])){echo $_SESSION['msg']; unset($_SESSION['msg']);}?></p>
     </section>
 <?php
 end_page();

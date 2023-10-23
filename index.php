@@ -55,8 +55,8 @@ if(isset($_POST['PseudoModif'])) {
 
 if (isset($_POST['EmailModif'])) {
     $controller = new EmailModifierController();
-    $login = $controller->ModifEmail();
-    $_SESSION['user']->setEmail($login->getEmail());
+    $controller->ModifEmail();
+    header('Location: View/EmailModifier.php');
 }
 
 if (isset($_POST['NewCat'])) {
