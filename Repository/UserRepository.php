@@ -133,9 +133,9 @@ class UserRepository extends AbstractRepository
      *
      * @throws PasswordVerificationException
      *
-     * @return void => Fait directement la modification
+     * @return string => renvoie un message si l'action s'est bien passer
      */
-    public function passwordModifier(string $oldPassword, string $newPassword, string $newPassword1): void
+    public function passwordModifier(string $oldPassword, string $newPassword, string $newPassword1): string
     {
         if ($oldPassword == $newPassword) {
             throw new PasswordVerificationException("Same password as the old one");
@@ -152,6 +152,8 @@ class UserRepository extends AbstractRepository
         if ($statement->rowCount() === 0) {
             throw new CannotModify("USER MDP cannot be modify");
         }
+
+        return "Password succesfully modified";
     }
 
     /**

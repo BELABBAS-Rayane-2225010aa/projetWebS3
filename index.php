@@ -44,18 +44,19 @@ if (isset($_GET['billet_id'])) {
 if(isset($_POST['PasswordModif'])) {
     $controller = new PasswordModifierController();
     $controller->ModifPassword();
+    header('Location: View/PasswordModifier.php');
 }
 
 if(isset($_POST['PseudoModif'])) {
     $controller = new PseudoModifierController();
-    $login = $controller->ModifPseudo();
-    $_SESSION['user']->setPseudo($login->getPseudo());
+    $controller->ModifPseudo();
+    header('Location: View/PseudoModifier.php');
 }
 
 if (isset($_POST['EmailModif'])) {
     $controller = new EmailModifierController();
-    $login = $controller->ModifPseudo();
-    $_SESSION['user']->setEmail($login->getEmail());
+    $controller->ModifEmail();
+    header('Location: View/EmailModifier.php');
 }
 
 if (isset($_POST['NewCat'])) {

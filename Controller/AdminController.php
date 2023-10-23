@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+require '../vendor/autoload.php';
+
 use App\Exception\CannotCreateCatException;
 use App\Exception\CannotDeleteBilletException;
 use App\Exception\CannotDeleteCatException;

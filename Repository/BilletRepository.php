@@ -102,9 +102,10 @@ class BilletRepository extends AbstractRepository
      *
      * @throws CannotDeleteBilletException
      *
-     * @return void
+     * @param int $id
+     * @return string
      */
-    public function deleteBillet(int $id) : void {
+    public function deleteBillet(int $id) : string {
         $query = 'DELETE FROM BILLET WHERE BILLET_ID = :id';
         $statement = $this->connexion -> prepare(
             $query );
@@ -114,6 +115,6 @@ class BilletRepository extends AbstractRepository
             throw new CannotDeleteBilletException("BILLET cannot be deleted");
         }
 
-       // return "BILLET successfully deleted";
+       return "BILLET successfully deleted";
     }
 }
