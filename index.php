@@ -88,4 +88,10 @@ if (isset($_POST['MakeAdmin'])) {
     $controller->makeAdmin();
     header('Location: View/AdminPage.php');
 }
+
+if (isset($_GET['recherche']) AND !empty($_GET['recherche'])) {
+    $controller = new BilletController();
+    $controller->showBillet();
+    $billet = $controller->getBillet();
+}
 ?>

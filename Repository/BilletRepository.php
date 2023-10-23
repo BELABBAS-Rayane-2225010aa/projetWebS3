@@ -117,4 +117,15 @@ class BilletRepository extends AbstractRepository
 
        return "BILLET successfully deleted";
     }
+
+    public function searchBillet(string $q) : void {
+        $query = 'SELECT TITRE FROM BILLET WHERE TITRE LIKE :search ORDER BY BILLET_ID DESC';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['search' => '"%' . $q . '%"']);
+        if ( $statement -> rowCount() === 0){
+            throw new NotFoundException("Aucun résultat trouvé");
+        }
+
+    }
 }
