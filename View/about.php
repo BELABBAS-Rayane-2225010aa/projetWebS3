@@ -11,7 +11,7 @@ require 'HeaderMenu.php';//Charge le bar menu?>
     <label>
         Ce site internet est réalisé pour un travail de groupe d'étudiant.<br>
         Ce site est libre de droit.<br>
-        Réaliser par: Belabbas,Créspin,De Angeli,Hourlay,Roubaud,Roussette
+        Réaliser par: Belabbas,Crespin,De Angeli,Hourlay,Roubaud,Rousset
     </label><br>
 </section>
 <?php
