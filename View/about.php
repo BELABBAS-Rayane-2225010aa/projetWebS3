@@ -5,7 +5,7 @@ require 'GestionPage.php' ?>
 start_page('Billet');//Charge la balise "head" avec le css, favicon et le nom de la page donner en parametre.
 ?>
 <body>
-<?php $active = 'A propos';
+<?php $active = 'about';
 require 'HeaderMenu.php';//Charge le bar menu?>
 <section class="fomBox">
     <label>
