@@ -94,6 +94,10 @@ li.dropdown {
     border: 1px solid #fff; /* Bordure blanche de 1 pixel */
 }
 
+.search:focus-within input{ /* Garde le search ouvert */
+    width:200px;
+}
+
 /* Style des éléments input et button à l'intérieur de search */
 .search input, .search button {
     background: transparent; /* Fond transparent */
