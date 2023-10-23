@@ -2,17 +2,17 @@
 require '../vendor/autoload.php';
 require 'GestionPage.php' ?>
 <?php
-start_page('Billet');//Charge la balise "head" avec le css, favicon et le nom de la page donner en parametre.
+start_page('Categorie');//Charge la balise "head" avec le css, favicon et le nom de la page donner en parametre.
 ?>
 <body>
-<?php $active = 'Billet';
+<?php $active = 'Categorie';
 require 'HeaderMenu.php';//Charge le bar menu?>
 <section class="section-flex">
     <form action="" method="post" id=""></form>
-        <button class="btnBillet" value="billet ici" name="billetClique" form="billetform">
+        <button class="btnBillet" value="categorie" name="categoryClick" form="">
                 <span class="icone-btn">
                 </span>
-            <p class="txt-btn">"titre"</p>
+            <p class="txt-btn">"categorie"</p>
         </button>
 </section>
 <?php
