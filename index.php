@@ -44,6 +44,7 @@ if (isset($_GET['billet_id'])) {
 if(isset($_POST['PasswordModif'])) {
     $controller = new PasswordModifierController();
     $controller->ModifPassword();
+    header('Location: View/PasswordModifier.php');
 }
 
 if(isset($_POST['PseudoModif'])) {
@@ -54,7 +55,7 @@ if(isset($_POST['PseudoModif'])) {
 
 if (isset($_POST['EmailModif'])) {
     $controller = new EmailModifierController();
-    $login = $controller->ModifPseudo();
+    $login = $controller->ModifEmail();
     $_SESSION['user']->setEmail($login->getEmail());
 }
 
