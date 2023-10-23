@@ -192,6 +192,8 @@ li.dropdown {
     border-radius: 10px;
     overflow: hidden; /* empeche le debordement */
     white-space: nowrap; /* empeche les retour a la ligne et la deformation du bouton */
+    background-color: #ffba93;
+    border-color: #B5532BFF;
 
 
 }
@@ -272,4 +274,12 @@ footer {
 .section404{
     margin-top: 5em;
     text-align: center;
+}
+.btnBillet{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 1%;
+    border-radius: 10px;
+    background-color: #E5B596FF;
+    border-color: #B5532BFF;
 }
