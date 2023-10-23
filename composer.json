@@ -1,0 +1,17 @@
+{
+    "name": "projetwebs3/forum",
+    "autoload": {
+        "psr-4": {
+            "App\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Crespin Alexandre",
+            "email": "kunail0804@gmail.com"
+        }
+    ],
+    "require": {
+        "ext-pdo": "*"
+    }
+}

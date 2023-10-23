@@ -1,0 +1,289 @@
+html {
+    height: 100%;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin:0;
+    background-image: linear-gradient(rgba(179, 179, 189, 0.5), rgba(0, 0, 0, 0.8)),url(https://assetsio.reedpopcdn.com/dnd-map-maker-inkarnate.png?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
+}
+
+/* Enleve la flèche dans le menu déroulement de categories a cause de la library qui la rajoute*/
+.menu .dropdown .fa-caret-down {
+    display: none; /* Masque la flèche par défaut */
+}
+.menu {
+    list-style-type: none;
+    margin: auto;
+    margin-top: 1%;
+    padding:1% ;
+    overflow: hidden;
+    background-color: #174370;
+    width: 98%;
+    border-radius: 15px;
+    box-sizing: border-box;
+    top: 0;
+
+}
+
+
+li {
+    float: left;
+
+}
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #117883;
+    border-radius: 15px;
+}
+
+.active {
+    background-color: #117883;
+    border-radius: 15px;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    backdrop-filter: none;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* La barre de recherche */
+
+.search {
+    display: inline-flex;
+    align-items: center;
+    color: #fff; /* Couleur du texte */
+    padding: 10px;
+    border-radius: 4px; /* Coins arrondis */
+    border: 1px solid #fff; /* Bordure blanche de 1 pixel */
+}
+
+.search:focus-within input{ /* Garde le search ouvert */
+    width:200px;
+}
+
+/* Style des éléments input et button à l'intérieur de search */
+.search input, .search button {
+    background: transparent; /* Fond transparent */
+    color: inherit;
+    border: none; /* Pas de bordure */
+    outline: none; /* Pas de contour */
+}
+
+/* Style de l'input de recherche */
+.searchinput {
+    width: 0;
+    transition: width 0.5s; /* Transition de la largeur */
+}
+
+/* Style du bouton de recherche */
+.searchbutton {
+    display: grid;
+    place-items: center;
+    width: 25px;
+    height: 25px;
+    cursor: pointer; /* Curseur pointeur */
+    transition: color 0.15s; /* Transition de la couleur */
+}
+
+/* Style au survol du bouton de recherche */
+.searchbutton:hover {
+    color: #e3e3e3; /* Changement de couleur au survol */
+}
+
+/* Style au survol du pointeur */
+.search:hover > .searchinput {
+    width: 240px; /* Largeur augmentée */
+    padding: 0 6px; /* Espacement intérieur */
+}
+
+::placeholder  {
+    font:inherit;
+    color: #ffffff;
+}
+
+
+
+/* categories a gauche */
+
+.category {
+    float: left;
+    width: 12vh;
+    min-width: 8em;
+    height: 100vh;
+    background-color: #e5b596;
+    border: 1px solid #bd522b;
+    padding: 1%;
+    margin-top: 7vh;
+    font-size: 0.7em;
+    overflow: scroll; /*contre le debordement de la boite associer*/
+}
+
+.category h2 {
+    font-size: 1.5em;
+}
+
+
+/* billet et commentaire a droite */
+
+.comments {
+    position: static;
+    margin-left:14.5vh;
+    background-color: #e5b596;
+    border: 1px solid #bd522b;
+    border-radius: 8px;
+    margin-top: 5vh;
+    margin-right: 0.8vh;
+    padding: 1%;
+    font-size: 1.2em;
+    overflow: scroll; /*contre le debordement de la boite associer*/
+}
+
+
+.buttonCategory{ /* Visible uniquement en mode portrait */
+    visibility: hidden;
+}
+
+/*test flex box 5 billet */
+
+.info-section {
+    font-size: 40px;
+    font-family: Arial;
+}
+
+.btn-flex {
+    width: 30vh;
+    height: 20vh;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top: 6em;
+    border-radius: 10px;
+    overflow: hidden; /* empeche le debordement */
+    white-space: nowrap; /* empeche les retour a la ligne et la deformation du bouton */
+    background-color: #ffba93;
+    border-color: #B5532BFF;
+
+
+}
+
+.txt-btn {
+    height: 100%;
+    display: flex;
+    min-width: 150px;
+    font-size: 222%;
+    text-overflow: ellipsis; /* met "..." en cas de debordement */
+}
+
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #616161 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 14px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #616161;
+    border-radius: 7px;
+    border: 4px solid #ffffff;
+}
+footer {
+    text-align: center;
+    padding: 5px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #bcb7b6;
+    color: #000;
+    position: fixed;
+}
+
+.checkButton{
+    border-radius: 5px;
+    border-color: #263e1a;
+    background-color: lightgreen;
+}
+.checkButton:hover{
+    background-color: #59ab59;
+}
+
+.delAccoutButton{
+    border-radius: 15px;
+    background-color: #b42828;
+    border-color: darkred;
+}
+.delAccoutButton:hover{
+    border-radius: 5px;
+    background-color: #e32e2e;
+    border-color: #bb0000;
+}
+.fomBox{
+    background-color: #e5b596;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #b5532b;
+    padding: 5vh;
+    margin: 1em;
+    text-align: start;
+}
+.image404{
+    max-width: 30%;
+    max-height: 30%;
+}
+.section404{
+    margin-top: 5em;
+    text-align: center;
+}
+.btnBillet{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 1%;
+    border-radius: 10px;
+    background-color: #E5B596FF;
+    border-color: #B5532BFF;
+}
