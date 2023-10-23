@@ -76,18 +76,6 @@ class User
     }
 
     /**
-     * setter de l'attibut pseudo
-     *
-     * @param string $pseudo
-     *
-     * @return void
-     */
-    public function setPseudo(string $pseudo): void
-    {
-        $this->pseudo = $pseudo;
-    }
-
-    /**
      * getter de l'attribut email
      *
      * @return string
