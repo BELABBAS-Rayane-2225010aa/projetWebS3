@@ -82,7 +82,7 @@ class CommentRepository extends AbstractRepository
         $statement->execute(['commId' => $commId, 'texte'=>$texte]);
 
         if ( $statement -> rowCount() === 0){
-            throw new CannotDeleteCommentException("COMMENT cannot be updated");
+            throw new CannotUpdateCommentException("COMMENT cannot be updated");
         }
 
     }
