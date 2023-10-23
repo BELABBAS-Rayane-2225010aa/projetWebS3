@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
+use App\Repository\UserConnectedRepository;
 use App\Repository\UserRepository;
-use App\Exception\{
-    CannotCreateUserException,
+use App\Exception\{CannotCreateUserException,
+    CannotInsertConnectedException,
     EmailVerificationException,
-    PasswordVerificationException,
-};
+    PasswordVerificationException};
 
 class SignUpController
 {
@@ -36,7 +36,14 @@ class SignUpController
             $signup = $user->signUp($password,$password1,$pseudo,$email,$email1,$date,$date);
             $session = new SetSession();
             $session->setUserSession($signup);
-            file_put_contents('Log/[PlaceHolderName].log',"".$pseudo." as signUp and is connected"."\n",FILE_APPEND | LOCK_EX);
+            try {
+                $connected = new UserConnectedRepository();
+                $msg = $connected->logIn($signup);
+            }
+            catch (CannotInsertConnectedException $ERROR){
+                $msg = $ERROR->getMessage();
+            }
+            file_put_contents('Log/[PlaceHolderName].log',$msg."\n",FILE_APPEND | LOCK_EX);
         }
         catch (CannotCreateUserException | EmailVerificationException | PasswordVerificationException $ERROR){
             file_put_contents('Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
