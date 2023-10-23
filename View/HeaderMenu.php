@@ -3,14 +3,14 @@
 </head>
 <ul class="menu"><!--Menu de haut de page qui est prèsent sur toute les page-->
     <li><a <?php if ($active === 'index'){echo 'class=active';};?> href="../index.php">Acceuil</a></li>
-    <bouton class="dropdown" > <i class="fa fa-caret-down"></i><a  class="dropbtn"  <?php if ($active === 'categorie'){echo 'class=active';};?> >Categorie</a>
+    <bouton class="dropdown" > <i class="fa fa-caret-down"></i><a  class="dropbtn"  <?php if ($active === 'categorie'){echo 'class=active';};?> href="Categorie.php">Categorie</a>
         <div class="dropdown-content">
             <a href="#">Link 1</a>
             <a href="#">Link 2</a>
             <a href="#">Link 3</a>
         </div>
     </bouton>
-    <li><a <?php if ($active === 'contact'){echo 'class=active';};?> href="/View/contact.php">Contact</a></li>
+    <li><a <?php if ($active === 'contact'){echo 'class=active';};?> href="/View/BilletList.php">Billet</a></li>
     <li style="float:right"><a <?php if ($active === 'about'){echo 'class=active';}?> href="/View/about.php">About</a></li>
     <?php
     //Vérifie si l'utilisateur est connecté et change les bouton du menu en fonction.

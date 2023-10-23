@@ -31,7 +31,7 @@ require 'HeaderMenu.php';//Charge le bar menu
         }
         ?>
     </section>
-    <form class="fomulaire">affiche tous les billet</form>
+    <form class="fomBox">affiche tous les billet</form>
 
 <?php
 end_page();

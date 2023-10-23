@@ -94,6 +94,10 @@ li.dropdown {
     border: 1px solid #fff; /* Bordure blanche de 1 pixel */
 }
 
+.search:focus-within input{ /* Garde le search ouvert */
+    width:200px;
+}
+
 /* Style des éléments input et button à l'intérieur de search */
 .search input, .search button {
     background: transparent; /* Fond transparent */
@@ -138,7 +142,7 @@ li.dropdown {
 
 /* categories a gauche */
 
-.categories {
+.category {
     float: left;
     width: 12vh;
     min-width: 8em;
@@ -151,7 +155,7 @@ li.dropdown {
     overflow: scroll; /*contre le debordement de la boite associer*/
 }
 
-.categories h2 {
+.category h2 {
     font-size: 1.5em;
 }
 
@@ -172,7 +176,7 @@ li.dropdown {
 }
 
 
-.buttonCategorie{ /* Visible uniquement en mode portrait */
+.buttonCategory{ /* Visible uniquement en mode portrait */
     visibility: hidden;
 }
 
@@ -192,6 +196,8 @@ li.dropdown {
     border-radius: 10px;
     overflow: hidden; /* empeche le debordement */
     white-space: nowrap; /* empeche les retour a la ligne et la deformation du bouton */
+    background-color: #ffba93;
+    border-color: #B5532BFF;
 
 
 }
@@ -237,26 +243,26 @@ footer {
     position: fixed;
 }
 
-.boutonchanger_mdp{
+.checkButton{
     border-radius: 5px;
     border-color: #263e1a;
     background-color: lightgreen;
 }
-.boutonchanger_mdp:hover{
+.checkButton:hover{
     background-color: #59ab59;
 }
 
-.suprimer_compte{
+.delAccoutButton{
     border-radius: 15px;
     background-color: #b42828;
     border-color: darkred;
 }
-.suprimer_compte:hover{
+.delAccoutButton:hover{
     border-radius: 5px;
     background-color: #e32e2e;
     border-color: #bb0000;
 }
-.fomulaire{
+.fomBox{
     background-color: #e5b596;
     border-radius: 10px;
     border-style: solid;
@@ -272,4 +278,12 @@ footer {
 .section404{
     margin-top: 5em;
     text-align: center;
+}
+.btnBillet{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 1%;
+    border-radius: 10px;
+    background-color: #E5B596FF;
+    border-color: #B5532BFF;
 }

@@ -119,7 +119,7 @@ li.dropdown {
     display: block;
 }
 
-.buttonCategorie{
+.buttonCategory{
     background-color: #e5b596;
     border-color: #bd522b;
     border-style: solid;
@@ -127,7 +127,7 @@ li.dropdown {
 }
 /* categories a gauche */
 
-.categories {
+.category {
     display: none;
     float: left;
     width: 12vh;
@@ -139,7 +139,7 @@ li.dropdown {
     overflow: scroll; /*contre le debordement de la boite associer*/
 }
 
-.categories h2 {
+.category h2 {
     font-size: 1.5em;
 }
 
@@ -286,21 +286,21 @@ footer {
     bottom: 0;
     width: 100%;
 }
-.boutonchanger_mdp{
+.checkButton{
     border-radius: 5px;
     border-color: #263e1a;
     background-color: lightgreen;
 }
-.boutonchanger_mdp:hover{
+.checkButton:hover{
     background-color: #59ab59;
 }
 
-.suprimer_compte{
+.delAccoutButton{
     border-radius: 15px;
     background-color: #b42828;
     border-color: darkred;
 }
-.suprimer_compte:hover{
+.delAccoutButton:hover{
     border-radius: 5px;
     background-color: #e32e2e;
     border-color: #bb0000;
@@ -321,7 +321,7 @@ footer {
     margin-top: 5em;
     text-align: center;
 }
-.fomulaire{
+.fomBox{
     background-color: #e5b596;
     border-radius: 10px;
     border-style: solid;
