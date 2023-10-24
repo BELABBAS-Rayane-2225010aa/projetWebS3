@@ -20,8 +20,8 @@ require 'HeaderMenu.php';//Charge le bar menu
         <p>-Billet1,date1
             Billet2,date2</p><br>
         <p>Commentaire écrit:</p><br>
-        <P>-Commentaire1,Date1,Billet1
-            -Commentaire1,Date1,Billet1</P><br>
+        <p>-Commentaire1,Date1,Billet1
+            -Commentaire1,Date1,Billet1</p><br>
         <button onclick="window.location.href='PasswordModifier.php';">Changer le mdp</button>
     </section>
 <?php
