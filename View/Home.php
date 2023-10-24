@@ -10,6 +10,8 @@ $homeController->get5Billet();
 $cinqBillet = $homeController->getBilletArray();
 $homeController->getConnected();
 $connectedArray = $homeController->getConnectedArray();
+
+
 start_page('Acceuil');//Charge la balise "head" avec le css, favicon et le nom de la page donner en parametre.
 ?>
     <body>

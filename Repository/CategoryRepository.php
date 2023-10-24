@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Exception\CannotCreateCatException;
 use App\Exception\CannotDeleteCatException;
 use App\Exception\CatAlreadyExistException;
+use App\Exception\NotFoundException;
 
 class CategoryRepository extends AbstractRepository
 {
@@ -47,5 +48,30 @@ class CategoryRepository extends AbstractRepository
         }
 
         return "CATEGORY ".$label." successfully deleted";
+    }
+
+    /**
+     * Récupération des catégories
+     *
+     * Cette fonction permet de récupéré les catégories de la base de donnée
+     *
+     * @throws NotFoundException
+     *
+     * @return array
+     */
+    public function getCat() : array{
+        $query = 'SELECT * FROM CATEGORIE';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute();
+        if ( $statement -> rowCount() === 0){
+            throw new NotFoundException("Category not found");
+        }
+        $arrayCat[0] = $statement->fetch();
+        while ($newRow = $statement->fetch())
+        {
+            $arrayCat[] = $newRow;
+        }
+        return $statement->fetch();
     }
 }

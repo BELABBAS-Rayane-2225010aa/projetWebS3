@@ -2,6 +2,8 @@
 require '../vendor/autoload.php';
 require 'GestionPage.php';
 
+use App\Repository\CategoryRepository;
+
 if(!isset($_SESSION['suid']))
 {
     header('Location: ../index.php');
@@ -10,7 +12,8 @@ if(!isset($_SESSION['suid']))
 start_page('Crée un poste');
 $active = 'cree_poste';
 require 'HeaderMenu.php';
-var_dump($_SESSION['user']);
+$repCat = new CategoryRepository();
+var_dump($repCat->getCat());
 ?>
     <section class="fomulaire">
         <form action="../index.php" method="post">
