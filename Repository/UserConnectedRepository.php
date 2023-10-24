@@ -17,7 +17,7 @@ class UserConnectedRepository extends AbstractRepository
     public function logIn(User $user) : string {
         $userId = $user->getUserId();
 
-        $query = 'INSERT INTO USERCONNECTED (USER_ID) VALUES (:userId)';
+        $query = 'UPDATE USER SET ISCONNECTED = 1 WHERE USER_ID = :userId';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['userId' => $userId]);
@@ -32,7 +32,7 @@ class UserConnectedRepository extends AbstractRepository
     public function logOut(User $user) : string {
         $userId = $user->getUserId();
 
-        $query = 'DELETE FROM USERCONNECTED WHERE USER_ID = :userId';
+        $query = 'UPDATE USER SET ISCONNECTED = 0 WHERE USER_ID = :userId';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['userId' => $userId]);
@@ -45,25 +45,10 @@ class UserConnectedRepository extends AbstractRepository
     }
 
     public function getLogIn() : array {
-        $query = 'SELECT * FROM USERCONNECTED';
+        $query = 'SELECT * FROM USER WHERE ISCONNECTED = 1';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute();
-
-        if ( $statement -> rowCount() === 0){
-            throw new CannotFindConnectedException("No USER connected");
-        }
-
-
-
-        $query = 'SELECT * FROM USERCONNECTED';
-        $statement = $this->connexion -> prepare(
-            $query );
-        $statement->execute();
-
-        if ( $statement -> rowCount() === 0){
-            throw new CannotFindConnectedException("No USER connected");
-        }
 
         $arraySQL =  $statement->fetchAll();
         $arrayLogIn = array();
