@@ -343,3 +343,12 @@ footer {
     background-color: #E5B596FF;
     border-color: #B5532BFF;
 }
+.btnCreator{
+    z-index: auto;
+    padding: 1em;
+    margin-left: 95%;
+    position: fixed;
+    border-radius: 5px;
+    background-color: #edd6a0;
+    border-color: #B5532BFF;
+}
