@@ -15,7 +15,7 @@ require 'HeaderMenu.php';
 $repCat = new CategoryRepository();
 var_dump($repCat->getCat());
 ?>
-    <section class="fomulaire">
+    <section class="formBox">
         <form action="../index.php" method="post">
             <strong> Nouveau Post </strong>
             <br>
