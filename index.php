@@ -25,6 +25,9 @@ header('Location: View/Home.php');
 if (isset($_POST['SignIn'])) {
     $controller = new LoginController();
     $controller->getLogin();
+    if (isset($_SESSION['msg'])){
+        header('Location: View/Login.php');
+    }
 }
 
 if (isset($_POST['SignUp'])) {

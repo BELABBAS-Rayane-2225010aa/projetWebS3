@@ -27,7 +27,7 @@ class LoginController
     public function getLogin(): void
     {
         $pseudo = $_POST['pseudo'];
-        $password = $_POST['password'];
+        $password = md5($_POST['password']);
         try {
             $user = new UserRepository();
             $login = $user->login($pseudo , $password);
@@ -46,7 +46,10 @@ class LoginController
         }
         catch (NotFoundException $ERROR){
             file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
+            if (isset($_SESSION['msg'])){
+                unset($_SESSION['msg']);
+            }
+            $_SESSION['msg'] = $ERROR->getMessage();
         }
     }
 }
