@@ -7,6 +7,7 @@
  * @see \App\Repository\UserRepository
  * @see \App\Controller\LoginController
  * @see \App\Controller\SignUpController
+ * @see \App\Controller\BilletController
  *
  * @version 0.9
  *
@@ -32,7 +33,7 @@ class User
      * @param string $dateLastCo => date de dernière connexion du User
      * @param int $isAdmin => 1 si il s'agit d'un admin et 0 sinon (on utilise des chiffre à cause de la BD)
      */
-    public function __construct(private string $password, private string $pseudo,
+    public function __construct(private int $userId,private string $password, private string $pseudo,
                                 private string $email,private string $dateFirstCo,
                                 private string $dateLastCo, private int $isAdmin){
 
@@ -53,6 +54,16 @@ class User
      */
     public static function loginUser (string $password , string $login):self {
         return new self($password,'',$login,'','','');
+    }
+
+    /**
+     * getter de l'attribut userId
+     *
+     * @return int
+     */
+    public function getUserId(): int
+    {
+        return $this->userId;
     }
 
     /**
