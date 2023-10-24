@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Exception\CannotDeleteCommentException;
+use App\Exception\CannotModify;
 use App\Model\Comment;
 
 /**
@@ -68,7 +69,7 @@ class CommentRepository extends AbstractRepository
      * @param int $commId => l'Id du commentaire
      *
      * @return void
-     * @throws CannotUpdateCommentExeption
+     * @throws CannotModify
      *
      */
 
@@ -82,7 +83,7 @@ class CommentRepository extends AbstractRepository
         $statement->execute(['commId' => $commId, 'texte'=>$texte]);
 
         if ( $statement -> rowCount() === 0){
-            throw new CannotUpdateCommentException("COMMENT cannot be updated");
+            throw new CannotModify("COMMENT cannot be updated");
         }
 
     }
