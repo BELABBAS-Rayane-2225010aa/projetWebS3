@@ -20,7 +20,7 @@ function start_page($title): void
 {
     ?>
     <footer>
-        <small>Copyright @ 2099 D20.com. tout droit tanque ca tourne pas.</small>
+         <small>CC-by 2023-2024 taverneDeBille.alwaysdata.net</small>
     </footer>
 </body>
 </html>
