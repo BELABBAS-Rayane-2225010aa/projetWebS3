@@ -10,10 +10,12 @@ if(!isset($_SESSION['suid']))
 start_page('Crée un poste');
 $active = 'cree_poste';
 require 'headerMenu.php';
+
+var_dump($_SESSION['user']);
 ?>
     <section class="fomulaire">
         <form action="../index.php" method="post">
-            <strong> Nouvea Post </strong>
+            <strong> Nouveau Post </strong>
             <br>
             <label for="title">Titre :</label>
             <input name="title" id="title" type="text" />

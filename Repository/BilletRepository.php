@@ -2,9 +2,8 @@
 
 namespace App\Repository;
 
-require '../vendor/autoload.php';
-
 use App\Exception\CannotCreateBilletException;
+use App\Exception\NotFoundException;
 use App\Model\Billet;
 
 class BilletRepository extends AbstractRepository

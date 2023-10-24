@@ -4,6 +4,8 @@ namespace App\Controller;
 
 require '../vendor/autoload.php';
 
+session_start();
+
 use App\Exception\CannotCreateBilletException;
 use App\Exception\NotFoundException;
 use App\Model\Billet;
@@ -37,7 +39,7 @@ class BilletController
             $billet->createBillet($title,$msg,$authorId,$categoryId);
         }
         catch (CannotCreateBilletException $ERROR){
-            file_put_contents('[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            file_put_contents('../Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }
     }
