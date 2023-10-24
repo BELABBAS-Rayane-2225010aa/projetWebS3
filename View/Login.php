@@ -20,7 +20,7 @@ require 'HeaderMenu.php';//Charge le bar menu
         <input type="submit"  name="SignIn" value="SignIn">
     </form>
 
-    <p style="color: red"><?php if (isset($_SESSION['msg'])){echo $_SESSION['msg']; unset($_SESSION['msg']);}?></p>
+    <p style="color: red"><?php if (isset($GLOBALS['erreur'])){echo $GLOBALS['erreur']; unset($GLOBALS['erreur']);}?></p>
 </section>
 <?php
 end_page();

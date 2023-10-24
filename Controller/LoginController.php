@@ -46,10 +46,10 @@ class LoginController
         }
         catch (NotFoundException $ERROR){
             file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            if (isset($_SESSION['msg'])){
-                unset($_SESSION['msg']);
+            if (isset($GLOBALS['msgErreur'])){
+                unset($GLOBALS['msgErreur']);
             }
-            $_SESSION['msg'] = $ERROR->getMessage();
+            $msgErreur = $ERROR->getMessage();
         }
     }
 }
