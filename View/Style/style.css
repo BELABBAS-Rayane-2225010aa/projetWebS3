@@ -276,6 +276,11 @@ footer {
     max-height: 30%;
 }
 .section404{
+    border-radius: 10px;
+    margin-left: 10%;
+    width: 80%;
+    border-color: #B5532BFF;
+    background-color: #edd6a0;
     margin-top: 5em;
     text-align: center;
 }

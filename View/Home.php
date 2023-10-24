@@ -35,14 +35,16 @@ require 'HeaderMenu.php';//Charge le bar menu
     </section>
 
     <section>
-        <form class="fomBox" id="connectedform"   action="ProfilPublic.php">affiche tous les billet
+        <form class="fomBox" id="connectedform"   action="ProfilPublic.php">Utilisateurs:
             <?php
             if (isset($connectedArray)){
                 for ($i = 0 ; $i < sizeof($connectedArray) ; ++$i){
+                    if ($i%5===0){ echo "<br>";}
             ?>
                     <button value="<?php echo base64_encode(serialize($connectedArray[$i]));?>" name="userClique" form="connectedform">
-                        <?php echo $connectedArray[$i]->getPseudo();
-
+                        <?php echo $connectedArray[$i]->getPseudo();?>
+                    </button>
+            <?php
                 }
             }
             ?>
