@@ -39,8 +39,9 @@
     }
     ?>
 
-    <form style="float:right" class="search">
-        <input type="text" id="searchInput" class="searchinput" placeholder="Recherche" />
+    <form style="float:right" class="search" action="ResultatRecherche.php" method="post">
+        <input type="text" id="searchInput" name="TexteRecherche" class="searchinput" placeholder="Recherche..." />
+<!--        <input type="submit" value="recherche" name="recherche">-->
         <label for="searchInput" class="searchbutton">
             <span class="fa fa-search" type="submit"> </span>
         </label>

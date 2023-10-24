@@ -18,6 +18,7 @@ use App\Controller\EmailModifierController;
 use App\Controller\LoginController;
 use App\Controller\PasswordModifierController;
 use App\Controller\PseudoModifierController;
+use App\Controller\ResultatRechercheController;
 use App\Controller\SignUpController;
 
 header('Location: View/Home.php');
