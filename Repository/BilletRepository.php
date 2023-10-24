@@ -118,14 +118,23 @@ class BilletRepository extends AbstractRepository
        return "BILLET successfully deleted";
     }
 
-    public function searchBillet(string $q) : void {
-        $query = 'SELECT TITRE FROM BILLET WHERE TITRE LIKE :search ORDER BY BILLET_ID DESC';
+    public function searchBillet(string $q) : array {
+        $query = 'SELECT * FROM BILLET WHERE TITRE LIKE "%' . $q . '%" ORDER BY BILLET_ID DESC';
         $statement = $this->connexion -> prepare(
             $query );
-        $statement->execute(['search' => '"%' . $q . '%"']);
+        $statement->execute();
         if ( $statement -> rowCount() === 0){
             throw new NotFoundException("Aucun résultat trouvé");
         }
+        $arraySQL =  $statement->fetchAll();
+        $arrayBillet = array();
+
+        for ($i = 0; $i < sizeof($arraySQL);$i++){
+            $billet = new Billet($arraySQL[$i]['TITRE'],$arraySQL[$i]['MSG'],$arraySQL[$i]['DATE_BILLET'],$arraySQL[$i]['USER_ID'],$arraySQL[$i]['CAT_ID']);
+            $arrayBillet[] = $billet;
+        }
+
+        return $arrayBillet;
 
     }
 }

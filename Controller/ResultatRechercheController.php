@@ -5,19 +5,27 @@ use App\Exception\NotFoundException;
 use App\Repository\BilletRepository;
 
 require '../vendor/autoload.php';
-class HeaderMenuController
+class ResultatRechercheController
 {
-    public function SearchBillet() : void
+    private array $billetArray;
+    public function getSearchBillet() : void
     {
-        $recherche = $_POST['recherche'];
+        $recherche = $_POST['TexteRecherche'];
+
 
         try {
             $billet = new BilletRepository();
-            $search = $billet->searchBillet($recherche);
+            $this->billetArray = $billet->searchBillet($recherche);
+            var_dump('hola');
+
         }
         catch (NotFoundException $ERROR){
             file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             exit();
         }
+    }
+
+    public function getSearchedBilletArray() : array {
+        return $this->billetArray;
     }
 }

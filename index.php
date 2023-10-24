@@ -18,6 +18,7 @@ use App\Controller\EmailModifierController;
 use App\Controller\LoginController;
 use App\Controller\PasswordModifierController;
 use App\Controller\PseudoModifierController;
+use App\Controller\ResultatRechercheController;
 use App\Controller\SignUpController;
 
 header('Location: View/Home.php');
@@ -87,11 +88,5 @@ if (isset($_POST['MakeAdmin'])) {
     $controller = new AdminController();
     $controller->makeAdmin();
     header('Location: View/AdminPage.php');
-}
-
-if (isset($_GET['recherche']) AND !empty($_GET['recherche'])) {
-    $controller = new BilletController();
-    $controller->showBillet();
-    $billet = $controller->getBillet();
 }
 ?>
