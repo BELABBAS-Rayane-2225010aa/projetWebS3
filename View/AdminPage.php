@@ -7,7 +7,7 @@ start_page('Administration');//Charge la balise "head" avec le css, favicon et l
     <body><!-- FLEX BLOCK-->
 <?php $active = 'admin';
 require 'HeaderMenu.php' ?>
-<section class="fomBox" >
+<section class="fromBox" >
     <form action="../index.php" method="post">
         <p>Nouvelle catégorie: <br>
             <label>Entrez le nom de la nouvel catégorie :

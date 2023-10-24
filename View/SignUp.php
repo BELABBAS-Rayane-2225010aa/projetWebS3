@@ -6,7 +6,7 @@ start_page('Categorie');//Charge la balise "head" avec le css, favicon et le nom
 ?>
 <?php $active = 'categorie';
 require 'HeaderMenu.php' //Charge le bar menu ?>
-<section class="fomBox">
+<section class="fromBox">
     <form action="../index.php" method="post">
         <strong> INSCRIPTION </strong>
             <br>

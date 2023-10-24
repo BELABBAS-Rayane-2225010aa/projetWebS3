@@ -10,7 +10,7 @@ start_page('Profil');//Charge la balise "head" avec le css, favicon et le nom de
 $active = 'profil';
 require 'HeaderMenu.php';//Charge le bar menu
 ?>
-    <section class="fomBox">
+    <section class="fromBox">
         <p>Pseudo :<?php echo $_SESSION['user']->getPseudo() ?></p>
         <p>Date de création : 00/00/0000</p><br>
         <p>Billet écrit:</p><br>

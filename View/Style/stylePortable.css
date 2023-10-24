@@ -318,10 +318,15 @@ footer {
     max-height: 50%;
 }
 .section404{
+    border-radius: 10px;
+    margin-left: 10%;
+    width: 80%;
+    border-color: #B5532BFF;
+    background-color: #edd6a0;
     margin-top: 5em;
     text-align: center;
 }
-.fomBox{
+.fromBox{
     background-color: #e5b596;
     border-radius: 10px;
     border-style: solid;
