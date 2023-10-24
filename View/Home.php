@@ -19,24 +19,23 @@ $active = 'index';
 require 'HeaderMenu.php';//Charge le bar menu
 ?>
     <section class="section-flex"><!--affiche les 5 dernier billet créé-->
-        <form action="Billet.php" method="post" id="billetform">
-            <?php
-            for ($i = 0 ; $i < 5 ; ++$i)
-            {
-            ?>
-                <button class="btn-flex" value="<?php echo base64_encode(serialize($cinqBillet[$i]));?>" name="billetClique" form="billetform">
-                    <span class="icone-btn">
-                    </span>
-                        <p class="txt-btn"><?php if (isset($cinqBillet[$i])){echo $cinqBillet[$i]->getTitle();}else{ echo 'erreur de chargement du billet';}?></p>
-                </button>
-            <?php
-            }
-            ?>
-        </form>
+        <form action="Billet.php" method="post" id="billetform"></form>
+        <?php
+        for ($i = 0 ; $i < 5 ; ++$i)
+        {
+        ?>
+            <button class="btn-flex" value="<?php echo base64_encode(serialize($cinqBillet[$i]));?>" name="billetClique" form="billetform">
+                <span class="icone-btn">
+                </span>
+                    <p class="txt-btn"><?php if (isset($cinqBillet[$i])){echo $cinqBillet[$i]->getTitle();}else{ echo 'erreur de chargement du billet';}?></p>
+            </button>
+        <?php
+        }
+        ?>
     </section>
 
     <section>
-        <form class="fomBox" id="connectedform">
+        <form class="fomBox" id="connectedform"   action="ProfilPublic.php">affiche tous les billet
             <?php
             if (isset($connectedArray)){
                 for ($i = 0 ; $i < sizeof($connectedArray) ; ++$i){
