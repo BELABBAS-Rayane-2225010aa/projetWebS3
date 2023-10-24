@@ -12,7 +12,7 @@ $active = 'cree_poste';
 require 'HeaderMenu.php';
 var_dump($_SESSION['user']);
 ?>
-    <section class="fomulaire">
+    <section class="formBox">
         <form action="../index.php" method="post">
             <strong> Nouveau Post </strong>
             <br>

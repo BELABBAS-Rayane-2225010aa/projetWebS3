@@ -8,7 +8,7 @@ start_page('Changer pseudo');//Charge la balise "head" avec le css, favicon et l
 <body><!-- FLEX BLOCK-->
     <?php $active = 'mon compte';
     require 'HeaderMenu.php' ?>
-    <section class="fromBox" >
+    <section class="formBox" >
         <form action="../index.php" method="post">
             <label>Entrez votre pseudo actuel :
                 <input type="text" id="in" name="oldPseudo">

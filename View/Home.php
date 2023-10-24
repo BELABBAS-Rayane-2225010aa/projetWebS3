@@ -35,7 +35,7 @@ var_dump($_SESSION);
     </section>
 
     <section>
-        <form class="fromBox" id="connectedform" action="ProfilPublic.php">Utilisateurs:
+        <form class="formBox" id="connectedform" action="ProfilPublic.php">Utilisateurs:
             <?php
             if (isset($connectedArray)){
                 for ($i = 0 ; $i < sizeof($connectedArray) ; ++$i){

@@ -10,7 +10,7 @@ start_page('Profil');//Charge la balise "head" avec le css, favicon et le nom de
 $active = 'profil';
 require 'HeaderMenu.php';//Charge le bar menu
 ?>
-    <section class="fromBox">
+    <section class="formBox">
         <p>Pseudo :<?php echo $_SESSION['user']->getPseudo() ?></p>
         <button onclick="window.location.href='PseudoModifier.php';">Changer le pseudo</button>
         <p>E-mail :<?php echo $_SESSION['user']->getEmail() ?></p>
