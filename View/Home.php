@@ -16,7 +16,8 @@ start_page('Acceuil');//Charge la balise "head" avec le css, favicon et le nom d
     <body>
 <?php
 $active = 'index';
-require 'HeaderMenu.php';//Charge le bar menu
+require 'headerMenu.php';//Charge le bar menu
+var_dump($_SESSION);
 ?>
     <section class="section-flex"><!--affiche les 5 dernier billet créé-->
         <form action="Billet.php" method="post" id="billetform"></form>
@@ -35,14 +36,16 @@ require 'HeaderMenu.php';//Charge le bar menu
     </section>
 
     <section>
-        <form action="ProfilPublic.php" method="post" class="fomBox" id="connectedform">
+        <form class="fromBox" id="connectedform" action="ProfilPublic.php">Utilisateurs:
             <?php
             if (isset($connectedArray)){
                 for ($i = 0 ; $i < sizeof($connectedArray) ; ++$i){
+                    if ($i%5===0){ echo "<br>";}
             ?>
                     <button value="<?php echo base64_encode(serialize($connectedArray[$i]));?>" name="userClique" form="connectedform">
                         <?php echo $connectedArray[$i]->getPseudo();?>
-                <?php
+                    </button>
+            <?php
                 }
             }
             ?>

@@ -147,7 +147,7 @@ li.dropdown {
     width: 12vh;
     min-width: 8em;
     height: 100vh;
-    background-color: #e5b596;
+    background-color: #edd6a0;
     border: 1px solid #bd522b;
     padding: 1%;
     margin-top: 7vh;
@@ -165,7 +165,7 @@ li.dropdown {
 .comments {
     position: static;
     margin-left:14.5vh;
-    background-color: #e5b596;
+    background-color: #edd6a0;
     border: 1px solid #bd522b;
     border-radius: 8px;
     margin-top: 5vh;
@@ -188,15 +188,13 @@ li.dropdown {
 }
 
 .btn-flex {
-    width: 30vh;
-    height: 20vh;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-    margin-top: 6em;
+    width: 15%;
+    margin-left: 4%;
+    margin-top: 5%;
     border-radius: 10px;
     overflow: hidden; /* empeche le debordement */
     white-space: nowrap; /* empeche les retour a la ligne et la deformation du bouton */
-    background-color: #ffba93;
+    background-color: #edd6a0;
     border-color: #B5532BFF;
 
 
@@ -262,8 +260,8 @@ footer {
     background-color: #e32e2e;
     border-color: #bb0000;
 }
-.fomBox{
-    background-color: #e5b596;
+.fromBox{
+    background-color: #edd6a0;
     border-radius: 10px;
     border-style: solid;
     border-color: #b5532b;
@@ -276,6 +274,11 @@ footer {
     max-height: 30%;
 }
 .section404{
+    border-radius: 10px;
+    margin-left: 10%;
+    width: 80%;
+    border-color: #B5532BFF;
+    background-color: #edd6a0;
     margin-top: 5em;
     text-align: center;
 }
@@ -284,6 +287,15 @@ footer {
     margin-left: 10%;
     margin-top: 1%;
     border-radius: 10px;
-    background-color: #E5B596FF;
+    background-color: #edd6a0;
+    border-color: #B5532BFF;
+}
+.btnCreator{
+    z-index: auto;
+    padding: 1em;
+    margin-left: 95%;
+    position: fixed;
+    border-radius: 5px;
+    background-color: #edd6a0;
     border-color: #B5532BFF;
 }
