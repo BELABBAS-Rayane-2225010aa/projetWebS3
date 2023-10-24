@@ -293,8 +293,9 @@ footer {
 .btnCreator{
     z-index: auto;
     padding: 1em;
-    margin-left: 95%;
     position: fixed;
+    right:    0;
+    bottom:   40px;
     border-radius: 5px;
     background-color: #edd6a0;
     border-color: #B5532BFF;

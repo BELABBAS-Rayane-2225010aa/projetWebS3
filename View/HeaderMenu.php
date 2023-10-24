@@ -35,7 +35,6 @@
     ?>
         <li style="float:right"><a <?php if ($active === 'deconexion'){echo 'class=active';} ?> href="/View/Deconexion.php">Déconexion</a></li>
         <li style="float:right"><a <?php if ($active === 'profil'){echo 'class=active';} ?> href="/View/Profil.php">Profil</a></li>
-        <li style="float:right"><a <?php if ($active === 'cree_poste'){echo 'class=active';} ?> href="/View/PostBillet.php">Crée un poste</a></li>
     <?php
     }
     ?>
