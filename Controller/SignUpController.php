@@ -27,8 +27,8 @@ class SignUpController
         $pseudo = $_POST['pseudo'];
         $email = $_POST['email'];
         $email1 = $_POST['email1'];
-        $password = $_POST['password'];
-        $password1 = $_POST['password1'];
+        $password = md5($_POST['password']);
+        $password1 = md5($_POST['password1']);
 
         $date = date("Y-m-d H:i:s");
         try{
