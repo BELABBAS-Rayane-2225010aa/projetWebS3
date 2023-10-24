@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Model\User;
+use App\Exception\CannotInsertConnectedException;
+use App\Repository\UserConnectedRepository;
 use App\Repository\UserRepository;
 use App\Exception\NotFoundException;
 
@@ -33,7 +34,14 @@ class LoginController
             if ($pseudo === $login->getPseudo() && $password === $login->getPassword() ){
                 $session = new SetSession();
                 $session->setUserSession($login);
-                file_put_contents('Log/[PlaceHolderName].log', "".$pseudo." is connected"."\n",FILE_APPEND | LOCK_EX);
+                try {
+                    $connected = new UserConnectedRepository();
+                    $msg = $connected->logIn($login);
+                }
+                catch (CannotInsertConnectedException $ERROR){
+                    $msg = $ERROR->getMessage();
+                }
+                file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
             }
         }
         catch (NotFoundException $ERROR){
