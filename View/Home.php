@@ -10,13 +10,12 @@ $homeController->get5Billet();
 $cinqBillet = $homeController->getBilletArray();
 $homeController->getConnected();
 $connectedArray = $homeController->getConnectedArray();
-
 start_page('Acceuil');//Charge la balise "head" avec le css, favicon et le nom de la page donner en parametre.
 ?>
     <body>
 <?php
 $active = 'index';
-require 'headerMenu.php';//Charge le bar menu
+require 'HeaderMenu.php';//Charge le bar menu
 var_dump($_SESSION);
 ?>
     <section class="section-flex"><!--affiche les 5 dernier billet créé-->

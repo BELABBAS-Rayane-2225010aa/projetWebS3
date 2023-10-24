@@ -9,8 +9,7 @@ if(!isset($_SESSION['suid']))
 
 start_page('Crée un poste');
 $active = 'cree_poste';
-require 'headerMenu.php';
-
+require 'HeaderMenu.php';
 var_dump($_SESSION['user']);
 ?>
     <section class="fomulaire">
@@ -20,7 +19,7 @@ var_dump($_SESSION['user']);
             <label for="title">Titre :</label>
             <input name="title" id="title" type="text" />
             <label for="category">Categorie :</label>
-            <select id="category" name="categorie">
+            <select id="category" name="category">
                 <?php
                 for ($i = 1 ; $i < 6 ; ++$i)
                 { //TODO: Remplacer $i par les vrai categorie

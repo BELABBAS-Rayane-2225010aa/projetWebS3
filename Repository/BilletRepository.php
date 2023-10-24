@@ -138,12 +138,11 @@ class BilletRepository extends AbstractRepository
         return new Billet($billet['TITRE'],$billet['MSG'],$billet['DATE_BILLET'],$billet['USER_ID'],$billet['CAT_ID']);
     }*/
 
-    public function createBillet($title,$msg,$authorId,$categoryId) : void{
-        $date_billet = date("Y-m-d H:i:s");
+    public function createBillet($title,$msg,$dateBillet,$authorId,$categoryId) : void{
         $query = 'INSERT INTO BILLET (TITRE, MSG, DATE_BILLET, USER_ID, CAT_ID) VALUES (:title, :msg, :date_billet, :authorId, :categoryId)';
-        $statement = $this->connexion ->prepare(
+        $statement = $this->connexion -> prepare(
             $query );
-        $statement->execute(['title' => $title, 'msg' => $msg, 'date_billet' => $date_billet, 'authorId' => $authorId, 'categoryId' => $categoryId]);
+        $statement->execute(['title' => $title, 'msg' => $msg, 'date_billet' => $dateBillet, 'authorId' => $authorId, 'categoryId' => $categoryId]);
         if ($statement -> rowCount() === 0 ){
             throw new CannotCreateBilletException("Billet cannot be created");
         }
