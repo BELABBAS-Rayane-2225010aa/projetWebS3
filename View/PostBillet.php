@@ -9,11 +9,13 @@ if(!isset($_SESSION['suid']))
     header('Location: ../index.php');
 }
 
+
+
 start_page('Crée un poste');
 $active = 'cree_poste';
 require 'HeaderMenu.php';
-$repCat = new CategoryRepository();
-var_dump($repCat->getCat());
+$categoryRepository = new CategoryRepository();
+$arrayCat = $categoryRepository->getCat();
 ?>
     <section class="formBox">
         <form action="../index.php" method="post">
@@ -24,10 +26,10 @@ var_dump($repCat->getCat());
             <label for="category">Categorie :</label>
             <select id="category" name="category">
                 <?php
-                for ($i = 1 ; $i < 6 ; ++$i)
-                { //TODO: Remplacer $i par les vrai categorie
+                for ($i = 0 ; $i < sizeof($arrayCat) ; ++$i)
+                {
                 ?>
-                    <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                    <option value="<?php echo $arrayCat[$i]["CAT_ID"] ?>"><?php echo $arrayCat[$i]["LABEL"] ?></option>
                 <?php
                 }
                 ?>
