@@ -9,6 +9,7 @@ require 'HeaderMenu.php';//Charge le bar menu
 ?>
 <section class="formBox">
     <form action="../index.php" method="post">
+        <h1 id="login">Login Account</h1>
         <label>
             Login
             <input name="pseudo" type="text">

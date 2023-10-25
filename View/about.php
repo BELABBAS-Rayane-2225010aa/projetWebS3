@@ -7,11 +7,11 @@ start_page('Billet');//Charge la balise "head" avec le css, favicon et le nom de
 <body>
 <?php $active = 'A propos';
 require 'HeaderMenu.php';//Charge le bar menu?>
-<section class="formBox">
-    <label>
-        Ce site internet est réalisé pour un travail de groupe d'étudiant.<br>
+<section class="about">
+    <label class="aboutlab">
+        <p> Ce site internet est réalisé pour un travail de groupe d'étudiant.<br>
         Ce site est libre de droit.<br>
-        Réaliser par: Belabbas,Créspin,De Angeli,Hourlay,Roubaud,Rousset
+        Réaliser par: Belabbas,Créspin,De Angeli,Hourlay,Roubaud,Rousset<p>
     </label><br>
 </section>
 <?php

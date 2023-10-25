@@ -9,7 +9,7 @@ start_page('Categorie');//Charge la balise "head" avec le css, favicon et le nom
 require 'HeaderMenu.php' //Charge le bar menu ?>
 <section class="formBox">
     <form action="../index.php" method="post">
-        <strong> INSCRIPTION </strong>
+        <h1 id="login"> INSCRIPTION </h1>
             <br>
         <label>Pseudo :</label>
         <input name="pseudo" id="Pseudo" type="text" />
