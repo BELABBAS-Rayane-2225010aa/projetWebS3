@@ -30,7 +30,7 @@ class BilletController
         $msg = $_POST['msg'];
         $authorID = $_POST['authorID'];
         $categoryId = $_POST['category'];
-
+        date_default_timezone_set("Europe/Paris");
         $dateBillet = date("Y-m-d H:i:s");
         try{
             $billet = new BilletRepository();
