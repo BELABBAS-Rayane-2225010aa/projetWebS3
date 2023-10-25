@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-require 'vendor/autoload.php';
-
 use App\Exception\CannotCreateBilletException;
 use App\Exception\NotFoundException;
 use App\Model\Billet;
@@ -30,13 +28,13 @@ class BilletController
     public function getNewBillet() : void {
         $title = $_POST['title'];
         $msg = $_POST['msg'];
-        $authorId = 1;
+        $authorID = $_POST['authorID'];
         $categoryId = $_POST['category'];
 
         $dateBillet = date("Y-m-d H:i:s");
         try{
             $billet = new BilletRepository();
-            $billet->createBillet($title,$msg,$dateBillet,$authorId,$categoryId);
+            $billet->createBillet($title,$msg,$dateBillet,$authorID,$categoryId);
         }
         catch (CannotCreateBilletException $ERROR){
             file_put_contents('../Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);

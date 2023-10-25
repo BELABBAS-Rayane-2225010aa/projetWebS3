@@ -53,7 +53,7 @@ class User
      * @todo : vérifier l'utilisation de cette fonction et l'enlever au besoin
      */
     public static function loginUser (string $password , string $login):self {
-        return new self($password,'',$login,'','','');
+        return new self('',$password,'',$login,'','','');
     }
 
     /**

@@ -20,7 +20,7 @@ function start_page($title): void
 <?php function end_page(): void
 {
     if(isset($_SESSION['suid'])) { ?>
-        <button class="btnCreator" value="crée billet" name="billetCreator" form="billetform" onclick="window.location.href='/View/PostBillet.php';">crée billet</button>
+        <button class="btnCreator" value="crée billet" name="billetCreator" onclick="window.location.href='PostBillet.php'">crée billet</button>
 <?php } ?>
 
     <footer>

@@ -72,6 +72,6 @@ class CategoryRepository extends AbstractRepository
         {
             $arrayCat[] = $newRow;
         }
-        return $statement->fetch();
+        return $arrayCat;
     }
 }

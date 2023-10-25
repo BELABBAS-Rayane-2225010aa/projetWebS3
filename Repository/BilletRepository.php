@@ -119,23 +119,25 @@ class BilletRepository extends AbstractRepository
        return "BILLET successfully deleted";
     }
 
-    public function searchBillet(string $q) : array {
+    public function searchBillet(string $q) : array
+    {
         $query = 'SELECT * FROM BILLET WHERE TITRE LIKE "%' . $q . '%" ORDER BY BILLET_ID DESC';
-        $statement = $this->connexion -> prepare(
-            $query );
+        $statement = $this->connexion->prepare(
+            $query);
         $statement->execute();
-        if ( $statement -> rowCount() === 0){
+        if ($statement->rowCount() === 0) {
             throw new NotFoundException("Aucun résultat trouvé");
         }
-        $arraySQL =  $statement->fetchAll();
+        $arraySQL = $statement->fetchAll();
         $arrayBillet = array();
 
-        for ($i = 0; $i < sizeof($arraySQL);$i++){
-            $billet = new Billet($arraySQL[$i]['TITRE'],$arraySQL[$i]['MSG'],$arraySQL[$i]['DATE_BILLET'],$arraySQL[$i]['USER_ID'],$arraySQL[$i]['CAT_ID']);
+        for ($i = 0; $i < sizeof($arraySQL); $i++) {
+            $billet = new Billet($arraySQL[$i]['TITRE'], $arraySQL[$i]['MSG'], $arraySQL[$i]['DATE_BILLET'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['CAT_ID']);
             $arrayBillet[] = $billet;
         }
 
         return $arrayBillet;
+    }
 
     /* TODO: Idée de comment filtrer
     public function getFiltredBillet($id,$title,$category etc ...) : Billet

@@ -94,13 +94,7 @@ if (isset($_POST['MakeAdmin'])) {
 }
 
 if (isset($_POST['createPost'])) {
-    if ($_POST['createPost'] === 'Publier') {
-        $controller = new BilletController();
-        $controller->getNewBillet();
-        header('Location: View/Home.php');
-    } else {
-        //TODO : Erreur
-        header('Location: View/Home.php');
-    }
+    $controller = new BilletController();
+    $controller->getNewBillet();
 }
 ?>

@@ -1,4 +1,5 @@
 <?php
+
 require '../vendor/autoload.php';
 require 'GestionPage.php';
 
@@ -10,10 +11,8 @@ if(!isset($_SESSION['suid']))
 }
 
 start_page('Crée un poste');
-$active = 'cree_poste';
+$active = '';
 require 'HeaderMenu.php';
-$repCat = new CategoryRepository();
-var_dump($repCat->getCat());
 ?>
     <section class="formBox">
         <form action="../index.php" method="post">
@@ -32,6 +31,7 @@ var_dump($repCat->getCat());
                 }
                 ?>
             </select>
+            <input name="authorID" type="hidden" value="<?php echo $_SESSION['user']->getUserId()?>"/>
             <br>
             <textarea name="msg" id="msg" placeholder=""></textarea>
             <br>
