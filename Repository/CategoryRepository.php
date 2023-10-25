@@ -67,11 +67,7 @@ class CategoryRepository extends AbstractRepository
         if ( $statement -> rowCount() === 0){
             throw new NotFoundException("Category not found");
         }
-        $arrayCat[0] = $statement->fetch();
-        while ($newRow = $statement->fetch())
-        {
-            $arrayCat[] = $newRow;
-        }
+        $arrayCat = $statement->fetchAll();
         return $arrayCat;
     }
 }
