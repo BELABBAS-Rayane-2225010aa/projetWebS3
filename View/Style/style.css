@@ -300,3 +300,34 @@ footer {
     background-color: #edd6a0;
     border-color: #B5532BFF;
 }
+
+/* tableau recherche*/
+table {
+    border-collapse: collapse;
+    width: 50%;
+    margin: 0 auto;
+
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+
+
+}
+th {
+    background-color: #174370;
+    vertical-align:baseline;
+    color: #ffffff;
+}
+
+td{
+    background-color: #edd6a0;
+}
+
+
+#milieu
+{
+    text-align: center;
+    color: #ffffff;
+}
