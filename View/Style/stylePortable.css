@@ -126,6 +126,7 @@ li.dropdown {
     background-color: #f5f5f5;
     padding: 15px;
     border-radius: 8px;
+    overflow: hidden;
 }
 .category h2 {
     font-size: 1.2em;
@@ -143,6 +144,7 @@ li.dropdown {
     margin-right: 0.8vh;
     padding: 1%;
     font-size: 1.2em;
+    overflow: hidden;
 }
 .boutonBillet{
     background-color: #e4b495;
@@ -298,9 +300,41 @@ footer {
     padding: 3vh;
     margin: 1em;
 }
+/*login*/
+.formlog {
+    max-width: 40%;
+    margin: 0 auto;
+    margin-top: 6%;
+    padding: 3%;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
 
+.formlog input {
+    width: 95%;
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 1px solid #cccccc;
 
-/* Login */
+}
+#login {
+    text-align: center;
+}
+/*Couleur de signin/up */
+.formlog input[type="submit"] {
+    background-color: #174370;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/*Des que l on passe la souris dessus l input signup/in sa change de couleur */
+.formlog input[type="submit"]:hover {
+    background-color: #117883;
+}
+
+/* inscription */
 .formBox {
     max-width: 40%;
     margin: 0 auto;

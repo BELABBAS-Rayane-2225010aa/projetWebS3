@@ -7,7 +7,7 @@ start_page('Categorie');//Charge la balise "head" avec le css, favicon et le nom
 $active = 'connection';
 require 'HeaderMenu.php';//Charge le bar menu
 ?>
-<section class="formBox">
+<section class="formlog">
     <form action="../index.php" method="post">
         <h1 id="login">Login Account</h1>
         <label>
