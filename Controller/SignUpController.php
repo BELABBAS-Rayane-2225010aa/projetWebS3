@@ -43,10 +43,10 @@ class SignUpController
             catch (CannotInsertConnectedException $ERROR){
                 $msg = $ERROR->getMessage();
             }
-            file_put_contents('Log/[PlaceHolderName].log',$msg."\n",FILE_APPEND | LOCK_EX);
+            file_put_contents('Log/tavernDeBill.log',$msg."\n",FILE_APPEND | LOCK_EX);
         }
         catch (CannotCreateUserException | EmailVerificationException | PasswordVerificationException $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            file_put_contents('Log/tavernDeBill.log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
 
             if (isset($_SESSION['msg'])){
                 unset($_SESSION['msg']);

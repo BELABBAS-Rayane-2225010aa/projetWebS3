@@ -14,6 +14,7 @@ require 'vendor/autoload.php';
 
 use App\Controller\AdminController;
 use App\Controller\BilletController;
+use App\Controller\BilletModifierController;
 use App\Controller\EmailModifierController;
 use App\Controller\LoginController;
 use App\Controller\PasswordModifierController;
@@ -96,5 +97,10 @@ if (isset($_POST['MakeAdmin'])) {
 if (isset($_POST['createPost'])) {
     $controller = new BilletController();
     $controller->getNewBillet();
+}
+
+if(isset($_POST['BilletModif'])){
+    $controller = new BilletModifierController();
+    $controller->updateBillet();
 }
 ?>

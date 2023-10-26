@@ -36,6 +36,15 @@ if (!$billetClique instanceof \App\Model\Billet) {
         <h2><?php echo $billetClique->getTitle()?></h2>
         <p><?php if(!empty($billetClique->getMsg())){echo $billetClique->getMsg();}else{echo 'ERROR Le message est vide ERROR';}?></p>
         <h3>AuteurID : <?php echo $billetClique->getAuthorId() ?></h3>
+        <?php
+        if (isset($_SESSION['user'])){
+            if ($billetClique->getAuthorId() === $_SESSION['user']->getUserId()){
+                ?>
+                <form action="BilletModifier.php" method="post" id="billetModifierForm"></form>
+                <button value="<?php echo $_POST['billetClique'];?>" name="billetClique" form="billetModifierForm">Modifier</button>
+                <?php
+            }
+        }?>
         <p>Date : <?php echo $billetClique->getDate() ?></p>
     </section>
 <?php
