@@ -6,6 +6,7 @@ use App\Exception\CannotCreateCatException;
 use App\Exception\CannotDeleteCatException;
 use App\Exception\CatAlreadyExistException;
 use App\Exception\NotFoundException;
+use App\Model\Category;
 
 class CategoryRepository extends AbstractRepository
 {
@@ -69,5 +70,25 @@ class CategoryRepository extends AbstractRepository
         }
         $arrayCat = $statement->fetchAll();
         return $arrayCat;
+    }
+
+    public function searchCat(string $q) : array
+    {
+        $query = 'SELECT * FROM CATEGORIE WHERE LABEL LIKE "%' . $q . '%" ORDER BY CAT_ID DESC';
+        $statement = $this->connexion->prepare(
+            $query);
+        $statement->execute();
+        if ($statement->rowCount() === 0) {
+            throw new NotFoundException('Aucune categorie trouvé pour '.$q.' .');
+        }
+        $arraySQL = $statement->fetchAll();
+        $arrayUser = array();
+
+        for ($i = 0; $i < sizeof($arraySQL); $i++) {
+            $user = new Category($arraySQL[$i]['LABEL'], $arraySQL[$i]['DESCRIPTION']);
+            $arrayUser[] = $user;
+        }
+
+        return $arrayUser;
     }
 }

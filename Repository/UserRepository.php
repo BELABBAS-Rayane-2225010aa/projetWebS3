@@ -17,7 +17,7 @@
 
 namespace App\Repository;
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 use App\Exception\{CannotCreateUserException,
     CannotDeleteUserException,
@@ -288,5 +288,26 @@ class UserRepository extends AbstractRepository
             return false;
         }
         return true;
+    }
+
+    public function searchUser(string $q) : array
+    {
+        $query = 'SELECT * FROM USER WHERE PSEUDO LIKE "%' . $q . '%" ORDER BY USER_ID DESC';
+        $statement = $this->connexion->prepare(
+            $query);
+        $statement->execute();
+        if ($statement->rowCount() === 0) {
+            throw new NotFoundException('Aucun User trouvé pour '.$q.' .');
+        }
+        $arraySQL = $statement->fetchAll();
+        $arrayUser = array();
+
+        for ($i = 0; $i < sizeof($arraySQL); $i++) {
+            $user = new User($arraySQL[$i]['USER_ID'], $arraySQL[$i]['MDP'], $arraySQL[$i]['PSEUDO'],
+                $arraySQL[$i]['MAIL'], $arraySQL[$i]['DATE_PREM'], $arraySQL[$i]['DATE_DER'], $arraySQL[$i]['ISADMIN']);
+            $arrayUser[] = $user;
+        }
+
+        return $arrayUser;
     }
 }

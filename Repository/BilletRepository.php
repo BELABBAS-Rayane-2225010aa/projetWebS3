@@ -127,7 +127,7 @@ class BilletRepository extends AbstractRepository
             $query);
         $statement->execute();
         if ($statement->rowCount() === 0) {
-            throw new NotFoundException("Aucun résultat trouvé");
+            throw new NotFoundException('Aucun billet trouvé pour '.$q.'...');
         }
         $arraySQL = $statement->fetchAll();
         $arrayBillet = array();
