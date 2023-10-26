@@ -19,3 +19,23 @@ $searchedBillet = $searchController->getSearchedBilletArray();
             </button>
             <?php
         }
+        ?>
+<h1 >Resultat de recherche </h1>
+    <h2 >Billet</h2>
+        <ul>
+            <li></li>
+        </ul>
+<h2 >Commentaire</h2>
+        <ul>
+            <li></li>
+        </ul>
+<h2>Categorie</h2>
+        <ul>
+            <li></li>
+        </ul>
+<h2>User</h2>
+        <ul>
+            <li></li>
+        </ul>
+
+
