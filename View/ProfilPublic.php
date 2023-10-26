@@ -19,8 +19,7 @@ if (!$userClique instanceof \App\Model\User) {
     echo 'La désérialisation a échoué';
 }
 ?>
-?>
-    <section class="fomBox">
+    <section class="formBox">
         <p>Pseudo : <?php echo $userClique->getPseudo()?></p>
         <p>Date de création : <?php echo $userClique->getDateFirstCo()?></p><br>
         <p>Billet écrit:</p><br>
