@@ -10,7 +10,7 @@ if(!isset($_SESSION['suid']))
 
 $deconnect = new \App\Repository\UserConnectedRepository();
 $msg = $deconnect->logOut($_SESSION['user']);
-file_put_contents('../Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
+file_put_contents('../Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
 
 unset($_SESSION['suid']);
 unset($_SESSION['user']);

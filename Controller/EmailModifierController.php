@@ -22,11 +22,11 @@ class EmailModifierController
             $session = new SetSession();
             $session->setUserSession($login);
             $msg = "Email successfully modified";
-            file_put_contents('Log/[PlaceHolderName].log',$msg."\n",FILE_APPEND | LOCK_EX);
+            file_put_contents('Log/tavernDeBill.log',$msg."\n",FILE_APPEND | LOCK_EX);
         }
         catch (EmailVerificationException|CannotModify $ERROR){
             $msg = $ERROR->getMessage();
-            file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
+            file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         }
 
         if (isset($_SESSION['msg'])){

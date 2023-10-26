@@ -19,7 +19,7 @@ class BilletModifierController
             $billet->updateBillet($oldTitle,$title,$msg,$dateBillet,$authorId,$categoryId);
         }
         catch(CannotFindBilletException $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            file_put_contents('Log/tavernDeBill.log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
         }
     }
 }

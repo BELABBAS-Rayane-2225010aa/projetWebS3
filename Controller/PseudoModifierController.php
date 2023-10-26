@@ -21,11 +21,11 @@ class PseudoModifierController
             $session = new SetSession();
             $session->setUserSession($login);
             $msg = "Pseudo successfully modified";
-            file_put_contents('Log/[PlaceHolderName].log',$msg."\n",FILE_APPEND | LOCK_EX);
+            file_put_contents('Log/tavernDeBill.log',$msg."\n",FILE_APPEND | LOCK_EX);
         }
         catch (PseudoVerificationException|CannotModify $ERROR){
             $msg = $ERROR->getMessage();
-            file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
+            file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         }
 
         if (isset($_SESSION['msg'])){

@@ -29,7 +29,7 @@ class AdminController
             $msg = $ERROR->getMessage();
         }
 
-        file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
+        file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         if (isset($_SESSION['msg'])){
             unset($_SESSION['msg']);
         }
@@ -46,7 +46,7 @@ class AdminController
             $msg = $ERROR->getMessage();
         }
 
-        file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
+        file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         if (isset($_SESSION['msg'])){
             unset($_SESSION['msg']);
         }
@@ -63,7 +63,7 @@ class AdminController
             $msg = $ERROR->getMessage();
         }
 
-        file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
+        file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         if (isset($_SESSION['msg'])){
             unset($_SESSION['msg']);
         }
@@ -80,7 +80,7 @@ class AdminController
             $msg = $ERROR->getMessage();
         }
 
-        file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
+        file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         if (isset($_SESSION['msg'])){
             unset($_SESSION['msg']);
         }
@@ -97,7 +97,7 @@ class AdminController
             $msg = $ERROR->getMessage();
         }
 
-        file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
+        file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         if (isset($_SESSION['msg'])){
             unset($_SESSION['msg']);
         }

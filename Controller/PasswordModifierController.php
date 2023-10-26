@@ -27,6 +27,6 @@ class PasswordModifierController
             unset($_SESSION['msg']);
         }
         $_SESSION['msg'] = $msg;
-        file_put_contents('Log/[PlaceHolderName].log', $msg."\n",FILE_APPEND | LOCK_EX);
+        file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
     }
 }
