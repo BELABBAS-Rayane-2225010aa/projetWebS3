@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Exception\CannotDeleteCommentException;
 use App\Exception\CannotModify;
+use App\Exception\NotFoundException;
 use App\Model\Comment;
 
 /**
@@ -86,5 +87,24 @@ class CommentRepository extends AbstractRepository
             throw new CannotModify("COMMENT cannot be updated");
         }
 
+    }
+    public function searchComment(string $q) : array
+    {
+        $query = 'SELECT * FROM COMMENT WHERE TEXTE LIKE "%' . $q . '%" ORDER BY COMMENT_ID DESC';
+        $statement = $this->connexion->prepare(
+            $query);
+        $statement->execute();
+        if ($statement->rowCount() === 0) {
+            throw new NotFoundException('Aucun commentaire trouvé pour '.$q.' .');
+        }
+        $arraySQL = $statement->fetchAll();
+        $arrayComment = array();
+
+        for ($i = 0; $i < sizeof($arraySQL); $i++) {
+            $comment = new Comment($arraySQL[$i]['TEXTE'], $arraySQL[$i]['DATE_COMM'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['BILLET_ID']);
+            $arrayComment[] = $comment;
+        }
+
+        return $arrayComment;
     }
 }

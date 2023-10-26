@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Exception\NotFoundException;
 use App\Repository\BilletRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\CommentRepository;
 use App\Repository\UserRepository;
 
 class ResultatRechercheController

@@ -31,7 +31,25 @@ if($searchController->getSearchedBilletArray() !== null )
         </ul>
 <h2 >Commentaire</h2>
         <ul>
-            <li></li>
+            <?php
+            $searchController->getSearchComment();
+            if($searchController->getSearchedCommentArray() != null )
+            {
+                $searchedComment = $searchController->getSearchedCommentArray();
+                for ($i = 0 ; $i < sizeof($searchedComment) ; ++$i)
+                {
+                    ?>
+
+                    <button class="btn-flex" value="<?php echo base64_encode(serialize($searchedComment[$i]));?>" name="billetClique" form="billetform">
+                <span class="icone-btn">
+                </span>
+                        <p class="txt-btn"><?php if (isset($searchedComment[$i])){echo $searchedComment[$i]->getLabel();}else{ echo 'erreur de chargement du commentaire';}?></p>
+                    </button>
+                    <?php
+                }
+            }
+            ?>
+<!--            <li></li>-->
         </ul>
 <h2>Categorie</h2>
         <ul>
