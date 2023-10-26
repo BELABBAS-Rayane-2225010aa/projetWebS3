@@ -146,35 +146,30 @@ li.dropdown {
 
 .category {
     float: left;
-    width: 12vh;
-    min-width: 8em;
-    height: 100vh;
-    background-color: #edd6a0;
-    border: 1px solid #bd522b;
-    padding: 1%;
-    margin-top: 7vh;
-    font-size: 0.7em;
-    overflow: scroll; /*contre le debordement de la boite associer*/
+    margin: 0 auto ;
+    margin-top: 3%;
+    width: 12%;
+    height:75%;
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
 }
-
 .category h2 {
-    font-size: 1.5em;
+    font-size: 1.2em;
+    margin-bottom: 15px; /* Espacement en bas du titre */
 }
-
 
 /* billet et commentaire a droite */
 
 .comments {
     position: static;
-    margin-left:14.5vh;
-    background-color: #edd6a0;
-    border: 1px solid #bd522b;
+    margin-left: 160px;
+    background-color: #f9f9f9; /* Couleur de fond */
     border-radius: 8px;
     margin-top: 5vh;
     margin-right: 0.8vh;
     padding: 1%;
     font-size: 1.2em;
-    overflow: scroll; /*contre le debordement de la boite associer*/
 }
 
 

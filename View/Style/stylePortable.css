@@ -108,46 +108,41 @@ li.dropdown {
 }
 
 .buttonCategory{
-    background-color: #e5b596;
-    border-color: #bd522b;
+    background-color: #ffffff;
+    border-color: #174370;
     border-style: solid;
     border-radius: 6px;
+    margin: 0 auto ;
+    margin-top: 3%;
 }
+
 /* categories a gauche */
-
 .category {
-    display: none;
     float: left;
-    width: 12vh;
-    height: 100vh;
-    background-color: #e5b596;
-    border: 1px solid #bd522b;
-    padding: 0.5%;
-    font-size: 0.7em;
-    overflow: scroll; /*contre le debordement de la boite associer*/
+    margin: 0 auto ;
+    margin-top: 3%;
+    width: 12%;
+    height:75%;
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
 }
-
 .category h2 {
-    font-size: 1.5em;
+    font-size: 1.2em;
+    margin-bottom: 15px; /* Espacement en bas du titre */
 }
-
 
 /* billet et commentaire a droite */
 
 .comments {
     position: static;
-    margin-left:0.3vh;
-    background-color: #e5b596;
-    border: 1px solid #bd522b;
+    margin-left: 160px;
+    background-color: #f9f9f9; /* Couleur de fond */
     border-radius: 8px;
-    margin-top: 0.3vh;
-    margin-right: 0.3vh;
-    padding: 0.7%;
+    margin-top: 5vh;
+    margin-right: 0.8vh;
+    padding: 1%;
     font-size: 1.2em;
-    overflow: scroll; /*contre le debordement de la boite associer*/
-}
-.menu {
-    font-size: 1.8vh;
 }
 .boutonBillet{
     background-color: #e4b495;
@@ -158,7 +153,6 @@ li.dropdown {
     overflow: hidden; /* empeche le debordement */
     white-space: nowrap; /* empeche les retour a la ligne etla deformation du bouton */
     text-overflow: ellipsis; /* met "..." en cas de debordement */
-
 }
 
 .info-section {
