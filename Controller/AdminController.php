@@ -14,6 +14,7 @@ use App\Exception\UserIsAdminException;
 use App\Repository\BilletRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
+use App\Repository\CommentRepository;
 
 class AdminController
 {
@@ -85,6 +86,18 @@ class AdminController
             unset($_SESSION['msg']);
         }
         $_SESSION['msg'] = $msg;
+    }
+
+    public function deleteComment() : void {
+        $commentId = $_POST['commentId'];
+        try {
+            $user = new CommentRepository();
+            $user->delComment($commentId);
+        }
+        catch (CannotDeleteCommentException $ERROR){
+            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            exit();
+        }
     }
 
     public function MakeAdmin() : void {

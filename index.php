@@ -88,6 +88,11 @@ if (isset($_POST['DelBillet'])) {
     header('Location: View/AdminPage.php');
 }
 
+if (isset($_POST['DelComment'])) {
+    $controller = new AdminController();
+    $controller->deleteComment();
+}
+
 if (isset($_POST['MakeAdmin'])) {
     $controller = new AdminController();
     $controller->makeAdmin();
