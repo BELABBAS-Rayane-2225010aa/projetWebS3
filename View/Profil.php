@@ -11,7 +11,7 @@ $active = 'profil';
 require 'HeaderMenu.php';//Charge le bar menu
 
 $controller = new \App\Controller\ProfilController();
-$controller->BilletArray();
+$controller->BilletArrayPrivate();
 $arrayBillet = $controller->getBilletArray();
 ?>
     <section class="formBox">
