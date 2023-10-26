@@ -17,6 +17,7 @@ namespace App\Repository;
 
 use App\Exception\CannotCreateBilletException;
 use App\Exception\CannotDeleteBilletException;
+use App\Exception\CannotFindBilletException;
 use App\Exception\NotFoundException;
 use App\Model\Billet;
 
@@ -166,6 +167,25 @@ class BilletRepository extends AbstractRepository
         if ($statement -> rowCount() === 0 ){
             throw new CannotCreateBilletException("Billet cannot be created");
         }
+    }
 
+    public function getBilletArrayByAuthor(int $authorId) : array {
+        $query = 'SELECT * FROM BILLET WHERE USER_ID = :authorId';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['authorId' => $authorId]);
+        if ($statement -> rowCount() === 0 ){
+            throw new CannotFindBilletException("No Billet find");
+        }
+
+        $arraySQL = $statement->fetchAll();
+        $arrayBillet = array();
+
+        for ($i = 0; $i < sizeof($arraySQL); $i++) {
+            $billet = new Billet($arraySQL[$i]['TITRE'], $arraySQL[$i]['MSG'], $arraySQL[$i]['DATE_BILLET'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['CAT_ID']);
+            $arrayBillet[] = $billet;
+        }
+
+        return $arrayBillet;
     }
 }
