@@ -36,7 +36,7 @@ require 'HeaderMenu.php';//Charge le bar menu
     </section>
 
     <section>
-        <form class="util" id="connectedform" action="ProfilPublic.php">
+        <form class="util" id="connectedform" action="ProfilPublic.php" method="post">
             <p>Utilisateurs:</p>
             <?php
             if (isset($connectedArray)){
