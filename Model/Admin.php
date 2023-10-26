@@ -7,6 +7,8 @@
  *
  * @author Crespin Alexandre
  *
+ * @deprecated class jamais utilisé
+ *
  * @see \App\Model\User
  *
  * @version 1.0
