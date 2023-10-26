@@ -9,24 +9,25 @@ $searchController = new ResultatRechercheController();?>
 <h1 >Resultat de recherche </h1>
     <h2 >Billet</h2>
         <ul>
-<?php
-$searchController->getSearchBillet();
-if($searchController->getSearchedBilletArray() !== null )
-{
-    $searchedBillet = $searchController->getSearchedBilletArray();
-        for ($i = 0 ; $i < sizeof($searchedBillet) ; ++$i)
-        {
-            ?>
-
-            <button class="btn-flex" value="<?php echo base64_encode(serialize($searchedBillet[$i]));?>" name="billetClique" form="billetform">
-                <span class="icone-btn">
-                </span>
-                <p class="txt-btn"><?php if (isset($searchedBillet[$i])){echo $searchedBillet[$i]->getTitle();}else{ echo 'erreur de chargement du billet';}?></p>
-            </button>
+            <form action="Billet.php" method="post" id="billetform">
             <?php
-        }
-}
-        ?>
+            $searchController->getSearchBillet();
+            if($searchController->getSearchedBilletArray() !== null )
+            {
+                $searchedBillet = $searchController->getSearchedBilletArray();
+                for ($i = 0 ; $i < sizeof($searchedBillet) ; ++$i)
+                {
+                ?>
+                <button class="btn-flex" value="<?php echo base64_encode(serialize($searchedBillet[$i]));?>" name="billetClique" form="billetform">
+                    <span class="icone-btn">
+                    </span>
+                    <p class="txt-btn"><?php if (isset($searchedBillet[$i])){echo $searchedBillet[$i]->getTitle();}else{ echo 'erreur de chargement du billet';}?></p>
+                </button>
+                <?php
+                }
+            }
+            ?>
+            </form>
 <!--            <li></li>-->
         </ul>
 <h2 >Commentaire</h2>
@@ -75,6 +76,7 @@ if($searchController->getSearchedBilletArray() !== null )
         </ul>
 <h2>User</h2>
         <ul>
+            <form class="util" id="connectedform" action="ProfilPublic.php" method="post">
             <?php
             $searchController->getSearchUser();
             if($searchController->getSearchedUserArray() != null )
@@ -84,7 +86,7 @@ if($searchController->getSearchedBilletArray() !== null )
                 {
                     ?>
 
-                    <button class="btn-flex" value="<?php echo base64_encode(serialize($searchedUser[$i]));?>" name="billetClique" form="billetform">
+                    <button class="btn-flex" value="<?php echo base64_encode(serialize($searchedUser[$i]));?>" name="userClique" form="connectedform">
                 <span class="icone-btn">
                 </span>
                         <p class="txt-btn"><?php if (isset($searchedUser[$i])){echo $searchedUser[$i]->getPseudo();}else{ echo 'erreur de chargement du User';}?></p>
@@ -93,6 +95,7 @@ if($searchController->getSearchedBilletArray() !== null )
                 }
             }
             ?>
+            </form>
 <!--            <li></li>-->
         </ul>
 
