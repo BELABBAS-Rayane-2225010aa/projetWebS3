@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Exception\CannotInsertConnectedException;
 use App\Repository\UserConnectedRepository;
 use App\Repository\UserRepository;
 use App\Exception\NotFoundException;
@@ -26,28 +25,31 @@ class LoginController
      */
     public function getLogin(): void
     {
+        //on recupère le pseudo et le password rentrer dans la formulaire par le User
         $pseudo = $_POST['pseudo'];
-        $password = md5($_POST['password']);
+        $password = md5($_POST['password']);    //on encode la password
+
         try {
+            //on récupère le User qui correspond dans la BD
             $user = new UserRepository();
             $login = $user->login($pseudo , $password);
+
+            //on update ISCONNECTED dans la BD
+            $connected = new UserConnectedRepository();
+            file_put_contents('Log/tavernDeBill.log', $connected->logIn($login),FILE_APPEND | LOCK_EX);
+
+            //on set la session
             $session = new SetSession();
             $session->setUserSession($login);
-            try {
-                $connected = new UserConnectedRepository();
-                $msg = $connected->logIn($login);
-            }
-            catch (CannotInsertConnectedException $ERROR){
-                $msg = $ERROR->getMessage();
-            }
-            file_put_contents('../Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         }
+        //on catch si l'utilisateur n'est pas trouvé
         catch (NotFoundException $ERROR){
-            file_put_contents('../Log/tavernDeBill.log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            //if (isset($_SESSION['msgErreur'])){
-            //    unset($_SESSION['msgErreur']);
-            //}
-            //$_SESSION['msgErreur'] = $ERROR->getMessage();
+            $msg = $ERROR->getMessage();
         }
+        file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
+        if (isset($_SESSION['msg'])){
+            unset($_SESSION['msg']);
+        }
+        $_SESSION['msg'] = $msg;
     }
 }
