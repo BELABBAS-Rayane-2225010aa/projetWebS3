@@ -8,7 +8,7 @@ start_page('Changer email');//Charge la balise "head" avec le css, favicon et le
 <body><!-- FLEX BLOCK-->
     <?php $active = 'mon compte';
     require 'HeaderMenu.php' ?>
-    <section class="formBox" >
+    <section id="formBox" >
         <form action="../index.php" method="post">
             <label>Entrez votre email actuel :
                 <input type="text" id="in" name="oldEmail">
