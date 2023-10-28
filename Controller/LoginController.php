@@ -40,10 +40,10 @@ class LoginController
             catch (CannotInsertConnectedException $ERROR){
                 $msg = $ERROR->getMessage();
             }
-            file_put_contents('../Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
+            file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         }
         catch (NotFoundException $ERROR){
-            file_put_contents('../Log/tavernDeBill.log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            file_put_contents('Log/tavernDeBill.log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             //if (isset($_SESSION['msgErreur'])){
             //    unset($_SESSION['msgErreur']);
             //}

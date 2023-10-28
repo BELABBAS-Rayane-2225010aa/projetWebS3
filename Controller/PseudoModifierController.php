@@ -13,8 +13,8 @@ class PseudoModifierController
     public function ModifPseudo() : void
     {
         $oldPseudo = $_POST['oldPseudo'];
-        $newPseudo = $_POST['newPseudo'];
-        $password = $_POST['password'];
+        $newPseudo = md5($_POST['newPseudo']);
+        $password = md5($_POST['password']);
         try {
             $user = new UserRepository();
             $login = $user->pseudoModifier($oldPseudo,$newPseudo,$password);
