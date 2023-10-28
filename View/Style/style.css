@@ -361,43 +361,27 @@ footer {
     margin-left: 10%;
     margin-top: 1%;
     border-radius: 10px;
-    background-color: #edd6a0;
-    border-color: #B5532BFF;
+    background-color: #ffffff;
+    border-color: #174370;
 }
-.btnCreator{
-    z-index: auto;
-    padding: 1em;
+
+.btnCreator {
     position: fixed;
-    right:    0;
-    bottom:   40px;
-    border-radius: 5px;
-    background-color: #edd6a0;
-    border-color: #B5532BFF;
+    width: 50px;
+    height: 50px;
+    right: 0;
+    margin-right: 40px;
+    bottom: 40px;
+    border-radius: 50%;
+    font-size: 24px;
+    background-color: #ffffff;
+    border-color: #174370;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
-/* tableau recherche*/
-table {
-    border-collapse: collapse;
-    width: 50%;
-    margin: 0 auto;
-
-}
-th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: center;
-
-
-}
-th {
-    background-color: #174370;
-    vertical-align:baseline;
-    color: #ffffff;
-}
-
-td{
-    background-color: #edd6a0;
-}
 
 #milieu
 {
@@ -448,5 +432,86 @@ td{
     border-radius: 8px;
     text-align: center;
     font-size: 18px;
-    line-height: 1.6; /* S'il n'y a pas d'unité, cela représente un facteur multiplicateurde la taille de la police appliquée à l'élément */
+    line-height: 1.6;
+}
+
+/*Page resultat recherche*/
+
+#reche {
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: 1%;
+    padding: 2%;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+#misenforme1{
+    color: #174370;
+    margin-top: 20px;
+    text-align: center;
+}
+#misenforme {
+    color: #174370;
+    border-bottom: 2px solid #174370;
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+
+#palier {
+    list-style: none;
+    padding: 0;
+    display: flex;
+
+}
+
+#btnflexbillet {
+    align-items: center;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #174370;
+    color: #fff;
+    border-radius: 8px;
+    list-style: none;
+}
+
+#btnflexbillet:hover {
+    background-color: #117883;
+}
+/* profil utilisateur public */
+
+#profilpub{
+    max-width: 30%;
+    margin: 0 auto;
+    margin-top: 1%;
+    padding: 2%;
+    background-color: #ffffff;
+    border-radius: 8px;
+
+}
+#misenformep{
+    border-bottom: 2px solid #174370;
+    padding-bottom: 10px;
+    margin-top: 20px;
+
+}
+#profilpub #paragraphe {
+    margin: 0 0 10px;
+
+}
+
+#btnprofil {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    border: none;
+    background-color: #174370;
+    color: #fff;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+#btnprofil:hover {
+    background-color: #117883;
 }

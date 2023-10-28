@@ -14,7 +14,6 @@
             */?> -->
         </div>
     </bouton>
-    <li><a <?php if ($active === 'Billet'){echo 'class=active';};?> href="/View/BilletList.php">Billet</a></li>
     <li style="float:right"><a <?php if ($active === 'about'){echo 'class=active';}?> href="/View/about.php">About</a></li>
     <?php
     //Vérifie si l'utilisateur est connecté et change les bouton du menu en fonction.
@@ -38,7 +37,6 @@
     <?php
     }
     ?>
-
     <form style="float:right" class="search" action="ResultatRecherche.php" method="post">
         <input type="text" id="searchInput" name="TexteRecherche" class="searchinput" placeholder="Recherche..." />
 <!--        <input type="submit" value="recherche" name="recherche">-->
