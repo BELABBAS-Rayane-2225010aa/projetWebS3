@@ -319,7 +319,7 @@ footer {
 
 
 .formBox input {
-    width: 95%;
+    width: calc(100% - 1em);
     padding: 1em;
     margin-bottom: 1em;
     border: 1px solid #cccccc;
@@ -349,8 +349,8 @@ footer {
     border-radius: 10px;
     margin-left: 10%;
     width: 80%;
-    border-color: #B5532BFF;
-    background-color: #edd6a0;
+    border-color: #ffffff;
+    background-color: #174370;
     margin-top: 5em;
     text-align: center;
 }
@@ -477,7 +477,7 @@ footer {
 #btnflexbillet:hover {
     background-color: #117883;
 }
-/* profil utilisateur public */
+/* profil utilisateur public et profil */
 
 #profilpub{
     max-width: 30%;
@@ -502,16 +502,47 @@ footer {
 #btnprofil {
     display: block;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
     border: none;
     background-color: #174370;
     color: #fff;
-    text-align: left;
+    text-align: center;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 4px;
     margin-bottom: 10px;
 }
 
 #btnprofil:hover {
+    background-color: #117883;
+}
+/* admin*/
+#adminbox {
+    max-width: 50%;
+    margin: 0 auto;
+    margin-top: 1%;
+    padding: 2%;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+#adminbox input, #adminbox textarea {
+    width: calc(100% - 1em);
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 1px solid #cccccc;
+    font-size: 1em;
+    box-sizing: border-box; /* Pour inclure la bordure et le padding dans la largeur */
+    resize: vertical;
+}
+
+#adminbox input[type="submit"] {
+    background-color: #174370;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#adminbox input[type="submit"]:hover {
     background-color: #117883;
 }
