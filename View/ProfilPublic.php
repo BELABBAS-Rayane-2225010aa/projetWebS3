@@ -23,26 +23,27 @@ $controller = new \App\Controller\ProfilController();
 $controller->BilletArrayPublic();
 $arrayBillet = $controller->getBilletArray();
 ?>
-    <section class="formBox">
-        <p>Pseudo : <?php echo $userClique->getPseudo()?></p>
-        <p>Date de création : <?php echo $userClique->getDateFirstCo()?></p><br>
+    <section id="profilpub">
+        <p id="misenformep">Pseudo : <?php echo $userClique->getPseudo()?></p>
+        <p id="misenformep">Date de création : <?php echo $userClique->getDateFirstCo()?></p><br>
         <form action="Billet.php" method="post" id="billetform">Billet écrit:</form>
-        <p><?php
+        <p id="misenformep"><?php
             if ($arrayBillet === []){
                 echo "Cette utilisateur n'a écrit aucun billet";
             }
             else {
                 for ($i = 0; $i < sizeof($arrayBillet) ; ++$i){
                     ?>
-                    <button value="<?php echo base64_encode(serialize($arrayBillet[$i]));?>" name="billetClique" form="billetform">
-                        <p><?php if (isset($arrayBillet[$i])){echo $arrayBillet[$i]->getTitle().",".$arrayBillet[$i]->getDate().", TODO : mettre les categories";}else{ echo 'erreur de chargement du billet';}?></p>
+                    <button id="btnprofil" value="<?php echo base64_encode(serialize($arrayBillet[$i]));?>" name="billetClique" form="billetform">
+                        <p id="paragraphe"><?php if (isset($arrayBillet[$i])){echo $arrayBillet[$i]->getTitle().",".$arrayBillet[$i]->getDate().", TODO : mettre les categories";}else{ echo 'erreur de chargement du billet';}?></p>
                     </button><br>
                     <?php
                 }
             }
             ?></p>
-        <p>Commentaire écrit:</p>
-        <p>-Commentaire1,Date1,Billet1
+        <p >Commentaire écrit:</p>
+        <p> -Commentaire1,Date1,Billet1
+            <br>
             -Commentaire1,Date1,Billet1</p><br>
     </section>
 <?php

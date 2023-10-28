@@ -5,10 +5,18 @@ require 'GestionPage.php';
 
 use App\Controller\ResultatRechercheController;
 
-$searchController = new ResultatRechercheController();?>
-<h1 >Resultat de recherche </h1>
-    <h2 >Billet</h2>
-        <ul>
+start_page('Recherche');//Charge la balise "head" avec le css, favicon et le nom de la page donner en parametre.
+?>
+<body>
+<?php
+$active = '';
+require 'HeaderMenu.php';//Charge le bar menu
+$searchController = new ResultatRechercheController();
+?>
+<section id="reche">
+<h1  id="misenforme1">Resultat de recherche </h1>
+    <h2  id="misenforme">Billet</h2>
+        <ul id="palier">
             <form action="Billet.php" method="post" id="billetform">
             <?php
             $searchController->getSearchBillet();
@@ -18,8 +26,8 @@ $searchController = new ResultatRechercheController();?>
                 for ($i = 0 ; $i < sizeof($searchedBillet) ; ++$i)
                 {
                 ?>
-                <button class="btn-flex" value="<?php echo base64_encode(serialize($searchedBillet[$i]));?>" name="billetClique" form="billetform">
-                    <span class="icone-btn">
+                <button id="btnflexbillet" value="<?php echo base64_encode(serialize($searchedBillet[$i]));?>" name="billetClique" form="billetform">
+                    <span id="icone-btn">
                     </span>
                     <p class="txt-btn"><?php if (isset($searchedBillet[$i])){echo $searchedBillet[$i]->getTitle();}else{ echo 'erreur de chargement du billet';}?></p>
                 </button>
@@ -30,8 +38,9 @@ $searchController = new ResultatRechercheController();?>
             </form>
 <!--            <li></li>-->
         </ul>
-<h2 >Commentaire</h2>
-        <ul>
+<h2 id="misenforme">Commentaire</h2>
+        <ul id="palier">
+            <form action="Billet.php" method="post" id="billetform">
             <?php
             $searchController->getSearchComment();
             if($searchController->getSearchedCommentArray() != null )
@@ -41,8 +50,8 @@ $searchController = new ResultatRechercheController();?>
                 {
                     ?>
 
-                    <button class="btn-flex" value="<?php echo base64_encode(serialize($searchedComment[$i]));?>" name="billetClique" form="billetform">
-                <span class="icone-btn">
+                    <button id="btnflexbillet" value="<?php echo base64_encode(serialize($searchedComment[$i]));?>" name="billetClique" form="billetform">
+                <span id="icone-btn">
                 </span>
                         <p class="txt-btn"><?php if (isset($searchedComment[$i])){echo $searchedComment[$i]->getLabel();}else{ echo 'erreur de chargement du commentaire';}?></p>
                     </button>
@@ -50,10 +59,12 @@ $searchController = new ResultatRechercheController();?>
                 }
             }
             ?>
+            </form>
 <!--            <li></li>-->
         </ul>
-<h2>Categorie</h2>
-        <ul>
+<h2  id="misenforme" >Categorie</h2>
+        <ul id="palier">
+            <form action="Billet.php" method="post" id="billetform">
             <?php
             $searchController->getSearchCat();
             if($searchController->getSearchedCatArray() != null )
@@ -63,8 +74,8 @@ $searchController = new ResultatRechercheController();?>
                 {
                     ?>
 
-                    <button class="btn-flex" value="<?php echo base64_encode(serialize($searchedCat[$i]));?>" name="billetClique" form="billetform">
-                <span class="icone-btn">
+                    <button id="btnflexbillet" value="<?php echo base64_encode(serialize($searchedCat[$i]));?>" name="billetClique" form="billetform">
+                <span id="icone-btn">
                 </span>
                         <p class="txt-btn"><?php if (isset($searchedCat[$i])){echo $searchedCat[$i]->getLabel();}else{ echo 'erreur de chargement de la categorie';}?></p>
                     </button>
@@ -72,11 +83,12 @@ $searchController = new ResultatRechercheController();?>
                 }
             }
             ?>
+            </form>
 <!--            <li></li>-->
         </ul>
-<h2>User</h2>
-        <ul>
-            <form class="util" id="connectedform" action="ProfilPublic.php" method="post">
+<h2  id="misenforme">User</h2>
+        <ul id="palier">
+
             <?php
             $searchController->getSearchUser();
             if($searchController->getSearchedUserArray() != null )
@@ -86,8 +98,8 @@ $searchController = new ResultatRechercheController();?>
                 {
                     ?>
 
-                    <button class="btn-flex" value="<?php echo base64_encode(serialize($searchedUser[$i]));?>" name="userClique" form="connectedform">
-                <span class="icone-btn">
+                    <button id="btnflexbillet" value="<?php echo base64_encode(serialize($searchedUser[$i]));?>" name="userClique" form="connectedform">
+                <span id="icone-btn">
                 </span>
                         <p class="txt-btn"><?php if (isset($searchedUser[$i])){echo $searchedUser[$i]->getPseudo();}else{ echo 'erreur de chargement du User';}?></p>
                     </button>
@@ -98,5 +110,6 @@ $searchController = new ResultatRechercheController();?>
             </form>
 <!--            <li></li>-->
         </ul>
+</section>
 
 

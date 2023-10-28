@@ -3,18 +3,13 @@
 </head>
 <ul class="menu"><!--Menu de haut de page qui est prèsent sur toute les page-->
     <li><a <?php if ($active === 'index'){echo 'class=active';};?> href="../index.php">Acceuil</a></li>
-    <bouton class="dropdown" > <i class="fa fa-caret-down"></i><a  class="dropbtn"  <?php if ($active === 'categorie'){echo 'class=active';};?>>Categorie</a>
+    <bouton class="dropdown" > <i class="fa fa-caret-down"></i><a  class="dropbtn"  <?php if ($active === 'categorie'){echo 'class=active';};?>>Categorie ▾</a>
         <div class="dropdown-content">
-           <!-- <?php/*
-            for ($i=0;$i<$nbcategorie;++$i){
-            */?>
-                <a href="#"><?php /*echo base64_encode(serialize($listCategorie[$i]));*/?></a>
-            <?php/*
-            }
-            */?> -->
+            <a href="#">lien 1</a>
+            <a href="#">lien 2</a>
+            <a href="#">lien 3</a>
         </div>
     </bouton>
-    <li><a <?php if ($active === 'Billet'){echo 'class=active';};?> href="/View/BilletList.php">Billet</a></li>
     <li style="float:right"><a <?php if ($active === 'about'){echo 'class=active';}?> href="/View/about.php">About</a></li>
     <?php
     //Vérifie si l'utilisateur est connecté et change les bouton du menu en fonction.
@@ -38,7 +33,6 @@
     <?php
     }
     ?>
-
     <form style="float:right" class="search" action="ResultatRecherche.php" method="post">
         <input type="text" id="searchInput" name="TexteRecherche" class="searchinput" placeholder="Recherche..." />
 <!--        <input type="submit" value="recherche" name="recherche">-->
