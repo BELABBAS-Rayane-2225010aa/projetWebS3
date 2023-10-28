@@ -8,8 +8,6 @@
  * @see \App\Controller\BilletController
  *
  * @version 1.0
- *
- * @todo : faire en sorte que récupérer l'id
  */
 
 namespace App\Model;
@@ -30,9 +28,6 @@ class Billet
      * @param int $categoryId => l'id de la Category rattaché au Billet
      *
      * @return void
-     *
-     * @todo : faire passer les attribut de public à private
-     * @todo : changer le nom des variable author_id et category_id en authorId et categoryId
      */
     public function __construct(private string $title,private string $msg,private string $date,
                                 private int $authorId,private int $categoryId){

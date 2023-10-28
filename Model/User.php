@@ -40,23 +40,6 @@ class User
     }
 
     /**
-     * Overload du constructeur
-     *
-     * @deprecated cette fonction n'est plus utilissé dans notre code
-     *
-     * @param string $password
-     * @param string $login
-     * @return self
-     *
-     * @return void
-     *
-     * @todo : vérifier l'utilisation de cette fonction et l'enlever au besoin
-     */
-    public static function loginUser (string $password , string $login):self {
-        return new self('',$password,'',$login,'','','');
-    }
-
-    /**
      * getter de l'attribut userId
      *
      * @return int

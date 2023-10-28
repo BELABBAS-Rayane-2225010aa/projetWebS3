@@ -9,8 +9,6 @@
  * @see \App\Controller\BilletController
  *
  * @version 0.5
- *
- * @todo : implémenter la récupération des billet par Id
  */
 
 namespace App\Repository;

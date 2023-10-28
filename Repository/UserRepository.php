@@ -11,13 +11,10 @@
  *
  * @version 0.9
  *
- * @todo : vérifier que tous marche comme il faut
- * @todo : modifier en corélation Model\User.php pour optimiser le code
+ * todo : faire en sorte que deux User ne puisse pas avoir la même pseudo
  */
 
 namespace App\Repository;
-
-require '../vendor/autoload.php';
 
 use App\Exception\{CannotCreateUserException,
     CannotDeleteUserException,
@@ -172,7 +169,6 @@ class UserRepository extends AbstractRepository
      */
     public function pseudoModifier(string $oldPseudo, string $newPseudo, string $password): User
     {
-        //TODO : vérifier si l'utilisateur n'essaie pas d'avoir le même pseudo qu'un tiers
         if ($oldPseudo == $newPseudo){
             throw new PseudoVerificationException("Same pseudo as the old one");
         }

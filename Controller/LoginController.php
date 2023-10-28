@@ -31,25 +31,23 @@ class LoginController
         try {
             $user = new UserRepository();
             $login = $user->login($pseudo , $password);
-            if ($pseudo === $login->getPseudo() && $password === $login->getPassword() ){
-                $session = new SetSession();
-                $session->setUserSession($login);
-                try {
-                    $connected = new UserConnectedRepository();
-                    $msg = $connected->logIn($login);
-                }
-                catch (CannotInsertConnectedException $ERROR){
-                    $msg = $ERROR->getMessage();
-                }
-                file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
+            $session = new SetSession();
+            $session->setUserSession($login);
+            try {
+                $connected = new UserConnectedRepository();
+                $msg = $connected->logIn($login);
             }
+            catch (CannotInsertConnectedException $ERROR){
+                $msg = $ERROR->getMessage();
+            }
+            file_put_contents('../Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         }
         catch (NotFoundException $ERROR){
-            file_put_contents('Log/tavernDeBill.log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            if (isset($GLOBALS['msgErreur'])){
-                unset($GLOBALS['msgErreur']);
-            }
-            $msgErreur = $ERROR->getMessage();
+            file_put_contents('../Log/tavernDeBill.log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            //if (isset($_SESSION['msgErreur'])){
+            //    unset($_SESSION['msgErreur']);
+            //}
+            //$_SESSION['msgErreur'] = $ERROR->getMessage();
         }
     }
 }

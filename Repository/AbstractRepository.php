@@ -10,9 +10,7 @@
  *
  * @see \App\Repository\Connexion
  *
- * @version 0.9
- *
- * @todo : vérifier quand le site est en ligne que la connexion est effective (si c'est bon passer en @version 1.0)
+ * @version 1.0
  */
 
 namespace App\Repository;
