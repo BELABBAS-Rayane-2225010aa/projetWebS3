@@ -3,8 +3,6 @@
 namespace App\Repository;
 
 use App\Exception\CannotDeleteConnectedException;
-use App\Exception\CannotFindConnectedException;
-use App\Exception\CannotInsertConnectedException;
 use App\Model\User;
 
 class UserConnectedRepository extends AbstractRepository
@@ -21,10 +19,6 @@ class UserConnectedRepository extends AbstractRepository
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['userId' => $userId]);
-
-        if ( $statement -> rowCount() === 0){
-            throw new CannotInsertConnectedException("USER : ".$user->getPseudo()." cannot be connected");
-        }
 
         return $user->getPseudo() ." is connected";
     }
