@@ -5,13 +5,9 @@
     <li><a <?php if ($active === 'index'){echo 'class=active';};?> href="../index.php">Acceuil</a></li>
     <bouton class="dropdown" > <i class="fa fa-caret-down"></i><a  class="dropbtn"  <?php if ($active === 'categorie'){echo 'class=active';};?>>Categorie</a>
         <div class="dropdown-content">
-           <!-- <?php/*
-            for ($i=0;$i<$nbcategorie;++$i){
-            */?>
-                <a href="#"><?php /*echo base64_encode(serialize($listCategorie[$i]));*/?></a>
-            <?php/*
-            }
-            */?> -->
+            <a href="#">lien 1</a>
+            <a href="#">lien 2</a>
+            <a href="#">lien 3</a>
         </div>
     </bouton>
     <li style="float:right"><a <?php if ($active === 'about'){echo 'class=active';}?> href="/View/about.php">About</a></li>
