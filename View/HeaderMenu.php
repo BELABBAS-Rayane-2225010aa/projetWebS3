@@ -12,15 +12,15 @@ $arrayCat = $homeController->getCatArray();
 </head>
 <ul class="menu"><!--Menu de haut de page qui est prèsent sur toute les page-->
     <li><a <?php if ($active === 'index'){echo 'class=active';};?> href="../index.php">Acceuil</a></li>
-    <bouton class="dropdown" > <i class="fa fa-caret-down"></i><a  class="dropbtn"  <?php if ($active === 'categorie'){echo 'class=active';};?>>Categorie ▾</a>
+    <bouton class="dropdown" ><a  class="dropbtn"  <?php if ($active === 'categorie'){echo 'class=active';};?>>Categorie ▾</a>
         <div class="dropdown-content">
             <form action="Category.php" method="post" id="catform"></form>
             <?php
             for ($i = 0 ; $i < sizeof($arrayCat) ; ++$i)
             {
             ?>
-                <button class="btn-flex" value="<?php echo base64_encode(serialize($arrayCat[$i]));?>" name="catClique" form="catform">
-                <span class="icone-btn">
+                <button id="deroulant" value="<?php echo base64_encode(serialize($arrayCat[$i]));?>" name="catClique" form="catform">
+                <span>
                 </span>
                     <p class="txt-btn"><?php if (isset($arrayCat[$i])){echo $arrayCat[$i]->getLabel();}else{ echo 'erreur de chargement du billet';}?></p>
                 </button>

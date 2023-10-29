@@ -41,6 +41,15 @@ body {
 
 }
 
+#deroulant {
+    display: flex;
+    flex-direction: column; /* Alignement vertical */
+    font-size: 7px;
+    margin-top: 5%;
+    background-color: #174370;
+    color: #ffffff;
+    transition: background-color 0.3s;
+}
 
 li {
     float: left;
