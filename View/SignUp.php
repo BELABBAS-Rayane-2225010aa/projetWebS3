@@ -17,9 +17,6 @@ require 'HeaderMenu.php' //Charge le bar menu ?>
         <label>e-mail :</label>
         <input name="email" id="email" type="email" />
             <br>
-        <label>Confirmer votre e-mail :</label>
-        <input name="email1" id="email1" type="email" />
-            <br>
         <label>Mot de passe :</label>
         <input name="password" type="password" />
 

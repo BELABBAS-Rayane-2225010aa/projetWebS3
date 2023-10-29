@@ -20,6 +20,7 @@ use App\Exception\{CannotCreateUserException,
     CannotDeleteUserException,
     CannotModify,
     EmailVerificationException,
+    EmptyFieldException,
     NotFoundException,
     PasswordVerificationException,
     PseudoVerificationException,
@@ -87,37 +88,40 @@ class UserRepository extends AbstractRepository
      * @param string $password1 => confirmation du password
      * @param string $pseudo => pseudo du User
      * @param string $email => le mail du User
-     * @param string $email1 => la confirmation du mail
      * @param string $dateFirstCo => la date de première connexion
      * @param string $dateLastCo => la date de dernière connexion qui sera = à la date de première connexion
      *
-     * @throws EmailVerificationException
+     * @throws EmptyFieldException
      * @throws PasswordVerificationException
      *
      * @return User => une instance de la class User créer pour l'occasion
      */
     public function signUp(string $password, string $password1,string $pseudo, string $email,
-                           string $email1, string $dateFirstCo, string $dateLastCo): User {
-        /* On vérifie si les confirmations de email et de password sont bon*/
-        if ($email != $email1){
-            throw new EmailVerificationException("Email différent");
+                           string $dateFirstCo, string $dateLastCo): User {
+        //On vérifie si une des information est vide
+        //TODO : trouvé une manière plus simple pour ce if
+        if ($password === "" || $password1 === "" || $pseudo === "" || $email === "" || $dateFirstCo === "" || $dateLastCo === ""){
+            throw new EmptyFieldException("Un champ de saisie est vide");
         }
 
+        //On vérifie si les confirmations de password sont bon
         if ($password != $password1){
             throw new PasswordVerificationException("Mot de passe différent");
         }
 
-        $query = 'INSERT INTO USER (MDP, PSEUDO, MAIL, DATE_PREM, DATE_DER,ISADMIN) VALUES (:password, :pseudo, :email, :dateFirstCo, :dateLastCo,0)';
+        //on insert dans la BD le nouvel utilisateur
+        $query = 'INSERT INTO USER (MDP, PSEUDO, MAIL, DATE_PREM, DATE_DER,ISADMIN,ISCONNECTED) VALUES (:password, :pseudo, :email, :dateFirstCo, :dateLastCo,0,0)';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['password' => $password, 'pseudo'=> $pseudo,
             'email' => $email, 'dateFirstCo' => $dateFirstCo, 'dateLastCo' => $dateLastCo]);
 
+        //Si la requête ne nous rend rien on dit que l'on peut pas insérer
         if ( $statement -> rowCount() === 0){
             throw new CannotCreateUserException("USER cannot be created");
         }
 
-        /* Aprés avoir créer l'utilisateur on le connecte*/
+        //Aprés avoir créer l'utilisateur on le connecte
         return $this->login($pseudo,$password);
     }
 
