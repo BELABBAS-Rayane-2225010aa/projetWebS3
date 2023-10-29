@@ -1,3 +1,12 @@
+<?php
+
+use App\Controller\HeaderMenuController;
+require '../vendor/autoload.php';
+
+$homeController = new HeaderMenuController();
+$homeController->getAllCat();
+$arrayCat = $homeController->getCatArray();
+?>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -5,9 +14,20 @@
     <li><a <?php if ($active === 'index'){echo 'class=active';};?> href="../index.php">Acceuil</a></li>
     <bouton class="dropdown" > <i class="fa fa-caret-down"></i><a  class="dropbtn"  <?php if ($active === 'categorie'){echo 'class=active';};?>>Categorie ▾</a>
         <div class="dropdown-content">
-            <a href="#">lien 1</a>
-            <a href="#">lien 2</a>
-            <a href="#">lien 3</a>
+            <form action="Category.php" method="post" id="catform"></form>
+            <?php
+            for ($i = 0 ; $i < sizeof($arrayCat) ; ++$i)
+            {
+            ?>
+                <button class="btn-flex" value="<?php echo base64_encode(serialize($arrayCat[$i]));?>" name="catClique" form="catform">
+                <span class="icone-btn">
+                </span>
+                    <p class="txt-btn"><?php if (isset($arrayCat[$i])){echo $arrayCat[$i]->getLabel();}else{ echo 'erreur de chargement du billet';}?></p>
+                </button>
+<!--            <a href="Category.php">--><?php //echo $arrayCat[$i]["LABEL"]?><!--</a>-->
+            <?php
+            }
+            ?>
         </div>
     </bouton>
     <li style="float:right"><a <?php if ($active === 'about'){echo 'class=active';}?> href="/View/about.php">About</a></li>

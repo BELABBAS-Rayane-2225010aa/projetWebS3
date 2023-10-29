@@ -72,7 +72,7 @@ class UserRepository extends AbstractRepository
        $user = $statement->fetch();
 
        return new User($user['USER_ID'],$user['MDP'],$user["PSEUDO"],$user['MAIL'],$user['DATE_PREM'],$user['DATE_DER'],$user['ISADMIN']);
-       //return User::loginUser($user['MDP'], $user['PSEUDO']);
+
     }
 
     /**
@@ -305,5 +305,17 @@ class UserRepository extends AbstractRepository
         }
 
         return $arrayUser;
+    }
+    public function pseudoFromAuteurID ($id) :User {
+        $query = 'SELECT DISTINCT * FROM USER , BILLET WHERE USER.USER_ID = BILLET.USER_ID AND USER.USER_ID = :id';
+        $statement = $this->connexion->prepare(
+            $query);
+        $statement ->execute(['id'=>$id]);
+        if ($statement->rowCount()===0){
+            throw new NotFoundException('Pas d\'autheur');
+        }
+        $user = $statement->fetch();
+
+        return new User($user['USER_ID'],$user['MDP'],$user["PSEUDO"],$user['MAIL'],$user['DATE_PREM'],$user['DATE_DER'],$user['ISADMIN']);
     }
 }

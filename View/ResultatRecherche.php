@@ -73,7 +73,6 @@ $searchController = new ResultatRechercheController();
                 for ($i = 0 ; $i < sizeof($searchedCat) ; ++$i)
                 {
                     ?>
-
                     <button id="btnflexbillet" value="<?php echo base64_encode(serialize($searchedCat[$i]));?>" name="billetClique" form="billetform">
                 <span id="icone-btn">
                 </span>

@@ -189,12 +189,13 @@ class BilletRepository extends AbstractRepository
         return $arrayBillet;
     }
 
-    public function updateBillet($oldTitle,$title,$msg,$dateBillet,$authorId,$categoryId) : void {
+    public function updateBillet($oldTitle,$title,$msg,$dateBillet,$authorId,$categoryId) : void
+    {
         $query = 'UPDATE BILLET SET TITRE = :title, MSG = :msg, DATE_BILLET = :date, USER_ID = :authorID, CAT_ID = :catID WHERE TITRE = :oldTitle';
-        $statement = $this->connexion -> prepare(
-            $query );
-        $statement->execute(['title' => $title,'msg' => $msg,'date' => $dateBillet, 'authorID' => $authorId, 'catID' => $categoryId, 'oldTitle' => $oldTitle]);
-        if ($statement -> rowCount() === 0 ){
+        $statement = $this->connexion->prepare(
+            $query);
+        $statement->execute(['title' => $title, 'msg' => $msg, 'date' => $dateBillet, 'authorID' => $authorId, 'catID' => $categoryId, 'oldTitle' => $oldTitle]);
+        if ($statement->rowCount() === 0) {
             throw new CannotFindBilletException("No Billet find");
         }
     }
