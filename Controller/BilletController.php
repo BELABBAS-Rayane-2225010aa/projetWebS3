@@ -7,6 +7,7 @@ use App\Exception\NotFoundException;
 use App\Model\Billet;
 use App\Repository\BilletRepository;
 use App\Model\User;
+use App\Repository\UserRepository;
 
 class BilletController
 {
@@ -44,5 +45,16 @@ class BilletController
 
     public function getBillet() : Billet{
         return $this->billet;
+    }
+
+    public function getPseudoFromAuteurID() : void{
+        $authorID = $_POST['authorID'];
+        try{
+            $billet = new UserRepository();
+            $billet->pseudoFromAuteurID($authorID);
+        }
+        catch (NotFoundException $e){
+            file_put_contents('../Log/tavernDeBill.log',$e->getMessage()."\n",FILE_APPEND | LOCK_EX);
+        }
     }
 }

@@ -18,9 +18,9 @@ require 'HeaderMenu.php';
 $categoryRepository = new CategoryRepository();
 $arrayCat = $categoryRepository->getCat();
 ?>
-    <section class="formBox">
+    <section id="adminbox">
         <form action="../index.php" method="post">
-            <strong> Nouveau Post </strong>
+            <h2 id="login"> Nouveau Post </h2>
             <br>
             <label for="title">Titre :</label>
             <input name="title" id="title" type="text" />

@@ -82,13 +82,44 @@ class CategoryRepository extends AbstractRepository
             throw new NotFoundException('Aucune categorie trouvé pour '.$q.' .');
         }
         $arraySQL = $statement->fetchAll();
-        $arrayUser = array();
+        $arrayCat = array();
 
         for ($i = 0; $i < sizeof($arraySQL); $i++) {
-            $user = new Category($arraySQL[$i]['LABEL'], $arraySQL[$i]['DESCRIPTION']);
-            $arrayUser[] = $user;
+            $cat = new Category($arraySQL[$i]['LABEL'], $arraySQL[$i]['DESCRIPTION']);
+            $arrayCat[] = $cat;
         }
 
-        return $arrayUser;
+        return $arrayCat;
+    }
+
+    public function labelFromCatID ($id) :Category {
+        $query = 'SELECT DISTINCT * FROM CATEGORIE , BILLET WHERE CATEGORIE.CAT_ID = BILLET.CAT_ID AND CATEGORIE.CAT_ID = :id';
+        $statement = $this->connexion->prepare(
+            $query);
+        $statement ->execute(['id'=>$id]);
+        if ($statement->rowCount()===0){
+            throw new NotFoundException('Categorie introuvable');
+        }
+        $cat = $statement->fetch();
+
+        return new Category($cat['LABEL'],$cat['DESCRIPTION']);
+    }
+
+    public function getCategorieInstance() : array{
+        $query = 'SELECT * FROM CATEGORIE';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute();
+        if ( $statement -> rowCount() === 0){
+            throw new NotFoundException("Category not found");
+        }
+        $arraySQL = $statement->fetchAll();
+        $arrayCat = array();
+
+        for ($i = 0; $i < sizeof($arraySQL); $i++) {
+            $cat = new Category($arraySQL[$i]['LABEL'], $arraySQL[$i]['DESCRIPTION']);
+            $arrayCat[] = $cat;
+        }
+        return $arrayCat;
     }
 }

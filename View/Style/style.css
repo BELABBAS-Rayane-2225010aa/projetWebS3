@@ -27,7 +27,19 @@ body {
     box-sizing: border-box;
     top: 0;
 }
+#deroulant {
+    display: flex;
+    flex-direction: column; /* Alignement vertical */
+    font-size: 7px;
+    margin-top: 5%;
+    background-color: #174370;
+    color: #ffffff;
+    transition: background-color 0.3s;
+}
 
+#deroulant:hover {
+    background-color: #117883;
+}
 li {
     float: left;
 }
@@ -273,7 +285,7 @@ footer {
 }
 
 /*login*/
-.formlog {
+#formlog {
     max-width: 20%;
     margin: 0 auto;
     margin-top: 1%;
@@ -282,18 +294,21 @@ footer {
     border-radius: 8px;
 }
 
-.formlog input {
-    width: 95%;
+#formlog input {
+    width: calc(100%);
     padding: 1em;
     margin-bottom: 1em;
     border: 1px solid #cccccc;
+    font-size: 1em;
+    box-sizing: border-box; /* Pour inclure la bordure et le padding dans la largeur */
+    resize: vertical;
 
 }
 #login {
     text-align: center;
 }
 /*Couleur de signin/up */
-.formlog input[type="submit"] {
+#formlog input[type="submit"] {
     background-color: #174370;
     color: white;
     border: none;
@@ -302,32 +317,30 @@ footer {
 }
 
 /*Des que l on passe la souris dessus l input signup/in sa change de couleur */
-.formlog input[type="submit"]:hover {
+#formlog input[type="submit"]:hover {
     background-color: #117883;
 }
 
 /* inscription */
-.formBox {
+#formBox {
     max-width: 30%;
-    margin: 0 auto;
-    margin-top: 1%;
-    padding: 1%;
+    margin: 2% auto;
+    padding: 2%;
     background-color: #ffffff;
     border-radius: 8px;
 }
 
 
-
-.formBox input {
-    width: calc(100% - 1em);
+#formBox input{
+    width: calc(100%);
     padding: 1em;
     margin-bottom: 1em;
     border: 1px solid #cccccc;
     font-size: 1em;
+    box-sizing: border-box; /* Pour inclure la bordure et le padding dans la largeur */
 }
 
-/*Couleur de signin/up */
-.formBox input[type="submit"] {
+#formBox input[type="submit"] {
     background-color: #174370;
     color: white;
     border: none;
@@ -335,10 +348,10 @@ footer {
     cursor: pointer;
 }
 
-/*Des que l on passe la souris dessus l input signup/in sa change de couleur */
-.formBox input[type="submit"]:hover {
+#formBox input[type="submit"]:hover {
     background-color: #117883;
 }
+
 
 /*page 404 */
 .image404{
@@ -526,7 +539,7 @@ footer {
 }
 
 #adminbox input, #adminbox textarea {
-    width: calc(100% - 1em);
+    width: calc(100%);
     padding: 1em;
     margin-bottom: 1em;
     border: 1px solid #cccccc;

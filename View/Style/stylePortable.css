@@ -41,6 +41,15 @@ body {
 
 }
 
+#deroulant {
+    display: flex;
+    flex-direction: column; /* Alignement vertical */
+    font-size: 7px;
+    margin-top: 5%;
+    background-color: #174370;
+    color: #ffffff;
+    transition: background-color 0.3s;
+}
 
 li {
     float: left;
@@ -301,28 +310,30 @@ footer {
     margin: 1em;
 }
 
-/*login*/
-.formlog {
+#formlog {
     max-width: 40%;
     margin: 0 auto;
-    margin-top: 6%;
-    padding: 3%;
+    margin-top: 1%;
+    padding: 2%;
     background-color: #ffffff;
     border-radius: 8px;
 }
 
-.formlog input {
-    width: 95%;
+#formlog input {
+    width: calc(100%);
     padding: 1em;
     margin-bottom: 1em;
     border: 1px solid #cccccc;
+    font-size: 1em;
+    box-sizing: border-box; /* Pour inclure la bordure et le padding dans la largeur */
+    resize: vertical;
 
 }
 #login {
     text-align: center;
 }
 /*Couleur de signin/up */
-.formlog input[type="submit"] {
+#formlog input[type="submit"] {
     background-color: #174370;
     color: white;
     border: none;
@@ -331,46 +342,42 @@ footer {
 }
 
 /*Des que l on passe la souris dessus l input signup/in sa change de couleur */
-.formlog input[type="submit"]:hover {
+#formlog input[type="submit"]:hover {
     background-color: #117883;
 }
 
 /* inscription */
-.formBox {
-    max-width: 40%;
+#formBox {
+    max-width: 70%;
     margin: 0 auto;
-    margin-top: 6%;
-    padding: 3%;
+    margin-top: 1%;
+    padding: 2%;
     background-color: #ffffff;
     border-radius: 8px;
+}
 
-}
-#login{
-    text-align: center;
-}
-/*design du formbox*/
-.formBox input {
-    width: 95%;
-    padding: 10px;
-    margin-bottom: 15px;
+
+#formBox input{
+    width: calc(100%);
+    padding: 1em;
+    margin-bottom: 1em;
     border: 1px solid #cccccc;
-    font-size: 16px;
+    font-size: 1em;
+    box-sizing: border-box; /* Pour inclure la bordure et le padding dans la largeur */
 }
 
-/*Couleur de signin/up */
-.formBox input[type="submit"] {
+#formBox input[type="submit"] {
     background-color: #174370;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 18px;
 }
 
-/*Des que l on passe la souris dessus l input signup/in sa change de couleur */
-.formBox input[type="submit"]:hover {
+#formBox input[type="submit"]:hover {
     background-color: #117883;
 }
+
 
 .image404{
     max-width: 50%;
@@ -571,7 +578,7 @@ td{
 }
 
 #adminbox input, #adminbox textarea {
-    width: calc(100% - 1em);
+    width: calc(100%);
     padding: 1em;
     margin-bottom: 1em;
     border: 1px solid #cccccc;
