@@ -60,11 +60,13 @@ class UserRepository extends AbstractRepository
      */
     public function login(string $pseudo , string $password) : User
     {
+        //on select toute le User avec le même pseudo et password
        $query = 'SELECT * FROM USER WHERE PSEUDO = :pseudo and MDP = :password';
        $statement = $this->connexion -> prepare(
             $query );
        $statement->execute(['pseudo' => $pseudo , 'password' => $password]);
 
+       //Si la fonction ne rend rien cela veut dire qu'il n'y a pas de User correspondant
        if ( $statement -> rowCount() === 0 ){
            throw new NotFoundException("USER not Found");
        }

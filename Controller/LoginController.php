@@ -46,6 +46,8 @@ class LoginController
         catch (NotFoundException $ERROR){
             $msg = $ERROR->getMessage();
         }
+
+        //on fais un retour d'erreur ou de réussite
         file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         if (isset($_SESSION['msg'])){
             unset($_SESSION['msg']);
