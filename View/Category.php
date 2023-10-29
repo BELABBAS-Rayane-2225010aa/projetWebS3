@@ -19,6 +19,7 @@ if (!$catClique instanceof \App\Model\Category) {
 ?>
 <section class="section-flex">
     <form action="" method="post" id=""></form>
+
         <button class="btnBillet" value="categorie" name="categoryClick" form="">
                 <span class="icone-btn">
                 </span>
