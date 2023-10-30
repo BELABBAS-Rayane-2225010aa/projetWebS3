@@ -64,7 +64,7 @@ $searchController = new ResultatRechercheController();
         </ul>
 <h2  id="misenforme" >Categorie</h2>
         <ul id="palier">
-            <form action="Billet.php" method="post" id="billetform">
+            <form action="Category.php" method="post" id="catform">
             <?php
             $searchController->getSearchCat();
             if($searchController->getSearchedCatArray() != null )
@@ -73,7 +73,7 @@ $searchController = new ResultatRechercheController();
                 for ($i = 0 ; $i < sizeof($searchedCat) ; ++$i)
                 {
                     ?>
-                    <button id="btnflexbillet" value="<?php echo base64_encode(serialize($searchedCat[$i]));?>" name="billetClique" form="billetform">
+                    <button id="btnflexbillet" value="<?php echo base64_encode(serialize($searchedCat[$i]));?>" name="catClique" form="catform">
                 <span id="icone-btn">
                 </span>
                         <p class="txt-btn"><?php if (isset($searchedCat[$i])){echo $searchedCat[$i]->getLabel();}else{ echo 'erreur de chargement de la categorie';}?></p>
@@ -87,7 +87,7 @@ $searchController = new ResultatRechercheController();
         </ul>
 <h2  id="misenforme">User</h2>
         <ul id="palier">
-            <form action="Billet.php" method="post" id="billetform">
+            <form action="ProfilPublic.php" method="post" id="connectedform">
             <?php
             $searchController->getSearchUser();
             if($searchController->getSearchedUserArray() != null )

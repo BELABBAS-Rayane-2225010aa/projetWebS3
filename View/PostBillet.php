@@ -16,7 +16,7 @@ start_page('Crée un poste');
 $active = '';
 require 'HeaderMenu.php';
 $categoryRepository = new CategoryRepository();
-$arrayCat = $categoryRepository->getCat();
+$arrayCat = $categoryRepository->getCategorieInstance();
 ?>
     <section id="adminbox">
         <form action="../index.php" method="post">
@@ -30,7 +30,7 @@ $arrayCat = $categoryRepository->getCat();
                 for ($i = 0 ; $i < sizeof($arrayCat) ; ++$i)
                 {
                 ?>
-                    <option value="<?php echo $arrayCat[$i]["CAT_ID"] ?>"><?php echo $arrayCat[$i]["LABEL"] ?></option>
+                    <option value="<?php echo $arrayCat[$i]->getCatID() ?>"><?php echo $arrayCat[$i]->getLabel() ?></option>
                 <?php
                 }
                 ?>
