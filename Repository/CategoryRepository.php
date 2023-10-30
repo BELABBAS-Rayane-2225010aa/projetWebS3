@@ -39,6 +39,16 @@ class CategoryRepository extends AbstractRepository
     }
 
     public function deleteCat(string $label) : string {
+        //On doit gerer les billet de cette categorie
+        $catId = $this->CatIDFromLabel($label);
+
+        $query = 'UPDATE BILLET SET CAT_ID = 3 WHERE CAT_ID = :oldId';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['oldId' => $catId]);
+
+
+
         $query = 'DELETE FROM CATEGORIE WHERE LABEL = :label';
         $statement = $this->connexion -> prepare(
             $query );
@@ -103,6 +113,19 @@ class CategoryRepository extends AbstractRepository
         $cat = $statement->fetch();
 
         return new Category($cat['LABEL'],$cat['DESCRIPTION']);
+    }
+
+    public function catIDFromLabel ($label) : int {
+        $query = 'SELECT DISTINCT * FROM CATEGORIE WHERE LABEL = :label';
+        $statement = $this->connexion->prepare(
+            $query);
+        $statement ->execute(['label' => $label]);
+        if ($statement->rowCount()===0){
+            throw new NotFoundException('Categorie introuvable');
+        }
+        $cat = $statement->fetch();
+
+        return $cat['CAT_ID'];
     }
 
     public function getCategorieInstance() : array{

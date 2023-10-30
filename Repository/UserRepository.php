@@ -238,10 +238,10 @@ class UserRepository extends AbstractRepository
     public function deleteUs(int $userId) : string
     {
         if ($this->isAdmin($userId) === false) {
-            $query = 'DELETE FROM USER WHERE USER_ID = :userId';
+            $query = 'UPDATE USER SET PSEUDO = :DeletedUser, MDP = :mdp WHERE USER_ID = :userId';
             $statement = $this->connexion->prepare(
                 $query);
-            $statement->execute(['userId' => $userId]);
+            $statement->execute(['DeletedUser' => "DeletedUser",'mdp' => "deleted",'userId' => $userId]);
 
             if ($statement->rowCount() === 0) {
                 throw new CannotDeleteUserException("USER number " . $userId . " cannot be deleted");
