@@ -122,10 +122,15 @@ class AdminController
     public function deleteUser() : void {
         //on recupere les donnees du formulaire
         $userId = $_POST['userId'];
+        if(isset($_POST['deleteEvenAdmin'])){
+            $deleteEvenAdmin = true;
+        } else {
+            $deleteEvenAdmin = false;
+        }
 
         try {
             $user = new UserRepository();
-            $msg = $user->deleteUs($userId);
+            $msg = $user->deleteUs($userId,$deleteEvenAdmin);
         }
 
         //on catch si on ne peut pas supprimer
