@@ -29,9 +29,21 @@ class Billet
      *
      * @return void
      */
-    public function __construct(private string $title,private string $msg,private string $date,
+    public function __construct (private int $billetId, private string $title,
+                                 private string $msg,private string $date,
                                 private int $authorId,private int $categoryId){
     }
+
+    /**
+     * getter de l'attibut title
+     *
+     * @return int
+     */
+    public function getBilletId(): int
+    {
+        return $this->billetId;
+    }
+
 
     /**
      * getter de l'attibut title
