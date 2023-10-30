@@ -89,6 +89,7 @@ li.dropdown {
     background-color: inherit;
     font-family: inherit;
     margin: 0;
+
 }
 
 .dropdown-content {
@@ -97,6 +98,7 @@ li.dropdown {
     background-color: #174370;
     z-index: 1;
     backdrop-filter: none;
+    margin-top: 5%;
 }
 
 .dropdown-content a {
