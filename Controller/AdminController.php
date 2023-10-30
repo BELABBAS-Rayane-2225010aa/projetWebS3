@@ -14,12 +14,12 @@
  * @see \App\Repository\BilletRepository
  * @see \App\Repository\CommentRepository
  *
- * @version 1.0
+ * @version 0.9
+ *
+ * @todo : verifier l'utilité des exceptions
  */
 
 namespace App\Controller;
-
-require '../vendor/autoload.php';
 
 use App\Exception\CannotCreateCatException;
 use App\Exception\CannotDeleteBilletException;
@@ -54,17 +54,21 @@ class AdminController
      * stocke dans une variable de session un msg d'erreur ou de reussite
      */
     public function createCategory() : void {
+        //on recupere les donnees du formulaire
         $name = $_POST['newCatName'];
         $desc = $_POST['catDesc'];
+
         try {
             $cat = new CategoryRepository();
             $msg = $cat->createCat($name,$desc);
         }
 
+        //on catch si on ne peut pas créer ou si la Category existe déjà
         catch (CannotCreateCatException | CatAlreadyExistException $ERROR){
             $msg = $ERROR->getMessage();
         }
 
+        //on envoie un message à l'admin en cas de reussite ou d'erreur
         file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         if (isset($_SESSION['msg'])){
             unset($_SESSION['msg']);
@@ -83,15 +87,20 @@ class AdminController
      * stocke dans une variable de session un msg d'erreur ou de reussite
      */
     public function deleteCategory() : void {
+        //on recupere les donnees du formulaire
         $name = $_POST['catName'];
+
         try {
             $cat = new CategoryRepository();
             $msg = $cat->deleteCat($name);
         }
+
+        //on catch si on ne peut pas supprimer
         catch (CannotDeleteCatException $ERROR){
             $msg = $ERROR->getMessage();
         }
 
+        //on envoie un message à l'admin en cas de reussite ou d'erreur
         file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         if (isset($_SESSION['msg'])){
             unset($_SESSION['msg']);
@@ -111,15 +120,25 @@ class AdminController
      * stocke dans une variable de session un msg d'erreur ou de reussite
      */
     public function deleteUser() : void {
+        //on recupere les donnees du formulaire
         $userId = $_POST['userId'];
+        if(isset($_POST['deleteEvenAdmin'])){
+            $deleteEvenAdmin = true;
+        } else {
+            $deleteEvenAdmin = false;
+        }
+
         try {
             $user = new UserRepository();
-            $msg = $user->deleteUs($userId);
+            $msg = $user->deleteUs($userId,$deleteEvenAdmin);
         }
+
+        //on catch si on ne peut pas supprimer
         catch (CannotDeleteUserException | UserIsAdminException $ERROR){
             $msg = $ERROR->getMessage();
         }
 
+        //on envoie un message à l'admin en cas de reussite ou d'erreur
         file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         if (isset($_SESSION['msg'])){
             unset($_SESSION['msg']);
@@ -138,15 +157,20 @@ class AdminController
      * stocke dans une variable de session un msg d'erreur ou de reussite
      */
     public function deleteBillet() : void {
+        //on recupere les donnees du formulaire
         $billetId = $_POST['billetId'];
+
         try {
             $user = new BilletRepository();
             $msg = $user->deleteBillet($billetId);
         }
+
+        //on catch si on ne peut pas supprimer
         catch (CannotDeleteBilletException $ERROR){
             $msg = $ERROR->getMessage();
         }
 
+        //on envoie un message à l'admin en cas de reussite ou d'erreur
         file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         if (isset($_SESSION['msg'])){
             unset($_SESSION['msg']);
@@ -160,23 +184,30 @@ class AdminController
      * @catch CannotDeleteCommentException
      *
      * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
+     * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
      *
      * @return void
-     *
-     * @deprecated cette fonction n'est ni utilisé ni dans le bon format
-     *
-     * @todo : faire fonctionner la fonction
      */
     public function deleteComment() : void {
+        //on recupere les donnees du formulaire
         $commentId = $_POST['commentId'];
+
         try {
             $user = new CommentRepository();
-            $user->delComment($commentId);
+            $msg = $user->delComment($commentId);
         }
+
+        //on catch si on ne peut pas supprimer
         catch (CannotDeleteCommentException $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
+            $msg = $ERROR->getMessage();
         }
+
+        //on envoie un message à l'admin en cas de reussite ou d'erreur
+        file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
+        if (isset($_SESSION['msg'])){
+            unset($_SESSION['msg']);
+        }
+        $_SESSION['msg'] = $msg;
     }
 
     /**
@@ -190,16 +221,21 @@ class AdminController
      * @return void
      * stocke dans une variable de session un msg d'erreur ou de reussite
      */
-    public function MakeAdmin() : void {
+    public function makeAdmin() : void {
+        //on recupere les donnees du formulaire
         $userId = $_POST['userIdAdmin'];
+
         try {
             $user = new UserRepository();
             $msg = $user->makeAdmin($userId);
         }
+
+        //on catch si on ne peut pas modifier ou si il s'agit d'un admin
         catch (CannotModify | UserIsAdminException $ERROR){
             $msg = $ERROR->getMessage();
         }
 
+        //on envoie un message à l'admin en cas de reussite ou d'erreur
         file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         if (isset($_SESSION['msg'])){
             unset($_SESSION['msg']);

@@ -6,7 +6,7 @@
  *
  * @author Crespin Alexandre
  *
- * @see \App\Controller\BilletController
+ * @see \App\Controller\PostBilletController
  *
  * @version 0.5
  */
@@ -73,32 +73,6 @@ class BilletRepository extends AbstractRepository
     }
 
     /**
-     * Récupére le Billet dans la BD qui a le même Id
-     *
-     * @deprecated pas utilisé dans le cadre de la page Billet
-     *
-     * @param $id => l'id du billet rechercher
-     *
-     * @throws NotFoundException
-     *
-     * @return Billet => un Billet créer a partir des informations de la BD
-     *
-     * @todo : implémenter cette fonction pour clarifier le code de la page Billet
-     */
-    public function getBillet($id) : Billet
-    {
-        $query = 'SELECT * FROM BILLET WHERE BILLET_ID = :id';
-        $statement = $this->connexion ->prepare(
-            $query );
-        $statement->execute(['id' => $id]);
-        if ( $statement -> rowCount() === 0 ){
-            throw new NotFoundException("BILLET not Found");
-        }
-        $billet = $statement->fetch();
-        return new Billet($billet['BILLET_ID'],$billet['TITRE'],$billet['MSG'],$billet['DATE_BILLET'],$billet['USER_ID'],$billet['CAT_ID']);
-    }
-
-    /**
      * Suppression d'un Billet
      *
      * Cette fonction permet de supprimer un Billet de la base de donnée
@@ -109,6 +83,11 @@ class BilletRepository extends AbstractRepository
      * @return string
      */
     public function deleteBillet(int $id) : string {
+        $query = 'DELETE FROM COMMENT WHERE BILLET_ID = :id';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['id' => $id]);
+
         $query = 'DELETE FROM BILLET WHERE BILLET_ID = :id';
         $statement = $this->connexion -> prepare(
             $query );
@@ -141,7 +120,7 @@ class BilletRepository extends AbstractRepository
         return $arrayBillet;
     }
 
-    public function createBillet($title,$msg,$dateBillet,$authorId,$categoryId) : void{
+    public function createBillet($title,$msg,$dateBillet,$authorId,$categoryId) : string {
         $query = 'INSERT INTO BILLET (TITRE, MSG, DATE_BILLET, USER_ID, CAT_ID) VALUES (:title, :msg, :date_billet, :authorId, :categoryId)';
         $statement = $this->connexion -> prepare(
             $query );
@@ -149,6 +128,8 @@ class BilletRepository extends AbstractRepository
         if ($statement -> rowCount() === 0 ){
             throw new CannotCreateBilletException("Billet cannot be created");
         }
+
+        return "Billet créer";
     }
 
     public function getBilletArrayByAuthor(int $authorId) : array {
@@ -175,7 +156,7 @@ class BilletRepository extends AbstractRepository
         return $arrayBillet;
     }
 
-    public function updateBillet($oldTitle,$title,$msg,$dateBillet,$authorId,$categoryId) : void
+    public function updateBillet($oldTitle,$title,$msg,$dateBillet,$authorId,$categoryId) : string
     {
         $query = 'UPDATE BILLET SET TITRE = :title, MSG = :msg, DATE_BILLET = :date, USER_ID = :authorID, CAT_ID = :catID WHERE TITRE = :oldTitle';
         $statement = $this->connexion->prepare(
@@ -184,6 +165,8 @@ class BilletRepository extends AbstractRepository
         if ($statement->rowCount() === 0) {
             throw new CannotFindBilletException("No Billet find");
         }
+
+        return "Billet modifier";
     }
 
     public function arrayBilletByCatID($id) : array {

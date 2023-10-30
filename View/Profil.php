@@ -41,6 +41,7 @@ $arrayBillet = $controller->getBilletArray();
             <br>
             -Commentaire1,Date1,Billet1</p><br>
         <button id="btnprofil" onclick="window.location.href='PasswordModifier.php';">Changer le mdp</button>
+        <button id="btnprofil" onclick="if (confirm('Etes-vous sûr de vouloir supprimer votre compte ?')) {window.location.href='DeleteProfil.php'}">Supprimer le compte</button>
     </section>
 <?php
 end_page();

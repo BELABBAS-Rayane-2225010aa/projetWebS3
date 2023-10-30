@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-require 'vendor/autoload.php';
-
 use App\Exception\CannotModify;
 use App\Exception\EmailVerificationException;
 use App\Repository\UserRepository;

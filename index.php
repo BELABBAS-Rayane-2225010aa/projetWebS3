@@ -13,7 +13,7 @@ session_start();
 require 'vendor/autoload.php';
 
 use App\Controller\AdminController;
-use App\Controller\BilletController;
+use App\Controller\PostBilletController;
 use App\Controller\BilletModifierController;
 use App\Controller\EmailModifierController;
 use App\Controller\LoginController;
@@ -38,12 +38,6 @@ if (isset($_POST['SignUp'])) {
     if (isset($_SESSION['msg'])){
         header('Location: View/SignUp.php');
     }
-}
-
-if (isset($_GET['billet_id'])) {
-    $controller = new BilletController();
-    $controller->showBillet();
-    $billet = $controller->getBillet();
 }
 
 if(isset($_POST['PasswordModif'])) {
@@ -91,6 +85,7 @@ if (isset($_POST['DelBillet'])) {
 if (isset($_POST['DelComment'])) {
     $controller = new AdminController();
     $controller->deleteComment();
+    header('Location: View/AdminPage.php');
 }
 
 if (isset($_POST['MakeAdmin'])) {
@@ -100,7 +95,7 @@ if (isset($_POST['MakeAdmin'])) {
 }
 
 if (isset($_POST['createPost'])) {
-    $controller = new BilletController();
+    $controller = new PostBilletController();
     $controller->getNewBillet();
 }
 

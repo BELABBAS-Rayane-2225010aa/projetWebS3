@@ -7,7 +7,7 @@
  * @see \App\Repository\UserRepository
  * @see \App\Controller\LoginController
  * @see \App\Controller\SignUpController
- * @see \App\Controller\BilletController
+ * @see \App\Controller\PostBilletController
  *
  * @version 0.9
  *

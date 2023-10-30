@@ -474,6 +474,8 @@ td{
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
+    border-radius: 10px;
+
 }
 
 #connectedform button:hover {
@@ -599,4 +601,10 @@ td{
 
 #adminbox input[type="submit"]:hover {
     background-color: #117883;
+}
+.btnBilletCategory{
+    background-color: #174370;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
 }
