@@ -24,9 +24,9 @@ $billetByCatID = new BilletRepository();
 $billet = $billetByCatID->arrayBilletByCatID($catClique->getCatID());
 ?>
 <section class="misenforme">
-    <form action="" method="post" id=""></form>
+    <form action="" method="post" id="reche">
 
-        <button class="btnBillet" value="categorie" name="categoryClick" form="">
+        <button class="misenforme" value="categorie" name="categoryClick" form="">
                 <span class="icone-btn">
                 </span>
             <p class="txt-btn">Les Billet Présent Dans la Catégorie : "<?php echo $catClique->getLabel() ?>"</p>
@@ -39,7 +39,7 @@ $billet = $billetByCatID->arrayBilletByCatID($catClique->getCatID());
             for ($i = 0 ; $i < sizeof($billet) ; ++$i)
             {
                 ?>
-                <button class="btn-flex" value="<?php echo base64_encode(serialize($billet[$i]));?>" name="billetClique" form="billetform">
+                <button class="btnBilletCategory" value="<?php echo base64_encode(serialize($billet[$i]));?>" name="billetClique" form="billetform">
                 <span class="icone-btn">
                 </span>
                     <p class="txt-btn"><?php if (isset($billet[$i])){echo $billet[$i]->getTitle();}else{ echo 'erreur de chargement du billet';}?></p>
@@ -52,6 +52,7 @@ $billet = $billetByCatID->arrayBilletByCatID($catClique->getCatID());
             ?>
             </p>
         </button>
+    </form>
 </section>
 <?php
 end_page();
