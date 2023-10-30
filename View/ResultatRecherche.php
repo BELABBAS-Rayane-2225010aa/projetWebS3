@@ -97,7 +97,7 @@ $searchController = new ResultatRechercheController();
                 {
                     ?>
 
-                    <button id="btnflexbillet" value="<?php echo base64_encode(serialize($searchedUser[$i]));?>" name="userClique" form="connectedform">
+                    <button id="btnflexbillet" value="<?php echo base64_encode(serialize($searchedUser[$i]));?>" name="userClique" form="btnflexbillet">
                 <span id="icone-btn">
                 </span>
                         <p class="txt-btn"><?php if (isset($searchedUser[$i])){echo $searchedUser[$i]->getPseudo();}else{ echo 'erreur de chargement du User';}?></p>

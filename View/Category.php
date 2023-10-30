@@ -25,13 +25,9 @@ $billet = $billetByCatID->arrayBilletByCatID($catClique->getCatID());
 ?>
 <section class="misenforme">
     <form action="" method="post" id="reche">
-
-        <button class="misenforme" value="categorie" name="categoryClick" form="">
-                <span class="icone-btn">
-                </span>
             <p class="txt-btn">Les Billet Présent Dans la Catégorie : "<?php echo $catClique->getLabel() ?>"</p>
             <p class="txt-btn"> Description : <?php echo $catClique->getDescription() ?> </p>
-            <p class="txt-btn">
+            <p class="misenforme">
             <?php
             try {
             $billetByCatID = new BilletRepository();
@@ -51,7 +47,6 @@ $billet = $billetByCatID->arrayBilletByCatID($catClique->getCatID());
             }
             ?>
             </p>
-        </button>
     </form>
 </section>
 <?php
