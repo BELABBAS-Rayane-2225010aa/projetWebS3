@@ -23,8 +23,9 @@ use App\Model\Billet;
  * La classe BilletRepository permet de gérer les requête SQL relatif aux Billet
  *
  * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
+ * @author HOURLAY-Enzo-2225045a <enzo.hourlay[@]etu.univ-amu.fr>
+ * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
  *
- * TODO : fonction de création de billet
  */
 class BilletRepository extends AbstractRepository
 {

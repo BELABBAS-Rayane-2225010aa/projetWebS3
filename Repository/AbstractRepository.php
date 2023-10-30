@@ -21,7 +21,9 @@ abstract class AbstractRepository
     protected PDO $connexion ;
 
     /**
-     * Ce constructeur permet de mettre en place les variables d'environnement pour nous connecter ensuite à la BD
+     * @method PDO getInstance()
+     *
+     * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
      */
     public function __construct()
     {

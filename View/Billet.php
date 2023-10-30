@@ -25,7 +25,7 @@ if (!$billetClique instanceof \App\Model\Billet) {
 $labelCatID = new CategoryRepository();
 $cat = $labelCatID->labelFromCatID($billetClique->getCategoryId());
 $pseudoAuteur = new UserRepository();
-$auteur = $pseudoAuteur->pseudoFromAuteurID($billetClique->getAuthorId());
+$auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
 ?>
 <script src="Bouton.js"></script>
     <button onclick="BoutonAffichageCategorie()" class="buttonCategory"><img src="../View/image/BtnCategorie.ico" /></button><!--Présent qu'en mode portable sert a ameliorer la lisibiliter du billet-->

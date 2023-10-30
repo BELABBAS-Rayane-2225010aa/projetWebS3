@@ -51,7 +51,7 @@ class BilletController
         $authorID = $_POST['authorID'];
         try{
             $billet = new UserRepository();
-            $billet->pseudoFromAuteurID($authorID);
+            $billet->getPseudoFromID($authorID);
         }
         catch (NotFoundException $e){
             file_put_contents('../Log/tavernDeBill.log',$e->getMessage()."\n",FILE_APPEND | LOCK_EX);

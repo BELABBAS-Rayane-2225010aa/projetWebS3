@@ -4,10 +4,11 @@
  *
  * Cette class permet de faire toutes les requête SQL en relation avec notre BD
  *
- * @author Belebbas Rayane / Crespin Alexandre / Hourlay Enzo
+ * @author Belebbas Rayane / Crespin Alexandre
  *
- * @see \App\Controller\LoginController
- * @see \App\Controller\SignUpController
+ * @see \App\Model\User
+ *
+ * @package App\Repository
  *
  * @version 0.9
  *
@@ -30,9 +31,11 @@ use App\Model\User;
 use phpDocumentor\Reflection\Types\Void_;
 
 /**
- * La classe UserRepository permet de gérer les requête SQL relatifs aux utilisateurs
+ * Cette class permet de réaliser les actions : login / signUn / passwordModifier / pseudoModifier / emailModifier /
+ *  deleteUs / makeAdmin / isAdmin / searchUser / getPseudoFromID
  *
  * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
+ * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
  */
 class UserRepository extends AbstractRepository
 {
@@ -61,7 +64,7 @@ class UserRepository extends AbstractRepository
      */
     public function login(string $pseudo , string $password) : User
     {
-        //on select toute le User avec le même pseudo et password
+        //on select tout les Users avec le même pseudo et password
        $query = 'SELECT * FROM USER WHERE PSEUDO = :pseudo and MDP = :password';
        $statement = $this->connexion -> prepare(
             $query );
@@ -140,20 +143,25 @@ class UserRepository extends AbstractRepository
      */
     public function passwordModifier(string $oldPassword, string $newPassword, string $newPassword1): string
     {
+        //On vérifie si l'ancien et le nouveau mot de pâsse sont les mêmes
         if ($oldPassword == $newPassword) {
-            throw new PasswordVerificationException("Same password as the old one");
-        }
-        if ($newPassword != $newPassword1) {
-            throw  new PasswordVerificationException("The confirmation is not the same of the new password");
+            throw new PasswordVerificationException("Même mot de passe que l'ancien");
         }
 
+        //On vérifie si les confirmations de password sont bon
+        if ($newPassword != $newPassword1) {
+            throw  new PasswordVerificationException("La confirmation du mot de passe et le nouveau mot de passe ne sont pas les mêmes");
+        }
+
+        //On fait la modification dans la BD
         $query = 'UPDATE USER SET MDP = :newPassword WHERE MDP = :oldPassword';
         $statement = $this->connexion->prepare(
             $query);
         $statement->execute(['newPassword' => $newPassword, 'oldPassword' => $oldPassword]);
 
+        //Si la requête ne rend rien ça veut dire que le mot de passe renseigner est faux
         if ($statement->rowCount() === 0) {
-            throw new CannotModify("USER MDP cannot be modify");
+            throw new CannotModify("Erreur dans votre ancien mot de passe");
         }
 
         return "Password succesfully modified";
@@ -175,15 +183,18 @@ class UserRepository extends AbstractRepository
      */
     public function pseudoModifier(string $oldPseudo, string $newPseudo, string $password): User
     {
+        //On vérifie si l'ancien et le nouveau Pseudo sont les mêmes
         if ($oldPseudo == $newPseudo){
             throw new PseudoVerificationException("Same pseudo as the old one");
         }
 
+        //On fait la modification dans la BD
         $query = 'UPDATE USER SET PSEUDO = :newPseudo WHERE PSEUDO = :oldPseudo AND MDP = :password';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['newPseudo' => $newPseudo, 'oldPseudo' => $oldPseudo, 'password' => $password]);
 
+        //Si la requête ne rend rien ça veut dire que le pseudo ou le mot de passe renseigner est faux
         if ( $statement -> rowCount() === 0){
             throw new CannotModify("USER PSEUDO cannot be modify");
         }
@@ -208,15 +219,18 @@ class UserRepository extends AbstractRepository
      */
     public function emailModifier(string $oldEmail, string $newEmail, string $pseudo, string $password): User
     {
+        //On vérifie si l'ancienne et la nouvelle adresse mail sont les mêmes
         if ($oldEmail == $newEmail){
             throw new EmailVerificationException("Same mail as the old one");
         }
 
-        $query = 'UPDATE USER SET MAIL = :newEmail WHERE MAIL = :oldEmail AND PSEUDO = :pseudo';
+        //On fait la modification dans la BD
+        $query = 'UPDATE USER SET MAIL = :newEmail WHERE MAIL = :oldEmail AND PSEUDO = :pseudo AND PASSWORD = :password';
         $statement = $this->connexion -> prepare(
             $query );
-        $statement->execute(['newEmail' => $newEmail, 'oldEmail' => $oldEmail, 'pseudo' => $pseudo]);
+        $statement->execute(['newEmail' => $newEmail, 'oldEmail' => $oldEmail, 'pseudo' => $pseudo, 'password' => $password]);
 
+        //Si la requête ne rend rien ça veut dire que le mail ou le pseudo ou le mot de passe renseigner est faux
         if ( $statement -> rowCount() === 0){
             throw new CannotModify("USER MAIL cannot be modify");
         }
@@ -237,12 +251,16 @@ class UserRepository extends AbstractRepository
      */
     public function deleteUs(int $userId) : string
     {
+        //On vérifie si l'utilisateur qu'on veut supprimer est un admin
         if ($this->isAdmin($userId) === false) {
+
+            //On supprime l'Utilisateur de la BD
             $query = 'DELETE FROM USER WHERE USER_ID = :userId';
             $statement = $this->connexion->prepare(
                 $query);
             $statement->execute(['userId' => $userId]);
 
+            //Si la requête ne rend rien ça veut dire que  l'utilisateur n'existe pas
             if ($statement->rowCount() === 0) {
                 throw new CannotDeleteUserException("USER number " . $userId . " cannot be deleted");
             }
@@ -264,12 +282,17 @@ class UserRepository extends AbstractRepository
      * @return string
      */
     public function makeAdmin(int $id) : string {
+
+        //On vérifie si l'utilisateur est un admin ou pas
         if ($this->isAdmin($id) === false){
+
+            //On le transforme en admin
             $query = 'UPDATE USER SET ISADMIN = 1 WHERE USER_ID = :id';
             $statement = $this->connexion -> prepare(
                 $query );
             $statement->execute(['id' => $id]);
 
+            //Si la requête ne rend rien ça veut dire que  l'utilisateur n'existe pas
             if ( $statement -> rowCount() === 0){
                 throw new CannotModify("USER number ".$id." cannot be modified");
             }
@@ -281,29 +304,58 @@ class UserRepository extends AbstractRepository
         return "USER number ".$id." successfully modified";
     }
 
+    /**
+     * Fonction isAdmin
+     *
+     * Cette fonction utilise l'id d'un utilisateur pour voir s'il est un admin
+     *
+     * @param int $id => id  de l'utilisateur
+     *
+     * @return bool => si oui ou non il est admin
+     */
     public function isAdmin(int $id) : bool {
+
+        //On select le User qui est admin
         $query = 'SELECT * FROM USER WHERE USER_ID = :id AND ISADMIN = 1';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['id' => $id]);
+
+        //Si la requête ne renvoie rien ça veut dire que le User n'est pas admin
         if ($statement->rowCount() === 0){
             return false;
         }
         return true;
     }
 
-    public function searchUser(string $q) : array
+    /**
+     * Fonction searchUser
+     *
+     * Cette fonction récupère un texte et interroge la base de donnèes pour voir s'il existe un pseudo qui comporte
+     *  ce qui a été noté
+     *
+     * @param string $recherche => texte que l'utilisateur rentre
+     *
+     * @throws NotFoundException
+     *
+     * @return array => la liste des utilisateurs trouvé
+     */
+    public function searchUser(string $recherche) : array
     {
-        $query = 'SELECT * FROM USER WHERE PSEUDO LIKE "%' . $q . '%" ORDER BY USER_ID DESC';
+        //On select les utilisateur dont le pseudo possède $q dans leur pseudo
+        $query = 'SELECT * FROM USER WHERE PSEUDO LIKE "%' . $recherche . '%" ORDER BY USER_ID DESC';
         $statement = $this->connexion->prepare(
             $query);
         $statement->execute();
+
+        //Si la requête ne rend rien ça veut dire qu'il n'existe aucun utilisateur qui a $q dans son pseudo
         if ($statement->rowCount() === 0) {
-            throw new NotFoundException('Aucun User trouvé pour '.$q.' .');
+            throw new NotFoundException('Aucun User trouvé pour '.$recherche.' .');
         }
         $arraySQL = $statement->fetchAll();
         $arrayUser = array();
 
+        //On rentre dans un array tout les utilisateur trouvé
         for ($i = 0; $i < sizeof($arraySQL); $i++) {
             $user = new User($arraySQL[$i]['USER_ID'], $arraySQL[$i]['MDP'], $arraySQL[$i]['PSEUDO'],
                 $arraySQL[$i]['MAIL'], $arraySQL[$i]['DATE_PREM'], $arraySQL[$i]['DATE_DER'], $arraySQL[$i]['ISADMIN']);
@@ -312,13 +364,28 @@ class UserRepository extends AbstractRepository
 
         return $arrayUser;
     }
-    public function pseudoFromAuteurID ($id) :User {
+
+    /**
+     * Fonction getPseudoFromID
+     *
+     * Cette fonction utilise l'id d'un utilisateur pour le retrouver
+     *
+     * @param int $id => id  de l'utilisateur
+     *
+     * @throws NotFoundException
+     *
+     * @return User => une instance de la class User créer pour l'occasion
+     */
+    public function getPseudoFromID (int $id) :User {
+        //On select un utilisateur par rapport a son id
         $query = 'SELECT DISTINCT * FROM USER WHERE USER.USER_ID = :id';
         $statement = $this->connexion->prepare(
             $query);
         $statement ->execute(['id'=>$id]);
+
+        //Si la requête ne rend rien ça veut dire qu'il n'y a aucun utilisateurs avec cette id
         if ($statement->rowCount()===0){
-            throw new NotFoundException('Pas d\'autheur');
+            throw new NotFoundException('Pas d\'utilisateur trouvé');
         }
         $user = $statement->fetch();
 
