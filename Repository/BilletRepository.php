@@ -64,7 +64,7 @@ class BilletRepository extends AbstractRepository
 
         /* on récupére le résultat de la requête SQL et on le met dans un tableau de Billet*/
         for ($i = 0; $i < sizeof($arraySQL);$i++){
-            $billet = new Billet($arraySQL[$i]['TITRE'],$arraySQL[$i]['MSG'],$arraySQL[$i]['DATE_BILLET'],$arraySQL[$i]['USER_ID'],$arraySQL[$i]['CAT_ID']);
+            $billet = new Billet($arraySQL[$i]['BILLET_ID'],$arraySQL[$i]['TITRE'],$arraySQL[$i]['MSG'],$arraySQL[$i]['DATE_BILLET'],$arraySQL[$i]['USER_ID'],$arraySQL[$i]['CAT_ID']);
             $arrayBillet[] = $billet;
         }
 
@@ -94,7 +94,7 @@ class BilletRepository extends AbstractRepository
             throw new NotFoundException("BILLET not Found");
         }
         $billet = $statement->fetch();
-        return new Billet($billet['TITRE'],$billet['MSG'],$billet['DATE_BILLET'],$billet['USER_ID'],$billet['CAT_ID']);
+        return new Billet($billet['BILLET_ID'],$billet['TITRE'],$billet['MSG'],$billet['DATE_BILLET'],$billet['USER_ID'],$billet['CAT_ID']);
     }
 
     /**
@@ -138,31 +138,12 @@ class BilletRepository extends AbstractRepository
         $arrayBillet = array();
 
         for ($i = 0; $i < sizeof($arraySQL); $i++) {
-            $billet = new Billet($arraySQL[$i]['TITRE'], $arraySQL[$i]['MSG'], $arraySQL[$i]['DATE_BILLET'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['CAT_ID']);
+            $billet = new Billet($arraySQL[$i]['BILLET_ID'],$arraySQL[$i]['TITRE'], $arraySQL[$i]['MSG'], $arraySQL[$i]['DATE_BILLET'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['CAT_ID']);
             $arrayBillet[] = $billet;
         }
 
         return $arrayBillet;
     }
-
-    /* TODO: Idée de comment filtrer
-    public function getFiltredBillet($id,$title,$category etc ...) : Billet
-    {
-        $query = 'SELECT * FROM BILLET';
-        if(isset($id){
-            $query+='WHERE id = :id';
-        } elseif(isset($title)){
-            $query+='WHERE title = :title'
-        } etc ...
-        $statement = $this->connexion ->prepare(
-            $query );
-        $statement->execute(['id' => $id]);
-        if ( $statement -> rowCount() === 0 ){
-            throw new NotFoundException("BILLET not Found");
-        }
-        $billet = $statement->fetch();
-        return new Billet($billet['TITRE'],$billet['MSG'],$billet['DATE_BILLET'],$billet['USER_ID'],$billet['CAT_ID']);
-    }*/
 
     public function createBillet($title,$msg,$dateBillet,$authorId,$categoryId) : void{
         $query = 'INSERT INTO BILLET (TITRE, MSG, DATE_BILLET, USER_ID, CAT_ID) VALUES (:title, :msg, :date_billet, :authorId, :categoryId)';
@@ -191,7 +172,7 @@ class BilletRepository extends AbstractRepository
         $arrayBillet = array();
 
         for ($i = 0; $i < sizeof($arraySQL); $i++) {
-            $billet = new Billet($arraySQL[$i]['TITRE'], $arraySQL[$i]['MSG'], $arraySQL[$i]['DATE_BILLET'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['CAT_ID']);
+            $billet = new Billet($arraySQL[$i]['BILLET_ID'],$arraySQL[$i]['TITRE'], $arraySQL[$i]['MSG'], $arraySQL[$i]['DATE_BILLET'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['CAT_ID']);
             $arrayBillet[] = $billet;
         }
 
@@ -207,5 +188,24 @@ class BilletRepository extends AbstractRepository
         if ($statement->rowCount() === 0) {
             throw new CannotFindBilletException("No Billet find");
         }
+    }
+
+    public function arrayBilletByCatID($id) : array {
+        $query = 'SELECT * FROM BILLET , CATEGORIE WHERE BILLET.CAT_ID = CATEGORIE.CAT_ID AND CATEGORIE.CAT_ID = :id';
+        $statement = $this->connexion->prepare(
+            $query);
+        $statement->execute(['id'=>$id]);
+        if ($statement->rowCount() === 0) {
+            throw new CannotFindBilletException("No Billet find");
+        }
+        $arraySQL = $statement->fetchAll();
+        $arrayBillet = array();
+
+        for ($i = 0; $i < sizeof($arraySQL); $i++) {
+            $billet = new Billet($arraySQL[$i]['BILLET_ID'],$arraySQL[$i]['TITRE'], $arraySQL[$i]['MSG'], $arraySQL[$i]['DATE_BILLET'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['CAT_ID']);
+            $arrayBillet[] = $billet;
+        }
+
+        return $arrayBillet;
     }
 }

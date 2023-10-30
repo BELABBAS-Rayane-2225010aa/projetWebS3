@@ -95,7 +95,7 @@ class CategoryRepository extends AbstractRepository
         $arrayCat = array();
 
         for ($i = 0; $i < sizeof($arraySQL); $i++) {
-            $cat = new Category($arraySQL[$i]['LABEL'], $arraySQL[$i]['DESCRIPTION']);
+            $cat = new Category($arraySQL[$i]['CAT_ID'], $arraySQL[$i]['LABEL'], $arraySQL[$i]['DESCRIPTION']);
             $arrayCat[] = $cat;
         }
 
@@ -103,7 +103,7 @@ class CategoryRepository extends AbstractRepository
     }
 
     public function labelFromCatID ($id) :Category {
-        $query = 'SELECT DISTINCT * FROM CATEGORIE , BILLET WHERE CATEGORIE.CAT_ID = BILLET.CAT_ID AND CATEGORIE.CAT_ID = :id';
+        $query = 'SELECT DISTINCT * FROM CATEGORIE WHERE  CATEGORIE.CAT_ID = :id';
         $statement = $this->connexion->prepare(
             $query);
         $statement ->execute(['id'=>$id]);
@@ -112,7 +112,7 @@ class CategoryRepository extends AbstractRepository
         }
         $cat = $statement->fetch();
 
-        return new Category($cat['LABEL'],$cat['DESCRIPTION']);
+        return new Category($cat['CAT_ID'],$cat['LABEL'],$cat['DESCRIPTION']);
     }
 
     public function catIDFromLabel ($label) : int {
@@ -140,7 +140,7 @@ class CategoryRepository extends AbstractRepository
         $arrayCat = array();
 
         for ($i = 0; $i < sizeof($arraySQL); $i++) {
-            $cat = new Category($arraySQL[$i]['LABEL'], $arraySQL[$i]['DESCRIPTION']);
+            $cat = new Category($arraySQL[$i]['CAT_ID'], $arraySQL[$i]['LABEL'], $arraySQL[$i]['DESCRIPTION']);
             $arrayCat[] = $cat;
         }
         return $arrayCat;
