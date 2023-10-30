@@ -19,8 +19,6 @@
 
 namespace App\Controller;
 
-require '../vendor/autoload.php';
-
 use App\Exception\CannotCreateCatException;
 use App\Exception\CannotDeleteBilletException;
 use App\Exception\CannotDeleteCatException;
@@ -162,21 +160,22 @@ class AdminController
      * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
      *
      * @return void
-     *
-     * @deprecated cette fonction n'est ni utilisé ni dans le bon format
-     *
-     * @todo : faire fonctionner la fonction
      */
     public function deleteComment() : void {
         $commentId = $_POST['commentId'];
         try {
             $user = new CommentRepository();
-            $user->delComment($commentId);
+            $msg = $user->delComment($commentId);
         }
         catch (CannotDeleteCommentException $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
+            $msg = $ERROR->getMessage();
         }
+
+        file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
+        if (isset($_SESSION['msg'])){
+            unset($_SESSION['msg']);
+        }
+        $_SESSION['msg'] = $msg;
     }
 
     /**

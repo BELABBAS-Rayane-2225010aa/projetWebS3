@@ -45,11 +45,10 @@ class CommentRepository extends AbstractRepository
      *
      * Cette fonction permet de supprimer un commentaire de la base de donnée
      *
-     * @return void
-     * @throws CannotDeleteCommentException
-     *
+     * @param int $commId
+     * @return string
      */
-    public function delComment(int $commId): void
+    public function delComment(int $commId): string
     {
         //TODO : ne permettre cette supression qu'a l'autheur et les admins
         $query = 'DELETE FROM COMMENT WHERE COMMENT_ID = :commId';
@@ -60,6 +59,8 @@ class CommentRepository extends AbstractRepository
         if ($statement->rowCount() === 0) {
             throw new CannotDeleteCommentException("COMMENT cannot be deleted");
         }
+
+        return "COMMENT successfully deleted";
     }
 
     /** Modification d'un commentaire

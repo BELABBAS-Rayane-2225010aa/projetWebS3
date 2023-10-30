@@ -108,6 +108,11 @@ class BilletRepository extends AbstractRepository
      * @return string
      */
     public function deleteBillet(int $id) : string {
+        $query = 'DELETE FROM COMMENT WHERE BILLET_ID = :id';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['id' => $id]);
+
         $query = 'DELETE FROM BILLET WHERE BILLET_ID = :id';
         $statement = $this->connexion -> prepare(
             $query );
