@@ -5,7 +5,7 @@
  * @author Crespin Alexandre
  *
  * @see \App\Repository\BilletRepository
- * @see \App\Controller\BilletController
+ * @see \App\Controller\PostBilletController
  *
  * @version 1.0
  */

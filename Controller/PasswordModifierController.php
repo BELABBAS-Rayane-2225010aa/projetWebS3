@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-require '../vendor/autoload.php';
-
 use App\Exception\CannotModify;
 use App\Exception\PasswordVerificationException;
 use App\Repository\UserRepository;
@@ -12,9 +10,9 @@ class PasswordModifierController
 {
     public function ModifPassword() : void
     {
-        $oldPassword = $_POST['oldPassword'];
-        $newPassword = $_POST['newPassword'];
-        $newPassword1 = $_POST['newPassword1'];
+        $oldPassword = md5($_POST['oldPassword']);
+        $newPassword = md5($_POST['newPassword']);
+        $newPassword1 = md5($_POST['newPassword1']);
         try {
             $user = new UserRepository();
             $msg = $user->passwordModifier($oldPassword,$newPassword,$newPassword1);

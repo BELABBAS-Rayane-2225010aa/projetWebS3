@@ -14,7 +14,7 @@
  * @see \App\Repository\BilletRepository
  * @see \App\Repository\CommentRepository
  *
- * @version 1.0
+ * @version 0.9
  *
  * @todo : verifier l'utilité des exceptions
  */
