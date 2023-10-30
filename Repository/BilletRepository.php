@@ -199,4 +199,23 @@ class BilletRepository extends AbstractRepository
             throw new CannotFindBilletException("No Billet find");
         }
     }
+
+    public function arrayBilletByCatID($id) : array {
+        $query = 'SELECT * FROM BILLET , CATEGORIE WHERE BILLET.CAT_ID = CATEGORIE.CAT_ID AND CATEGORIE.CAT_ID = :id';
+        $statement = $this->connexion->prepare(
+            $query);
+        $statement->execute(['id'=>$id]);
+        if ($statement->rowCount() === 0) {
+            throw new CannotFindBilletException("No Billet find");
+        }
+        $arraySQL = $statement->fetchAll();
+        $arrayBillet = array();
+
+        for ($i = 0; $i < sizeof($arraySQL); $i++) {
+            $billet = new Billet($arraySQL[$i]['TITRE'], $arraySQL[$i]['MSG'], $arraySQL[$i]['DATE_BILLET'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['CAT_ID']);
+            $arrayBillet[] = $billet;
+        }
+
+        return $arrayBillet;
+    }
 }

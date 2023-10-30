@@ -309,7 +309,7 @@ class UserRepository extends AbstractRepository
         return $arrayUser;
     }
     public function pseudoFromAuteurID ($id) :User {
-        $query = 'SELECT DISTINCT * FROM USER , BILLET WHERE USER.USER_ID = BILLET.USER_ID AND USER.USER_ID = :id';
+        $query = 'SELECT DISTINCT * FROM USER WHERE USER.USER_ID = :id';
         $statement = $this->connexion->prepare(
             $query);
         $statement ->execute(['id'=>$id]);
