@@ -170,14 +170,18 @@ class BilletRepository extends AbstractRepository
     }
 
     public function getBilletArrayByAuthor(int $authorId) : array {
+        //on select tout les billet d'un auteur
         $query = 'SELECT * FROM BILLET WHERE USER_ID = :authorId';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['authorId' => $authorId]);
+
+        //Si la requête ne rend rien cela veut dire que l'auteur n'a pas écrit de billet
         if ($statement -> rowCount() === 0 ){
             throw new CannotFindBilletException("No Billet find");
         }
 
+        //on créer un tableau de billet contenant toutes les données
         $arraySQL = $statement->fetchAll();
         $arrayBillet = array();
 
@@ -198,5 +202,24 @@ class BilletRepository extends AbstractRepository
         if ($statement->rowCount() === 0) {
             throw new CannotFindBilletException("No Billet find");
         }
+    }
+
+    public function arrayBilletByCatID($id) : array {
+        $query = 'SELECT * FROM BILLET , CATEGORIE WHERE BILLET.CAT_ID = CATEGORIE.CAT_ID AND CATEGORIE.CAT_ID = :id';
+        $statement = $this->connexion->prepare(
+            $query);
+        $statement->execute(['id'=>$id]);
+        if ($statement->rowCount() === 0) {
+            throw new CannotFindBilletException("No Billet find");
+        }
+        $arraySQL = $statement->fetchAll();
+        $arrayBillet = array();
+
+        for ($i = 0; $i < sizeof($arraySQL); $i++) {
+            $billet = new Billet($arraySQL[$i]['TITRE'], $arraySQL[$i]['MSG'], $arraySQL[$i]['DATE_BILLET'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['CAT_ID']);
+            $arrayBillet[] = $billet;
+        }
+
+        return $arrayBillet;
     }
 }

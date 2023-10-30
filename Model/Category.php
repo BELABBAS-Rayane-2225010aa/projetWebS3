@@ -22,12 +22,23 @@ class Category
     /**
      * Le contructeur de la class Category
      *
+     * @param int $catID => id de la catégorie
      * @param string $label => label de la Category
      * @param string $description => description de la Category
      *
      * @return void
      */
-    public function __construct(private string $label,private string $description){
+    public function __construct(private int $catID, private string $label,private string $description){
+    }
+
+    /**
+     * getter de l'attribut catID
+     *
+     * @return int
+     */
+    public function getCatID(): int
+    {
+        return $this->catID;
     }
 
     /**

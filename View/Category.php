@@ -1,4 +1,7 @@
 <?php
+
+use App\Repository\BilletRepository;
+
 require '../vendor/autoload.php';
 require 'GestionPage.php' ?>
 <?php
@@ -16,6 +19,9 @@ $catClique = unserialize(base64_decode($serializedCat));
 if (!$catClique instanceof \App\Model\Category) {
     echo 'La désérialisation a échoué';
 }
+
+$billetByCatID = new BilletRepository();
+$billet = $billetByCatID->arrayBilletByCatID($catClique->getCatID());
 ?>
 <section class="section-flex">
     <form action="" method="post" id=""></form>
@@ -25,7 +31,21 @@ if (!$catClique instanceof \App\Model\Category) {
                 </span>
             <p class="txt-btn">Les Billet Présent Dans la Catégorie : "<?php echo $catClique->getLabel() ?>"</p>
             <p class="txt-btn"> Description : <?php echo $catClique->getDescription() ?> </p>
-
+            <P class="txt-btn"> <?php echo $catClique->getCatID() ?> </P>
+            <p class="txt-btn">
+            <?php
+            for ($i = 0 ; $i < sizeof($billet) ; ++$i)
+            {
+                ?>
+                <button class="btn-flex" value="<?php echo base64_encode(serialize($billet[$i]));?>" name="billetClique" form="billetform">
+                <span class="icone-btn">
+                </span>
+                    <p class="txt-btn"><?php if (isset($billet[$i])){echo $billet[$i]->getTitle();}else{ echo 'erreur de chargement du billet';}?></p>
+                </button>
+                <?php
+            }
+            ?>
+            </p>
         </button>
 </section>
 <?php
