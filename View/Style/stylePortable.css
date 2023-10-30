@@ -43,7 +43,7 @@ body {
 
 #deroulant {
     display: flex;
-    flex-direction: column; /* Alignement vertical */
+    flex-direction: column;
     font-size: 7px;
     margin-top: 5%;
     background-color: #174370;
