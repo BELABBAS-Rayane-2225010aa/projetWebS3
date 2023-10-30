@@ -474,6 +474,8 @@ td{
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
+    border-radius: 10px;
+
 }
 
 #connectedform button:hover {
