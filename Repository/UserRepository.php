@@ -235,9 +235,10 @@ class UserRepository extends AbstractRepository
      *
      * @return string
      */
-    public function deleteUs(int $userId) : string
+    public function deleteUs(int $userId,bool $deleteEvenAdmin) : string
     {
-        if ($this->isAdmin($userId) === false) {
+        $isAdmin = $this->isAdmin($userId);
+        if ($isAdmin === false || $deleteEvenAdmin) {
             $query = 'UPDATE USER SET PSEUDO = :DeletedUser, MDP = :mdp WHERE USER_ID = :userId';
             $statement = $this->connexion->prepare(
                 $query);
@@ -249,7 +250,11 @@ class UserRepository extends AbstractRepository
         } else {
             throw new UserIsAdminException("USER number " . $userId . " is an Admin");
         }
-        return "USER number ".$userId." as been deleted";
+        $userType = 'USER';
+        if ($isAdmin){
+            $userType = 'ADMIN';
+        }
+        return  $userType." number ".$userId." as been deleted";
     }
 
     /**
