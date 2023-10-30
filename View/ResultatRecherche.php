@@ -87,7 +87,7 @@ $searchController = new ResultatRechercheController();
         </ul>
 <h2  id="misenforme">User</h2>
         <ul id="palier">
-
+            <form class="userrecherche">
             <?php
             $searchController->getSearchUser();
             if($searchController->getSearchedUserArray() != null )
