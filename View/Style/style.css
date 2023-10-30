@@ -558,3 +558,9 @@ footer {
 #adminbox input[type="submit"]:hover {
     background-color: #117883;
 }
+.btnBilletCategory{
+    background-color: #174370;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}

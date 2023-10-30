@@ -23,21 +23,18 @@ if (!$catClique instanceof \App\Model\Category) {
 $billetByCatID = new BilletRepository();
 $billet = $billetByCatID->arrayBilletByCatID($catClique->getCatID());
 ?>
-<section class="section-flex">
+<section id="reche">
     <form action="" method="post" id=""></form>
 
-        <button class="btnBillet" value="categorie" name="categoryClick" form="">
-                <span class="icone-btn">
-                </span>
             <p class="txt-btn">Les Billet Présent Dans la Catégorie : "<?php echo $catClique->getLabel() ?>"</p>
             <p class="txt-btn"> Description : <?php echo $catClique->getDescription() ?> </p>
             <P class="txt-btn"> <?php echo $catClique->getCatID() ?> </P>
-            <p class="txt-btn">
+            <p class="billetform">
             <?php
             for ($i = 0 ; $i < sizeof($billet) ; ++$i)
             {
                 ?>
-                <button class="btn-flex" value="<?php echo base64_encode(serialize($billet[$i]));?>" name="billetClique" form="billetform">
+                <button class="btnBilletCategory" value="<?php echo base64_encode(serialize($billet[$i]));?>" name="billetClique" form="billetform">
                 <span class="icone-btn">
                 </span>
                     <p class="txt-btn"><?php if (isset($billet[$i])){echo $billet[$i]->getTitle();}else{ echo 'erreur de chargement du billet';}?></p>
@@ -46,7 +43,7 @@ $billet = $billetByCatID->arrayBilletByCatID($catClique->getCatID());
             }
             ?>
             </p>
-        </button>
+
 </section>
 <?php
 end_page();
