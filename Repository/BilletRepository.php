@@ -170,14 +170,18 @@ class BilletRepository extends AbstractRepository
     }
 
     public function getBilletArrayByAuthor(int $authorId) : array {
+        //on select tout les billet d'un auteur
         $query = 'SELECT * FROM BILLET WHERE USER_ID = :authorId';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['authorId' => $authorId]);
+
+        //Si la requête ne rend rien cela veut dire que l'auteur n'a pas écrit de billet
         if ($statement -> rowCount() === 0 ){
             throw new CannotFindBilletException("No Billet find");
         }
 
+        //on créer un tableau de billet contenant toutes les données
         $arraySQL = $statement->fetchAll();
         $arrayBillet = array();
 
