@@ -23,7 +23,7 @@ if (!$catClique instanceof \App\Model\Category) {
 $billetByCatID = new BilletRepository();
 $billet = $billetByCatID->arrayBilletByCatID($catClique->getCatID());
 ?>
-<section class="section-flex">
+<section class="misenforme">
     <form action="" method="post" id=""></form>
 
         <button class="btnBillet" value="categorie" name="categoryClick" form="">
