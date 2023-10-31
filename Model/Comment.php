@@ -24,13 +24,13 @@ class Comment
      *
      * @param string $text => le text du Comment
      * @param string $date => la date de création du Comment
-     * @param User $author => l'id de l'auteur du Comment
-     * @param Billet $billet => l'id du Billet rattaché au Comment
+     * @param int $author => l'id de l'auteur du Comment
+     * @param int $billet => l'id du Billet rattaché au Comment
      *
      * @return void
      */
     public function __construct(private string $text, private string $date,
-                                private User $author, private Billet $billet){
+                                private int $author, private int $billet){
     }
 
     /**
@@ -56,9 +56,9 @@ class Comment
     /**
      * getter de l'attribut author
      *
-     * @return User
+     * @return int
      */
-    public function getAuthor(): User
+    public function getAuthor(): int
     {
         return $this->author;
     }
@@ -66,9 +66,9 @@ class Comment
     /**
      * getter de l'attribut billet
      *
-     * @return Billet
+     * @return int
      */
-    public function getBillet(): Billet
+    public function getBillet(): int
     {
         return $this->billet;
     }

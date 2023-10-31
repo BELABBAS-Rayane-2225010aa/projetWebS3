@@ -23,7 +23,7 @@ if (!$billetClique instanceof \App\Model\Billet) {
     echo 'La désérialisation a échoué';
 }
 $labelCatID = new CategoryRepository();
-$cat = $labelCatID->labelFromCatID($billetClique->getCategoryId());
+$cat = $labelCatID->catFromID($billetClique->getCategoryId());
 $pseudoAuteur = new UserRepository();
 $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
 ?>
@@ -56,6 +56,19 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
         }?>
         <p>Date : <?php echo $billetClique->getDate() ?></p>
     </section>
+    <?php
+    if(isset($_SESSION['suid'])) { ?>
+        <form action="../index.php" method="post">
+            <input name="userID" type="hidden" value="<?php echo $_SESSION['user']->getUserId()?>"/>
+            <input name="billetID" type="hidden" value="<?php echo $billetClique->getBilletId()?>"/>
+            <input name="billetComment" type="hidden" value="<?php echo base64_encode(serialize($billetClique))?>"/>
+            <label for="createComment">Ecrivez un commentaire</label>
+            <textarea id="createComment" name="texteComment" rows="1" cols="40" ></textarea>
+            <input type="submit" name="addComment" <span class="fa fa-send"> </span>
+
+        </form>
+    <?php } ?>
+
 <?php
 end_page();
 ?>

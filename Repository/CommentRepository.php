@@ -2,10 +2,13 @@
 
 namespace App\Repository;
 
+use App\Exception\CannotAddCommentException;
 use App\Exception\CannotDeleteCommentException;
 use App\Exception\CannotModify;
+use App\Model\Billet;
 use App\Exception\NotFoundException;
 use App\Model\Comment;
+use App\Model\User;
 
 /**
  * La classe CommentRepository permet de gérer les requête SQL relatifs aux Commentaire
@@ -31,14 +34,23 @@ class CommentRepository extends AbstractRepository
      * Cette fonction permet de créer un Comm
      *
      * @param string $texte => le texte du commentaire
+     * @param string $date => la date de création du commentaire
+     * @param int $authorId => l'Id de l'auteur
+     * @param int $billetId => l'Id billet auquel le commentaire est rattaché
      *
-     * @return Comment => une instance de la class Comment créer pour l'occasion
+     * @return string
      */
-//    public function addComment(string $texte) : Comment
-//    {
-//
-//        return new Comment();
-//    }
+    public function addComment(string $texte, string $date, int $authorId, int $billetId) : string
+    {
+        $query = 'INSERT INTO COMMENT(TEXTE, DATE_COM, USER_ID, BILLET_ID) VALUES (:texte, :date, :author, :billet)';
+        $statement = $this->connexion->prepare($query);
+        $statement->execute(['texte' => $texte, 'date'=>$date, 'author'=>$authorId, 'billet'=>$billetId]);
+
+        if ($statement->rowCount() === 0) {
+            throw new CannotAddCommentException("COMMENT cannot be added");
+        }
+        return "Commentaire crée";
+    }
 
     /**
      * Suppression d'un commentaire
@@ -79,7 +91,7 @@ class CommentRepository extends AbstractRepository
     {
         //TODO : ne permettre qu'à l'auteur et aux admins de le modifier
 
-        $query = 'UPDATE COMMENT SET TEXTE= \':texte\' WHERE COMMENT_ID= :commId';
+        $query = 'UPDATE COMMENT SET TEXTE= :texte WHERE COMMENT_ID= :commId';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['commId' => $commId, 'texte'=>$texte]);

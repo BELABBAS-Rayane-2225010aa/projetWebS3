@@ -26,6 +26,7 @@ class User
     /**
      * Le constructeur de la class User
      *
+     * @param int $userId => l'id du user
      * @param string $password => mot de passe du User
      * @param string $pseudo => nom d'affichage du User
      * @param string $email => addresse mail du User

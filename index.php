@@ -13,6 +13,7 @@ session_start();
 require 'vendor/autoload.php';
 
 use App\Controller\AdminController;
+use App\Controller\BilletController;
 use App\Controller\PostBilletController;
 use App\Controller\BilletModifierController;
 use App\Controller\EmailModifierController;
@@ -102,5 +103,12 @@ if (isset($_POST['createPost'])) {
 if(isset($_POST['BilletModif'])){
     $controller = new BilletModifierController();
     $controller->updateBillet();
+}
+
+if(isset($_POST['addComment'])){
+    $controller = new BilletController();
+    $controller->getNewComment();
+    $_POST['billetClique'] = $_POST['billetComment'];
+    header('Location: View/Billet.php');
 }
 ?>

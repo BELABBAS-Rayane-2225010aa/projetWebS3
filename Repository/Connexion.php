@@ -6,6 +6,8 @@
  *
  * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
  *
+ * @package App\Repository
+ *
  * @see \PDO
  *
  * @version 1.0
@@ -19,8 +21,6 @@ use PDO;
  * Cette class permet de réaliser l' action : getInstance
  *
  * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
- *
- * @see \PDO
  */
 class Connexion
 {
