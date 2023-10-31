@@ -8,7 +8,10 @@
  *
  * @author Belabbas Rayane / Crespin Alexandre
  *
+ * @package App\Repository
+ *
  * @see \App\Repository\Connexion
+ * @see \PDO
  *
  * @version 1.0
  */
@@ -16,15 +19,15 @@
 namespace App\Repository;
 use PDO;
 
+/**
+ * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
+ *
+ * @method PDO getInstance()
+ */
 abstract class AbstractRepository
 {
     protected PDO $connexion ;
 
-    /**
-     * @method PDO getInstance()
-     *
-     * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
-     */
     public function __construct()
     {
         putenv("DB_DND_DSN=mysql:host=mysql-rbb.alwaysdata.net;dbname=rbb_sitednd");
