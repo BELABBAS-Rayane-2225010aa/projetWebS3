@@ -35,7 +35,7 @@ class PseudoModifierController
      *
      * @return void
      */
-    public function ModifPseudo() : void
+    public function modifPseudo() : void
     {
         //on récupère les données du formulaire en hashant les password
         $oldPseudo = $_POST['oldPseudo'];

@@ -48,7 +48,7 @@ if(isset($_POST['PasswordModif'])) {
 
 if(isset($_POST['PseudoModif'])) {
     $controller = new PseudoModifierController();
-    $controller->ModifPseudo();
+    $controller->modifPseudo();
     header('Location: View/PseudoModifier.php');
 }
 
