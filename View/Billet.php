@@ -23,7 +23,7 @@ if (!$billetClique instanceof \App\Model\Billet) {
     echo 'La désérialisation a échoué';
 }
 $labelCatID = new CategoryRepository();
-$cat = $labelCatID->labelFromCatID($billetClique->getCategoryId());
+$cat = $labelCatID->catFromID($billetClique->getCategoryId());
 $pseudoAuteur = new UserRepository();
 $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
 ?>

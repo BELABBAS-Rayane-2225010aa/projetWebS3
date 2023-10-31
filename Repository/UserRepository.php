@@ -10,6 +10,8 @@
  *
  * @package App\Repository
  *
+ * @template-extends AbstractRepository
+ *
  * @version 0.9
  *
  * todo : faire en sorte que deux User ne puisse pas avoir la même pseudo
@@ -352,10 +354,12 @@ class UserRepository extends AbstractRepository
         if ($statement->rowCount() === 0) {
             throw new NotFoundException('Aucun User trouvé pour '.$recherche.' .');
         }
+
+        //on créer un tableau de Usercontenant toutes les données
         $arraySQL = $statement->fetchAll();
         $arrayUser = array();
 
-        //On rentre dans un array tout les utilisateur trouvé
+        /* on récupére le résultat de la requête SQL et on le met dans un tableau d'User'*/
         for ($i = 0; $i < sizeof($arraySQL); $i++) {
             $user = new User($arraySQL[$i]['USER_ID'], $arraySQL[$i]['MDP'], $arraySQL[$i]['PSEUDO'],
                 $arraySQL[$i]['MAIL'], $arraySQL[$i]['DATE_PREM'], $arraySQL[$i]['DATE_DER'], $arraySQL[$i]['ISADMIN']);
