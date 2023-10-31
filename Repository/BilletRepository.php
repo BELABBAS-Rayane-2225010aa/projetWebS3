@@ -30,7 +30,6 @@ use App\Model\Billet;
  * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
  * @author HOURLAY-Enzo-2225045a <enzo.hourlay[@]etu.univ-amu.fr>
  * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
- *
  */
 class BilletRepository extends AbstractRepository
 {
@@ -95,11 +94,13 @@ class BilletRepository extends AbstractRepository
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['id' => $id]);
+
         //Une fois les commentaire supprimer on Supprime lme billet
         $query = 'DELETE FROM BILLET WHERE BILLET_ID = :id';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['id' => $id]);
+
         //Si la requête ne renvoie rien ça veut dire que le billet n'existe pas
         if ( $statement -> rowCount() === 0){
             throw new CannotDeleteBilletException("BILLET cannot be deleted");
