@@ -48,7 +48,7 @@ class LoginController
             $user = new UserRepository();
             $login = $user->login($pseudo , $password);
 
-            //on update ISCONNECTED dans la BD
+            //on update ISCONNECTED et DATE_DER dans la BD
             $connected = new UserConnectedRepository();
             file_put_contents('Log/tavernDeBill.log', $connected->logIn($login),FILE_APPEND | LOCK_EX);
 

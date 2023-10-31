@@ -45,12 +45,14 @@ class UserConnectedRepository extends AbstractRepository
      */
     public function logIn(User $user) : string {
         $userId = $user->getUserId();
+        date_default_timezone_set("Europe/Paris");
+        $dateDerCo = date("Y-m-d H:i:s");
 
         //On update le statut de connexion de l'utilisateurs
-        $query = 'UPDATE USER SET ISCONNECTED = 1 WHERE USER_ID = :userId';
+        $query = 'UPDATE USER SET ISCONNECTED = 1, DATE_DER = :dateDerCo WHERE USER_ID = :userId';
         $statement = $this->connexion -> prepare(
             $query );
-        $statement->execute(['userId' => $userId]);
+        $statement->execute(['dateDerCo' => $dateDerCo,'userId' => $userId]);
 
         return $user->getPseudo() ." is connected";
     }

@@ -39,6 +39,7 @@ class SignUpController
         $email = $_POST['email'];
         $password = md5($_POST['password']);
         $password1 = md5($_POST['password1']);
+        date_default_timezone_set("Europe/Paris");
         $date = date("Y-m-d H:i:s");
 
         try{
