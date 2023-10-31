@@ -5,11 +5,9 @@
  * @author Crespin Alexandre
  *
  * @see \App\Repository\BilletRepository
- * @see \App\Controller\BilletController
+ * @see \App\Controller\PostBilletController
  *
  * @version 1.0
- *
- * @todo : faire en sorte que récupérer l'id
  */
 
 namespace App\Model;
@@ -30,13 +28,22 @@ class Billet
      * @param int $categoryId => l'id de la Category rattaché au Billet
      *
      * @return void
-     *
-     * @todo : faire passer les attribut de public à private
-     * @todo : changer le nom des variable author_id et category_id en authorId et categoryId
      */
-    public function __construct(private string $title,private string $msg,private string $date,
+    public function __construct (private int $billetId, private string $title,
+                                 private string $msg,private string $date,
                                 private int $authorId,private int $categoryId){
     }
+
+    /**
+     * getter de l'attibut title
+     *
+     * @return int
+     */
+    public function getBilletId(): int
+    {
+        return $this->billetId;
+    }
+
 
     /**
      * getter de l'attibut title

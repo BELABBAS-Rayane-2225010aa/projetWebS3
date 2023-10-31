@@ -10,9 +10,7 @@
  *
  * @see \App\Repository\Connexion
  *
- * @version 0.9
- *
- * @todo : vérifier quand le site est en ligne que la connexion est effective (si c'est bon passer en @version 1.0)
+ * @version 1.0
  */
 
 namespace App\Repository;
@@ -23,7 +21,9 @@ abstract class AbstractRepository
     protected PDO $connexion ;
 
     /**
-     * Ce constructeur permet de mettre en place les variables d'environnement pour nous connecter ensuite à la BD
+     * @method PDO getInstance()
+     *
+     * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
      */
     public function __construct()
     {

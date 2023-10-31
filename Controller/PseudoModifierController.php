@@ -2,35 +2,33 @@
 
 namespace App\Controller;
 
-require 'vendor/autoload.php';
-
 use App\Exception\CannotModify;
-use App\Exception\PasswordVerificationException;
 use App\Exception\PseudoVerificationException;
 use App\Repository\UserRepository;
-use http\Client\Curl\User;
 
 class PseudoModifierController
 {
-    public function ModifPseudo() : \App\Model\User
+    public function ModifPseudo() : void
     {
         $oldPseudo = $_POST['oldPseudo'];
-        $newPseudo = $_POST['newPseudo'];
-        $password = $_POST['password'];
+        $newPseudo = md5($_POST['newPseudo']);
+        $password = md5($_POST['password']);
         try {
             $user = new UserRepository();
             $login = $user->pseudoModifier($oldPseudo,$newPseudo,$password);
             $session = new SetSession();
             $session->setUserSession($login);
+            $msg = "Pseudo successfully modified";
+            file_put_contents('Log/tavernDeBill.log',$msg."\n",FILE_APPEND | LOCK_EX);
         }
-        catch (PseudoVerificationException $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
+        catch (PseudoVerificationException|CannotModify $ERROR){
+            $msg = $ERROR->getMessage();
+            file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         }
-        catch (CannotModify $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
+
+        if (isset($_SESSION['msg'])){
+            unset($_SESSION['msg']);
         }
-        return $login;
+        $_SESSION['msg'] = $msg;
     }
 }

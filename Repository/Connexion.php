@@ -4,19 +4,24 @@
  *
  * Cette class permet de faire le lien avec la BD
  *
- * @author Belabbas Rayane / Crespin Alexandre
+ * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
  *
- * @see \App\Repository\AbstractRepository
+ * @see \PDO
  *
- * @version 0.9
- *
- * @todo : vérifier quand le site est en ligne que la connexion est effective (si c'est bon passer en @version 1.0)
+ * @version 1.0
  */
 
 namespace App\Repository;
 
 use PDO;
 
+/**
+ * Cette class permet de réaliser l' action : getInstance
+ *
+ * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
+ *
+ * @see \PDO
+ */
 class Connexion
 {
     private static ?PDO $instance = null;

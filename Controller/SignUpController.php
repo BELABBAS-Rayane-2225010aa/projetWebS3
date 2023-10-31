@@ -2,15 +2,9 @@
 
 namespace App\Controller;
 
-require 'vendor/autoload.php';
-
+use App\Repository\UserConnectedRepository;
 use App\Repository\UserRepository;
-use App\Exception\{
-    CannotCreateUserException,
-    EmailVerificationException,
-    PasswordVerificationException,
-    NotFoundException
-};
+use App\Exception\{CannotCreateUserException, EmptyFieldException, PasswordVerificationException};
 
 class SignUpController
 {
@@ -27,34 +21,36 @@ class SignUpController
      * et stocke cet objet dans une variable de session appelée 'user'.
      */
     public function getSignUp() : void {
+        //on recupère les information rentrer dans la formulaire par le User
         $pseudo = $_POST['pseudo'];
         $email = $_POST['email'];
-        $email1 = $_POST['email1'];
-        $password = $_POST['password'];
-        $password1 = $_POST['password1'];
-
+        $password = md5($_POST['password']);
+        $password1 = md5($_POST['password1']);
         $date = date("Y-m-d H:i:s");
+
         try{
+            //on créer et récupère le User qui correspond dans la BD
             $user = new UserRepository();
-            $signup = $user->signUp($password,$password1,$pseudo,$email,$email1,$date,$date);
-            $newUser = new LoginController();
-            $newUser->getLogin();
+            $signup = $user->signUp($password,$password1,$pseudo,$email,$date,$date);
+
+            //on update ISCONNECTED dans la BD
+            $connected = new UserConnectedRepository();
+            file_put_contents('Log/tavernDeBill.log', $connected->logIn($signup),FILE_APPEND | LOCK_EX);
+
+            //on set la session
+            $session = new SetSession();
+            $session->setUserSession($signup);
         }
-        catch (CannotCreateUserException $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
+        //on catch si un champ de saisie est vide ou si on ne peut pas créer l'utilisateurs ou si les password données ne sont pas les même
+        catch (EmptyFieldException | CannotCreateUserException | PasswordVerificationException $ERROR){
+            $msg = $ERROR->getMessage();
         }
-        catch (EmailVerificationException $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
+
+        //on fais un retour d'erreur ou de réussite
+        file_put_contents('Log/tavernDeBill.log',$msg."\n",FILE_APPEND | LOCK_EX);
+        if (isset($_SESSION['msg'])){
+            unset($_SESSION['msg']);
         }
-        catch (PasswordVerificationException $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
-        }
-        catch (NotFoundException $ERROR){
-            file_put_contents('Log/[PlaceHolderName].log',$ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
-            exit();
-        }
+        $_SESSION['msg'] = $msg;
     }
 }

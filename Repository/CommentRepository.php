@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Exception\CannotDeleteCommentException;
 use App\Exception\CannotModify;
 use App\Model\Billet;
+use App\Exception\NotFoundException;
+pre_release_ALPHA
 use App\Model\Comment;
 use App\Model\User;
 
@@ -56,11 +58,10 @@ class CommentRepository extends AbstractRepository
      *
      * Cette fonction permet de supprimer un commentaire de la base de donnée
      *
-     * @return void
-     * @throws CannotDeleteCommentException
-     *
+     * @param int $commId
+     * @return string
      */
-    public function delComment(int $commId): void
+    public function delComment(int $commId): string
     {
         //TODO : ne permettre cette supression qu'a l'autheur et les admins
         $query = 'DELETE FROM COMMENT WHERE COMMENT_ID = :commId';
@@ -71,6 +72,8 @@ class CommentRepository extends AbstractRepository
         if ($statement->rowCount() === 0) {
             throw new CannotDeleteCommentException("COMMENT cannot be deleted");
         }
+
+        return "COMMENT successfully deleted";
     }
 
     /** Modification d'un commentaire
@@ -98,5 +101,24 @@ class CommentRepository extends AbstractRepository
             throw new CannotModify("COMMENT cannot be updated");
         }
 
+    }
+    public function searchComment(string $q) : array
+    {
+        $query = 'SELECT * FROM COMMENT WHERE TEXTE LIKE "%' . $q . '%" ORDER BY COMMENT_ID DESC';
+        $statement = $this->connexion->prepare(
+            $query);
+        $statement->execute();
+        if ($statement->rowCount() === 0) {
+            throw new NotFoundException('Aucun commentaire trouvé pour '.$q.' .');
+        }
+        $arraySQL = $statement->fetchAll();
+        $arrayComment = array();
+
+        for ($i = 0; $i < sizeof($arraySQL); $i++) {
+            $comment = new Comment($arraySQL[$i]['TEXTE'], $arraySQL[$i]['DATE_COMM'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['BILLET_ID']);
+            $arrayComment[] = $comment;
+        }
+
+        return $arrayComment;
     }
 }

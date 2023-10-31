@@ -1,4 +1,7 @@
-<?php require 'GestionPage.php' ?>
+<?php
+require "../vendor/autoload.php";
+
+require 'GestionPage.php' ?>
 <?php start_page('404'); ?>
 <body><!-- FLEX BLOCK-->
     <?php $active = '404';

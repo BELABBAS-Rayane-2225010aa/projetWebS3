@@ -7,6 +7,7 @@
  * @see \App\Repository\UserRepository
  * @see \App\Controller\LoginController
  * @see \App\Controller\SignUpController
+ * @see \App\Controller\PostBilletController
  *
  * @version 0.9
  *
@@ -32,27 +33,20 @@ class User
      * @param string $dateLastCo => date de dernière connexion du User
      * @param int $isAdmin => 1 si il s'agit d'un admin et 0 sinon (on utilise des chiffre à cause de la BD)
      */
-    public function __construct(private string $password, private string $pseudo,
+    public function __construct(private int $userId,private string $password, private string $pseudo,
                                 private string $email,private string $dateFirstCo,
                                 private string $dateLastCo, private int $isAdmin){
 
     }
 
     /**
-     * Overload du constructeur
+     * getter de l'attribut userId
      *
-     * @deprecated cette fonction n'est plus utilissé dans notre code
-     *
-     * @param string $password
-     * @param string $login
-     * @return self
-     *
-     * @return void
-     *
-     * @todo : vérifier l'utilisation de cette fonction et l'enlever au besoin
+     * @return int
      */
-    public static function loginUser (string $password , string $login):self {
-        return new self($password,'',$login,'','','');
+    public function getUserId(): int
+    {
+        return $this->userId;
     }
 
     /**
@@ -76,18 +70,6 @@ class User
     }
 
     /**
-     * setter de l'attibut pseudo
-     *
-     * @param string $pseudo
-     *
-     * @return void
-     */
-    public function setPseudo(string $pseudo): void
-    {
-        $this->pseudo = $pseudo;
-    }
-
-    /**
      * getter de l'attribut email
      *
      * @return string
@@ -95,18 +77,6 @@ class User
     public function getEmail(): string
     {
         return $this->email;
-    }
-
-    /**
-     * setter de l'attibut email
-     *
-     * @param string $email
-     *
-     * @return void
-     */
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
     }
 
     /**

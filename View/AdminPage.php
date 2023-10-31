@@ -7,16 +7,16 @@ start_page('Administration');//Charge la balise "head" avec le css, favicon et l
     <body><!-- FLEX BLOCK-->
 <?php $active = 'admin';
 require 'HeaderMenu.php' ?>
-<section class="fomulaire" >
+<section id="adminbox" >
     <form action="../index.php" method="post">
         <p>Nouvelle catégorie: <br>
             <label>Entrez le nom de la nouvel catégorie :
-                <input type="text" name="catName">
+                <input type="text" name="newCatName">
             </label><br>
             <label>Entrez sa description :
                 <textarea name="catDesc"></textarea>
             </label><br>
-            <input type="submit" name="NewCat" id='boutonchangerMDP' class='boutonchanger_mdp' value="Ajouter"><br>
+            <input type="submit" name="NewCat" id='boutonchangerMDP' class='checkButton' value="Ajouter"><br>
             <br>
         </p>
 
@@ -24,15 +24,15 @@ require 'HeaderMenu.php' ?>
             <label>Entrez le nom de la catégorie à supprimer :
                 <input type="text" name="catName">
             </label><br>
-            <input type="submit" name="DelCat" id='boutonchangerMDP' class='boutonchanger_mdp' value="suprimer"><br>
+            <input type="submit" name="DelCat" id='boutonchangerMDP' class='checkButton' value="suprimer"><br>
             <br>
         </p>
 
-        <p>Suprimer utilisateur: <br>
+        <p>Suprimer utilisateur: <input type="checkbox" name="deleteEvenAdmin" id='deleteEvenAdmin'><label for="evenAdmin">Admin aussi</label><br>
             <label>Entrez l'ID de l'utilisateur à supprimer :
                 <input type="text" id="in" name="userId">
             </label><br>
-            <input type="submit" name="DelUser" id='boutonchangerMDP' class='boutonchanger_mdp' value="suprimer"><br>
+            <input type="submit" name="DelUser" id='boutonchangerMDP' class='checkButton' value="suprimer"><br>
             <br>
         </p>
 
@@ -40,7 +40,7 @@ require 'HeaderMenu.php' ?>
             <label>Entrez l'ID du billet à supprimer :
                 <input type="text" id="in" name="billetId">
             </label><br>
-            <input type="submit" name="DelBillet" id='boutonchangerMDP' class='boutonchanger_mdp' value="suprimer"><br>
+            <input type="submit" name="DelBillet" id='boutonchangerMDP' class='checkButton' value="suprimer"><br>
             <br>
         </p>
 
@@ -56,9 +56,11 @@ require 'HeaderMenu.php' ?>
             <label>Entrez l'ID de l'utilisateur à faire devenir admin :
                 <input type="text" id="in" name="userIdAdmin">
             </label><br>
-            <input type="submit" name="MakeAdmin" id='boutonchangerMDP' class='boutonchanger_mdp' value="modifier"><br>
+            <input type="submit" name="MakeAdmin" id='boutonchangerMDP' class='checkButton' value="modifier"><br>
+            <br>
         </p>
     </form>
+    <p style="color: red"><?php if (isset($_SESSION['msg'])){echo $_SESSION['msg']; unset($_SESSION['msg']);}?></p>
 </section>
 <?php
 end_page();

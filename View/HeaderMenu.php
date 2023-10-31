@@ -1,13 +1,35 @@
+<?php
+
+use App\Controller\HeaderMenuController;
+require '../vendor/autoload.php';
+
+$homeController = new HeaderMenuController();
+$homeController->getAllCat();
+$arrayCat = $homeController->getCatArray();
+?>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <ul class="menu"><!--Menu de haut de page qui est prèsent sur toute les page-->
     <li><a <?php if ($active === 'index'){echo 'class=active';};?> href="../index.php">Acceuil</a></li>
-    <bouton class="dropdown" > <i class="fa fa-caret-down"></i><a  class="dropbtn"  <?php if ($active === 'categorie'){echo 'class=active';};?> >Categorie</a>
+    <bouton class="dropdown" ><a  class="dropbtn"  <?php if ($active === 'categorie'){echo 'class=active';};?>>Categorie ▾</a>
         <div class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
+            <form action="Category.php" method="post" id="catform"></form>
+            <?php
+            for ($i = 0 ; $i < sizeof($arrayCat) ; ++$i)
+            {
+            ?>
+                <button id="deroulant" value="<?php echo base64_encode(serialize($arrayCat[$i]));?>" name="catClique" form="catform">
+                <span>
+                </span>
+                    <p class="txt-btn"><?php if (isset($arrayCat[$i])){echo $arrayCat[$i]->getLabel();}else{ echo 'erreur de chargement du billet';}?></p>
+                </button>
+<!--            <a href="Category.php">--><?php //echo $arrayCat[$i]["LABEL"]?><!--</a>-->
+            <?php
+            }
+            ?>
         </div>
     </bouton>
-    <li><a <?php if ($active === 'contact'){echo 'class=active';};?> href="/View/contact.php">Contact</a></li>
     <li style="float:right"><a <?php if ($active === 'about'){echo 'class=active';}?> href="/View/about.php">About</a></li>
     <?php
     //Vérifie si l'utilisateur est connecté et change les bouton du menu en fonction.
@@ -31,5 +53,12 @@
     <?php
     }
     ?>
+    <form style="float:right" class="search" action="ResultatRecherche.php" method="post">
+        <input type="text" id="searchInput" name="TexteRecherche" class="searchinput" placeholder="Recherche..." />
+<!--        <input type="submit" value="recherche" name="recherche">-->
+        <label for="searchInput" class="searchbutton">
+            <span class="fa fa-search" type="submit"> </span>
+        </label>
+    </form><!-- Fin du formulaire de recherche -->
 </ul>
 
