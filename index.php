@@ -42,7 +42,7 @@ if (isset($_POST['SignUp'])) {
 
 if(isset($_POST['PasswordModif'])) {
     $controller = new PasswordModifierController();
-    $controller->ModifPassword();
+    $controller->modifPassword();
     header('Location: View/PasswordModifier.php');
 }
 
@@ -54,7 +54,7 @@ if(isset($_POST['PseudoModif'])) {
 
 if (isset($_POST['EmailModif'])) {
     $controller = new EmailModifierController();
-    $controller->ModifEmail();
+    $controller->modifEmail();
     header('Location: View/EmailModifier.php');
 }
 

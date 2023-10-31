@@ -1,4 +1,20 @@
 <?php
+/**
+ * Controller de la page Login.php
+ *
+ * Cette class permet de faire toutes les actions utilisateurs de la page Login
+ *
+ * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
+ * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
+ *
+ * @package App\Controller
+ *
+ * @see \App\Repository\UserRepository
+ *
+ * @version 0.9
+ *
+ * @todo : verifier l'utilité des exceptions
+ */
 
 namespace App\Controller;
 
@@ -8,8 +24,6 @@ use App\Exception\NotFoundException;
 
 /**
  * La classe LoginController permet de traiter la requête SQL de la fonction login
- *
- * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
  */
 class LoginController
 {
@@ -44,14 +58,12 @@ class LoginController
         }
         //on catch si l'utilisateur n'est pas trouvé
         catch (NotFoundException $ERROR){
-            $msg = $ERROR->getMessage();
+            //on fais un retour d'erreur
+            file_put_contents('Log/tavernDeBill.log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
+            if (isset($_SESSION['msg'])){
+                unset($_SESSION['msg']);
+            }
+            $_SESSION['msg'] = $ERROR->getMessage();
         }
-
-        //on fais un retour d'erreur ou de réussite
-        file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
-        if (isset($_SESSION['msg'])){
-            unset($_SESSION['msg']);
-        }
-        $_SESSION['msg'] = $msg;
     }
 }

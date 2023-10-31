@@ -51,7 +51,7 @@ class BilletModifierController
             $msg = $ERROR->getMessage();
         }
 
-        //on envoie un message à l'admin en cas de reussite ou d'erreur
+        //on envoie un message en cas de reussite ou d'erreur
         file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
         if (isset($_SESSION['msg'])){
             unset($_SESSION['msg']);
