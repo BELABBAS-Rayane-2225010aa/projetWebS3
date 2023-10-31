@@ -4,8 +4,11 @@ namespace App\Repository;
 
 use App\Exception\CannotDeleteCommentException;
 use App\Exception\CannotModify;
+use App\Model\Billet;
 use App\Exception\NotFoundException;
+pre_release_ALPHA
 use App\Model\Comment;
+use App\Model\User;
 
 /**
  * La classe CommentRepository permet de gérer les requête SQL relatifs aux Commentaire
@@ -31,14 +34,24 @@ class CommentRepository extends AbstractRepository
      * Cette fonction permet de créer un Comm
      *
      * @param string $texte => le texte du commentaire
+     * @param int $author => l'Id de l'auteur
+     * @param int $billet => l'Id billet auquel le commentaire est rattaché
      *
      * @return Comment => une instance de la class Comment créer pour l'occasion
      */
-//    public function addComment(string $texte) : Comment
-//    {
-//
-//        return new Comment();
-//    }
+    public function addComment(string $texte, User $author, Billet $billet) : Comment
+    {
+        $query = 'INSERT INTO COMMENT(TEXTE, DATE_COM, USER_ID, BILLET_ID)
+                  VALUES (\':texte\', NOW(), :author, :billet)';
+        $statement = $this->connexion->prepare($query);
+        $statement->execute(['texte' => $texte, 'author'=>$author, 'billet'=>$billet]);
+
+        if ($statement->rowCount() === 0) {
+            throw new CannotDeleteCommentException("COMMENT cannot be added");
+        }
+
+        return new Comment($texte, date('Y-m-d'), $author, $billet );
+    }
 
     /**
      * Suppression d'un commentaire
