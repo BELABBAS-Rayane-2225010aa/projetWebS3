@@ -103,6 +103,7 @@ if (isset($_POST['createPost'])) {
 if(isset($_POST['BilletModif'])){
     $controller = new BilletModifierController();
     $controller->updateBillet();
+
 }
 
 if(isset($_POST['addComment'])){
