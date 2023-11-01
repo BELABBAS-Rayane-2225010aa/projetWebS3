@@ -57,7 +57,7 @@ class ResultatRechercheController
 
         //on catch si on ne trouve rien
         catch (NotFoundException $ERROR){
-            echo 'Aucun billet trouvé pour: '.$recherche.'...';
+            echo $ERROR->getMessage();
 
         }
     }
@@ -93,7 +93,7 @@ class ResultatRechercheController
 
         //on catch si on ne trouve rien
         catch (NotFoundException $ERROR){
-            echo 'Aucun commentaire trouvé pour: '.$recherche.'...';
+            echo $ERROR->getMessage();
         }
     }
 
@@ -127,7 +127,7 @@ class ResultatRechercheController
 
         //on catch si on ne trouve rien
         catch (NotFoundException $ERROR){
-            echo 'Aucune catégorie trouvé pour: '.$recherche.'...';
+            echo $ERROR->getMessage();
         }
     }
 
@@ -161,7 +161,7 @@ class ResultatRechercheController
 
         //on catch si on ne trouve rien
         catch (NotFoundException $ERROR){
-            echo 'Aucun Utilisateur trouvé pour: '.$recherche.'...';
+            echo $ERROR->getMessage();
         }
     }
 

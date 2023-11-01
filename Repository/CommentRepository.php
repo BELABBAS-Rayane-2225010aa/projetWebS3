@@ -114,7 +114,7 @@ class CommentRepository extends AbstractRepository
         $arrayComment = array();
 
         for ($i = 0; $i < sizeof($arraySQL); $i++) {
-            $comment = new Comment($arraySQL[$i]['TEXTE'], $arraySQL[$i]['DATE_COMM'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['BILLET_ID']);
+            $comment = new Comment($arraySQL[$i]['TEXTE'], $arraySQL[$i]['DATE_COM'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['BILLET_ID']);
             $arrayComment[] = $comment;
         }
 
