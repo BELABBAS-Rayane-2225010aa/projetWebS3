@@ -9,9 +9,7 @@
  * @see \App\Controller\SignUpController
  * @see \App\Controller\PostBilletController
  *
- * @version 0.9
- *
- * @todo : verifier si les setter sont bon niveau sécurité
+ * @version 1.0
  */
 
 namespace App\Model;
