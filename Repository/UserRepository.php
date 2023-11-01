@@ -74,7 +74,7 @@ class UserRepository extends AbstractRepository
 
        //Si la fonction ne rend rien cela veut dire qu'il n'y a pas de User correspondant
        if ( $statement -> rowCount() === 0 ){
-           throw new NotFoundException("USER not Found");
+           throw new NotFoundException("Le USER de pseudo : ".$pseudo." pas trouvé");
        }
 
        $user = $statement->fetch();
@@ -123,7 +123,7 @@ class UserRepository extends AbstractRepository
 
         //Si la requête ne nous rend rien on dit que l'on peut pas insérer
         if ( $statement -> rowCount() === 0){
-            throw new CannotCreateUserException("USER cannot be created");
+            throw new CannotCreateUserException("Le USER de pseudo : ".$pseudo." ne peut pas être créer");
         }
 
         //Aprés avoir créer l'utilisateur on le connecte
@@ -166,7 +166,7 @@ class UserRepository extends AbstractRepository
             throw new CannotModify("Erreur dans votre ancien mot de passe");
         }
 
-        return "Password succesfully modified";
+        return "Le password a bien été modifier";
     }
 
     /**
@@ -187,7 +187,7 @@ class UserRepository extends AbstractRepository
     {
         //On vérifie si l'ancien et le nouveau Pseudo sont les mêmes
         if ($oldPseudo == $newPseudo){
-            throw new PseudoVerificationException("Same pseudo as the old one");
+            throw new PseudoVerificationException("Même pseudo que l'ancien");
         }
 
         //On fait la modification dans la BD
@@ -198,7 +198,7 @@ class UserRepository extends AbstractRepository
 
         //Si la requête ne rend rien ça veut dire que le pseudo ou le mot de passe renseigner est faux
         if ( $statement -> rowCount() === 0){
-            throw new CannotModify("USER PSEUDO cannot be modify");
+            throw new CannotModify("Le pseudo du User : ".$oldPseudo." ne peut être modifier");
         }
 
         return $this->login($newPseudo,$password);
@@ -227,14 +227,14 @@ class UserRepository extends AbstractRepository
         }
 
         //On fait la modification dans la BD
-        $query = 'UPDATE USER SET MAIL = :newEmail WHERE MAIL = :oldEmail AND PSEUDO = :pseudo AND PASSWORD = :password';
+        $query = 'UPDATE USER SET MAIL = :newEmail WHERE MAIL = :oldEmail AND PSEUDO = :pseudo AND MDP = :password';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['newEmail' => $newEmail, 'oldEmail' => $oldEmail, 'pseudo' => $pseudo, 'password' => $password]);
 
         //Si la requête ne rend rien ça veut dire que le mail ou le pseudo ou le mot de passe renseigner est faux
         if ( $statement -> rowCount() === 0){
-            throw new CannotModify("USER MAIL cannot be modify");
+            throw new CannotModify("Le mail du User : ".$pseudo." ne peut être modifier");
         }
 
         return $this->login($pseudo,$password);
@@ -264,12 +264,12 @@ class UserRepository extends AbstractRepository
 
             //Si la requête ne rend rien ça veut dire que  l'utilisateur n'existe pas
             if ($statement->rowCount() === 0) {
-                throw new CannotDeleteUserException("USER number " . $userId . " cannot be deleted");
+                throw new CannotDeleteUserException("Le USER d'id : " . $userId . " ne peut pas être supprimer");
             }
         } else {
-            throw new UserIsAdminException("USER number " . $userId . " is an Admin");
+            throw new UserIsAdminException("Le USER d'id : " . $userId . " est un Admin");
         }
-        return "USER number ".$userId." as been deleted";
+        return "Le USER d'id : ".$userId." a bien été supprimé";
     }
 
     /**
@@ -280,6 +280,7 @@ class UserRepository extends AbstractRepository
      * @param int $id => le numéro d'identification d'un utilisateur
      *
      * @throws CannotModify
+     * @throws UserIsAdminException
      *
      * @return string
      */
@@ -296,14 +297,14 @@ class UserRepository extends AbstractRepository
 
             //Si la requête ne rend rien ça veut dire que  l'utilisateur n'existe pas
             if ( $statement -> rowCount() === 0){
-                throw new CannotModify("USER number ".$id." cannot be modified");
+                throw new CannotModify("Le USER d'id : ".$id." ne peut pas être modifier");
             }
         }
         else {
-            throw new UserIsAdminException("USER number ".$id." is an Admin");
+            throw new UserIsAdminException("Le USER d'id : ".$id." est un Admin");
         }
 
-        return "USER number ".$id." successfully modified";
+        return "Le USER d'id : ".$id." a bien été mdoifier";
     }
 
     /**
@@ -352,7 +353,7 @@ class UserRepository extends AbstractRepository
 
         //Si la requête ne rend rien ça veut dire qu'il n'existe aucun utilisateur qui a $q dans son pseudo
         if ($statement->rowCount() === 0) {
-            throw new NotFoundException('Aucun User trouvé pour '.$recherche.' .');
+            throw new NotFoundException('Aucun User trouvé pour : '.$recherche.' ...');
         }
 
         //on créer un tableau de Usercontenant toutes les données
@@ -389,7 +390,7 @@ class UserRepository extends AbstractRepository
 
         //Si la requête ne rend rien ça veut dire qu'il n'y a aucun utilisateurs avec cette id
         if ($statement->rowCount()===0){
-            throw new NotFoundException('Pas d\'utilisateur trouvé');
+            throw new NotFoundException('Aucun USER trouvé');
         }
         $user = $statement->fetch();
 

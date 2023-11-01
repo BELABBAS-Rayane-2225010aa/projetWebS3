@@ -54,7 +54,7 @@ class UserConnectedRepository extends AbstractRepository
             $query );
         $statement->execute(['dateDerCo' => $dateDerCo,'userId' => $userId]);
 
-        return $user->getPseudo() ." is connected";
+        return $user->getPseudo() ." est connecté";
     }
 
     /**
@@ -79,10 +79,10 @@ class UserConnectedRepository extends AbstractRepository
 
         //Si la requête ne renvoie rien ça veut dire que l'utilisateur est déja déconnecter
         if ( $statement -> rowCount() === 0){
-            throw new CannotDeleteConnectedException("USER : ".$user->getPseudo()." cannot be deconnected");
+            throw new CannotDeleteConnectedException("Le USER : ".$user->getPseudo()." ne peut pas être déconnecter");
         }
 
-        return $user->getPseudo() ." is deconnected";
+        return $user->getPseudo() ." est déconnecté";
     }
 
     /**

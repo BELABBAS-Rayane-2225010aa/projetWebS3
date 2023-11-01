@@ -47,9 +47,9 @@ class CommentRepository extends AbstractRepository
         $statement->execute(['texte' => $texte, 'date'=>$date, 'author'=>$authorId, 'billet'=>$billetId]);
 
         if ($statement->rowCount() === 0) {
-            throw new CannotAddCommentException("COMMENT cannot be added");
+            throw new CannotAddCommentException("Le COMMENT ne peut être créer");
         }
-        return "Commentaire crée";
+        return "Le COMMENT a bien été créer";
     }
 
     /**
@@ -69,10 +69,10 @@ class CommentRepository extends AbstractRepository
         $statement->execute(['commId' => $commId]);
 
         if ($statement->rowCount() === 0) {
-            throw new CannotDeleteCommentException("COMMENT cannot be deleted");
+            throw new CannotDeleteCommentException("Le COMMENT d'id : ".$commId." ne peut pas être supprimer");
         }
 
-        return "COMMENT successfully deleted";
+        return "Le COMMENT d'id : ".$commId."  a bien été supprimé";
     }
 
     /** Modification d'un commentaire
@@ -97,18 +97,18 @@ class CommentRepository extends AbstractRepository
         $statement->execute(['commId' => $commId, 'texte'=>$texte]);
 
         if ( $statement -> rowCount() === 0){
-            throw new CannotModify("COMMENT cannot be updated");
+            throw new CannotModify("Le COMMENT d'id : ".$commId." ne peut pas être modifier");
         }
 
     }
-    public function searchComment(string $q) : array
+    public function searchComment(string $recherche) : array
     {
-        $query = 'SELECT * FROM COMMENT WHERE TEXTE LIKE "%' . $q . '%" ORDER BY COMMENT_ID DESC';
+        $query = 'SELECT * FROM COMMENT WHERE TEXTE LIKE "%' . $recherche . '%" ORDER BY COMMENT_ID DESC';
         $statement = $this->connexion->prepare(
             $query);
         $statement->execute();
         if ($statement->rowCount() === 0) {
-            throw new NotFoundException('Aucun commentaire trouvé pour '.$q.' .');
+            throw new NotFoundException('Aucun commentaire trouvé pour : '.$recherche.' ...');
         }
         $arraySQL = $statement->fetchAll();
         $arrayComment = array();

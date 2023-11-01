@@ -62,7 +62,7 @@ class BilletRepository extends AbstractRepository
         $statement->execute();
         //Si la requête ne rend rien ça veut dire qu'il n'y a pas de billet ?
         if ( $statement -> rowCount() === 0 ){
-            throw new NotFoundException("BILLET not Found");
+            throw new NotFoundException("Aucun BILLET trouvé");
         }
 
         $arraySQL =  $statement->fetchAll();
@@ -103,10 +103,10 @@ class BilletRepository extends AbstractRepository
 
         //Si la requête ne renvoie rien ça veut dire que le billet n'existe pas
         if ( $statement -> rowCount() === 0){
-            throw new CannotDeleteBilletException("BILLET cannot be deleted");
+            throw new CannotDeleteBilletException("Le BILLET d'id : ".$id." ne peut pas être supprimé");
         }
 
-       return "BILLET successfully deleted";
+       return "Le BILLET d'id : ".$id." a bien été supprimé";
     }
 
     /**
@@ -130,7 +130,7 @@ class BilletRepository extends AbstractRepository
 
         //Si la requête ne renvoi rien ça veut dire qu'aucun titre n'a $recherche en lui
         if ($statement->rowCount() === 0) {
-            throw new NotFoundException('Aucun billet trouvé pour '.$recherche.'...');
+            throw new NotFoundException('Aucun billet trouvé pour : '.$recherche.' ...');
         }
 
         //on créer un tableau de billet contenant toutes les données
@@ -171,10 +171,10 @@ class BilletRepository extends AbstractRepository
 
         //si la requête renvoie rien ça veut dire qu'il y un bug dans la bd
         if ($statement -> rowCount() === 0 ){
-            throw new CannotCreateBilletException("Billet cannot be created");
+            throw new CannotCreateBilletException("Le Billet de titre : ".$title." ne peut pas être créer");
         }
 
-        return "Billet créer";
+        return "Le Billet de titre : ".$title." a bien été créer";
     }
 
     /**
@@ -197,7 +197,7 @@ class BilletRepository extends AbstractRepository
 
         //Si la requête ne rend rien cela veut dire que l'auteur n'a pas écrit de billet
         if ($statement -> rowCount() === 0 ){
-            throw new CannotFindBilletException("No Billet find");
+            throw new CannotFindBilletException("Aucun BILLET trouvé");
         }
 
         //on créer un tableau de billet contenant toutes les données
@@ -239,10 +239,10 @@ class BilletRepository extends AbstractRepository
         $statement->execute(['title' => $title, 'msg' => $msg, 'date' => $dateBillet, 'authorID' => $authorId, 'catID' => $categoryId, 'oldTitle' => $oldTitle]);
         //si la requête renvoie rien c'est que l'on a pas trouver le billet
         if ($statement->rowCount() === 0) {
-            throw new CannotFindBilletException("No Billet find");
+            throw new CannotFindBilletException("Aucun BILLET de titre : ".$oldTitle);
         }
 
-        return "Billet modifier";
+        return "Le Billet de titre : ".$title." a bien été modifier";
     }
 
     /**
@@ -265,7 +265,7 @@ class BilletRepository extends AbstractRepository
 
         //si la requête rend rien c'est que l'id n'est pas trouvable
         if ($statement->rowCount() === 0) {
-            throw new CannotFindBilletException("No Billet find");
+            throw new CannotFindBilletException("Aucun BILLET trouvé");
         }
 
         //on créer un tableau de billet contenant toutes les données

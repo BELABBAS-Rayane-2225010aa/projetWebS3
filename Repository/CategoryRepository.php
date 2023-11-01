@@ -72,14 +72,14 @@ class CategoryRepository extends AbstractRepository
             $statement->execute(['label' => $label, 'description' => $description]);
 
             if ($statement->rowCount() === 0) {
-                throw new CannotCreateCatException("CATEGORY ".$label." cannot be created");
+                throw new CannotCreateCatException("La CATEGORY : ".$label." ne peut pas être créer");
             }
         }
         else {
-            throw new CatAlreadyExistException("CATEGORY ".$label." already exist");
+            throw new CatAlreadyExistException("La CATEGORY : ".$label." existe déjà");
         }
 
-        return "CATEGORY ".$label." successfully created";
+        return "La CATEGORY : ".$label." a bien été créer";
     }
 
     /**
@@ -111,10 +111,10 @@ class CategoryRepository extends AbstractRepository
 
         //Si la requête ne renvoie rien c'est que le label renseigner n'existe pas
         if ( $statement -> rowCount() === 0){
-            throw new CannotDeleteCatException("There is no CATEGORY with the name ".$label);
+            throw new CannotDeleteCatException("Aucune CATEGORY ne porte le nom : ".$label);
         }
 
-        return "CATEGORY ".$label." successfully deleted";
+        return "La CATEGORY ".$label." a bien été supprimé";
     }
 
     /**
@@ -133,7 +133,7 @@ class CategoryRepository extends AbstractRepository
             $query );
         $statement->execute();
         if ( $statement -> rowCount() === 0){
-            throw new NotFoundException("Category not found");
+            throw new NotFoundException("Aucune CATEGORY trouvé");
         }
 
         //on créer un tableau SQL contenant toutes les données
@@ -163,7 +163,7 @@ class CategoryRepository extends AbstractRepository
 
         //Si la requête ne renvoie rien c'est qu'aucun label ne contient $recherche
         if ($statement->rowCount() === 0) {
-            throw new NotFoundException('Aucune categorie trouvé pour '.$recherche.' .');
+            throw new NotFoundException('Aucune categorie trouvé pour : '.$recherche.' ...');
         }
 
         //on créer un tableau de catégorie contenant toutes les données
@@ -199,7 +199,7 @@ class CategoryRepository extends AbstractRepository
 
         // si la reqête ne renvoie rien c'est que la catégorie n'existe pas
         if ($statement->rowCount()===0){
-            throw new NotFoundException('Categorie introuvable');
+            throw new NotFoundException('Aucune CATEGORY trouvé');
         }
         $cat = $statement->fetch();
 
@@ -226,7 +226,7 @@ class CategoryRepository extends AbstractRepository
 
         //Si la requête ne renvoie rien c'est que le label donné en'existe pas
         if ($statement->rowCount()===0){
-            throw new NotFoundException('Categorie introuvable');
+            throw new NotFoundException('Aucune CATEGORY trouvé');
         }
         $cat = $statement->fetch();
 
@@ -251,7 +251,7 @@ class CategoryRepository extends AbstractRepository
 
         //si la requête ne renvoie rien c'est qu'il n'y a aucune catégorie
         if ( $statement -> rowCount() === 0){
-            throw new NotFoundException("Category not found");
+            throw new NotFoundException("Aucune CATEGORY trouvé");
         }
 
         //on créer un tableau de catégorie contenant toutes les données
