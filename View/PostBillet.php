@@ -1,5 +1,4 @@
 <?php
-//TODO : faire en sorte davoir un retour pour la création du billet mais pas dans cette page
 
 require '../vendor/autoload.php';
 require 'GestionPage.php';
