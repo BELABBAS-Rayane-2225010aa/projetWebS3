@@ -1,4 +1,7 @@
 <?php
+
+use App\Repository\CategoryRepository;
+
 require '../vendor/autoload.php';
 
 require 'GestionPage.php';
@@ -13,6 +16,7 @@ require 'HeaderMenu.php';//Charge le bar menu
 $controller = new \App\Controller\ProfilController();
 $controller->BilletArrayPrivate();
 $arrayBillet = $controller->getBilletArray();
+$labelCatID = new CategoryRepository();;
 ?>
     <section id="profilpub">
         <p>Pseudo :<?php echo $_SESSION['user']->getPseudo() ?></p>
@@ -30,7 +34,7 @@ $arrayBillet = $controller->getBilletArray();
                 for ($i = 0; $i < sizeof($arrayBillet) ; ++$i){
             ?>
                     <button id="btnprofil" value="<?php echo base64_encode(serialize($arrayBillet[$i]));?>" name="billetClique" form="billetform">
-                        <p id="misenformep"><?php if (isset($arrayBillet[$i])){echo $arrayBillet[$i]->getTitle().",".$arrayBillet[$i]->getDate().", TODO : mettre les categories";}else{ echo 'erreur de chargement du billet';}?></p>
+                        <p id="misenformep"><?php if (isset($arrayBillet[$i])){echo $arrayBillet[$i]->getTitle().",".$arrayBillet[$i]->getDate().", Categorie : ".$labelCatID->catFromID($arrayBillet[$i]->getCategoryId())->getLabel();}else{ echo 'erreur de chargement du billet';}?></p>
                     </button><br>
             <?php
                 }
