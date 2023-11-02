@@ -29,6 +29,7 @@ class BilletModifierController
      * @catch NotFoundException
      *
      * @return void
+     * stocke dans une variable de session un msg d'erreur ou de reussite
      */
     public function updateBillet(): void {
         //on recupere les donnees du formulaire et on en creer de nouvel
