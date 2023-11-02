@@ -83,10 +83,16 @@ if (isset($_POST['DelBillet'])) {
     header('Location: View/AdminPage.php');
 }
 
-if (isset($_POST['DelComment'])) {
+if (isset($_POST['DelCommentAdmin'])) {
     $controller = new AdminController();
     $controller->deleteComment();
     header('Location: View/AdminPage.php');
+}
+
+if (isset($_POST['DelComment'])) {
+    $controller = new BilletController();
+    $controller->deleteComment();
+    header('Location: View/Billet.php');
 }
 
 if (isset($_POST['MakeAdmin'])) {
@@ -109,7 +115,6 @@ if(isset($_POST['BilletModif'])){
 if(isset($_POST['addComment'])){
     $controller = new BilletController();
     $controller->getNewComment();
-    $_POST['billetClique'] = $_POST['billetComment'];
     header('Location: View/Billet.php');
 }
 ?>

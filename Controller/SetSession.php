@@ -33,4 +33,9 @@ class SetSession
         $_SESSION['suid'] = session_id();
         $_SESSION['user'] = $user;
     }
+
+    public function setLastBilletClique($billet) : void {
+        unset($_SESSION['lastBillet']);
+        $_SESSION['lastBillet'] = $billet;
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Exception\CannotAddCommentException;
 use App\Exception\CannotDeleteCommentException;
+use App\Exception\CannotFindCommentException;
 use App\Exception\CannotModify;
 use App\Model\Billet;
 use App\Exception\NotFoundException;
@@ -115,6 +116,26 @@ class CommentRepository extends AbstractRepository
 
         for ($i = 0; $i < sizeof($arraySQL); $i++) {
             $comment = new Comment($arraySQL[$i]['TEXTE'], $arraySQL[$i]['DATE_COM'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['BILLET_ID']);
+            $arrayComment[] = $comment;
+        }
+
+        return $arrayComment;
+    }
+
+    public function getCommentByBillet(int $billetId) : array {
+        //on select tout les commentaires d'un billet
+        $query = 'SELECT * FROM COMMENT WHERE BILLET_ID = :billetId ORDER BY DATE_COM DESC';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['billetId' => $billetId]);
+
+        //on créer un tableau de billet contenant toutes les données
+        $arraySQL = $statement->fetchAll();
+        $arrayComment = array();
+
+        /* on récupére le résultat de la requête SQL et on le met dans un tableau de Comment*/
+        for ($i = 0; $i < sizeof($arraySQL); $i++) {
+            $comment = new Comment($arraySQL[$i]['COMMENT_ID'], $arraySQL[$i]['TEXTE'],$arraySQL[$i]['DATE_COM'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['BILLET_ID']);
             $arrayComment[] = $comment;
         }
 

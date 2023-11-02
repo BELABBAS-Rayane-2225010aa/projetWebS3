@@ -22,6 +22,7 @@ class Comment
     /**
      * Le constructeur de la class Comment
      *
+     * @param int $commentId => l'identifiant du commentaire
      * @param string $text => le text du Comment
      * @param string $date => la date de création du Comment
      * @param int $author => l'id de l'auteur du Comment
@@ -29,7 +30,7 @@ class Comment
      *
      * @return void
      */
-    public function __construct(private string $text, private string $date,
+    public function __construct(private int $commentId, private string $text, private string $date,
                                 private int $author, private int $billet){
     }
 
@@ -71,5 +72,10 @@ class Comment
     public function getBillet(): int
     {
         return $this->billet;
+    }
+
+    public function getCommentId(): int
+    {
+        return $this->commentId;
     }
 }
