@@ -14,9 +14,7 @@
  * @see \App\Repository\BilletRepository
  * @see \App\Repository\CommentRepository
  *
- * @version 0.9
- *
- * @todo : verifier l'utilité des exceptions
+ * @version 1.0
  */
 
 namespace App\Controller;

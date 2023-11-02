@@ -10,14 +10,12 @@
  *
  * @see \App\Repository\BilletRepository
  *
- * @version 0.9
- *
- * @todo : verifier l'utilité des exceptions
+ * @version 1.0
  */
 
 namespace App\Controller;
 
-use App\Exception\CannotFindBilletException;
+use App\Exception\NotFoundException;
 use App\Repository\BilletRepository;
 
 /**
@@ -28,7 +26,7 @@ class BilletModifierController
     /**
      * permet de modifier un billet
      *
-     * @catch CannotFindBilletException
+     * @catch NotFoundException
      *
      * @return void
      */
@@ -47,7 +45,7 @@ class BilletModifierController
         }
 
         //on catch si on ne peut pas trouvé le Billet à modifier
-        catch(CannotFindBilletException $ERROR){
+        catch(NotFoundException $ERROR){
             $msg = $ERROR->getMessage();
         }
 

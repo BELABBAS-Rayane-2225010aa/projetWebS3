@@ -18,7 +18,6 @@
 namespace App\Repository;
 
 use App\Exception\CannotCreateBilletException;
-use App\Exception\CannotFindBilletException;
 use App\Exception\NotFoundException;
 use App\Model\Billet;
 
@@ -183,7 +182,7 @@ class BilletRepository extends AbstractRepository
      *
      * @param int $authorId => l'id de l'auteur du billet
      *
-     * @throws CannotFindBilletException
+     * @throws NotFoundException
      *
      * @return array
      */
@@ -196,7 +195,7 @@ class BilletRepository extends AbstractRepository
 
         //Si la requête ne rend rien cela veut dire que l'auteur n'a pas écrit de billet
         if ($statement -> rowCount() === 0 ){
-            throw new CannotFindBilletException("Aucun BILLET trouvé");
+            throw new NotFoundException("Aucun BILLET trouvé");
         }
 
         //on créer un tableau de billet contenant toutes les données
@@ -225,7 +224,7 @@ class BilletRepository extends AbstractRepository
      * @param int $categoryId => l'id de la categorie du billet
      *
      * @return string
-     * @throws CannotFindBilletException
+     * @throws NotFoundException
      *
      *  @todo que ce soit par rapport à l'id du billet et non son ancien titre
      */
@@ -238,7 +237,7 @@ class BilletRepository extends AbstractRepository
         $statement->execute(['title' => $title, 'msg' => $msg, 'date' => $dateBillet, 'authorID' => $authorId, 'catID' => $categoryId, 'oldTitle' => $oldTitle]);
         //si la requête renvoie rien c'est que l'on a pas trouver le billet
         if ($statement->rowCount() === 0) {
-            throw new CannotFindBilletException("Aucun BILLET de titre : ".$oldTitle);
+            throw new NotFoundException("Aucun BILLET de titre : ".$oldTitle);
         }
 
         return "Le Billet de titre : ".$title." a bien été modifier";
@@ -251,7 +250,7 @@ class BilletRepository extends AbstractRepository
      *
      * @param int $id => l'id de la categorie du billet
      *
-     * @throws CannotFindBilletException
+     * @throws NotFoundException
      *
      * @return array
      */
@@ -264,7 +263,7 @@ class BilletRepository extends AbstractRepository
 
         //si la requête rend rien c'est que l'id n'est pas trouvable
         if ($statement->rowCount() === 0) {
-            throw new CannotFindBilletException("Aucun BILLET trouvé");
+            throw new NotFoundException("Aucun BILLET trouvé");
         }
 
         //on créer un tableau de billet contenant toutes les données
