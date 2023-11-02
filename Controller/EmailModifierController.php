@@ -10,15 +10,13 @@
  *
  * @see \App\Repository\UserRepository
  *
- * @version 0.9
- *
- * @todo : verifier l'utilité des exceptions
+ * @version 1.0
  */
 
 namespace App\Controller;
 
-use App\Exception\CannotModify;
 use App\Exception\EmailVerificationException;
+use App\Exception\NotFoundException;
 use App\Repository\UserRepository;
 
 /**
@@ -32,11 +30,12 @@ class EmailModifierController
      * permet de modifier l'email d'un User
      *
      * @catch EmailVerificationException
-     * @catch CannotModify
+     * @catch NotFoundException
      *
      * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
      *
      * @return void
+     * stocke dans une variable de session un msg d'erreur ou de reussite
      */
     public function modifEmail() : void
     {
@@ -55,7 +54,7 @@ class EmailModifierController
         }
 
         //on catch si la vérification des mails ne sont pas bon ou si on ne peut pas modifier
-        catch (EmailVerificationException|CannotModify $ERROR){
+        catch (EmailVerificationException|NotFoundException $ERROR){
             $msg = $ERROR->getMessage();
         }
 

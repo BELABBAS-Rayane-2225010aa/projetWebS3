@@ -214,7 +214,7 @@ class UserRepository extends AbstractRepository
      * @param string $password => le password de l'utilisateur
      *
      * @throws EmailVerificationException
-     * @throws CannotModify
+     * @throws NotFoundException
      *
      * @return User => une instance de la class User créer pour l'occasion
      */
@@ -222,7 +222,7 @@ class UserRepository extends AbstractRepository
     {
         //On vérifie si l'ancienne et la nouvelle adresse mail sont les mêmes
         if ($oldEmail == $newEmail){
-            throw new EmailVerificationException("Same mail as the old one");
+            throw new EmailVerificationException("Même email que l'ancien");
         }
 
         //On fait la modification dans la BD
@@ -231,9 +231,9 @@ class UserRepository extends AbstractRepository
             $query );
         $statement->execute(['newEmail' => $newEmail, 'oldEmail' => $oldEmail, 'pseudo' => $pseudo, 'password' => $password]);
 
-        //Si la requête ne rend rien ça veut dire que le mail ou le pseudo ou le mot de passe renseigner est faux
+        //Si la requête ne rend rien ça veut dire que le User n'est pas trouvé
         if ( $statement -> rowCount() === 0){
-            throw new CannotModify("Le mail du User : ".$pseudo." ne peut être modifier");
+            throw new NotFoundException("Le mail du User : ".$pseudo." ne peut être modifier");
         }
 
         return $this->login($pseudo,$password);

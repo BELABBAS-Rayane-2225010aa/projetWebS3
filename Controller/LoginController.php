@@ -11,9 +11,7 @@
  *
  * @see \App\Repository\UserRepository
  *
- * @version 0.9
- *
- * @todo : verifier l'utilité des exceptions
+ * @version 1.0
  */
 
 namespace App\Controller;
@@ -36,6 +34,7 @@ class LoginController
      *
      * @return void génère un identifiant de session unique pour l'utilisateur actuel
      * et stocke cet objet dans une variable de session appelée 'user'.
+     * stocke dans une variable de session un msg d'erreur ou de reussite
      */
     public function getLogin(): void
     {
