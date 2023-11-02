@@ -24,7 +24,7 @@ $labelCatID = new CategoryRepository();;
         <p id="misenformep"></p>
         <p >E-mail :<?php echo $_SESSION['user']->getEmail() ?></p>
         <button id="btnprofil" onclick="window.location.href='EmailModifier.php';">Changer l'e-mail</button>
-        <p id="misenformep" >Date de création : 00/00/0000</p><br>
+        <p id="misenformep" >Date de création : <?php echo $_SESSION['user']->getDateFirstCo()?></p><br>
         <form action="Billet.php" method="post" id="billetform">Billet écrit:</form>
         <p id="misenformep"><?php
             if ($arrayBillet === []){
