@@ -20,7 +20,6 @@
 namespace App\Repository;
 
 use App\Exception\{CannotCreateUserException,
-    CannotDeleteUserException,
     CannotModify,
     EmailVerificationException,
     EmptyFieldException,
@@ -247,7 +246,7 @@ class UserRepository extends AbstractRepository
      *
      * @param int $userId => le numéro d'identification d'un utilisateur
      *
-     * @throws CannotDeleteUserException
+     * @throws NotFoundException
      *
      * @return string
      */
@@ -264,7 +263,7 @@ class UserRepository extends AbstractRepository
 
             //Si la requête ne rend rien ça veut dire que  l'utilisateur n'existe pas
             if ($statement->rowCount() === 0) {
-                throw new CannotDeleteUserException("Le USER d'id : " . $userId . " ne peut pas être supprimer");
+                throw new NotFoundException("Le USER d'id : " . $userId . " ne peut pas être supprimer");
             }
         } else {
             throw new UserIsAdminException("Le USER d'id : " . $userId . " est un Admin");
@@ -279,7 +278,7 @@ class UserRepository extends AbstractRepository
      *
      * @param int $id => le numéro d'identification d'un utilisateur
      *
-     * @throws CannotModify
+     * @throws NotFoundException
      * @throws UserIsAdminException
      *
      * @return string
@@ -297,7 +296,7 @@ class UserRepository extends AbstractRepository
 
             //Si la requête ne rend rien ça veut dire que  l'utilisateur n'existe pas
             if ( $statement -> rowCount() === 0){
-                throw new CannotModify("Le USER d'id : ".$id." ne peut pas être modifier");
+                throw new NotFoundException("Le USER d'id : ".$id." ne peut pas être modifier");
             }
         }
         else {

@@ -17,8 +17,6 @@
 
 namespace App\Repository;
 
-use App\Exception\CannotCreateCatException;
-use App\Exception\CannotDeleteCatException;
 use App\Exception\CatAlreadyExistException;
 use App\Exception\NotFoundException;
 use App\Model\Category;
@@ -51,7 +49,7 @@ class CategoryRepository extends AbstractRepository
      * @param string $label => titre de la catégorie
      * @param string $description => déscription
      *
-     * @throws CannotCreateCatException | CatAlreadyExistException
+     * @throws CatAlreadyExistException
      *
      * @return string
      */
@@ -70,10 +68,6 @@ class CategoryRepository extends AbstractRepository
             $statement = $this->connexion->prepare(
                 $query);
             $statement->execute(['label' => $label, 'description' => $description]);
-
-            if ($statement->rowCount() === 0) {
-                throw new CannotCreateCatException("La CATEGORY : ".$label." ne peut pas être créer");
-            }
         }
         else {
             throw new CatAlreadyExistException("La CATEGORY : ".$label." existe déjà");
@@ -89,7 +83,7 @@ class CategoryRepository extends AbstractRepository
      *
      * @param string $label => titre de la catégorie
      *
-     * @throws CannotDeleteCatException
+     * @throws NotFoundException
      *
      * @return string
      */
@@ -111,7 +105,7 @@ class CategoryRepository extends AbstractRepository
 
         //Si la requête ne renvoie rien c'est que le label renseigner n'existe pas
         if ( $statement -> rowCount() === 0){
-            throw new CannotDeleteCatException("Aucune CATEGORY ne porte le nom : ".$label);
+            throw new NotFoundException("Aucune CATEGORY ne porte le nom : ".$label);
         }
 
         return "La CATEGORY ".$label." a bien été supprimé";

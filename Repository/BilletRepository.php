@@ -18,7 +18,6 @@
 namespace App\Repository;
 
 use App\Exception\CannotCreateBilletException;
-use App\Exception\CannotDeleteBilletException;
 use App\Exception\CannotFindBilletException;
 use App\Exception\NotFoundException;
 use App\Model\Billet;
@@ -82,7 +81,7 @@ class BilletRepository extends AbstractRepository
      *
      * Cette fonction permet de supprimer un Billet de la base de donnée
      *
-     * @throws CannotDeleteBilletException
+     * @throws NotFoundException
      *
      * @param int $id => l'id du billet
      *
@@ -103,7 +102,7 @@ class BilletRepository extends AbstractRepository
 
         //Si la requête ne renvoie rien ça veut dire que le billet n'existe pas
         if ( $statement -> rowCount() === 0){
-            throw new CannotDeleteBilletException("Le BILLET d'id : ".$id." ne peut pas être supprimé");
+            throw new  NotFoundException("Le BILLET d'id : ".$id." ne peut pas être supprimé");
         }
 
        return "Le BILLET d'id : ".$id." a bien été supprimé";

@@ -21,13 +21,8 @@
 
 namespace App\Controller;
 
-use App\Exception\CannotCreateCatException;
-use App\Exception\CannotDeleteBilletException;
-use App\Exception\CannotDeleteCatException;
-use App\Exception\CannotDeleteCommentException;
-use App\Exception\CannotDeleteUserException;
-use App\Exception\CannotModify;
 use App\Exception\CatAlreadyExistException;
+use App\Exception\NotFoundException;
 use App\Exception\UserIsAdminException;
 use App\Repository\BilletRepository;
 use App\Repository\CategoryRepository;
@@ -45,7 +40,6 @@ class AdminController
     /**
      * permet de créer une Category
      *
-     * @catch CannotCreateCatException
      * @catch CatAlreadyExistException
      *
      * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
@@ -63,8 +57,8 @@ class AdminController
             $msg = $cat->createCat($name,$desc);
         }
 
-        //on catch si on ne peut pas créer ou si la Category existe déjà
-        catch (CannotCreateCatException | CatAlreadyExistException $ERROR){
+        //on catch si la Category existe déjà
+        catch (CatAlreadyExistException $ERROR){
             $msg = $ERROR->getMessage();
         }
 
@@ -79,7 +73,7 @@ class AdminController
     /**
      * permet de supprimer une Category
      *
-     * @catch CannotDeleteCatException
+     * @catch NotFoundException
      *
      * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
      *
@@ -95,8 +89,8 @@ class AdminController
             $msg = $cat->deleteCat($name);
         }
 
-        //on catch si on ne peut pas supprimer
-        catch (CannotDeleteCatException $ERROR){
+        //on catch si on ne peut pas supprimer car la category n'est pas trouvé
+        catch (NotFoundException $ERROR){
             $msg = $ERROR->getMessage();
         }
 
@@ -111,7 +105,7 @@ class AdminController
     /**
      * permet de supprimer un User
      *
-     * @catch CannotDeleteUserException
+     * @catch NotFoundException
      * @catch UserIsAdminException
      *
      * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
@@ -133,8 +127,8 @@ class AdminController
             $msg = $user->deleteUs($userId,$deleteEvenAdmin);
         }
 
-        //on catch si on ne peut pas supprimer
-        catch (CannotDeleteUserException | UserIsAdminException $ERROR){
+        //on catch si on ne peut pas supprimer car le User n'est pas trouvé ou si le User est un Admin
+        catch (NotFoundException | UserIsAdminException $ERROR){
             $msg = $ERROR->getMessage();
         }
 
@@ -149,7 +143,7 @@ class AdminController
     /**
      * permet de supprimer un Billet
      *
-     * @catch CannotDeleteBilletException
+     * @catch NotFoundException
      *
      * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
      *
@@ -165,8 +159,8 @@ class AdminController
             $msg = $user->deleteBillet($billetId);
         }
 
-        //on catch si on ne peut pas supprimer
-        catch (CannotDeleteBilletException $ERROR){
+        //on catch si on ne peut pas supprimer car le billet n'est pas trouvé
+        catch (NotFoundException $ERROR){
             $msg = $ERROR->getMessage();
         }
 
@@ -181,12 +175,13 @@ class AdminController
     /**
      * permet de supprimer un Comment
      *
-     * @catch CannotDeleteCommentException
+     * @catch NotFoundException
      *
      * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
      * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
      *
      * @return void
+     * stocke dans une variable de session un msg d'erreur ou de reussite
      */
     public function deleteComment() : void {
         //on recupere les donnees du formulaire
@@ -197,8 +192,8 @@ class AdminController
             $msg = $user->delComment($commentId);
         }
 
-        //on catch si on ne peut pas supprimer
-        catch (CannotDeleteCommentException $ERROR){
+        //on catch si on ne peut pas supprimer car le comment n'est pas trouvé
+        catch (NotFoundException $ERROR){
             $msg = $ERROR->getMessage();
         }
 
@@ -213,7 +208,7 @@ class AdminController
     /**
      * permet de transformer un non admin en admin
      *
-     * @catch CannotModify
+     * @catch NotFoundException
      * @catch UserIsAdminException
      *
      * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
@@ -230,8 +225,8 @@ class AdminController
             $msg = $user->makeAdmin($userId);
         }
 
-        //on catch si on ne peut pas modifier ou si il s'agit d'un admin
-        catch (CannotModify | UserIsAdminException $ERROR){
+        //on catch si on ne peut pas modifier car le User n'est pas trouvé ou si il s'agit d'un admin
+        catch (NotFoundException | UserIsAdminException $ERROR){
             $msg = $ERROR->getMessage();
         }
 

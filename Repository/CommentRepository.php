@@ -3,12 +3,9 @@
 namespace App\Repository;
 
 use App\Exception\CannotAddCommentException;
-use App\Exception\CannotDeleteCommentException;
 use App\Exception\CannotModify;
-use App\Model\Billet;
 use App\Exception\NotFoundException;
 use App\Model\Comment;
-use App\Model\User;
 
 /**
  * La classe CommentRepository permet de gérer les requête SQL relatifs aux Commentaire
@@ -57,6 +54,8 @@ class CommentRepository extends AbstractRepository
      *
      * Cette fonction permet de supprimer un commentaire de la base de donnée
      *
+     * @throws NotFoundException
+     *
      * @param int $commId
      * @return string
      */
@@ -69,7 +68,7 @@ class CommentRepository extends AbstractRepository
         $statement->execute(['commId' => $commId]);
 
         if ($statement->rowCount() === 0) {
-            throw new CannotDeleteCommentException("Le COMMENT d'id : ".$commId." ne peut pas être supprimer");
+            throw new NotFoundException("Le COMMENT d'id : ".$commId." ne peut pas être supprimer");
         }
 
         return "Le COMMENT d'id : ".$commId."  a bien été supprimé";
