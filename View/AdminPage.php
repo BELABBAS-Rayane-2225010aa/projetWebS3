@@ -48,7 +48,7 @@ require 'HeaderMenu.php' ?>
             <label>Entrez l'ID du commentaire à supprimer :
                 <input type="text" id="in" name="commentId">
             </label><br>
-            <input type="submit" name="DelComment" id='boutonchangerMDP' class='boutonchanger_mdp' value="suprimer"><br>
+            <input type="submit" name="DelCommentAdmin" id='boutonchangerMDP' class='boutonchanger_mdp' value="suprimer"><br>
             <br>
         </p>
 

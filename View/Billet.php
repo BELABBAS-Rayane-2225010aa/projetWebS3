@@ -10,18 +10,32 @@ start_page('Billet');//Charge la balise "head" avec le css, favicon et le nom de
 require 'HeaderMenu.php';//Charge le bar menu
 
 
+use App\Controller\SetSession;
 use App\Repository\CategoryRepository;
+use App\Repository\CommentRepository;
 use App\Repository\UserRepository;
+use App\Model\Comment;
 
-if(!isset($_POST['billetClique']))
+if(!isset($_POST['billetClique']) && !isset($_SESSION['lastBillet']))
 {
     header('Location: ../index.php');
 }
-$serializedBillet = $_POST['billetClique'];
+if (isset($_POST['billetClique'])) {
+    $serializedBillet = $_POST['billetClique'];
+    $session = new SetSession();
+    $session->setLastBilletClique($serializedBillet);
+}
+else {
+    $serializedBillet = $_SESSION['lastBillet'];
+}
+
 $billetClique = unserialize(base64_decode($serializedBillet));
 if (!$billetClique instanceof \App\Model\Billet) {
     echo 'La désérialisation a échoué';
 }
+$commentaire = new CommentRepository();
+$arrayComment = $commentaire->getCommentByBillet($billetClique->getBilletId());
+$pseudoCommentAuteur = new UserRepository();
 $labelCatID = new CategoryRepository();
 $cat = $labelCatID->catFromID($billetClique->getCategoryId());
 $pseudoAuteur = new UserRepository();
@@ -50,12 +64,13 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
             if ($billetClique->getAuthorId() === $_SESSION['user']->getUserId()){
                 ?>
                 <form action="BilletModifier.php" method="post" id="billetModifierForm"></form>
-                <button value="<?php echo $_POST['billetClique'];?>" name="billetClique" form="billetModifierForm">Modifier</button>
+                <button value="<?php echo $serializedBillet;?>" name="billetClique" form="billetModifierForm">Modifier</button>
                 <?php
             }
         }?>
         <p>Date : <?php echo $billetClique->getDate() ?></p>
     </section>
+    <br>
     <?php
     if(isset($_SESSION['suid'])) { ?>
         <form action="../index.php" method="post">
@@ -63,11 +78,40 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
             <input name="billetID" type="hidden" value="<?php echo $billetClique->getBilletId()?>"/>
             <input name="billetComment" type="hidden" value="<?php echo base64_encode(serialize($billetClique))?>"/>
             <label for="createComment">Ecrivez un commentaire</label>
-            <textarea id="createComment" name="texteComment" rows="1" cols="40" ></textarea>
+            <textarea id="createComment" name="texteComment" rows="1" cols="40" wrap="hard" ></textarea>
             <input type="submit" name="addComment" <span class="fa fa-send"> </span>
 
         </form>
+        <br>
     <?php } ?>
+
+    <!--Affichage des commentaires-->
+    <form id="CommentAction" action="../index.php" method="post">
+    <?php
+    if (sizeof($arrayComment)!=0) {
+        for ($i = 0 ; $i < sizeof($arrayComment) ; ++$i)
+        {
+            $commentTexte = $arrayComment[$i]->getText();
+            $commentAuteur = $pseudoCommentAuteur->getPseudoFromID($arrayComment[$i]->getAuthor());
+            ?>
+            <label for="comment"> Commentaire de <?php echo $commentAuteur->getPseudo() ?> </label>
+            <textarea id="comment" wrap="hard" rows="5" cols="80" readonly>
+                <?php echo $commentTexte ?>
+            </textarea>
+            <?php
+            if ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor()) {?>
+                <button form="CommentAction" name="DelComment" value="<?php echo $arrayComment[$i]->getCommentId()?>">Supprimer Commentaire</button>
+            <?php
+            }
+            ?>
+            <br>
+            <?php
+        }
+    }
+    ?>
+    </form>
+    <br>
+
 
 <?php
 end_page();
