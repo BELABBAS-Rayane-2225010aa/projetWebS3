@@ -160,7 +160,7 @@ class UserRepository extends AbstractRepository
             $query);
         $statement->execute(['newPassword' => $newPassword, 'oldPassword' => $oldPassword]);
 
-        //Si la requête ne rend rien ça veut dire que le mot de passe renseigner est faux
+        //Si la requête ne rend rien ça veut dire que le User n'est pas trouvé
         if ($statement->rowCount() === 0) {
             throw new CannotModify("Erreur dans votre ancien mot de passe");
         }
@@ -195,7 +195,7 @@ class UserRepository extends AbstractRepository
             $query );
         $statement->execute(['newPseudo' => $newPseudo, 'oldPseudo' => $oldPseudo, 'password' => $password]);
 
-        //Si la requête ne rend rien ça veut dire que le pseudo ou le mot de passe renseigner est faux
+        //Si la requête ne rend rien ça veut dire que le User n'est pas trouvé
         if ( $statement -> rowCount() === 0){
             throw new CannotModify("Le pseudo du User : ".$oldPseudo." ne peut être modifier");
         }

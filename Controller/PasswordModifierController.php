@@ -34,6 +34,7 @@ class PasswordModifierController
      * @catch NotFoundException
      *
      * @return void
+     * stocke dans une variable de session un msg d'erreur ou de reussite
      */
     public function modifPassword() : void
     {
