@@ -43,7 +43,7 @@ $arrayCat = $categoryRepository->getCat();
         </select>
     </aside>
 
-    <section id="commentID" class="comments"><!--affiche les comentaires du billet-->
+    <section id="commentID" class="Billet"><!--affiche les comentaires du billet-->
         <h2>
             <label>Titre :
                 <input type="text" name="title" value="<?php echo $billetClique->getTitle()?>"/>

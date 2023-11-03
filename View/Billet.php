@@ -55,7 +55,7 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
     </aside>
 
-    <section id="commentID" class="comments"><!--affiche les comentaires du billet-->
+    <section class="Billet"><!--affiche les comentaires du billet-->
         <h2><?php echo $billetClique->getTitle()?></h2>
         <p><?php if(!empty($billetClique->getMsg())){echo $billetClique->getMsg();}else{echo 'ERROR Le message est vide ERROR';}?></p>
         <h3>Auteur : <?php echo $auteur->getPseudo() ?></h3>
@@ -73,20 +73,20 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
     <br>
     <?php
     if(isset($_SESSION['suid'])) { ?>
-        <form action="../index.php" method="post">
+        <form action="../index.php" method="post" class="Comments">
             <input name="userID" type="hidden" value="<?php echo $_SESSION['user']->getUserId()?>"/>
             <input name="billetID" type="hidden" value="<?php echo $billetClique->getBilletId()?>"/>
             <input name="billetComment" type="hidden" value="<?php echo base64_encode(serialize($billetClique))?>"/>
             <label for="createComment">Ecrivez un commentaire</label>
             <textarea id="createComment" name="texteComment" rows="1" cols="40" wrap="hard" ></textarea>
-            <input type="submit" name="addComment" <span class="fa fa-send"> </span>
+            <input class="btnCommentCategory" type="submit" name="addComment" <span class="fa fa-send"> </span>
 
         </form>
         <br>
     <?php } ?>
 
     <!--Affichage des commentaires-->
-    <form id="CommentAction" action="../index.php" method="post">
+    <form id="CommentAction" action="../index.php" method="post" class="Comments">
     <?php
     if (sizeof($arrayComment)!=0) {
         for ($i = 0 ; $i < sizeof($arrayComment) ; ++$i)

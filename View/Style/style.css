@@ -173,9 +173,9 @@ li.dropdown {
 
 /* billet et commentaire a droite */
 
-.comments {
+.Billet {
     position: static;
-    margin-left: 260px;
+    margin-left: 15%;
     background-color: #f9f9f9; /* Couleur de fond */
     border-radius: 8px;
     margin-top: 5vh;
@@ -563,5 +563,22 @@ footer {
     background-color: #174370;
     color: white;
     border-radius: 10px;
+    cursor: pointer;
+}
+.Comments{
+    position: static;
+    margin-left: 15%;
+    background-color: #f9f9f9; /* Couleur de fond */
+    border-radius: 8px;
+    margin-top: 0.5%;
+    margin-right: 0.8vh;
+    font-size: 1.2em;
+    padding: 1%;
+    overflow: hidden;
+}
+.btnCommentCategory{
+    background-color: #174370;
+    color: white;
+    border-radius: 8px;
     cursor: pointer;
 }
