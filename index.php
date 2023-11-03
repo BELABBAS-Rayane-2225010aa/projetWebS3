@@ -117,4 +117,10 @@ if(isset($_POST['addComment'])){
     $controller->getNewComment();
     header('Location: View/Billet.php');
 }
+
+if(isset($_POST['CommentModifier'])){
+        $controller = new BilletController();
+        $controller->modifComment();
+    header('Location: View/Billet.php');
+}
 ?>

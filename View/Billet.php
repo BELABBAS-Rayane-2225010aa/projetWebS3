@@ -78,7 +78,7 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
             <input name="billetID" type="hidden" value="<?php echo $billetClique->getBilletId()?>"/>
             <input name="billetComment" type="hidden" value="<?php echo base64_encode(serialize($billetClique))?>"/>
             <label for="createComment">Ecrivez un commentaire</label>
-            <textarea id="createComment" name="texteComment" rows="1" cols="40" wrap="hard" ></textarea>
+            <textarea id="createComment" name="texteComment" rows="2" cols="60" wrap="hard" ></textarea>
             <input class="btnCommentCategory" type="submit" name="addComment" <span class="fa fa-send"> </span>
 
         </form>
@@ -95,12 +95,15 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
             $commentAuteur = $pseudoCommentAuteur->getPseudoFromID($arrayComment[$i]->getAuthor());
             ?>
             <label for="comment"> Commentaire de <?php echo $commentAuteur->getPseudo() ?> </label>
-            <textarea id="comment" wrap="hard" rows="5" cols="80" readonly>
+            <textarea form="CommentAction" id="comment" name="texteModif<?php echo $arrayComment[$i]->getCommentId() ?>" wrap="soft" rows="5" cols="80"
+                <?php if (!(isset($_SESSION['user']) && ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor() || $_SESSION['user']->getIsAdmin()))) { echo "readonly";}?>
+            >
                 <?php echo $commentTexte ?>
             </textarea>
             <?php
-            if ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor()) {?>
+            if (isset($_SESSION['user']) && ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor() || $_SESSION['user']->getIsAdmin())) {?>
                 <button form="CommentAction" name="DelComment" value="<?php echo $arrayComment[$i]->getCommentId()?>">Supprimer Commentaire</button>
+                <button form="CommentAction" title="Ecriver dans la zone de texte puis cliquez pour modifier" name="CommentModifier" value="<?php echo $arrayComment[$i]->getCommentId()?>">Modifier Commentaire</button>
             <?php
             }
             ?>

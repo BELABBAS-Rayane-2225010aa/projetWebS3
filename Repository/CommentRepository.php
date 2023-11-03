@@ -44,9 +44,9 @@ class CommentRepository extends AbstractRepository
         $statement->execute(['texte' => $texte, 'date'=>$date, 'author'=>$authorId, 'billet'=>$billetId]);
 
         if ($statement->rowCount() === 0) {
-            throw new CannotAddCommentException("Le COMMENT ne peut être créer");
+            throw new CannotAddCommentException("Le COMMENT ne peut être créé");
         }
-        return "Le COMMENT a bien été créer";
+        return "Le COMMENT a bien été créé";
     }
 
     /**
@@ -68,7 +68,7 @@ class CommentRepository extends AbstractRepository
         $statement->execute(['commId' => $commId]);
 
         if ($statement->rowCount() === 0) {
-            throw new NotFoundException("Le COMMENT d'id : ".$commId." ne peut pas être supprimer");
+            throw new NotFoundException("Le COMMENT d'id : ".$commId." ne peut pas être supprimé");
         }
 
         return "Le COMMENT d'id : ".$commId."  a bien été supprimé";
@@ -86,7 +86,7 @@ class CommentRepository extends AbstractRepository
      *
      */
 
-    public function updComment(int $commId, string $texte): void
+    public function updComment(int $commId, string $texte): string
     {
         //TODO : ne permettre qu'à l'auteur et aux admins de le modifier
 
@@ -96,8 +96,10 @@ class CommentRepository extends AbstractRepository
         $statement->execute(['commId' => $commId, 'texte'=>$texte]);
 
         if ( $statement -> rowCount() === 0){
-            throw new CannotModify("Le COMMENT d'id : ".$commId." ne peut pas être modifier");
+            throw new CannotModify("Le COMMENT d'id : ".$commId." ne peut pas être modifié");
         }
+
+        return "Le commentaire a bien été modifier";
 
     }
     public function searchComment(string $recherche) : array
@@ -113,7 +115,7 @@ class CommentRepository extends AbstractRepository
         $arrayComment = array();
 
         for ($i = 0; $i < sizeof($arraySQL); $i++) {
-            $comment = new Comment($arraySQL[$i]['TEXTE'], $arraySQL[$i]['DATE_COM'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['BILLET_ID']);
+            $comment = new Comment($arrayComment[$i]['COMMENT_ID'], $arraySQL[$i]['TEXTE'], $arraySQL[$i]['DATE_COM'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['BILLET_ID']);
             $arrayComment[] = $comment;
         }
 
