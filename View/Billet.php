@@ -91,17 +91,31 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
     if (sizeof($arrayComment)!=0) {
         for ($i = 0 ; $i < sizeof($arrayComment) ; ++$i)
         {
+            $isImportante = $arrayComment[$i]->isImportante();
             $commentTexte = $arrayComment[$i]->getText();
-            $commentAuteur = $pseudoCommentAuteur->getPseudoFromID($arrayComment[$i]->getAuthor());
-            ?>
+            $commentAuteur = $pseudoCommentAuteur->getPseudoFromID($arrayComment[$i]->getAuthor());?>
             <label for="comment"> Commentaire de <?php echo $commentAuteur->getPseudo() ?> </label>
-            <textarea id="comment" wrap="hard" rows="5" cols="80" readonly>
-                <?php echo $commentTexte ?>
-            </textarea>
+            <textarea id="comment" wrap="hard" rows="5" cols="80" readonly><?php echo $commentTexte ?></textarea>
             <?php
-            if ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor()) {?>
-                <button form="CommentAction" name="DelComment" value="<?php echo $arrayComment[$i]->getCommentId()?>">Supprimer Commentaire</button>
+            if (isset($_SESSION['suid'])){
+                if ($_SESSION['user']->getUserId() === $billetClique->getAuthorId()){
+                    if ($isImportante === 0){
+                ?>
+                        <button form="CommentAction" name="makeImportante" value="<?php echo $arrayComment[$i]->getCommentId()?>">Faire devenir important (img a mettre)</button>
+                <?php
+                    }
+                    else {
+                ?>
+                        <button form="CommentAction" name="unMakeImportante" value="<?php echo $arrayComment[$i]->getCommentId()?>">Faire devenir non important (img a mettre)</button>
+                <?php
+                    }
+                }
+            ?>
             <?php
+                if ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor()) {?>
+                    <button form="CommentAction" name="DelComment" value="<?php echo $arrayComment[$i]->getCommentId()?>">Supprimer Commentaire</button>
+            <?php
+                }
             }
             ?>
             <br>

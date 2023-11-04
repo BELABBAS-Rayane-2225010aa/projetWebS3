@@ -109,12 +109,25 @@ if (isset($_POST['createPost'])) {
 if(isset($_POST['BilletModif'])){
     $controller = new BilletModifierController();
     $controller->updateBillet();
+    header('Location: View/Billet.php');
 
 }
 
 if(isset($_POST['addComment'])){
     $controller = new BilletController();
     $controller->getNewComment();
+    header('Location: View/Billet.php');
+}
+
+if(isset($_POST['makeImportante'])){
+    $controller = new BilletController();
+    $controller->makeImportante();
+    header('Location: View/Billet.php');
+}
+
+if(isset($_POST['unMakeImportante'])){
+    $controller = new BilletController();
+    $controller->unMakeImportante();
     header('Location: View/Billet.php');
 }
 ?>

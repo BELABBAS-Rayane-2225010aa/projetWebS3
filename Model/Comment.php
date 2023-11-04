@@ -31,7 +31,7 @@ class Comment
      * @return void
      */
     public function __construct(private int $commentId, private string $text, private string $date,
-                                private int $author, private int $billet){
+                                private int $author, private int $billet,private int $isImportante){
     }
 
     /**
@@ -77,5 +77,15 @@ class Comment
     public function getCommentId(): int
     {
         return $this->commentId;
+    }
+
+    /**
+     * getter de l'attibut nbVote
+     *
+     * @return int
+     */
+    public function isImportante(): int
+    {
+        return $this->isImportante;
     }
 }

@@ -8,6 +8,7 @@ use App\Repository\CommentRepository;
 use App\Exception\NotFoundException;
 use App\Model\Billet;
 use App\Model\User;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class BilletController
 {
@@ -72,5 +73,40 @@ class BilletController
             unset($_SESSION['msg']);
         }
         $_SESSION['msg'] = $msg;
+    }
+
+    /**
+     * permet d'ajouté ou supprimer un upvote
+     *
+     * @catch NotFoundException
+     *
+     * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
+     *
+     * @return void
+     */
+    public function makeImportante(): void
+    {
+        $commentId = $_POST['makeImportante'];
+
+        try {
+            $comment = new CommentRepository();
+            $comment->updateVote($commentId,true);
+        }
+        catch (NotFoundException $ERROR){
+            file_put_contents('Log/tavernDeBill.log', $ERROR->getMessage() . "\n", FILE_APPEND | LOCK_EX);
+        }
+    }
+
+    public function unMakeImportante(): void
+    {
+        $commentId = $_POST['unMakeImportante'];
+
+        try {
+            $comment = new CommentRepository();
+            $comment->updateVote($commentId,false);
+        }
+        catch (NotFoundException $ERROR){
+            file_put_contents('Log/tavernDeBill.log', $ERROR->getMessage() . "\n", FILE_APPEND | LOCK_EX);
+        }
     }
 }
