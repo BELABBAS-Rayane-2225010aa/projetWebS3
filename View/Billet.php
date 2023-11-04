@@ -99,9 +99,7 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
             <label for="comment"> Commentaire de <?php echo $commentAuteur->getPseudo() ?> </label>
             <textarea form="CommentAction" id="comment" name="texteModif<?php echo $arrayComment[$i]->getCommentId() ?>" wrap="soft" rows="5" cols="80"
                 <?php if (!(isset($_SESSION['user']) && ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor() || $_SESSION['user']->getIsAdmin()))) { echo "readonly";}?>
-            >
-                <?php echo $commentTexte ?>
-            </textarea>
+            ><?php echo $commentTexte ?></textarea>
             <?php
             if (isset($_SESSION['suid'])){
                 if ($_SESSION['user']->getUserId() === $billetClique->getAuthorId()){
