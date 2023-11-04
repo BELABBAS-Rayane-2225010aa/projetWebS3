@@ -18,6 +18,7 @@
 namespace App\Controller;
 
 use App\Exception\CannotFindBilletException;
+use App\Exception\NotFoundException;
 use App\Repository\BilletRepository;
 
 /**
@@ -46,7 +47,7 @@ class ProfilController
         }
 
         //on catch si on ne trouve pas de billet correspodant au User
-        catch(CannotFindBilletException $ERROR){
+        catch(NotFoundException $ERROR){
             $this->billetArray = [];
         }
     }
@@ -72,7 +73,7 @@ class ProfilController
         }
 
         //on catch si on ne trouva pas de billet correspondant au User
-        catch(CannotFindBilletException $ERROR){
+        catch(NotFoundException $ERROR){
             $this->billetArray = [];
         }
     }
