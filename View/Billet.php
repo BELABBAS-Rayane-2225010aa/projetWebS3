@@ -89,49 +89,48 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
 
     <!--Affichage des commentaires-->
     <form id="CommentAction" action="../index.php" method="post" class="Comments">
-    <?php
-    if (sizeof($arrayComment)!=0) {
-        for ($i = 0 ; $i < sizeof($arrayComment) ; ++$i)
-        {
-            $isImportante = $arrayComment[$i]->isImportante();
-            $commentTexte = $arrayComment[$i]->getText();
-            $commentAuteur = $pseudoCommentAuteur->getPseudoFromID($arrayComment[$i]->getAuthor());?>
-            <label for="comment"> Commentaire de <?php echo $commentAuteur->getPseudo() ?> </label>
-            <textarea form="CommentAction" id="comment" name="texteModif<?php echo $arrayComment[$i]->getCommentId() ?>" wrap="soft" rows="5" cols="80"
-                <?php if (!(isset($_SESSION['user']) && ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor() || $_SESSION['user']->getIsAdmin()))) { echo "readonly";}?>
-            ><?php echo $commentTexte ?></textarea>
-            <?php
-            if (isset($_SESSION['suid'])){
-                if ($_SESSION['user']->getUserId() === $billetClique->getAuthorId()){
-                    if ($isImportante === 0){
-                ?>
-                        <button form="CommentAction" name="makeImportante" value="<?php echo $arrayComment[$i]->getCommentId()?>">Faire devenir important (img a mettre)</button>
+        <?php
+        if (sizeof($arrayComment)!=0) {
+            for ($i = 0 ; $i < sizeof($arrayComment) ; ++$i)
+            {
+                $isImportante = $arrayComment[$i]->isImportante();
+                $commentTexte = $arrayComment[$i]->getText();
+                $commentAuteur = $pseudoCommentAuteur->getPseudoFromID($arrayComment[$i]->getAuthor());?>
+                <label for="comment"> Commentaire de <?php echo $commentAuteur->getPseudo() ?> </label>
+                <textarea form="CommentAction" id="comment" name="texteModif<?php echo $arrayComment[$i]->getCommentId() ?>" wrap="soft" rows="5" cols="80"
+                    <?php if (!(isset($_SESSION['user']) && ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor() || $_SESSION['user']->getIsAdmin()))) { echo "readonly";}?>
+                ><?php echo $commentTexte ?></textarea>
                 <?php
-                    }
-                    else {
-                ?>
-                        <button form="CommentAction" name="unMakeImportante" value="<?php echo $arrayComment[$i]->getCommentId()?>">Faire devenir non important (img a mettre)</button>
-                <?php
-                    }
-                }
-            ?>
-            <?php
-                if ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor()) {?>
-                    <button form="CommentAction" name="DelComment" value="<?php echo $arrayComment[$i]->getCommentId()?>">Supprimer Commentaire</button>
-                    <button form="CommentAction" title="Ecriver dans la zone de texte puis cliquez pour modifier" name="CommentModifier" value="<?php echo $arrayComment[$i]->getCommentId()?>">Modifier Commentaire</button>
+                if (isset($_SESSION['suid'])){
+                    if ($_SESSION['user']->getUserId() === $billetClique->getAuthorId()){
+                        if ($isImportante === 0){
+                    ?>
+                            <button form="CommentAction" name="makeImportante" value="<?php echo $arrayComment[$i]->getCommentId()?>">Faire devenir important (img a mettre)</button>
                     <?php
+                        }
+                        else {
+                    ?>
+                            <button form="CommentAction" name="unMakeImportante" value="<?php echo $arrayComment[$i]->getCommentId()?>">Faire devenir non important (img a mettre)</button>
+                    <?php
+                        }
+                    }
+                ?>
+                <?php
+                    if ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor()) {?>
+                        <button form="CommentAction" name="DelComment" value="<?php echo $arrayComment[$i]->getCommentId()?>">Supprimer Commentaire</button>
+                        <button form="CommentAction" title="Ecriver dans la zone de texte puis cliquez pour modifier" name="CommentModifier" value="<?php echo $arrayComment[$i]->getCommentId()?>">Modifier Commentaire</button>
+                        <?php
+                    }
                 }
+                ?>
+                <br>
+                <?php
             }
-            ?>
-            <br>
-            <?php
         }
-    }
-    ?>
+        ?>
+        <p style="color: red"><?php if (isset($_SESSION['msg'])){echo $_SESSION['msg']; unset($_SESSION['msg']);}?></p>
     </form>
     <br>
-
-
 <?php
 end_page();
 ?>

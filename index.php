@@ -109,7 +109,6 @@ if (isset($_POST['createPost'])) {
 if(isset($_POST['BilletModif'])){
     $controller = new BilletModifierController();
     $controller->updateBillet();
-    header('Location: View/Billet.php');
 
 }
 
@@ -137,7 +136,7 @@ if(isset($_POST['unMakeImportante'])){
     header('Location: View/Billet.php');
 }
 
-if(isset($_POST['supBillet'])){
+if(isset($_POST['unMakeImportante'])){
     $controller = new BilletController();
     $controller->deleteBillet();
 }
