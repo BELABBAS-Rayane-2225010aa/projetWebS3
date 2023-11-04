@@ -53,7 +53,7 @@ $searchController = new ResultatRechercheController();
                     <button id="btnflexbillet" value="<?php echo base64_encode(serialize($searchedComment[$i]));?>" name="billetClique" form="billetform">
                 <span id="icone-btn">
                 </span>
-                        <p class="txt-btn"><?php if (isset($searchedComment[$i])){echo $searchedComment[$i]->getLabel();}else{ echo 'erreur de chargement du commentaire';}?></p>
+                        <p class="txt-btn"><?php if (isset($searchedComment[$i])){echo $searchedComment[$i]->getText();}else{ echo 'erreur de chargement du commentaire';}?></p>
                     </button>
                     <?php
                 }
