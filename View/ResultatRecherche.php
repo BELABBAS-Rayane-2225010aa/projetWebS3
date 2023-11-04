@@ -50,10 +50,10 @@ $searchController = new ResultatRechercheController();
                 {
                     ?>
 
-                    <button id="btnflexbillet" value="<?php echo base64_encode(serialize($searchedComment[$i]));?>" name="billetClique" form="billetform">
+                    <button id="btnflexbillet" value="<?php $billetId = $searchedComment[$i]->getBillet(); $billetRepo = new \App\Repository\BilletRepository(); echo base64_encode(serialize($billetRepo->getBilletFromId($billetId)));?>" name="billetClique" form="billetform">
                 <span id="icone-btn">
                 </span>
-                        <p class="txt-btn"><?php if (isset($searchedComment[$i])){echo $searchedComment[$i]->getText();}else{ echo 'erreur de chargement du commentaire';}?></p>
+                        <p class="txt-btn"><?php if (isset($searchedComment[$i])){echo $searchedComment[$i]->getTitle();}else{ echo 'erreur de chargement du commentaire';}?></p>
                     </button>
                     <?php
                 }
@@ -97,7 +97,7 @@ $searchController = new ResultatRechercheController();
                 {
                     ?>
 
-                    <button id="btnflexbillet" value="<?php echo base64_encode(serialize($searchedUser[$i]));?>" name="userClique" form="btnflexbillet">
+                    <button id="btnflexbillet" value="<?php echo base64_encode(serialize($searchedUser[$i]));?>" name="userClique" form="connectedform">
                 <span id="icone-btn">
                 </span>
                         <p class="txt-btn"><?php if (isset($searchedUser[$i])){echo $searchedUser[$i]->getPseudo();}else{ echo 'erreur de chargement du User';}?></p>

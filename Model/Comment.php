@@ -88,4 +88,26 @@ class Comment
     {
         return $this->isImportante;
     }
+
+    /**
+     * getter qui permet de réduire l'affichage de l'attribut texte permettant de faire une sorte de titre
+     *
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        $title = "";
+        $text = $this->getText();
+        $cmptSpace = 0;
+        $i = 0;
+        while ($cmptSpace != 5){
+            if ($i >= strlen($text)){break;}
+            if(substr($text,$i,1) === " "){
+                $cmptSpace = $cmptSpace + 1;
+            }
+            $title = $title.substr($text,$i,1);
+            $i = $i + 1;
+        }
+        return $title." ...";
+    }
 }
