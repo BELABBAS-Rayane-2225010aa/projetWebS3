@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Exception\CannotCreateCommentException;
 use App\Exception\CannotDeleteCommentException;
 use App\Exception\CannotModify;
+use App\Repository\BilletRepository;
 use App\Repository\CommentRepository;
 use App\Exception\NotFoundException;
 use App\Model\Billet;
@@ -131,5 +132,37 @@ class BilletController
         catch (NotFoundException $ERROR){
             file_put_contents('Log/tavernDeBill.log', $ERROR->getMessage() . "\n", FILE_APPEND | LOCK_EX);
         }
+    }
+
+    /**
+     * permet de supprimer un Billet
+     *
+     * @catch NotFoundException
+     *
+     * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
+     *
+     * @return void
+     * stocke dans une variable de session un msg d'erreur ou de reussite
+     */
+    public function deleteBillet() : void {
+        //on recupere les donnees du formulaire
+        $billetId = $_POST['supBillet'];
+
+        try {
+            $user = new BilletRepository();
+            $msg = $user->deleteBillet($billetId);
+        }
+
+            //on catch si on ne peut pas supprimer car le billet n'est pas trouvé
+        catch (NotFoundException $ERROR){
+            $msg = $ERROR->getMessage();
+        }
+
+        //on envoie un message en cas de reussite ou d'erreur
+        file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
+        if (isset($_SESSION['msg'])){
+            unset($_SESSION['msg']);
+        }
+        $_SESSION['msg'] = $msg;
     }
 }
