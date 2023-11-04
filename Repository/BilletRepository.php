@@ -278,4 +278,21 @@ class BilletRepository extends AbstractRepository
 
         return $arrayBillet;
     }
+
+    public function getBilletFromId(int $billetId): Billet
+    {
+        $query = 'SELECT * FROM BILLET WHERE BILLET_ID = :billetId';
+        $statement = $this->connexion->prepare(
+            $query);
+        $statement->execute(['billetId'=>$billetId]);
+
+        //si la requête rend rien c'est que l'id n'est pas trouvable
+        if ($statement->rowCount() === 0) {
+            throw new NotFoundException("Aucun BILLET trouvé");
+        }
+
+        $resultSQL = $statement->fetch();
+
+        return new Billet($resultSQL['BILLET_ID'],$resultSQL['TITRE'],$resultSQL['MSG'],$resultSQL['DATE_BILLET'],$resultSQL['USER_ID'],$resultSQL['CAT_ID']);
+    }
 }

@@ -15,7 +15,9 @@ require 'HeaderMenu.php';//Charge le bar menu
 
 $controller = new \App\Controller\ProfilController();
 $controller->BilletArrayPrivate();
+$controller->CommentArrayPrivate();
 $arrayBillet = $controller->getBilletArray();
+$arrayComment = $controller->getCommentArray();
 $labelCatID = new CategoryRepository();;
 ?>
     <section id="profilpub">
@@ -41,9 +43,20 @@ $labelCatID = new CategoryRepository();;
             }
             ?></p>
         <p>Commentaire écrit:</p>
-        <p>-Commentaire1,Date1,Billet1
-            <br>
-            -Commentaire1,Date1,Billet1</p><br>
+        <p id="misenformep"><?php
+            if ($arrayComment === []){
+                echo "Vous n'avez écrit aucun commentaire";
+            }
+            else {
+                for ($i = 0; $i < sizeof($arrayComment) ; ++$i){
+                    ?>
+                    <button id="btnprofil" value="<?php $billetId = $arrayComment[$i]->getBillet(); $billetRepo = new \App\Repository\BilletRepository(); echo base64_encode(serialize($billetRepo->getBilletFromId($billetId)));?>" name="billetClique" form="billetform">
+                        <p id="misenformep"><?php if (isset($arrayComment[$i])){echo $arrayComment[$i]->getText().",".$arrayComment[$i]->getDate().", Billet : ".$billetRepo->getBilletFromId($billetId)->getTitle();}else{ echo 'erreur de chargement du comment';}?></p>
+                    </button><br>
+                    <?php
+                }
+            }
+            ?></p>
         <button id="btnprofil" onclick="window.location.href='PasswordModifier.php';">Changer le mdp</button>
         <button id="btnprofil" onclick="if (confirm('Etes-vous sûr de vouloir supprimer votre compte ?')) {window.location.href='DeleteProfil.php'}">Supprimer le compte</button>
     </section>

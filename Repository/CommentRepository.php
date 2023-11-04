@@ -173,4 +173,26 @@ class CommentRepository extends AbstractRepository
             throw new NotFoundException("Le COMMENT d'id : ".$commentId." n'est pas trouvé'");
         }
     }
+
+    public function getCommentByAuthor(int $authorId) : array{
+        $query = 'SELECT * FROM COMMENT WHERE USER_ID = :authorId ORDER BY DATE_COM DESC';
+        $statement = $this->connexion -> prepare(
+            $query );
+        $statement->execute(['authorId' => $authorId]);
+
+        if ( $statement -> rowCount() === 0){
+            throw new NotFoundException("Le USER d'id : ".$authorId." n'est pas trouvé'");
+        }
+
+        //on créer un tableau de billet contenant toutes les données
+        $arraySQL = $statement->fetchAll();
+
+        /* on récupére le résultat de la requête SQL et on le met dans un tableau de Comment*/
+        for ($i = 0; $i < sizeof($arraySQL); $i++) {
+            $comment = new Comment($arraySQL[$i]['COMMENT_ID'], $arraySQL[$i]['TEXTE'],$arraySQL[$i]['DATE_COM'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['BILLET_ID'], $arraySQL[$i]['ISIMPORTANTE']);
+            $arrayComment[] = $comment;
+        }
+
+        return $arrayComment;
+    }
 }
