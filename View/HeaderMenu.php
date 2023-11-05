@@ -16,7 +16,7 @@ $arrayCat = $homeController->getCatArray();
             for ($i = 0 ; $i < sizeof($arrayCat) ; ++$i)
             {
             ?>
-                <button id="deroulant" value="<?php echo base64_encode(serialize($arrayCat[$i]));?>" name="catClique" form="catform">
+                <button class="deroulant" value="<?php echo base64_encode(serialize($arrayCat[$i]));?>" name="catClique" form="catform">
                 <span>
                 </span>
                     <p class="txt-btn"><?php if (isset($arrayCat[$i])){echo $arrayCat[$i]->getLabel();}else{ echo 'erreur de chargement du billet';}?></p>
