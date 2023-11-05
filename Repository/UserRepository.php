@@ -251,30 +251,30 @@ class UserRepository extends AbstractRepository
      * Cette fonction permet de supprimer un User de la table USER de la base de donnée
      *
      * @param int $userId => le numéro d'identification d'un utilisateur
+     * @param bool $deleteEvenAdmin
      *
-     * @throws NotFoundException
+     * @throws UserIsAdminException
      *
      * @return string
      */
-    public function deleteUs(int $userId) : string
+    public function deleteUs(int $userId,bool $deleteEvenAdmin) : string
     {
         //On vérifie si l'utilisateur qu'on veut supprimer est un admin
-        if ($this->isAdmin($userId) === false) {
-
-            //On supprime l'Utilisateur de la BD
-            $query = 'DELETE FROM USER WHERE USER_ID = :userId';
+        $isAdmin = $this->isAdmin($userId);
+        if ($isAdmin === false || $deleteEvenAdmin) {
+            $query = 'UPDATE USER SET PSEUDO = :DeletedUser, MDP = :mdp WHERE USER_ID = :userId';
             $statement = $this->connexion->prepare(
                 $query);
-            $statement->execute(['userId' => $userId]);
-
-            //Si la requête ne rend rien ça veut dire que  l'utilisateur n'existe pas
-            if ($statement->rowCount() === 0) {
-                throw new NotFoundException("Le USER d'id : " . $userId . " ne peut pas être supprimer");
-            }
+            $statement->execute(['DeletedUser' => "DeletedUser",'mdp' => "deleted",'userId' => $userId]);
         } else {
-            throw new UserIsAdminException("Le USER d'id : " . $userId . " est un Admin");
+            throw new UserIsAdminException("USER number " . $userId . " is an Admin");
         }
-        return "Le USER d'id : ".$userId." a bien été supprimé";
+
+        $userType = 'USER';
+        if ($isAdmin){
+            $userType = 'ADMIN';
+        }
+        return  $userType." number ".$userId." as been deleted";
     }
 
     /**
