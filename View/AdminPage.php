@@ -28,7 +28,7 @@ require 'HeaderMenu.php' ?>
             <br>
         </p>
 
-        <p>Suprimer utilisateur: <input type="checkbox" name="deleteEvenAdmin" id='deleteEvenAdmin'><label for="evenAdmin">Admin aussi</label><br>
+        <p>Suprimer utilisateur: <input type="checkbox" name="deleteEvenAdmin" id='deleteEvenAdmin'><label for="evenAdmin" >Admin aussi</label><br>
             <label>Entrez l'ID de l'utilisateur à supprimer :
                 <input type="text" id="in" name="userId">
             </label><br>
