@@ -18,6 +18,7 @@
 namespace App\Repository;
 
 use App\Exception\CannotCreateBilletException;
+use App\Exception\EmptyFieldException;
 use App\Exception\NotFoundException;
 use App\Model\Billet;
 
@@ -161,6 +162,10 @@ class BilletRepository extends AbstractRepository
      * @todo que les infos ne soit pas vide
      */
     public function createBillet(string $title, string $msg,string $dateBillet,int $authorId,int $categoryId) : string {
+        if ($title === "" || $msg === "" ){
+            throw new EmptyFieldException("Un champ de saisie est vide");
+        }
+
         //on insert dans la BD le nouveau billet
         $query = 'INSERT INTO BILLET (TITRE, MSG, DATE_BILLET, USER_ID, CAT_ID) VALUES (:title, :msg, :date_billet, :authorId, :categoryId)';
         $statement = $this->connexion -> prepare(
@@ -260,7 +265,7 @@ class BilletRepository extends AbstractRepository
 
         //si la requête rend rien c'est que l'id n'est pas trouvable
         if ($statement->rowCount() === 0) {
-            throw new NotFoundException("Aucun BILLET trouvé");
+            throw new NotFoundException("Aucun billet présent dans cette catégorie");
         }
 
         //on créer un tableau de billet contenant toutes les données
