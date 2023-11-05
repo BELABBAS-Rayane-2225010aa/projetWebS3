@@ -58,9 +58,9 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
             if ($billetClique->getAuthorId() === $_SESSION['user']->getUserId()){
                 ?>
                 <form action="BilletModifier.php" method="post" id="billetModifierForm"></form>
-                <button value="<?php echo $serializedBillet;?>" name="billetClique" form="billetModifierForm">Modifier</button>
+                <button class="btnCommentCategory" value="<?php echo $serializedBillet;?>" name="billetClique" form="billetModifierForm">Modifier</button>
                 <form action="../index.php" method="post" id="billetSupprimerForm"></form>
-                <button value="<?php echo $billetClique->getBilletId();?>" name="supBillet" form="billetSupprimerForm">Supprimer</button>
+                <button class="btnCommentCategory"  value="<?php echo $billetClique->getBilletId();?>" name="supBillet" form="billetSupprimerForm">Supprimer</button>
                 <?php
             }
         }?>
@@ -99,24 +99,25 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
                     if ($_SESSION['user']->getUserId() === $billetClique->getAuthorId()){
                         if ($isImportante === 0){
                     ?>
-                            <button form="CommentAction" name="makeImportante" value="<?php echo $arrayComment[$i]->getCommentId()?>">Faire devenir important (img a mettre)</button>
+                            <button class="btnupvote" form="CommentAction" name="makeImportante" value="<?php echo $arrayComment[$i]->getCommentId()?>"> <i class="fa-solid fa-arrow-up"></i></i></button>
                     <?php
                         }
                         else {
                     ?>
-                            <button form="CommentAction" name="unMakeImportante" value="<?php echo $arrayComment[$i]->getCommentId()?>">Faire devenir non important (img a mettre)</button>
+                            <button class="btndownvote" form="CommentAction" name="unMakeImportante" value="<?php echo $arrayComment[$i]->getCommentId()?>"><i class="fa-solid fa-arrow-down"></i></button>
                     <?php
                         }
                     }
                 ?>
                 <?php
                     if ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor()) {?>
-                        <button form="CommentAction" name="DelComment" value="<?php echo $arrayComment[$i]->getCommentId()?>">Supprimer Commentaire</button>
-                        <button form="CommentAction" title="Ecriver dans la zone de texte puis cliquez pour modifier" name="CommentModifier" value="<?php echo $arrayComment[$i]->getCommentId()?>">Modifier Commentaire</button>
+                        <button class="btnpoubelle" form="CommentAction" name="DelComment" value="<?php echo $arrayComment[$i]->getCommentId()?>"><i class="fa-solid fa-trash"></i></button>
+                        <button class="btnmodif" form="CommentAction" title="Ecriver dans la zone de texte puis cliquez pour modifier" name="CommentModifier" value="<?php echo $arrayComment[$i]->getCommentId()?>"><i class="fa-solid fa-pen"></i></button>
                         <?php
                     }
                 }
                 ?>
+
                 <br>
                 <?php
             }
