@@ -16,13 +16,17 @@ function start_page($title): void
 <?php
 }
 ?>
+
 <?php function end_page(): void
 {
-    ?>
+    if(isset($_SESSION['suid'])) { ?>
+        <button class="btnCreator" value="crée billet" name="billetCreator" onclick="window.location.href='PostBillet.php'">+</button>
+<?php } ?>
+
     <footer>
-        <small>Copyright @ 2099 D20.com. tout droit tanque ca tourne pas.</small>
+         <small>CC-by 2023-2024 taverneDeBille.alwaysdata.net</small>
     </footer>
-</body>
+
 </html>
 <?php
 }

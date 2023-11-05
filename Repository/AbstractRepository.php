@@ -8,22 +8,30 @@
  *
  * @author Belabbas Rayane / Crespin Alexandre
  *
+ * @package App\Repository
+ *
  * @see \App\Repository\Connexion
+ * @see \PDO
  *
- * @version 0.9
- *
- * @todo : vérifier quand le site est en ligne que la connexion est effective (si c'est bon passer en @version 1.0)
+ * @version 1.0
  */
 
 namespace App\Repository;
 use PDO;
 
+/**
+ * @author BELABBAS-Rayane-2225010aa <rayane.belabbas[@]etu.univ-amu.fr>
+ *
+ * @method PDO getInstance()
+ */
 abstract class AbstractRepository
 {
     protected PDO $connexion ;
 
     /**
-     * Ce constructeur permet de mettre en place les variables d'environnement pour nous connecter ensuite à la BD
+     * permet de faire la connexion avec la BD
+     *
+     * créer des variable d'environnement utilisé dans la class Connexion.php pour faire la connexion
      */
     public function __construct()
     {

@@ -22,15 +22,16 @@ class Comment
     /**
      * Le constructeur de la class Comment
      *
+     * @param int $commentId => l'identifiant du commentaire
      * @param string $text => le text du Comment
      * @param string $date => la date de création du Comment
-     * @param User $author => l'id de l'auteur du Comment
-     * @param Billet $billet => l'id du Billet rattaché au Comment
+     * @param int $author => l'id de l'auteur du Comment
+     * @param int $billet => l'id du Billet rattaché au Comment
      *
      * @return void
      */
-    public function __construct(private string $text, private string $date,
-                                private User $author, private Billet $billet){
+    public function __construct(private int $commentId, private string $text, private string $date,
+                                private int $author, private int $billet,private int $isImportante){
     }
 
     /**
@@ -56,9 +57,9 @@ class Comment
     /**
      * getter de l'attribut author
      *
-     * @return User
+     * @return int
      */
-    public function getAuthor(): User
+    public function getAuthor(): int
     {
         return $this->author;
     }
@@ -66,10 +67,49 @@ class Comment
     /**
      * getter de l'attribut billet
      *
-     * @return Billet
+     * @return int
      */
-    public function getBillet(): Billet
+    public function getBillet(): int
     {
         return $this->billet;
+    }
+
+    public function getCommentId(): int
+    {
+        return $this->commentId;
+    }
+
+    /**
+     * getter de l'attibut nbVote
+     *
+     * @return int
+     */
+    public function isImportante(): int
+    {
+        return $this->isImportante;
+    }
+
+    /**
+     * getter qui permet de réduire l'affichage de l'attribut texte permettant de faire une sorte de titre
+     *
+     * @return string
+     *
+     * @todo : possibilité d'amélioration -> ne pas regarder les espaces car le User peut en mettre 5 au debut de son Comment et by-pass
+     */
+    public function getTitle(): string
+    {
+        $title = "";
+        $text = $this->getText();
+        $cmptSpace = 0;
+        $i = 0;
+        while ($cmptSpace != 5){
+            if ($i >= strlen($text)){break;}
+            if(substr($text,$i,1) === " "){
+                $cmptSpace = $cmptSpace + 1;
+            }
+            $title = $title.substr($text,$i,1);
+            $i = $i + 1;
+        }
+        return $title." ...";
     }
 }

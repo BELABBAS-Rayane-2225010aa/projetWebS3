@@ -1,4 +1,4 @@
-html {
+html  {
     height: 100%;
 }
 body {
@@ -26,20 +26,31 @@ body {
     border-radius: 15px;
     box-sizing: border-box;
     top: 0;
-
+}
+#deroulant {
+    display: flex;
+    flex-direction: column; /* Alignement vertical */
+    font-size: 7px;
+    background-color: #174370;
+    color: #ffffff;
+    transition: background-color 0.3s;
 }
 
-
+#deroulant:hover {
+    background-color: #117883;
+}
 li {
     float: left;
-
 }
+
 li a, .dropbtn {
     display: inline-block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    border-radius: 15px;
+    transition: background-color 0.3s;
 }
 
 li a:hover:not(.active) {
@@ -77,7 +88,9 @@ li.dropdown {
     text-align: left;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1;}
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
 
 .dropdown:hover .dropdown-content {
     display: block;
@@ -90,8 +103,8 @@ li.dropdown {
     align-items: center;
     color: #fff; /* Couleur du texte */
     padding: 10px;
-    border-radius: 4px; /* Coins arrondis */
-    border: 1px solid #fff; /* Bordure blanche de 1 pixel */
+    border-radius: 4px;
+    border: 1px solid #fff;
 }
 
 .search:focus-within input{ /* Garde le search ouvert */
@@ -100,16 +113,16 @@ li.dropdown {
 
 /* Style des éléments input et button à l'intérieur de search */
 .search input, .search button {
-    background: transparent; /* Fond transparent */
+    background: transparent;
     color: inherit;
-    border: none; /* Pas de bordure */
+    border: none;
     outline: none; /* Pas de contour */
 }
 
 /* Style de l'input de recherche */
 .searchinput {
     width: 0;
-    transition: width 0.5s; /* Transition de la largeur */
+    transition: width 0.5s;
 }
 
 /* Style du bouton de recherche */
@@ -118,19 +131,19 @@ li.dropdown {
     place-items: center;
     width: 25px;
     height: 25px;
-    cursor: pointer; /* Curseur pointeur */
-    transition: color 0.15s; /* Transition de la couleur */
+    cursor: pointer;
+    transition: color 0.15s;
 }
 
 /* Style au survol du bouton de recherche */
 .searchbutton:hover {
-    color: #e3e3e3; /* Changement de couleur au survol */
+    color: #e3e3e3;
 }
 
 /* Style au survol du pointeur */
 .search:hover > .searchinput {
-    width: 240px; /* Largeur augmentée */
-    padding: 0 6px; /* Espacement intérieur */
+    width: 240px;
+    padding: 0 6px;
 }
 
 ::placeholder  {
@@ -138,41 +151,36 @@ li.dropdown {
     color: #ffffff;
 }
 
-
-
 /* categories a gauche */
 
 .category {
     float: left;
-    width: 12vh;
-    min-width: 8em;
-    height: 100vh;
-    background-color: #e5b596;
-    border: 1px solid #bd522b;
-    padding: 1%;
-    margin-top: 7vh;
-    font-size: 0.7em;
-    overflow: scroll; /*contre le debordement de la boite associer*/
+    margin: 0 auto ;
+    margin-top: 3%;
+    width: 12%;
+    height:75%;
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+    overflow: hidden;
 }
-
 .category h2 {
-    font-size: 1.5em;
+    font-size: 1.2em;
+    margin-bottom: 15px; /* Espacement en bas du titre */
 }
-
 
 /* billet et commentaire a droite */
 
-.comments {
+.Billet {
     position: static;
-    margin-left:14.5vh;
-    background-color: #e5b596;
-    border: 1px solid #bd522b;
+    margin-left: 15%;
+    background-color: #f9f9f9; /* Couleur de fond */
     border-radius: 8px;
     margin-top: 5vh;
     margin-right: 0.8vh;
     padding: 1%;
     font-size: 1.2em;
-    overflow: scroll; /*contre le debordement de la boite associer*/
+    overflow: hidden;
 }
 
 
@@ -187,19 +195,28 @@ li.dropdown {
     font-family: Arial;
 }
 
+.section-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .btn-flex {
-    width: 30vh;
-    height: 20vh;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-    margin-top: 6em;
-    border-radius: 10px;
-    overflow: hidden; /* empeche le debordement */
-    white-space: nowrap; /* empeche les retour a la ligne et la deformation du bouton */
-    background-color: #ffba93;
-    border-color: #B5532BFF;
+    width: 15%;
+    margin-left: 4%;
+    margin-top: 5%;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #117883;
+    color:#ffffff ;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
 
-
+/*switch souris pour le btn flex*/
+.btn-flex:hover {
+    background-color: #174370;
+    color: #ffffff;
 }
 
 .txt-btn {
@@ -213,11 +230,11 @@ li.dropdown {
 
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
+
 * {
     scrollbar-width: auto;
     scrollbar-color: #616161 #ffffff;
 }
-
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
     width: 14px;
@@ -232,6 +249,7 @@ li.dropdown {
     border-radius: 7px;
     border: 4px solid #ffffff;
 }
+/* bas de page */
 footer {
     text-align: center;
     padding: 5px;
@@ -262,28 +280,369 @@ footer {
     background-color: #e32e2e;
     border-color: #bb0000;
 }
-.fomBox{
-    background-color: #e5b596;
-    border-radius: 10px;
-    border-style: solid;
-    border-color: #b5532b;
-    padding: 5vh;
-    margin: 1em;
-    text-align: start;
+
+/*login*/
+#formlog {
+    max-width: 20%;
+    margin: 0 auto;
+    margin-top: 1%;
+    padding: 2%;
+    background-color: #ffffff;
+    border-radius: 8px;
 }
+
+#formlog input {
+    width: calc(100%);
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 1px solid #cccccc;
+    font-size: 1em;
+    box-sizing: border-box; /* Pour inclure la bordure et le padding dans la largeur */
+    resize: vertical;
+
+}
+#login {
+    text-align: center;
+}
+/*Couleur de signin/up */
+#formlog input[type="submit"] {
+    background-color: #174370;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/*Des que l on passe la souris dessus l input signup/in sa change de couleur */
+#formlog input[type="submit"]:hover {
+    background-color: #117883;
+}
+
+/* inscription */
+#formBox {
+    max-width: 30%;
+    margin: 2% auto;
+    padding: 2%;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+
+#formBox input{
+    width: calc(100%);
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 1px solid #cccccc;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+#formBox input[type="submit"] {
+    background-color: #174370;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#formBox input[type="submit"]:hover {
+    background-color: #117883;
+}
+
+
+/*page 404 */
 .image404{
     max-width: 30%;
     max-height: 30%;
 }
 .section404{
+    border-radius: 10px;
+    margin-left: 10%;
+    width: 80%;
+    border-color: #ffffff;
+    background-color: #174370;
     margin-top: 5em;
+    color: #ffffff;
     text-align: center;
 }
+
+/* pour les billet */
 .btnBillet{
     width: 80%;
     margin-left: 10%;
     margin-top: 1%;
     border-radius: 10px;
-    background-color: #E5B596FF;
-    border-color: #B5532BFF;
+    background-color: #ffffff;
+    border-color: #174370;
 }
+
+.btnCreator {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    right: 0;
+    margin-right: 40px;
+    bottom: 40px;
+    border-radius: 50%;
+    font-size: 24px;
+    background-color: #ffffff;
+    border-color: #174370;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+#milieu
+{
+    text-align: center;
+    color: #ffffff;
+}
+
+/* utilisateur*/
+
+.util {
+    max-width: 500px;
+    margin: 0 auto ;
+    margin-top: 8%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#connectedform {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#connectedform button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #174370;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+}
+
+#connectedform button:hover {
+    background-color: #117883;
+}
+
+/*Page about*/
+.about{
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 8%;
+    padding-top: 10px ;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/*Page resultat recherche*/
+
+#reche {
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: 1%;
+    padding: 2%;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+#misenforme1{
+    color: #174370;
+    margin-top: 20px;
+    text-align: center;
+}
+#misenforme {
+    color: #174370;
+    border-bottom: 2px solid #174370;
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+
+#palier {
+    list-style: none;
+    padding: 0;
+    display: flex;
+
+}
+
+#btnflexbillet {
+    align-items: center;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #174370;
+    color: #fff;
+    border-radius: 8px;
+    list-style: none;
+}
+
+#btnflexbillet:hover {
+    background-color: #117883;
+}
+/* profil utilisateur public et profil */
+
+#profilpub{
+    max-width: 30%;
+    margin: 0 auto;
+    margin-top: 1%;
+    padding: 2%;
+    background-color: #ffffff;
+    border-radius: 8px;
+
+}
+#misenformep{
+    border-bottom: 2px solid #174370;
+    padding-bottom: 10px;
+    margin-top: 20px;
+
+}
+#profilpub #paragraphe {
+    margin: 0 0 10px;
+
+}
+
+#btnprofil {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #174370;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+#btnprofil:hover {
+    background-color: #117883;
+}
+/* admin*/
+#adminbox {
+    max-width: 50%;
+    margin: 0 auto;
+    margin-top: 1%;
+    padding: 2%;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+#adminbox input, #adminbox textarea {
+    width: calc(100%);
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 1px solid #cccccc;
+    font-size: 1em;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+#adminbox input[type="submit"] {
+    background-color: #174370;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#adminbox input[type="submit"]:hover {
+    background-color: #117883;
+}
+
+#deleteEvenAdmin{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/*btn billet */
+.btnBilletCategory{
+    background-color: #174370;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.Comments{
+    position: static;
+    margin-left: 15%;
+    background-color: #f9f9f9; /* Couleur de fond */
+    border-radius: 8px;
+    margin-top: 0.5%;
+    margin-right: 0.8vh;
+    font-size: 1.2em;
+    padding: 1%;
+    overflow: hidden;
+}
+.btnCommentCategory{
+    background-color: #174370;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    padding:8px 14px;
+    margin-bottom: 4px;
+}
+
+.Comments label {
+    display: block;
+    margin-bottom: 5px;
+
+}
+
+.btnupvote, .btndownvote {
+    float: left;
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+    border-radius: 30%;
+    background-color: #174370;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #ffffff;
+    margin-right: 5px;
+    border: none;
+}
+/* btn supprimer et modifier le commentaire */
+.btnpoubelle, .btnmodif{
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 30%;
+    background-color: #174370;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #ffffff;
+    margin-right: 5px;
+    border: none;
+}
+/* texte area du billet */
+
+.Comments textarea {
+    width: 90%;
+    height: 100px;
+    resize: vertical;
+
+}
+/* ajoute un espacement a la fin de la page*/
+#CommentAction{
+    margin-bottom: 5%;
+}
+
+
+
+
+
+

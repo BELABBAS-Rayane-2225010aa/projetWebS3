@@ -7,7 +7,7 @@ start_page('Administration');//Charge la balise "head" avec le css, favicon et l
     <body><!-- FLEX BLOCK-->
 <?php $active = 'admin';
 require 'HeaderMenu.php' ?>
-<section class="fomBox" >
+<section id="adminbox" >
     <form action="../index.php" method="post">
         <p>Nouvelle catégorie: <br>
             <label>Entrez le nom de la nouvel catégorie :
@@ -28,7 +28,7 @@ require 'HeaderMenu.php' ?>
             <br>
         </p>
 
-        <p>Suprimer utilisateur: <br>
+        <p>Suprimer utilisateur: <input type="checkbox" name="deleteEvenAdmin" id='deleteEvenAdmin'><label for="evenAdmin" >Admin aussi</label><br>
             <label>Entrez l'ID de l'utilisateur à supprimer :
                 <input type="text" id="in" name="userId">
             </label><br>
@@ -41,6 +41,14 @@ require 'HeaderMenu.php' ?>
                 <input type="text" id="in" name="billetId">
             </label><br>
             <input type="submit" name="DelBillet" id='boutonchangerMDP' class='checkButton' value="suprimer"><br>
+            <br>
+        </p>
+
+        <p>Suprimer commentaire: <br>
+            <label>Entrez l'ID du commentaire à supprimer :
+                <input type="text" id="in" name="commentId">
+            </label><br>
+            <input type="submit" name="DelCommentAdmin" id='boutonchangerMDP' class='boutonchanger_mdp' value="suprimer"><br>
             <br>
         </p>
 

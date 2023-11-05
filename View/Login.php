@@ -7,8 +7,9 @@ start_page('Categorie');//Charge la balise "head" avec le css, favicon et le nom
 $active = 'connection';
 require 'HeaderMenu.php';//Charge le bar menu
 ?>
-<section class="fomBox">
+<section id="formlog">
     <form action="../index.php" method="post">
+        <h1 id="login">Login Account</h1>
         <label>
             Login
             <input name="pseudo" type="text">
@@ -19,6 +20,8 @@ require 'HeaderMenu.php';//Charge le bar menu
         </label><br>
         <input type="submit"  name="SignIn" value="SignIn">
     </form>
+
+    <p style="color: red"><?php if (isset($_SESSION['msg'])){echo $_SESSION['msg']; unset($_SESSION['msg']);}?></p>
 </section>
 <?php
 end_page();
