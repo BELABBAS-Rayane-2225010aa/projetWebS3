@@ -47,12 +47,6 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
         <h2>Categories : <?php echo $cat->getLabel() ?></h2>
         <h3> Description </h3>
         <p><?php echo $cat->getDescription() ?></p>
-
-        <h3>Lorem ipsum</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-
-        <h3>Lorem ipsum</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
     </aside>
 
     <section class="Billet"><!--affiche les comentaires du billet-->
