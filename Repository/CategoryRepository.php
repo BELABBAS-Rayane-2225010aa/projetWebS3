@@ -18,6 +18,7 @@
 namespace App\Repository;
 
 use App\Exception\CatAlreadyExistException;
+use App\Exception\EmptyFieldException;
 use App\Exception\NotFoundException;
 use App\Model\Category;
 
@@ -54,6 +55,11 @@ class CategoryRepository extends AbstractRepository
      * @return string
      */
     public function createCat(string $label, string $description) : string {
+        //On vérifie si une des information est vide
+        if ($label === "" || $description === "" ){
+            throw new EmptyFieldException("Un champ de saisie est vide");
+        }
+
         //On vérifie si une catégorie du même label existe deja
         $query = 'SELECT * FROM CATEGORIE WHERE LABEL = :label';
         $statement = $this->connexion -> prepare(

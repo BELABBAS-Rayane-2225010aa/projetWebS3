@@ -162,6 +162,7 @@ class BilletRepository extends AbstractRepository
      * @todo que les infos ne soit pas vide
      */
     public function createBillet(string $title, string $msg,string $dateBillet,int $authorId,int $categoryId) : string {
+        //On vérifie si une des information est vide
         if ($title === "" || $msg === "" ){
             throw new EmptyFieldException("Un champ de saisie est vide");
         }

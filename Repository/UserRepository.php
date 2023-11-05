@@ -65,6 +65,11 @@ class UserRepository extends AbstractRepository
      */
     public function login(string $pseudo , string $password) : User
     {
+        //On vérifie si une des information est vide
+        if ($pseudo === "" || $password === "" ){
+            throw new EmptyFieldException("Un champ de saisie est vide");
+        }
+
         //on select tout les Users avec le même pseudo et password
        $query = 'SELECT * FROM USER WHERE PSEUDO = :pseudo and MDP = :password';
        $statement = $this->connexion -> prepare(
