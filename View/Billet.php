@@ -59,9 +59,11 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
                 ?>
                 <form action="BilletModifier.php" method="post" id="billetModifierForm"></form>
                 <button value="<?php echo $serializedBillet;?>" name="billetClique" form="billetModifierForm">Modifier</button>
+            <?php }
+                if($billetClique->getAuthorId() === $_SESSION['user']->getUserId() || $_SESSION['user']->getIsAdmin()){ ?>
                 <form action="../index.php" method="post" id="billetSupprimerForm"></form>
                 <button value="<?php echo $billetClique->getBilletId();?>" name="supBillet" form="billetSupprimerForm">Supprimer</button>
-                <?php
+            <?php
             }
         }?>
         <p>Date : <?php echo $billetClique->getDate() ?></p>
