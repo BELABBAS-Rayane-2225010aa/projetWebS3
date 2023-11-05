@@ -9,7 +9,7 @@ $arrayCat = $homeController->getCatArray();
 ?>
 <ul class="menu"><!--Menu de haut de page qui est prèsent sur toute les page-->
     <li><a <?php if ($active === 'index'){echo 'class=active';};?> href="../index.php">Acceuil</a></li>
-    <bouton class="dropdown" ><a  class="dropbtn"  <?php if ($active === 'categorie'){echo 'class=active';};?>>Categorie ▾</a>
+    <li class="dropdown" ><a  class="dropbtn"  <?php if ($active === 'categorie'){echo 'class=active';};?>>Categorie ▾</a>
         <div class="dropdown-content">
             <form action="Category.php" method="post" id="catform"></form>
             <?php
@@ -26,7 +26,7 @@ $arrayCat = $homeController->getCatArray();
             }
             ?>
         </div>
-    </bouton>
+    </li>
     <li style="float:right"><a <?php if ($active === 'about'){echo 'class=active';}?> href="/View/about.php">A propos</a></li>
     <?php
     //Vérifie si l'utilisateur est connecté et change les bouton du menu en fonction.
