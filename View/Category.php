@@ -1,5 +1,6 @@
 <?php
 
+use App\Controller\CategoryController;
 use App\Exception\CannotFindBilletException;
 use App\Repository\BilletRepository;
 
@@ -20,20 +21,19 @@ $catClique = unserialize(base64_decode($serializedCat));
 if (!$catClique instanceof \App\Model\Category) {
     echo 'La désérialisation a échoué';
 }
+$billetByCatID = new CategoryController();
 
-$billetByCatID = new BilletRepository();
-$billet = $billetByCatID->arrayBilletByCatID($catClique->getCatID());
 ?>
 <section class="misenforme">
     <form action="Billet.php" method="post" id="reche">
         <p class="txt-btn">Nom : <?php echo $catClique->getLabel() ?></p>
         <p class="txt-btn"> Description : <?php echo $catClique->getDescription() ?> </p>
         <p class="txt-btn">Les Billet présent dans <?php echo $catClique->getLabel() ?> :</p>
+        <p class="txt-btn">  <?php $billetByCatID->getBilletByCat(); ?> </p>
         <p class="misenforme">
+
         <?php
-        try {
-        $billetByCatID = new BilletRepository();
-        $billet = $billetByCatID->arrayBilletByCatID($catClique->getCatID());
+        $billet =  $billetByCatID->getBilletByCatArray();
         for ($i = 0 ; $i < sizeof($billet) ; ++$i)
         {
             ?>
@@ -43,9 +43,6 @@ $billet = $billetByCatID->arrayBilletByCatID($catClique->getCatID());
                 <p class="txt-btn"><?php if (isset($billet[$i])){echo $billet[$i]->getTitle();}else{ echo 'erreur de chargement du billet';}?></p>
             </button>
             <?php
-        }
-        }catch (CannotFindBilletException $e){
-            echo 'Cette catégorie ne possède aucun billet';
         }
         ?>
         </p>
