@@ -37,7 +37,7 @@ class PseudoModifierController
     {
         //on récupère les données du formulaire en hashant les password
         $oldPseudo = $_POST['oldPseudo'];
-        $newPseudo = md5($_POST['newPseudo']);
+        $newPseudo = $_POST['newPseudo'];
         $password = md5($_POST['password']);
 
         try {

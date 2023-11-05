@@ -43,7 +43,7 @@ class EmailModifierController
         $oldEmail = $_POST['oldEmail'];
         $newEmail = $_POST['newEmail'];
         $pseudo = $_POST['pseudo'];
-        $password = $_POST['password'];
+        $password = md5($_POST['password']);
 
         try {
             $user = new UserRepository();
