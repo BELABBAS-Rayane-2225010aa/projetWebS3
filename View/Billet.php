@@ -82,6 +82,7 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
     <?php } ?>
 
     <!--Affichage des commentaires-->
+    <form id="CommentModif" action="Billet.php" method="post"></form>
     <form id="CommentAction" action="../index.php" method="post" class="Comments">
         <?php
         if (sizeof($arrayComment)!=0) {
@@ -90,11 +91,18 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
                 $isImportante = $arrayComment[$i]->isImportante();
                 $commentTexte = $arrayComment[$i]->getText();
                 $commentAuteur = $pseudoCommentAuteur->getPseudoFromID($arrayComment[$i]->getAuthor());?>
-                <label for="comment"> Commentaire de <?php echo $commentAuteur->getPseudo() ?> </label>
-                <textarea form="CommentAction" id="comment" name="texteModif<?php echo $arrayComment[$i]->getCommentId() ?>" wrap="soft" rows="5" cols="80"
-                    <?php if (!(isset($_SESSION['user']) && ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor() || $_SESSION['user']->getIsAdmin()))) { echo "readonly";}?>
-                ><?php echo $commentTexte ?></textarea>
+                    <label for="comment"> Commentaire de <?php echo $commentAuteur->getPseudo() ?> :</label>
                 <?php
+                if (isset($_POST['CommentModifEtat']) && $_POST['CommentModifEtat']==$arrayComment[$i]->getCommentId()){ ?>
+                    <textarea form="CommentAction" id="comment" name="texteModif<?php echo $arrayComment[$i]->getCommentId() ?>"><?php echo $commentTexte ?>
+                    </textarea>
+                <?php
+                }
+                else {?>
+                    <p form="CommentAction" id="comment" name="texteModif<?php echo $arrayComment[$i]->getCommentId() ?>"><?php echo $commentTexte ?>
+                    </p>
+                <?php
+                }
                 if (isset($_SESSION['suid'])){
                     if ($_SESSION['user']->getUserId() === $billetClique->getAuthorId()){
                         if ($isImportante === 0){
@@ -110,15 +118,24 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
                     }
                 ?>
                 <?php
-                    if ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor()) {?>
+                    if ($_SESSION['user']->getIsAdmin() || $_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor()) {?>
                         <button form="CommentAction" name="DelComment" value="<?php echo $arrayComment[$i]->getCommentId()?>">Supprimer Commentaire</button>
-                        <button form="CommentAction" title="Ecriver dans la zone de texte puis cliquez pour modifier" name="CommentModifier" value="<?php echo $arrayComment[$i]->getCommentId()?>">Modifier Commentaire</button>
                         <?php
+                        if ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor()) {
+                            if(isset($_POST['CommentModifEtat'])){?>
+                                <button form="CommentAction" title="Ecriver dans la zone de texte puis cliquez pour modifier" name="CommentModifier" value="<?php echo $arrayComment[$i]->getCommentId()?>">Sauvegarder les modifications</button>
+                                <button form="CommentModif" name="CommentModifierCancel">Annuler</button>
+                            <?php
+                            }
+                            else{ ?>
+                            <button form="CommentModif" name="CommentModifEtat" value="<?php echo $arrayComment[$i]->getCommentId()?>">Modifier Commentaire</button>
+                            <?php
+                            }
+                        }
                     }
-                }
-                ?>
-                <br>
-                <?php
+                }?>
+            <br>
+            <?php
             }
         }
         ?>
