@@ -24,7 +24,7 @@ function start_page($title): void
 <?php } ?>
 
     <footer>
-         <small>CC-by 2023-2024 taverneDeBille.alwaysdata.net</small>
+         <small>CC-by 2023-2024 rbb.alwaysdata.net</small>
     </footer>
 
 </html>
