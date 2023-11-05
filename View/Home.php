@@ -19,7 +19,7 @@ start_page('Acceuil');//Charge la balise "head" avec le css, favicon et le nom d
 $active = 'index';
 require 'HeaderMenu.php';//Charge le bar menu
 ?>
-    <section class="section-flex"><!--affiche les 5 dernier billet créé-->
+    <section class="sectionflex"><!--affiche les 5 dernier billet créé-->
         <form action="Billet.php" method="post" id="billetform"></form>
         <?php
         for ($i = 0 ; $i < 5 ; ++$i)
