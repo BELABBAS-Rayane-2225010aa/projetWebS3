@@ -93,6 +93,8 @@ class Comment
      * getter qui permet de réduire l'affichage de l'attribut texte permettant de faire une sorte de titre
      *
      * @return string
+     *
+     * @todo : possibilité d'amélioration -> ne pas regarder les espaces car le User peut en mettre 5 au debut de son Comment et by-pass
      */
     public function getTitle(): string
     {

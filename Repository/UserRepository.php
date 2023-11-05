@@ -178,7 +178,7 @@ class UserRepository extends AbstractRepository
      * @param string $password => password de l'utilisateur
      *
      * @throws PseudoVerificationException
-     * @throws CannotModify
+     * @throws NotFoundException
      *
      * @return User => une instance de la class User créer pour l'occasion
      */
@@ -197,7 +197,7 @@ class UserRepository extends AbstractRepository
 
         //Si la requête ne rend rien ça veut dire que le User n'est pas trouvé
         if ( $statement -> rowCount() === 0){
-            throw new CannotModify("Le pseudo du User : ".$oldPseudo." ne peut être modifier");
+            throw new NotFoundException("Le pseudo du User : ".$oldPseudo." ne peut être modifier");
         }
 
         return $this->login($newPseudo,$password);

@@ -81,7 +81,7 @@ class CommentRepository extends AbstractRepository
      * @param string $texte => le nouveau texte à modifier
      * @param int $commId => l'Id du commentaire
      *
-     * @return void
+     * @return string
      * @throws CannotModify
      *
      */

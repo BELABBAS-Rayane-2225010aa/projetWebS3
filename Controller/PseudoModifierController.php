@@ -11,14 +11,12 @@
  *
  * @see \App\Repository\UserRepository
  *
- * @version 0.9
- *
- * @todo : verifier l'utilité des exceptions
+ * @version 1.0
  */
 
 namespace App\Controller;
 
-use App\Exception\CannotModify;
+use App\Exception\NotFoundException;
 use App\Exception\PseudoVerificationException;
 use App\Repository\UserRepository;
 
@@ -51,7 +49,7 @@ class PseudoModifierController
         }
 
         //on catch si la vérification des password n'est pas bonne ou si on ne peut pas modifier
-        catch (PseudoVerificationException|CannotModify $ERROR){
+        catch (PseudoVerificationException|NotFoundException $ERROR){
             $msg = $ERROR->getMessage();
         }
 

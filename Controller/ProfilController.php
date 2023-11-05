@@ -10,9 +10,7 @@
  *
  * @see \App\Repository\BilletRepository
  *
- * @version 0.9
- *
- * @todo : verifier l'utilité des exceptions
+ * @version 1.0
  */
 
 namespace App\Controller;
@@ -105,7 +103,7 @@ class ProfilController
             $this->commentArray = $repo->getCommentByAuthor($authorId);
         }
 
-            //on catch si on ne trouve pas de comment correspodant au User
+        //on catch si on ne trouve pas de comment correspodant au User
         catch(NotFoundException $ERROR){
             $this->commentArray = [];
         }
@@ -131,7 +129,7 @@ class ProfilController
             $this->commentArray = $repo->getCommentByAuthor($authorId);
         }
 
-            //on catch si on ne trouva pas de comment correspondant au User
+        //on catch si on ne trouva pas de comment correspondant au User
         catch(NotFoundException $ERROR){
             $this->commentArray = [];
         }

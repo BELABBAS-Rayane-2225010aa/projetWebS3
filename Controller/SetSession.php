@@ -7,8 +7,6 @@
  * @package App\Controller
  *
  * @version 1.0
- *
- * @todo : vérifier si on ne peut pas faire passer toutes les modifications de $_SESSION interne au controller et repo ici
  */
 
 namespace App\Controller;

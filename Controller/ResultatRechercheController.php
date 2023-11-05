@@ -13,9 +13,8 @@
  * @see \App\Repository\CategoryRepository
  * @see \App\Repository\CommentRepository
  *
- * @version 0.8
+ * @version 0.9
  *
- * @todo : verifier l'utilité des exceptions
  * @todo : degager ces echo ou trouvé un meilleur moyen d'utilisé ces exceptions
  */
 

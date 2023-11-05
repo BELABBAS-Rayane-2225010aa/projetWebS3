@@ -3,14 +3,10 @@
 namespace App\Controller;
 
 use App\Exception\CannotCreateCommentException;
-use App\Exception\CannotDeleteCommentException;
 use App\Exception\CannotModify;
 use App\Repository\BilletRepository;
 use App\Repository\CommentRepository;
 use App\Exception\NotFoundException;
-use App\Model\Billet;
-use App\Model\User;
-use phpDocumentor\Reflection\Types\Boolean;
 
 class BilletController
 {
@@ -34,7 +30,7 @@ class BilletController
             $msg = $comment->addComment($texte,$dateComment, $authorID, $billetId);
         }
 
-            //on catch si on ne peut pas creer le Commentaire
+        //on catch si on ne peut pas creer le Commentaire
         catch (CannotCreateCommentException $ERROR){
             $msg = $ERROR->getMessage();
         }
@@ -50,9 +46,7 @@ class BilletController
     /**
      * permet de supprimer un Comment
      *
-     * @catch CannotDeleteCommentException
-     *
-     *
+     * @catch NotFoundException
      *
      * @return void
      */
@@ -65,7 +59,7 @@ class BilletController
             $user = new CommentRepository();
             $msg = $user->delComment($commentId);
         } //on catch si on ne peut pas supprimer
-        catch (CannotDeleteCommentException $ERROR) {
+        catch (NotFoundException $ERROR) {
             $msg = $ERROR->getMessage();
         }
 
@@ -100,7 +94,7 @@ class BilletController
     }
 
     /**
-     * permet d'ajouté ou supprimer un upvote
+     * permet de rendre un Comment important
      *
      * @catch NotFoundException
      *
@@ -110,25 +104,40 @@ class BilletController
      */
     public function makeImportante(): void
     {
+        //on recupére l'id du Comment via le formulaire
         $commentId = $_POST['makeImportante'];
 
         try {
             $comment = new CommentRepository();
-            $comment->updateVote($commentId,true);
+            $comment->updateVote($commentId,true);      //true si on le met important, false sinon
         }
+
+        //on catch si l'id du Comment n'est pas trouvé dans la BD
         catch (NotFoundException $ERROR){
             file_put_contents('Log/tavernDeBill.log', $ERROR->getMessage() . "\n", FILE_APPEND | LOCK_EX);
         }
     }
 
+    /**
+     * permet de rendre un Comment non important
+     *
+     * @catch NotFoundException
+     *
+     * @author CRESPIN-Alexandre-2225022aa <alexandre.crespin[@]etu.univ-amu.fr>
+     *
+     * @return void
+     */
     public function unMakeImportante(): void
     {
+        //on recupére l'id du Comment via le formulaire
         $commentId = $_POST['unMakeImportante'];
 
         try {
             $comment = new CommentRepository();
-            $comment->updateVote($commentId,false);
+            $comment->updateVote($commentId,false);      //true si on le met important, false sinon
         }
+
+        //on catch si l'id du Comment n'est pas trouvé dans la BD
         catch (NotFoundException $ERROR){
             file_put_contents('Log/tavernDeBill.log', $ERROR->getMessage() . "\n", FILE_APPEND | LOCK_EX);
         }
@@ -153,7 +162,7 @@ class BilletController
             $msg = $user->deleteBillet($billetId);
         }
 
-            //on catch si on ne peut pas supprimer car le billet n'est pas trouvé
+        //on catch si on ne peut pas supprimer car le billet n'est pas trouvé
         catch (NotFoundException $ERROR){
             $msg = $ERROR->getMessage();
         }

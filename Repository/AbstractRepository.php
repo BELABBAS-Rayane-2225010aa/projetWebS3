@@ -28,6 +28,11 @@ abstract class AbstractRepository
 {
     protected PDO $connexion ;
 
+    /**
+     * permet de faire la connexion avec la BD
+     *
+     * créer des variable d'environnement utilisé dans la class Connexion.php pour faire la connexion
+     */
     public function __construct()
     {
         putenv("DB_DND_DSN=mysql:host=mysql-rbb.alwaysdata.net;dbname=rbb_sitednd");
