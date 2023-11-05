@@ -85,7 +85,6 @@ class CommentRepository extends AbstractRepository
      * @throws CannotModify
      *
      */
-
     public function updComment(int $commId, string $texte): string
     {
         //TODO : ne permettre qu'à l'auteur et aux admins de le modifier
@@ -102,6 +101,16 @@ class CommentRepository extends AbstractRepository
         return "Le commentaire a bien été modifier";
 
     }
+
+    /**
+     * permet de rechercher un commentaire selon un string donnée
+     *
+     * @param string $recherche
+     *
+     * @throws NotFoundException
+     *
+     * @return array
+     */
     public function searchComment(string $recherche) : array
     {
         $query = 'SELECT * FROM COMMENT WHERE TEXTE LIKE "%' . $recherche . '%" ORDER BY COMMENT_ID DESC';
@@ -122,6 +131,15 @@ class CommentRepository extends AbstractRepository
         return $arrayComment;
     }
 
+    /**
+     * permet de recupérer tous les Comment selon un billet et dans l'ordre d'importance
+     *
+     * On met en haut de l'array de Comment les Comment marqué comme important puis les autres ensuite
+     *
+     * @param int $billetId
+     *
+     * @return array
+     */
     public function getCommentByBillet(int $billetId) : array {
         //on select d'abord tous les comments marqué comme important
         $query = 'SELECT * FROM COMMENT WHERE BILLET_ID = :billetId AND ISIMPORTANTE = 1 ORDER BY DATE_COM DESC';
@@ -140,13 +158,13 @@ class CommentRepository extends AbstractRepository
         $arraySQL2 = $statement2->fetchAll();
         $arrayComment = array();
 
-        /* on récupére le résultat de la requête SQL et on le met dans un tableau de Comment*/
+        //on récupére le résultat de la requête SQL et on le met dans un tableau de Comment
         for ($i = 0; $i < sizeof($arraySQL1); $i++) {
             $comment = new Comment($arraySQL1[$i]['COMMENT_ID'], $arraySQL1[$i]['TEXTE'],$arraySQL1[$i]['DATE_COM'], $arraySQL1[$i]['USER_ID'], $arraySQL1[$i]['BILLET_ID'], $arraySQL1[$i]['ISIMPORTANTE']);
             $arrayComment[] = $comment;
         }
 
-        /* on récupére le résultat de la requête SQL et on le met dans un tableau de Comment*/
+        //on récupére le résultat de la requête SQL et on le met dans un tableau de Comment
         for ($i = 0; $i < sizeof($arraySQL2); $i++) {
             $comment = new Comment($arraySQL2[$i]['COMMENT_ID'], $arraySQL2[$i]['TEXTE'],$arraySQL2[$i]['DATE_COM'], $arraySQL2[$i]['USER_ID'], $arraySQL2[$i]['BILLET_ID'], $arraySQL2[$i]['ISIMPORTANTE']);
             $arrayComment[] = $comment;
@@ -155,13 +173,29 @@ class CommentRepository extends AbstractRepository
         return $arrayComment;
     }
 
-    public function updateVote(int $commentId,bool $isPositive){
+    /**
+     * permet de mettre comme important ou non important un Comment
+     *
+     * si on doit le mettre comme important $isPositive = true
+     * sinon $isPositive = false
+     *
+     * @param int $commentId
+     * @param bool $isPositive
+     *
+     * @throws NotFoundException
+     *
+     * @return void
+     */
+    public function updateVote(int $commentId,bool $isPositive): void
+    {
+        //si $isPositive = true on update ISIMPORTANTE à 1
         if ($isPositive === true){
             $query = 'UPDATE COMMENT SET ISIMPORTANTE = 1 WHERE COMMENT_ID = :commentId';
             $statement = $this->connexion -> prepare(
                 $query );
             $statement->execute(['commentId' => $commentId]);
         }
+        //si $isPositive = false on update ISIMPORTANTE à 0
         else {
             $query = 'UPDATE COMMENT SET ISIMPORTANTE = 0 WHERE COMMENT_ID = :commentId';
             $statement = $this->connexion -> prepare(
@@ -169,25 +203,38 @@ class CommentRepository extends AbstractRepository
             $statement->execute(['commentId' => $commentId]);
         }
 
+        //on catch si le Comment à update n'est pas trouvé
         if ( $statement -> rowCount() === 0){
             throw new NotFoundException("Le COMMENT d'id : ".$commentId." n'est pas trouvé'");
         }
     }
 
+    /**
+     * permet de récupérer tous les Comment d'un auteur
+     *
+     * @param int $authorId
+     *
+     * @throws NotFoundException
+     *
+     * @return array
+     */
     public function getCommentByAuthor(int $authorId) : array{
+        //on select les Comment d'un author
         $query = 'SELECT * FROM COMMENT WHERE USER_ID = :authorId ORDER BY DATE_COM DESC';
         $statement = $this->connexion -> prepare(
             $query );
         $statement->execute(['authorId' => $authorId]);
 
+        //si on ne rend  rien cela veut dire que l'on trouve pas le User
         if ( $statement -> rowCount() === 0){
             throw new NotFoundException("Le USER d'id : ".$authorId." n'est pas trouvé'");
         }
 
-        //on créer un tableau de billet contenant toutes les données
+        //on créer un tableau de comment contenant toutes les données
         $arraySQL = $statement->fetchAll();
+        $arrayComment = array();
 
-        /* on récupére le résultat de la requête SQL et on le met dans un tableau de Comment*/
+        //on récupére le résultat de la requête SQL et on le met dans un tableau de Comment
         for ($i = 0; $i < sizeof($arraySQL); $i++) {
             $comment = new Comment($arraySQL[$i]['COMMENT_ID'], $arraySQL[$i]['TEXTE'],$arraySQL[$i]['DATE_COM'], $arraySQL[$i]['USER_ID'], $arraySQL[$i]['BILLET_ID'], $arraySQL[$i]['ISIMPORTANTE']);
             $arrayComment[] = $comment;
