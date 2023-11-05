@@ -54,7 +54,7 @@ $arrayCat = $homeController->getCatArray();
         <input type="text" id="searchInput" name="TexteRecherche" class="searchinput" placeholder="Recherche..." />
 <!--        <input type="submit" value="recherche" name="recherche">-->
         <label for="searchInput" class="searchbutton">
-            <span  type="submit"><img id="icon" src="../View/image/Iconsearch.png"/></span>
+            <span  type="submit"><img id="icon" src="../View/image/Iconsearch.png" alt="icon de recherche"/></span>
         </label>
     </form><!-- Fin du formulaire de recherche -->
 </ul>
