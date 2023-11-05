@@ -281,8 +281,20 @@ class BilletRepository extends AbstractRepository
         return $arrayBillet;
     }
 
+    /**
+     * fonction : getBilletFromId
+     *
+     * Cette fonction récupère les billet selon leur id
+     *
+     * @param int $billetId => l'id de la categorie du billet
+     *
+     * @throws NotFoundException
+     *
+     * @return Billet
+     */
     public function getBilletFromId(int $billetId): Billet
     {
+        //On select un billet selon $billetId
         $query = 'SELECT * FROM BILLET WHERE BILLET_ID = :billetId';
         $statement = $this->connexion->prepare(
             $query);

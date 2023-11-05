@@ -1,4 +1,4 @@
-html {
+html  {
     height: 100%;
 }
 body {
@@ -103,8 +103,8 @@ li.dropdown {
     align-items: center;
     color: #fff; /* Couleur du texte */
     padding: 10px;
-    border-radius: 4px; /* Coins arrondis */
-    border: 1px solid #fff; /* Bordure blanche de 1 pixel */
+    border-radius: 4px;
+    border: 1px solid #fff;
 }
 
 .search:focus-within input{ /* Garde le search ouvert */
@@ -113,16 +113,16 @@ li.dropdown {
 
 /* Style des éléments input et button à l'intérieur de search */
 .search input, .search button {
-    background: transparent; /* Fond transparent */
+    background: transparent;
     color: inherit;
-    border: none; /* Pas de bordure */
+    border: none;
     outline: none; /* Pas de contour */
 }
 
 /* Style de l'input de recherche */
 .searchinput {
     width: 0;
-    transition: width 0.5s; /* Transition de la largeur */
+    transition: width 0.5s;
 }
 
 /* Style du bouton de recherche */
@@ -131,27 +131,25 @@ li.dropdown {
     place-items: center;
     width: 25px;
     height: 25px;
-    cursor: pointer; /* Curseur pointeur */
-    transition: color 0.15s; /* Transition de la couleur */
+    cursor: pointer;
+    transition: color 0.15s;
 }
 
 /* Style au survol du bouton de recherche */
 .searchbutton:hover {
-    color: #e3e3e3; /* Changement de couleur au survol */
+    color: #e3e3e3;
 }
 
 /* Style au survol du pointeur */
 .search:hover > .searchinput {
-    width: 240px; /* Largeur augmentée */
-    padding: 0 6px; /* Espacement intérieur */
+    width: 240px;
+    padding: 0 6px;
 }
 
 ::placeholder  {
     font:inherit;
     color: #ffffff;
 }
-
-
 
 /* categories a gauche */
 
@@ -217,8 +215,8 @@ li.dropdown {
 
 /*switch souris pour le btn flex*/
 .btn-flex:hover {
-    background-color: #174370; /* Couleur foncée au survol */
-    color: #ffffff; /* Texte blanc au survol */
+    background-color: #174370;
+    color: #ffffff;
 }
 
 .txt-btn {
@@ -336,7 +334,7 @@ footer {
     margin-bottom: 1em;
     border: 1px solid #cccccc;
     font-size: 1em;
-    box-sizing: border-box; /* Pour inclure la bordure et le padding dans la largeur */
+    box-sizing: border-box;
 }
 
 #formBox input[type="submit"] {
@@ -364,6 +362,7 @@ footer {
     border-color: #ffffff;
     background-color: #174370;
     margin-top: 5em;
+    color: #ffffff;
     text-align: center;
 }
 
@@ -544,7 +543,7 @@ footer {
     margin-bottom: 1em;
     border: 1px solid #cccccc;
     font-size: 1em;
-    box-sizing: border-box; /* Pour inclure la bordure et le padding dans la largeur */
+    box-sizing: border-box;
     resize: vertical;
 }
 
@@ -559,6 +558,14 @@ footer {
 #adminbox input[type="submit"]:hover {
     background-color: #117883;
 }
+
+#deleteEvenAdmin{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/*btn billet */
 .btnBilletCategory{
     background-color: #174370;
     color: white;
@@ -581,4 +588,61 @@ footer {
     color: white;
     border-radius: 8px;
     cursor: pointer;
+    border: none;
+    padding:8px 14px;
+    margin-bottom: 4px;
 }
+
+.Comments label {
+    display: block;
+    margin-bottom: 5px;
+
+}
+
+.btnupvote, .btndownvote {
+    float: left;
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+    border-radius: 30%;
+    background-color: #174370;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #ffffff;
+    margin-right: 5px;
+    border: none;
+}
+/* btn supprimer et modifier le commentaire */
+.btnpoubelle, .btnmodif{
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 30%;
+    background-color: #174370;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #ffffff;
+    margin-right: 5px;
+    border: none;
+}
+/* texte area du billet */
+
+.Comments textarea {
+    width: 90%;
+    height: 100px;
+    resize: vertical;
+
+}
+/* ajoute un espacement a la fin de la page*/
+#CommentAction{
+    margin-bottom: 5%;
+}
+
+
+
+
+
+
