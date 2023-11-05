@@ -34,7 +34,7 @@ require 'HeaderMenu.php';//Charge le bar menu
         }
         ?>
     </section>
-
+<div>
     <section>
         <form class="util" id="connectedform" action="ProfilPublic.php" method="post">
             <p>Utilisateurs:</p>
@@ -52,7 +52,7 @@ require 'HeaderMenu.php';//Charge le bar menu
             ?>
         </form>
     </section>
-
+</div>
     <p style="color: red"><?php if (isset($_SESSION['msg'])){echo $_SESSION['msg']; unset($_SESSION['msg']);}?></p>
 <?php
 end_page();
