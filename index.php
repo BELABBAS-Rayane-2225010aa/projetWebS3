@@ -136,7 +136,7 @@ if(isset($_POST['unMakeImportante'])){
     header('Location: View/Billet.php');
 }
 
-if(isset($_POST['unMakeImportante'])){
+if(isset($_POST['supBillet'])){
     $controller = new BilletController();
     $controller->deleteBillet();
 }
