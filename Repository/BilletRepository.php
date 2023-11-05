@@ -216,7 +216,7 @@ class BilletRepository extends AbstractRepository
      *
      * Cette fonction modifie un billet
      *
-     * @param string $oldTitle => ancien titre du billet
+     * @param int $billetId => id du bilet
      * @param string $title => Titre du billet
      * @param string $msg => texte présent dans le billet
      * @param string $dateBillet => date de création du billet
@@ -224,20 +224,17 @@ class BilletRepository extends AbstractRepository
      * @param int $categoryId => l'id de la categorie du billet
      *
      * @return string
-     * @throws NotFoundException
-     *
-     *  @todo que ce soit par rapport à l'id du billet et non son ancien titre
      */
-    public function updateBillet(string $oldTitle,string $title,string $msg,string $dateBillet,int $authorId,int $categoryId) : string
+    public function updateBillet(int $billetId,string $title,string $msg,string $dateBillet,int $authorId,int $categoryId) : string
     {
         //on modifie toutes les valeur d'un billet
-        $query = 'UPDATE BILLET SET TITRE = :title, MSG = :msg, DATE_BILLET = :date, USER_ID = :authorID, CAT_ID = :catID WHERE TITRE = :oldTitle';
+        $query = 'UPDATE BILLET SET TITRE = :title, MSG = :msg, DATE_BILLET = :date, USER_ID = :authorID, CAT_ID = :catID WHERE BILLET_ID = :billetId';
         $statement = $this->connexion->prepare(
             $query);
-        $statement->execute(['title' => $title, 'msg' => $msg, 'date' => $dateBillet, 'authorID' => $authorId, 'catID' => $categoryId, 'oldTitle' => $oldTitle]);
+        $statement->execute(['title' => $title, 'msg' => $msg, 'date' => $dateBillet, 'authorID' => $authorId, 'catID' => $categoryId, 'billetId' => $billetId]);
         //si la requête renvoie rien c'est que l'on a pas trouver le billet
         if ($statement->rowCount() === 0) {
-            throw new NotFoundException("Aucun BILLET de titre : ".$oldTitle);
+            throw new NotFoundException("Aucun BILLET d'id ".$billetId);
         }
 
         return "Le Billet de titre : ".$title." a bien été modifier";

@@ -33,7 +33,7 @@ class BilletModifierController
      */
     public function updateBillet(): void {
         //on recupere les donnees du formulaire et on en creer de nouvel
-        $oldTitle = $_POST['oldTitle'];
+        $billetId = $_POST['billetId'];
         $title = $_POST['title'];
         $msg = $_POST['desc'];
         $dateBillet = date("Y-m-d H:i:s");
@@ -42,7 +42,7 @@ class BilletModifierController
 
         try{
             $billet = new BilletRepository();
-            $msg = $billet->updateBillet($oldTitle,$title,$msg,$dateBillet,$authorId,$categoryId);
+            $msg = $billet->updateBillet($billetId,$title,$msg,$dateBillet,$authorId,$categoryId);
         }
 
         //on catch si on ne peut pas trouvé le Billet à modifier

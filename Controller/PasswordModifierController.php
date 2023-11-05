@@ -11,15 +11,13 @@
  *
  * @see \App\Repository\UserRepository
  *
- * @version 0.9
- *
- * @todo : verifier l'utilité des exceptions
+ * @version 1.0
  */
 
 namespace App\Controller;
 
 
-use App\Exception\CannotModify;
+use App\Exception\NotFoundException;
 use App\Exception\PasswordVerificationException;
 use App\Repository\UserRepository;
 
@@ -49,7 +47,7 @@ class PasswordModifierController
         }
 
         //on catch si la vérification des password n'est pas bonne ou si on ne peut pas modifier
-        catch (PasswordVerificationException | CannotModify $ERROR){
+        catch (PasswordVerificationException | NotFoundException $ERROR){
             $msg = $ERROR->getMessage();
         }
 

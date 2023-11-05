@@ -139,6 +139,7 @@ class UserRepository extends AbstractRepository
      * @param string $newPassword1 => la vérification du nouveau password de l'utilisateur
      *
      * @throws PasswordVerificationException
+     * @throws NotFoundException
      *
      * @return string => renvoie un message si l'action s'est bien passer
      */
@@ -162,7 +163,7 @@ class UserRepository extends AbstractRepository
 
         //Si la requête ne rend rien ça veut dire que le User n'est pas trouvé
         if ($statement->rowCount() === 0) {
-            throw new CannotModify("Erreur dans votre ancien mot de passe");
+            throw new NotFoundException("Erreur dans votre ancien mot de passe");
         }
 
         return "Le password a bien été modifier";

@@ -54,7 +54,7 @@ $arrayCat = $categoryRepository->getCat();
         </label>
         <p>L'auteur ne sera pas changer et la date sera mis à celle d'aujourd'hui.</p><br>
         <input name="authorID" type="hidden" value="<?php echo $billetClique->getAuthorId()?>"/>
-        <input name="oldTitle" type="hidden" value="<?php echo $billetClique->getTitle()?>"/>
+        <input name="billetId" type="hidden" value="<?php echo $billetClique->getBilletId()?>"/>
 
         <input type="submit" name="BilletModif"/>
     </section>
