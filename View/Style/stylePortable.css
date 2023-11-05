@@ -621,10 +621,10 @@ td{
 
 .btnupvote, .btndownvote {
     float: left;
-    width: 30px;
+    width: 130px;
     height: 30px;
     font-size: 24px;
-    border-radius: 30%;
+    border-radius: 20px;
     background-color: #174370;
     display: flex;
     justify-content: center;
@@ -636,10 +636,10 @@ td{
 }
 /* btn supprimer et modifier le commentaire */
 .btnpoubelle, .btnmodif{
-    width: 30px;
+    width: 130px;
     height: 30px;
     font-size: 20px;
-    border-radius: 30%;
+    border-radius: 20px;
     background-color: #174370;
     justify-content: center;
     align-items: center;
