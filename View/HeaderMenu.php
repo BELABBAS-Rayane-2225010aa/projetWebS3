@@ -30,7 +30,7 @@ $arrayCat = $homeController->getCatArray();
             ?>
         </div>
     </bouton>
-    <li style="float:right"><a <?php if ($active === 'about'){echo 'class=active';}?> href="/View/about.php">About</a></li>
+    <li style="float:right"><a <?php if ($active === 'about'){echo 'class=active';}?> href="/View/about.php">A propos</a></li>
     <?php
     //Vérifie si l'utilisateur est connecté et change les bouton du menu en fonction.
     if(!isset($_SESSION['suid']))
