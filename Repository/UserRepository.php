@@ -78,7 +78,7 @@ class UserRepository extends AbstractRepository
 
        //Si la fonction ne rend rien cela veut dire qu'il n'y a pas de User correspondant
        if ( $statement -> rowCount() === 0 ){
-           throw new NotFoundException("Le USER de pseudo : ".$pseudo." pas trouvé");
+           throw new NotFoundException("L'utilisateur de pseudo : ".$pseudo." n'a pas été trouvé");
        }
 
        $user = $statement->fetch();
