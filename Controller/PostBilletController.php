@@ -17,6 +17,7 @@
 namespace App\Controller;
 
 use App\Exception\CannotCreateBilletException;
+use App\Exception\EmptyFieldException;
 use App\Exception\NotFoundException;
 use App\Model\Billet;
 use App\Repository\BilletRepository;
@@ -57,9 +58,8 @@ class PostBilletController
         }
 
         //on catch si on ne peut pas creer le Billet
-        catch (CannotCreateBilletException $ERROR){
-            $msg = $ERROR->getMessage();
-        }
+        catch (CannotCreateBilletException | EmptyFieldException $ERROR){
+            $msg = $ERROR->getMessage();}
 
         //on envoie un message à l'admin en cas de reussite ou d'erreur
         file_put_contents('Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);

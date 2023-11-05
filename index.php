@@ -104,6 +104,7 @@ if (isset($_POST['MakeAdmin'])) {
 if (isset($_POST['createPost'])) {
     $controller = new PostBilletController();
     $controller->getNewBillet();
+    header('Location: View/PostBillet.php');
 }
 
 if(isset($_POST['BilletModif'])){

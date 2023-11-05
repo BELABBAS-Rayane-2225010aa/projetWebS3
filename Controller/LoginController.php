@@ -16,6 +16,7 @@
 
 namespace App\Controller;
 
+use App\Exception\EmptyFieldException;
 use App\Repository\UserConnectedRepository;
 use App\Repository\UserRepository;
 use App\Exception\NotFoundException;
@@ -56,7 +57,7 @@ class LoginController
             $session->setUserSession($login);
         }
         //on catch si l'utilisateur n'est pas trouvé
-        catch (NotFoundException $ERROR){
+        catch (NotFoundException | EmptyFieldException $ERROR){
             //on fais un retour d'erreur
             file_put_contents('Log/tavernDeBill.log', $ERROR->getMessage()."\n",FILE_APPEND | LOCK_EX);
             if (isset($_SESSION['msg'])){

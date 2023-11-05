@@ -110,5 +110,7 @@ $searchController = new ResultatRechercheController();
 <!--            <li></li>-->
         </ul>
 </section>
-
+<?php
+end_page();
+?>
 

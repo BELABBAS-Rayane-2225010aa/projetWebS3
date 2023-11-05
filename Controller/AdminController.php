@@ -20,6 +20,7 @@
 namespace App\Controller;
 
 use App\Exception\CatAlreadyExistException;
+use App\Exception\EmptyFieldException;
 use App\Exception\NotFoundException;
 use App\Exception\UserIsAdminException;
 use App\Repository\BilletRepository;
@@ -56,7 +57,7 @@ class AdminController
         }
 
         //on catch si la Category existe déjà
-        catch (CatAlreadyExistException $ERROR){
+        catch (CatAlreadyExistException | EmptyFieldException $ERROR){
             $msg = $ERROR->getMessage();
         }
 
