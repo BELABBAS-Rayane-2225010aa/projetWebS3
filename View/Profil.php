@@ -36,7 +36,7 @@ $labelCatID = new CategoryRepository();;
                 for ($i = 0; $i < sizeof($arrayBillet) ; ++$i){
             ?>
                     <button id="btnprofil" value="<?php echo base64_encode(serialize($arrayBillet[$i]));?>" name="billetClique" form="billetform">
-                        <p id="misenformep"><?php if (isset($arrayBillet[$i])){echo $arrayBillet[$i]->getTitle().",".$arrayBillet[$i]->getDate().", Categorie : ".$labelCatID->catFromID($arrayBillet[$i]->getCategoryId())->getLabel();}else{ echo 'erreur de chargement du billet';}?></p>
+                        <p><?php if (isset($arrayBillet[$i])){echo $arrayBillet[$i]->getTitle().",".$arrayBillet[$i]->getDate().", Categorie : ".$labelCatID->catFromID($arrayBillet[$i]->getCategoryId())->getLabel();}else{ echo 'erreur de chargement du billet';}?></p>
                     </button><br>
             <?php
                 }
@@ -51,7 +51,7 @@ $labelCatID = new CategoryRepository();;
                 for ($i = 0; $i < sizeof($arrayComment) ; ++$i){
                     ?>
                     <button id="btnprofil" value="<?php $billetId = $arrayComment[$i]->getBillet(); $billetRepo = new \App\Repository\BilletRepository(); echo base64_encode(serialize($billetRepo->getBilletFromId($billetId)));?>" name="billetClique" form="billetform">
-                        <p id="misenformep"><?php if (isset($arrayComment[$i])){echo $arrayComment[$i]->getText().",".$arrayComment[$i]->getDate().", Billet : ".$billetRepo->getBilletFromId($billetId)->getTitle();}else{ echo 'erreur de chargement du comment';}?></p>
+                        <p ><?php if (isset($arrayComment[$i])){echo $arrayComment[$i]->getText().",".$arrayComment[$i]->getDate().", Billet : ".$billetRepo->getBilletFromId($billetId)->getTitle();}else{ echo 'erreur de chargement du comment';}?></p>
                     </button><br>
                     <?php
                 }

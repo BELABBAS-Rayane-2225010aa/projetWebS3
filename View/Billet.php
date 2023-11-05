@@ -42,7 +42,7 @@ $pseudoAuteur = new UserRepository();
 $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
 ?>
 <script src="Bouton.js"></script>
-    <button onclick="BoutonAffichageCategorie()" class="buttonCategory"><i class="fa-solid fa-bars"></i></button><!--Présent qu'en mode portable sert a ameliorer la lisibiliter du billet-->
+    <button onclick="BoutonAffichageCategorie()" class="buttonCategory"><i class="fa fa-bars"></i></button><!--Présent qu'en mode portable sert a ameliorer la lisibiliter du billet-->
     <aside id="CategorieID" class="category"><!--affiche les categories du billet-->
         <h2>Categories : <?php echo $cat->getLabel() ?></h2>
         <h3> Description </h3>
@@ -109,28 +109,28 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
                     if ($_SESSION['user']->getUserId() === $billetClique->getAuthorId()){
                         if ($isImportante === 0){
                     ?>
-                            <button class="btnupvote" form="CommentAction" name="makeImportante" value="<?php echo $arrayComment[$i]->getCommentId()?>"> <i class="fa-solid fa-arrow-up"></i></i></button>
+                            <button class="btnupvote" form="CommentAction" name="makeImportante" value="<?php echo $arrayComment[$i]->getCommentId()?>"> <i class="fa fa-arrow-up"></i></i></button>
                     <?php
                         }
                         else {
                     ?>
-                            <button class="btndownvote" form="CommentAction" name="unMakeImportante" value="<?php echo $arrayComment[$i]->getCommentId()?>"><i class="fa-solid fa-arrow-down"></i></button>
+                            <button class="btndownvote" form="CommentAction" name="unMakeImportante" value="<?php echo $arrayComment[$i]->getCommentId()?>"><i class="fa fa-arrow-down"></i></button>
                     <?php
                         }
                     }
                 ?>
                 <?php
                     if ($_SESSION['user']->getIsAdmin() || $_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor()) {?>
-                        <button class="btnpoubelle" form="CommentAction" name="DelComment" value="<?php echo $arrayComment[$i]->getCommentId()?>"><i class="fa-solid fa-trash"></button>
+                        <button class="btnpoubelle" form="CommentAction" name="DelComment" value="<?php echo $arrayComment[$i]->getCommentId()?>"><i class="fa fa-trash"></i></button>
                         <?php
                         if ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor()) {
                             if(isset($_POST['CommentModifEtat'])){?>
-                                <button form="CommentAction" title="Ecriver dans la zone de texte puis cliquez pour modifier" name="CommentModifier" value="<?php echo $arrayComment[$i]->getCommentId()?>">Sauvegarder les modifications</button>
-                                <button form="CommentModif" name="CommentModifierCancel">Annuler</button>
+                                <button class="btnpoubelle" form="CommentAction" title="Ecriver dans la zone de texte puis cliquez pour modifier" name="CommentModifier" value="<?php echo $arrayComment[$i]->getCommentId()?>"><i class="fa fa-save"></i></button>
+                                <button class="btnpoubelle" form="CommentModif" name="CommentModifierCancel"><i class="fa fa-remove"></i></button>
                             <?php
                             }
                             else{ ?>
-                            <button class="btnmodif" form="CommentModif" name="CommentModifEtat" value="<?php echo $arrayComment[$i]->getCommentId()?>"><i class="fa-solid fa-pen"></button>
+                            <button class="btnmodif" form="CommentModif" name="CommentModifEtat" value="<?php echo $arrayComment[$i]->getCommentId()?>"><i class="fa fa-pencil"></i></button>
                             <?php
                             }
                         }

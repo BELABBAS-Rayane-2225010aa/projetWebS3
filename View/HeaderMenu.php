@@ -8,7 +8,7 @@ $homeController->getAllCat();
 $arrayCat = $homeController->getCatArray();
 ?>
 <head>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <ul class="menu"><!--Menu de haut de page qui est prèsent sur toute les page-->
     <li><a <?php if ($active === 'index'){echo 'class=active';};?> href="../index.php">Acceuil</a></li>
