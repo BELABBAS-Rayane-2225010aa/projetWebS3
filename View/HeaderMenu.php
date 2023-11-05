@@ -50,6 +50,7 @@ $arrayCat = $homeController->getCatArray();
     <?php
     }
     ?>
+    <li style="float: right">
     <form style="float:right" class="search" action="ResultatRecherche.php" method="post">
         <input type="text" id="searchInput" name="TexteRecherche" class="searchinput" placeholder="Recherche..." />
 <!--        <input type="submit" value="recherche" name="recherche">-->
@@ -57,5 +58,6 @@ $arrayCat = $homeController->getCatArray();
             <span  type="submit"><img id="icon" src="../View/image/Iconsearch.png" alt="icon de recherche"/></span>
         </label>
     </form><!-- Fin du formulaire de recherche -->
+    </li>
 </ul>
 
