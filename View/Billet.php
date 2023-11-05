@@ -42,7 +42,7 @@ $pseudoAuteur = new UserRepository();
 $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
 ?>
 <script src="Bouton.js"></script>
-    <button onclick="BoutonAffichageCategorie()" class="buttonCategory"><img src="../View/image/BtnCategorie.ico" /></button><!--Présent qu'en mode portable sert a ameliorer la lisibiliter du billet-->
+    <button onclick="BoutonAffichageCategorie()" class="buttonCategory"><i class="fa-solid fa-bars"></i></button><!--Présent qu'en mode portable sert a ameliorer la lisibiliter du billet-->
     <aside id="CategorieID" class="category"><!--affiche les categories du billet-->
         <h2>Categories : <?php echo $cat->getLabel() ?></h2>
         <h3> Description </h3>
