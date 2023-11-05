@@ -28,7 +28,7 @@ require 'HeaderMenu.php';//Charge le bar menu
             <button class="btn-flex" value="<?php echo base64_encode(serialize($cinqBillet[$i]));?>" name="billetClique" form="billetform">
                 <span class="icone-btn">
                 </span>
-                    <label class="txt-btn"><?php if (isset($cinqBillet[$i])){echo $cinqBillet[$i]->getTitle();}else{ echo 'erreur de chargement du billet';}?></label>
+                   <?php if (isset($cinqBillet[$i])){echo $cinqBillet[$i]->getTitle();}else{ echo 'erreur de chargement du billet';}?>
             </button>
         <?php
         }
