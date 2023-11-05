@@ -125,8 +125,8 @@ $auteur = $pseudoAuteur->getPseudoFromID($billetClique->getAuthorId());
                         <?php
                         if ($_SESSION['user']->getUserId()===$arrayComment[$i]->getAuthor()) {
                             if(isset($_POST['CommentModifEtat'])){?>
-                                <button form="CommentAction" title="Ecriver dans la zone de texte puis cliquez pour modifier" name="CommentModifier" value="<?php echo $arrayComment[$i]->getCommentId()?>">Sauvegarder les modifications</button>
-                                <button form="CommentModif" name="CommentModifierCancel">Annuler</button>
+                                <button class="btnpoubelle" form="CommentAction" title="Ecriver dans la zone de texte puis cliquez pour modifier" name="CommentModifier" value="<?php echo $arrayComment[$i]->getCommentId()?>"><i class="fa fa-save"></i></button>
+                                <button class="btnpoubelle" form="CommentModif" name="CommentModifierCancel"><i class="fa fa-remove"></i></button>
                             <?php
                             }
                             else{ ?>
