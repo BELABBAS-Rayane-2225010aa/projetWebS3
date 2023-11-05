@@ -12,11 +12,6 @@ body {
 }
 
 
-/* Enleve la flèche dans le menu déroulement de categories a cause de la library qui la rajoute*/
-.menu .dropdown .fa-caret-down {
-    display: none;
-}
-
 .menu {
     list-style-type: none;
     margin: auto;
@@ -260,20 +255,6 @@ li.dropdown {
     scrollbar-color: #616161 #ffffff;
 }
 
-/* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-    width: 14px;
-}
-
-*::-webkit-scrollbar-track {
-    background: #ffffff;
-}
-
-*::-webkit-scrollbar-thumb {
-    background-color: #616161;
-    border-radius: 7px;
-    border: 4px solid #ffffff;
-}
 footer {
     text-align: center;
     padding: 5px;

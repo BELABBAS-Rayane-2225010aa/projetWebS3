@@ -12,9 +12,7 @@ body {
 }
 
 /* Enleve la flèche dans le menu déroulement de categories a cause de la library qui la rajoute*/
-.menu .dropdown .fa-caret-down {
-    display: none; /* Masque la flèche par défaut */
-}
+
 .menu {
     list-style-type: none;
     margin: auto;
@@ -235,20 +233,7 @@ li.dropdown {
     scrollbar-width: auto;
     scrollbar-color: #616161 #ffffff;
 }
-/* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-    width: 14px;
-}
 
-*::-webkit-scrollbar-track {
-    background: #ffffff;
-}
-
-*::-webkit-scrollbar-thumb {
-    background-color: #616161;
-    border-radius: 7px;
-    border: 4px solid #ffffff;
-}
 /* bas de page */
 footer {
     text-align: center;
