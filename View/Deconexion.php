@@ -1,4 +1,7 @@
 <?php
+
+use App\Repository\UserConnectedRepository;
+
 require "../vendor/autoload.php";
 
 session_start();
@@ -8,7 +11,7 @@ if(!isset($_SESSION['suid']))
     exit();
 }
 
-$deconnect = new \App\Repository\UserConnectedRepository();
+$deconnect = new UserConnectedRepository();
 $msg = $deconnect->logOut($_SESSION['user']);
 file_put_contents('../Log/tavernDeBill.log', $msg."\n",FILE_APPEND | LOCK_EX);
 
